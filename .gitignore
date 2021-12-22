@@ -24,6 +24,7 @@ bower_components/
 
 # IDEs and editors
 .idea/
+projetoFinal_client/.vscode/*
 
 # misc
 .sass-cache/
