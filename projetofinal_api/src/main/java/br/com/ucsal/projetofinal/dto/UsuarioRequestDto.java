@@ -15,13 +15,18 @@ public class UsuarioRequestDto {
     private Instant dataCriacao;
     private Instant dataUltimoAcesso;
 
-    public UsuarioRequestDto(Usuario usuario) {
-        this.nome = usuario.getNome();
-        this.login = usuario.getLogin();
-        this.senha = usuario.getSenha();
-        this.perfil = usuario.getPerfil();
-        this.dataCriacao = usuario.getDataCriacao();
-        this.dataUltimoAcesso = usuario.getDataUltimoAcesso();
+    public UsuarioRequestDto(String nome, String login, String senha, Integer perfil) {
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.perfil = perfil;
+        this.dataCriacao = Instant.now();
+        // FIXME: ARRUMAR ISSO AQUI DEPOIS
+        this.dataUltimoAcesso = Instant.now();
+    }
+
+    public Usuario toModel(){
+        return new Usuario(nome, login, senha, perfil, dataCriacao);
     }
 
     public String getNome() {

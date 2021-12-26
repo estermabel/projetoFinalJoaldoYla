@@ -1,11 +1,18 @@
 package br.com.ucsal.projetofinal.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Usuario {
 
     @Id
@@ -30,44 +37,13 @@ public class Usuario {
     @NotNull
     private Instant dataUltimoAcesso;
 
-    public Usuario() {
-
-    }
-
-    public Usuario(Long id, String nome, String login, String senha, Integer perfil, Instant dataUltimoAcesso) {
-        this.id = id;
+    public Usuario(String nome, String login, String senha, Integer perfil, Instant dataCriacao) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.perfil = perfil;
-        this.dataUltimoAcesso = dataUltimoAcesso;
+        this.dataCriacao = dataCriacao;
+        this.dataUltimoAcesso = Instant.now();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public Integer getPerfil() {
-        return perfil;
-    }
-
-    public Instant getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public Instant getDataUltimoAcesso() {
-        return dataUltimoAcesso;
-    }
 }
