@@ -4,7 +4,7 @@ import br.com.ucsal.projetofinal.model.Usuario;
 
 import java.time.Instant;
 
-public class UsuarioRequestDto {
+public class UsuarioResponseDto {
 
     private String nome;
     private String login;
@@ -13,17 +13,13 @@ public class UsuarioRequestDto {
     private Instant dataCriacao;
     private Instant dataUltimoAcesso;
 
-    public UsuarioRequestDto(String nome, String login, String senha, Integer perfil) {
-        this.nome = nome;
-        this.login = login;
-        this.senha = senha;
-        this.perfil = perfil;
+    public UsuarioResponseDto(Usuario usuario) {
+        this.nome = usuario.getNome();
+        this.login = usuario.getLogin();
+        this.senha = usuario.getSenha();
+        this.perfil = usuario.getPerfil();
         this.dataCriacao = Instant.now();
         this.dataUltimoAcesso = Instant.now();
-    }
-
-    public Usuario toModel() {
-        return new Usuario(nome, login, senha, perfil, dataCriacao);
     }
 
     public String getNome() {
