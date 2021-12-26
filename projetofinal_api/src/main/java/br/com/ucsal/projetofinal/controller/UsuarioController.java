@@ -27,15 +27,15 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listar(){
+    public ResponseEntity<List<Usuario>> listar() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         return ResponseEntity.ok().body(usuarios);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> listarPorId(@PathVariable Long id){
+    public ResponseEntity<?> listarPorId(@PathVariable Long id) {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
-        if (usuario.isPresent()){
+        if (usuario.isPresent()) {
             return ResponseEntity.ok(new UsuarioResponseDto(usuario.get()));
         }
         logger.error("Não existe usuario com esse id");
@@ -43,21 +43,22 @@ public class UsuarioController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<UsuarioResponseDto> inserir(@RequestBody @Valid UsuarioRequestDto usuarioRequestDto){
+    public ResponseEntity<UsuarioResponseDto> inserir(@RequestBody @Valid UsuarioRequestDto usuarioRequestDto) {
         Usuario usuario = usuarioRequestDto.toModel();
         usuarioRepository.save(usuario);
         return ResponseEntity.ok().body(new UsuarioResponseDto(usuario));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody Usuario usuario){
+    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
         return usuarioRepository.findById(id).map(
-                user -> {user.setNome(usuario.getNome());
+                user -> {
+                    user.setNome(usuario.getNome());
                     user.setLogin(usuario.getLogin());
                     user.setSenha(usuario.getSenha());
                     user.setDataUltimoAcesso(Instant.now());
                     Usuario usuarioAtualizado = usuarioRepository.save(user);
                     return ResponseEntity.ok().body(usuarioAtualizado);
-        }).orElse(ResponseEntity.notFound().build());
+                }).orElse(ResponseEntity.notFound().build());
     }
 }

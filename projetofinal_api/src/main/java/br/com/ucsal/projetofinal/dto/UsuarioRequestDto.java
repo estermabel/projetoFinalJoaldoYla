@@ -2,8 +2,6 @@ package br.com.ucsal.projetofinal.dto;
 
 import br.com.ucsal.projetofinal.model.Usuario;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 public class UsuarioRequestDto {
@@ -21,11 +19,10 @@ public class UsuarioRequestDto {
         this.senha = senha;
         this.perfil = perfil;
         this.dataCriacao = Instant.now();
-        // FIXME: ARRUMAR ISSO AQUI DEPOIS
         this.dataUltimoAcesso = Instant.now();
     }
 
-    public Usuario toModel(){
+    public Usuario toModel() {
         return new Usuario(nome, login, senha, perfil, dataCriacao);
     }
 

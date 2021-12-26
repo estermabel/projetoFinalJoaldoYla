@@ -1,7 +1,6 @@
 package br.com.ucsal.projetofinal.dto;
 
 import br.com.ucsal.projetofinal.model.Usuario;
-import br.com.ucsal.projetofinal.repository.UsuarioRepository;
 
 import java.time.Instant;
 
@@ -20,7 +19,6 @@ public class UsuarioResponseDto {
         this.senha = usuario.getSenha();
         this.perfil = usuario.getPerfil();
         this.dataCriacao = Instant.now();
-        // FIXME: ARRUMAR ISSO AQUI DEPOIS
         this.dataUltimoAcesso = Instant.now();
     }
 
