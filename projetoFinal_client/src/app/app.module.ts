@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { MatTableModule } from '@angular/material/table'
+import { MatSortModule, MatPaginatorModule } from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -15,8 +17,11 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     FormsModule
-  ],
+  ],exports:[ MatTableModule ],
   providers: [],
   bootstrap: [AppComponent]
 })

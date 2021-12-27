@@ -11,7 +11,7 @@ import { GenericService } from 'src/app/commons/generic.service';
   providedIn: 'root'
 })
 export class UsuarioService extends GenericService {
-  private relativePath = 'usuarios/';
+  private relativePath = 'api/usuarios/';
 
   constructor(http: HttpClient) {
     super(http);
@@ -23,6 +23,6 @@ export class UsuarioService extends GenericService {
   }
 
   override findAll(): Observable<Array<Usuario>>{
-      return this.getMethod(this.relativePath + 'find-all');
+      return this.getMethod(this.relativePath);
   }
 }

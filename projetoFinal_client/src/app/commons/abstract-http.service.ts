@@ -8,7 +8,7 @@ import { catchError, retry, throwError } from 'rxjs';
 @Injectable()
 export class AbstractHttpService {
 
-    protected url: string = environment.url;
+    protected url: string = "http://localhost:8080/";
 
     private extractData: any;
 
