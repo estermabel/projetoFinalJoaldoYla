@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/usuarios")
+@RequestMapping(value = "/api/usuarios")
 public class UsuarioController {
     private final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 

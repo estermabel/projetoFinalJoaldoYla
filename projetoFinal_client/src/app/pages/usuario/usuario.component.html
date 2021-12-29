@@ -1,0 +1,24 @@
+
+
+<mat-table >
+
+  <p>usuario works!</p>
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.nome}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="login">
+    <th mat-header-cell *matHeaderCellDef> Login </th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.login}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="perfil">
+    <th mat-header-cell *matHeaderCellDef> Perfil </th>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.pergil}} </td>
+  </ng-container>
+</mat-table>
+
+
