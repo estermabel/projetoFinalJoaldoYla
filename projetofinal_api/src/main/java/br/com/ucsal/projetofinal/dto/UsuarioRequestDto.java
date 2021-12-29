@@ -13,6 +13,9 @@ public class UsuarioRequestDto {
     private Instant dataCriacao;
     private Instant dataUltimoAcesso;
 
+    public UsuarioRequestDto() {
+    }
+
     public UsuarioRequestDto(String nome, String login, String senha, Integer perfil) {
         this.nome = nome;
         this.login = login;
