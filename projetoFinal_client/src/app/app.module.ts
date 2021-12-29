@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { MatTableModule } from '@angular/material/table'
-import { MatSortModule, MatPaginatorModule } from '@angular/material'
+import { MatSortModule, MatPaginatorModule } from '@angular/material';
+import { TarefaComponent } from './pages/tarefa/tarefa.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    TarefaComponent
   ],
   imports: [
     BrowserModule,
