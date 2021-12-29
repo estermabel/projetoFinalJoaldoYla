@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/casoteste")
+@RequestMapping("/api/casoteste")
 public class CasoTesteController {
 
     private final CasoTesteRepository casoTesteRepository;
