@@ -42,7 +42,7 @@ public class Usuario {
         this.login = login;
         this.senha = senha;
         this.perfil = perfil;
-        this.dataCriacao = dataCriacao;
+        this.dataCriacao = Instant.now();
         this.dataUltimoAcesso = Instant.now();
     }
 

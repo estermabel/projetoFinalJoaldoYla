@@ -15,6 +15,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:8080/")
 @RestController
 @RequestMapping(value = "/api/usuarios")
 public class UsuarioController {
@@ -42,6 +43,8 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity<UsuarioResponseDto> inserir(@RequestBody @Valid UsuarioRequestDto usuarioRequestDto) {
         Usuario usuario = usuarioRequestDto.toModel();
