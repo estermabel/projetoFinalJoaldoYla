@@ -1,9 +1,8 @@
 import { UsuarioService } from './services/usuario/usuario.service';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild,  } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Usuario } from './models/usuario';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild, Injectable, Type } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -37,13 +36,5 @@ export class AppComponent implements OnInit{
   }
 
 
-  buscarUsuarios(){
-    this.usuarioService.findAll().subscribe(data => {
-      this.usuarios.data = data;
-      console.log(this.usuarios.data);
-    });
-    this.usuarios.paginator = this.paginator;
-    this.usuarios.sort = this.sort;
-  }
 
 }
