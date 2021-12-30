@@ -10,3 +10,6 @@ values ('2022-01-12 18:47:52', 'Printar um hello world!', 'Hello world!');
 
 INSERT INTO tarefa_testes(tarefa_id, testes_id)
 values (1, 1), (1, 2);
+
+INSERT INTO resposta(codigo, data_envio, tarefa_id, usuario_id)
+values ('Codigo', '2021-12-29 18:47:52', 1, 1);

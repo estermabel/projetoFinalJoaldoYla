@@ -9,6 +9,9 @@ public class CasoTesteRequestDto {
     private String saida;
     private Integer comparacao;
 
+    public CasoTesteRequestDto() {
+    }
+
     public CasoTesteRequestDto(String nomeTeste, String entrada, String saida, Integer comparacao) {
         this.nomeTeste = nomeTeste;
         this.entrada = entrada;
