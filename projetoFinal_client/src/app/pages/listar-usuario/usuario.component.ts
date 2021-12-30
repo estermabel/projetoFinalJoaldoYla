@@ -1,7 +1,6 @@
 
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild,  } from '@angular/core';
+
+import { Component, Input, OnInit, ViewChild,  } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource} from '@angular/material' ;
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { Usuario } from 'src/app/models/usuario';
@@ -12,9 +11,11 @@ import { Usuario } from 'src/app/models/usuario';
   templateUrl: './usuario.component.html',
   styleUrls: ['./usuario.component.css']
 })
+
 export class UsuarioComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Usuario>();
+  @Input()  usuarios: any[] = [];
   displayedColumns = [
     'nome',
     'login',
@@ -36,10 +37,9 @@ export class UsuarioComponent implements OnInit {
 
 
   buscarUsuarios(){
-    this.usuarioService.findAll().subscribe(data => {
-      this.dataSource.data = data;
-      MatTableDataSource
-      console.log(this.dataSource.data);
+    this.usuarioService.findAll().subscribe((data: any[]) => {
+      this.usuarios = data;
+      console.log(this.usuarios);
     });
   }
 

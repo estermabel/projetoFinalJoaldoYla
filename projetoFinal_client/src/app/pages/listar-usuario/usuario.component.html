@@ -1,0 +1,20 @@
+<section class="container">
+  <h2 class="titulo">Usuários</h2>
+  <table class="tabela">
+    <thead class="tabela__cabecalho">
+      <th class="tabela__cabecalho__conteudo">Nome</th>
+      <th class="tabela__cabecalho__conteudo">Login</th>
+      <th class="tabela__cabecalho__conteudo">Perfil</th>
+    </thead>
+    <tbody *ngIf="!!dataSource; else listaVazia">
+      <tr class="tabela__linha" *ngFor="let usuario of usuarios">
+        <td class="tabela__conteudo"> {{ usuario.nome }}</td>
+        <td class="tabela__conteudo">{{ usuario.login }}</td>
+        <td class="tabela__conteudo">{{ usuario.perfil }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #listaVazia>
+    <p>Nenhum Usuário cadastrado</p>
+  </ng-template>
+</section>
