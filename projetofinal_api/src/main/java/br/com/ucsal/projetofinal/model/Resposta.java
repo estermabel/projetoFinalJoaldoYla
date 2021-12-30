@@ -1,12 +1,21 @@
 package br.com.ucsal.projetofinal.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 public class Resposta {
 
     @Id
@@ -15,8 +24,10 @@ public class Resposta {
 
     @NotBlank
     private String codigo;
+
     @NotNull
-    private Instant dataEnvio;
+    @JsonFormat(pattern = "dd-MM-yyyy@HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    private LocalDateTime dataEnvio;
 
     @Valid
     @NotNull
@@ -28,13 +39,9 @@ public class Resposta {
     @OneToOne
     private Tarefa tarefa;
 
-    public Resposta() {
-    }
-
-    public Resposta(Long id, String codigo, Instant dataEnvio, Usuario usuario, Tarefa tarefa) {
-        this.id = id;
+    public Resposta(String codigo, LocalDateTime dataEnvio, Usuario usuario, Tarefa tarefa) {
         this.codigo = codigo;
-        this.dataEnvio = dataEnvio;
+        this.dataEnvio = LocalDateTime.now();
         this.usuario = usuario;
         this.tarefa = tarefa;
     }

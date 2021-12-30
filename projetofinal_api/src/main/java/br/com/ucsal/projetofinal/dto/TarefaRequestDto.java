@@ -14,6 +14,9 @@ public class TarefaRequestDto {
     private LocalDateTime dataEntrega;
     private List<CasoTesteRequestDto> testes = new ArrayList<>();
 
+    public TarefaRequestDto() {
+    }
+
     public TarefaRequestDto(String titulo, String descricao, LocalDateTime dataEntrega, List<CasoTesteRequestDto> testes) {
         this.titulo = titulo;
         this.descricao = descricao;
