@@ -1,3 +1,4 @@
+import { CadastrarTarefaComponent } from './pages/cadastrar-tarefa/cadastrar-tarefa.component';
 
 import { CasoTeste } from './models/casoTeste';
 import { TarefaComponent } from './pages/listar-tarefa/tarefa.component';
@@ -11,7 +12,8 @@ import { CasoTesteComponent } from './pages/listar-caso-teste/caso-teste.compone
 const routes: Routes = [
   { path: 'usuarios', component: UsuarioComponent },
   { path: 'tarefas', component: TarefaComponent },
-  { path: 'casoTeste', component: CasoTesteComponent }
+  { path: 'casoTeste', component: CasoTesteComponent },
+  { path: 'cadastrarTarefa', component: CadastrarTarefaComponent }
 ];
 
 @NgModule({
