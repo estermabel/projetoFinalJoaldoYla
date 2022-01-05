@@ -36,6 +36,7 @@ public class Tarefa {
     private LocalDateTime dataEntrega;
 
     @Valid
+    @NotNull
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<CasoTeste> testes = new ArrayList<>();
 
