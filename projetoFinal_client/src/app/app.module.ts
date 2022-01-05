@@ -9,10 +9,11 @@ import { MatTableModule } from '@angular/material/table'
 import { MatSortModule, MatPaginatorModule } from '@angular/material';
 import { TarefaComponent } from './pages/listar-tarefa/tarefa.component';
 import localePt from '@angular/common/locales/pt';
-
+import { MatMenuModule} from '@angular/material/menu';
 import { registerLocaleData } from '@angular/common';
 import { CasoTesteComponent } from './pages/listar-caso-teste/caso-teste.component';
 import { CadastrarTarefaComponent } from './pages/cadastrar-tarefa/cadastrar-tarefa.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -22,13 +23,15 @@ registerLocaleData(localePt, 'pt');
     UsuarioComponent,
     TarefaComponent,
     CasoTesteComponent,
-    CadastrarTarefaComponent
+    CadastrarTarefaComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatTableModule,
+    MatMenuModule,
     MatSortModule,
     MatPaginatorModule,
     FormsModule
