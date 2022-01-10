@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { CasoTesteService } from './../../services/caso-teste/caso-teste.service';
+import { CasoTeste } from './../../models/casoTeste';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-caso-teste',
@@ -6,10 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./caso-teste.component.css']
 })
 export class CasoTesteComponent implements OnInit {
+  dataSource = new MatTableDataSource<CasoTeste>();
+  @Input()  casosTestes: any[] = [];
+  displayedColumns = [
+    'nomeTeste',
+    'entrada',
+    'saida',
+    'comparacao'
+  ];
 
-  constructor() { }
+  constructor(private casoTesteService: CasoTesteService) { }
 
   ngOnInit(): void {
+    this.buscarCasosTeste()
   }
 
+  buscarCasosTeste(){
+    this.casoTesteService.findAll().subscribe((data: any[]) => {
+      this.casosTestes = data;
+      console.log(this.casosTestes);
+    });
+  }
 }

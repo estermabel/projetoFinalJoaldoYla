@@ -45,6 +45,9 @@ public class TarefaController {
     @PostMapping("/")
     public ResponseEntity<TarefaResponseDto> inserir(@RequestBody @Valid TarefaRequestDto tarefaRequestDto) {
         Tarefa tarefa = tarefaRequestDto.toModel(casoTesteRepository);
+        if (tarefa.getTestes().isEmpty()){
+            return ResponseEntity.badRequest().build();
+        }
         tarefaRepository.save(tarefa);
         return ResponseEntity.ok().body(new TarefaResponseDto(tarefa));
     }

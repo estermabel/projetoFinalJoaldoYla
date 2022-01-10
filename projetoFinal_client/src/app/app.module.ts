@@ -14,6 +14,8 @@ import { registerLocaleData } from '@angular/common';
 import { CasoTesteComponent } from './pages/listar-caso-teste/caso-teste.component';
 import { CadastrarTarefaComponent } from './pages/cadastrar-tarefa/cadastrar-tarefa.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { FormModalComponent } from './pages/form-modal/form-modal.component';
+import { CadastrarUsuarioComponent } from './pages/cadastrar-usuario/cadastrar-usuario.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -24,7 +26,9 @@ registerLocaleData(localePt, 'pt');
     TarefaComponent,
     CasoTesteComponent,
     CadastrarTarefaComponent,
-    MenuComponent
+    MenuComponent,
+    FormModalComponent,
+    CadastrarUsuarioComponent
   ],
   imports: [
     BrowserModule,
