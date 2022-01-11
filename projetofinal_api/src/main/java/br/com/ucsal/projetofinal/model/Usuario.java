@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,12 +33,14 @@ public class Usuario {
     private Integer perfil;
 
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant dataCriacao;
 
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant dataUltimoAcesso;
 
-    public Usuario(String nome, String login, String senha, Integer perfil, Instant dataCriacao) {
+    public Usuario(String nome, String login, String senha, Integer perfil) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;

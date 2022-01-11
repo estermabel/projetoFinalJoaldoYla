@@ -1,6 +1,7 @@
 package br.com.ucsal.projetofinal.dto;
 
 import br.com.ucsal.projetofinal.model.Usuario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.Instant;
 
@@ -10,7 +11,9 @@ public class UsuarioRequestDto {
     private String login;
     private String senha;
     private Integer perfil;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant dataCriacao;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant dataUltimoAcesso;
 
     public UsuarioRequestDto() {
@@ -26,7 +29,7 @@ public class UsuarioRequestDto {
     }
 
     public Usuario toModel() {
-        return new Usuario(nome, login, senha, perfil, dataCriacao);
+        return new Usuario(nome, login, senha, perfil);
     }
 
     public String getNome() {
