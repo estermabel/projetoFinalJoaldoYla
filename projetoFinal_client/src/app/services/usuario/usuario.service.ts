@@ -1,9 +1,11 @@
+import { UsuarioDTO } from './../../models/DTO/usuarioDTO';
+import { Usuario } from './../../models/usuario';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Usuario } from 'src/app/models/usuario';
 import { GenericService } from 'src/app/commons/generic.service';
+
 
 
 
@@ -24,5 +26,9 @@ export class UsuarioService extends GenericService {
 
   override findAll(): Observable<Array<Usuario>>{
       return this.getMethod(this.relativePath);
+  }
+
+  override save(usuario: UsuarioDTO): Observable<UsuarioDTO> {
+      return this.postMethod(usuario, this.relativePath)
   }
 }

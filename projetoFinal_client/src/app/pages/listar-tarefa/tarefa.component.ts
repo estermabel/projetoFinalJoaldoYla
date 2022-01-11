@@ -21,6 +21,7 @@ export class TarefaComponent implements OnInit {
   constructor(private tarefaService: TarefaService) { }
 
   ngOnInit(): void {
+    console.log("component tarefas")
     this.buscarTarefas()
   }
 
