@@ -3,8 +3,8 @@ export class TarefaDTO{
   id: number
   titulo: string;
   descricao: string;
-  dataEntrega: Date
-  casoTeste= new Array<CasoTeste>()
+  dataEntrega: Date;
+  testes= new Array<CasoTeste>()
 
   constructor() {
     this.id = 0,

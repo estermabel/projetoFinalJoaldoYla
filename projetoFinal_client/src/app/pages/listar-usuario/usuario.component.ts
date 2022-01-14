@@ -19,6 +19,8 @@ export class UsuarioComponent implements OnInit {
   displayedColumns = [
     'nome',
     'login',
+    'data ultimo acesso',
+    'data cadastro',
     'perfil'
   ];
 

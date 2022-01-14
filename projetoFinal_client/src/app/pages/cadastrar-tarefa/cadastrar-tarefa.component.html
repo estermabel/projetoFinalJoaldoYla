@@ -16,12 +16,35 @@
 
     <div class="form-field">
       <label class="label-form" for="dataEntrega">Data de Entrega</label>
-      <input class="input-form"  mask="99/99/9999" id="dataEntrega" type="date" [(ngModel)]="tarefa.dataEntrega" name="dataEntrega"/>
+      <input class="input-form"  mask="99/99/9999" id="dataEntrega" type="datetime-local" [(ngModel)]="tarefa.dataEntrega" name="dataEntrega"/>
     </div>
 
     <h4>Casos de Teste</h4>
+    <!--(click)="openDialog()"-->
+    <div class="demo-button-container">
+      <button class="botao" mat-raised-button (click)="addData()" class="demo-button">
+        Add data
+      </button>
+      <button class="botao"
+          mat-raised-button
+          [disabled]="!casosTestesDataSource.length"
+          (click)="removeData()"
+          class="demo-button">
+        Remove data
+      </button>
+    </div>
 
-    <app-caso-teste></app-caso-teste>
+
+    <mat-table #table     class="tabela" class="mat-elevation-z8">
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <ng-template #listaVazia>
+      <p>Nenhum Caso de Teste cadastrado</p>
+    </ng-template>
 
 
     <div class="botao-wrapper">

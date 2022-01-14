@@ -13,6 +13,7 @@ export class CadastrarUsuarioComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) { }
   usuario= new  UsuarioDTO
   ngOnInit( ): void {
+
   }
 
   cadastrarUsuario(){

@@ -50,14 +50,25 @@
   cursor: pointer;
   transition: opacity 0.2s;
 
-
-
-
 }
+
 .hover {
   opacity: 0.8;
 }
+
 .cancelar {
   background-color: var(--secondary);
   margin-left: 20px;
+}
+
+.demo-table {
+  width: 100%;
+}
+
+.demo-button-container {
+  padding-bottom: 16px;
+}
+
+.demo-button + .demo-button {
+  margin-left: 8px;
 }

@@ -4,12 +4,16 @@
     <thead class="tabela__cabecalho">
       <th class="tabela__cabecalho__conteudo">Nome</th>
       <th class="tabela__cabecalho__conteudo">Login</th>
+      <th class="tabela__cabecalho__conteudo">data ultimo acesso</th>
+      <th class="tabela__cabecalho__conteudo">data cadastro</th>
       <th class="tabela__cabecalho__conteudo">Perfil</th>
     </thead>
     <tbody *ngIf="!!dataSource; else listaVazia">
       <tr class="tabela__linha" *ngFor="let usuario of usuarios">
         <td class="tabela__conteudo"> {{ usuario.nome }}</td>
         <td class="tabela__conteudo">{{ usuario.login }}</td>
+        <td class="tabela__conteudo">{{ usuario.dataUltimoAcesso }}</td>
+        <td class="tabela__conteudo">{{ usuario.dataCriacao }}</td>
         <td class="tabela__conteudo">{{ usuario.perfil }}</td>
       </tr>
     </tbody>

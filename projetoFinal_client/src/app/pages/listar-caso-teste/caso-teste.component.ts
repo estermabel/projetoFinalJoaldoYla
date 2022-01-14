@@ -3,13 +3,14 @@ import { CasoTeste } from './../../models/casoTeste';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
+
 @Component({
   selector: 'app-caso-teste',
   templateUrl: './caso-teste.component.html',
   styleUrls: ['./caso-teste.component.css']
 })
 export class CasoTesteComponent implements OnInit {
-  dataSource = new MatTableDataSource<CasoTeste>();
+  dataSource : CasoTeste[] = [];
   @Input()  casosTestes: any[] = [];
   displayedColumns = [
     'nomeTeste',
@@ -26,6 +27,7 @@ export class CasoTesteComponent implements OnInit {
 
   buscarCasosTeste(){
     this.casoTesteService.findAll().subscribe((data: any[]) => {
+      this.dataSource = data;
       this.casosTestes = data;
       console.log(this.casosTestes);
     });
