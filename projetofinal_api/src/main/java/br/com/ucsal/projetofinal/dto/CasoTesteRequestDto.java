@@ -1,6 +1,8 @@
 package br.com.ucsal.projetofinal.dto;
 
 import br.com.ucsal.projetofinal.model.CasoTeste;
+import br.com.ucsal.projetofinal.model.Tarefa;
+import br.com.ucsal.projetofinal.repository.TarefaRepository;
 
 public class CasoTesteRequestDto {
 
@@ -8,19 +10,25 @@ public class CasoTesteRequestDto {
     private String entrada;
     private String saida;
     private Integer comparacao;
+    private Long tarefaId;
 
     public CasoTesteRequestDto() {
     }
 
-    public CasoTesteRequestDto(String nomeTeste, String entrada, String saida, Integer comparacao) {
+    public CasoTesteRequestDto(String nomeTeste, String entrada, String saida, Integer comparacao, Long tarefaId) {
         this.nomeTeste = nomeTeste;
         this.entrada = entrada;
         this.saida = saida;
         this.comparacao = comparacao;
+        this.tarefaId = tarefaId;
     }
 
-    public CasoTeste toModel() {
-        return new CasoTeste(nomeTeste, entrada, saida, comparacao);
+    public CasoTeste toModel(TarefaRepository tarefaRepository) {
+        Tarefa tarefa = null;
+        if(tarefaId != null){
+            tarefa = tarefaId == null ? null : tarefaRepository.findById(tarefaId).orElseThrow();
+        }
+        return new CasoTeste(nomeTeste, entrada, saida, comparacao, tarefa);
     }
 
     public String getNomeTeste() {
@@ -37,5 +45,9 @@ public class CasoTesteRequestDto {
 
     public Integer getComparacao() {
         return comparacao;
+    }
+
+    public Long getTarefaId() {
+        return tarefaId;
     }
 }

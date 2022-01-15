@@ -1,6 +1,7 @@
 package br.com.ucsal.projetofinal.dto;
 
 import br.com.ucsal.projetofinal.model.CasoTeste;
+import br.com.ucsal.projetofinal.model.Tarefa;
 
 public class CasoTesteResponseDto {
 
@@ -8,12 +9,14 @@ public class CasoTesteResponseDto {
     private String entrada;
     private String saida;
     private Integer comparacao;
+    private Long tarefaId;
 
     public CasoTesteResponseDto(CasoTeste casoTeste) {
         this.nomeTeste = casoTeste.getNomeTeste();
         this.entrada = casoTeste.getEntrada();
         this.saida = casoTeste.getSaida();
         this.comparacao = casoTeste.getComparacao();
+        this.tarefaId = casoTeste.getTarefa().getId();
     }
 
     public String getNomeTeste() {
@@ -30,5 +33,9 @@ public class CasoTesteResponseDto {
 
     public Integer getComparacao() {
         return comparacao;
+    }
+
+    public Long getTarefaId() {
+        return tarefaId;
     }
 }

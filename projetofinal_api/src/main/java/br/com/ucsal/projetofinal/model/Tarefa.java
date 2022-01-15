@@ -37,15 +37,13 @@ public class Tarefa {
 
     @Valid
     @NotNull
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "tarefa", cascade = CascadeType.ALL)
     private List<CasoTeste> testes = new ArrayList<>();
 
-    public Tarefa(String titulo, String descricao, LocalDateTime dataEntrega, List<CasoTesteRequestDto> testes) {
+    public Tarefa(String titulo, String descricao, LocalDateTime dataEntrega, List<CasoTeste> testes) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataEntrega = dataEntrega;
-        List<CasoTeste> novosCasos = testes.stream()
-                .map(caso -> caso.toModel()).collect(Collectors.toList());
-        this.testes.addAll(novosCasos);
+        this.testes = testes;
     }
 }

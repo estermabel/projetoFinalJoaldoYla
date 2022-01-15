@@ -13,7 +13,6 @@ public class TarefaResponseDto {
     private String titulo;
     private String descricao;
     private LocalDateTime dataEntrega;
-    @Valid
     private List<CasoTeste> testes = new ArrayList<>();
 
     public TarefaResponseDto(Tarefa tarefa) {

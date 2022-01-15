@@ -41,10 +41,9 @@ public class TarefaController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/")
     public ResponseEntity<TarefaResponseDto> inserir(@RequestBody @Valid TarefaRequestDto tarefaRequestDto) {
-        Tarefa tarefa = tarefaRequestDto.toModel(casoTesteRepository);
+        Tarefa tarefa = tarefaRequestDto.toModel();
         if (tarefa.getTestes().isEmpty()){
             return ResponseEntity.badRequest().build();
         }

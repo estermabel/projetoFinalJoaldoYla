@@ -4,6 +4,7 @@ import br.com.ucsal.projetofinal.dto.CasoTesteRequestDto;
 import br.com.ucsal.projetofinal.dto.CasoTesteResponseDto;
 import br.com.ucsal.projetofinal.model.CasoTeste;
 import br.com.ucsal.projetofinal.repository.CasoTesteRepository;
+import br.com.ucsal.projetofinal.repository.TarefaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,14 @@ public class CasoTesteController {
 
     private final CasoTesteRepository casoTesteRepository;
 
-    public CasoTesteController(CasoTesteRepository casoTesteRepository) {
+    private final TarefaRepository tarefaRepository;
+
+    public CasoTesteController(CasoTesteRepository casoTesteRepository,TarefaRepository tarefaRepository) {
         this.casoTesteRepository = casoTesteRepository;
+        this.tarefaRepository = tarefaRepository;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<CasoTeste>> listar() {
         List<CasoTeste> casoTestes = casoTesteRepository.findAll();
         return ResponseEntity.ok().body(casoTestes);
@@ -32,7 +36,7 @@ public class CasoTesteController {
     public ResponseEntity<?> listarPorId(@PathVariable Long id) {
         Optional<CasoTeste> casoTeste = casoTesteRepository.findById(id);
         if (casoTeste.isPresent()) {
-            return ResponseEntity.ok().body(casoTeste);
+            return ResponseEntity.ok(casoTeste);
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -40,7 +44,7 @@ public class CasoTesteController {
 
     @PostMapping("/")
     public ResponseEntity<CasoTesteResponseDto> inserir(@RequestBody @Valid CasoTesteRequestDto casoTesteRequestDto) {
-        CasoTeste casoTeste = casoTesteRequestDto.toModel();
+        CasoTeste casoTeste = casoTesteRequestDto.toModel(tarefaRepository);
         casoTesteRepository.save(casoTeste);
         return ResponseEntity.ok().body(new CasoTesteResponseDto(casoTeste));
     }
