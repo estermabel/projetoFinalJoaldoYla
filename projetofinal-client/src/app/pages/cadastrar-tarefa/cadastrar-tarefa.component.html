@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="container">
+  <form class="formulario" (ngSubmit)="cadastrarTarefa()">
+    <h2 class="titulo-form">Nova Tarefa</h2>
+
+
+    <div class="form-field">
+      <label class="label-form" for="titulo">Titulo</label>
+      <input class="input-form" [(ngModel)]="tarefa.titulo" id="titulo" type="text"  name="titulo"/>
+    </div>
+
+    <div class="form-field">
+      <label class="label-form" for="descricao">Descrição</label>
+      <input class="input-form" [(ngModel)]="tarefa.descricao" id="descricao" type="text"  name="descricao"/>
+    </div>
+
+    <div class="form-field">
+      <label class="label-form" for="dataEntrega">Data de Entrega</label>
+      <input class="input-form"  mask="99/99/9999" [(ngModel)]="tarefa.dataEntrega" id="dataEntrega" type="datetime-local"  name="dataEntrega"/>
+    </div>
+
+    <h4>Casos de Teste</h4>
+    <!--(click)="openDialog()"-->
+    <div class="demo-button-container">
+      <button class="botao" mat-raised-button (click)="addData()" class="demo-button">
+        Add data
+      </button>
+      <button class="botao"
+          mat-raised-button
+          (click)="removeData()"
+          class="demo-button">
+        Remove data
+      </button>
+    </div>
+
+
+
+
+
+    <div class="botao-wrapper">
+      <button class="botao" type="submit">Cadastrar</button>
+    </div>
+  </form>
+</div>
+</div>

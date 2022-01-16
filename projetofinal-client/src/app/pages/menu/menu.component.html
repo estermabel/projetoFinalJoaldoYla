@@ -1,0 +1,16 @@
+
+<mat-toolbar>
+
+<button mat-button [matMenuTriggerFor]="aboveMenu">Usuários</button>
+<mat-menu #aboveMenu="matMenu" yPosition="above">
+  <button (click)="listarUsuarios()" mat-menu-item>Listar</button>
+  <button (click)="cadastrarUsuarios()" mat-menu-item>Cadastrar</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="belowMenu">Tarefas</button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button (click)="listarTarefas()" mat-menu-item>Listar</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+</mat-toolbar>
+
