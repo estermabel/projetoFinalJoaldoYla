@@ -13,7 +13,7 @@
 <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Descrição</mat-label>
-      <input matInput class="input-form" [(ngModel)]="tarefa.descricao" id="descricao" type="text"  name="descricao"/>
+      <textarea matInput class="input-form" [(ngModel)]="tarefa.descricao" id="descricao" type="text"  name="descricao" ></textarea>
     </mat-form-field>
 </p>
 <p>
@@ -28,12 +28,7 @@
       <button class="botao" mat-raised-button (click)="openDialog()" class="demo-button">
         Add data
       </button>
-      <button class="botao"
-          mat-raised-button
-          (click)="removeData()"
-          class="demo-button">
-        Remove data
-      </button>
+
     </div>
 
 
