@@ -10,10 +10,12 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarTarefasComponent } from './pages/listar-tarefas/listar-tarefas.component';
 import { CadastrarTarefaComponent } from './pages/cadastrar-tarefa/cadastrar-tarefa.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CadastrarUsuarioComponent } from './pages/cadastrar-usuario/cadastrar-usuario.component';
 import { registerLocaleData } from '@angular/common';
+import {MatNativeDateModule} from '@angular/material/core';
 import localePt from '@angular/common/locales/pt';
+import { DialgogComponent } from './pages/dialgog/dialgog.component';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
@@ -23,7 +25,8 @@ registerLocaleData(localePt, 'pt');
     MenuComponent,
     ListarTarefasComponent,
     CadastrarTarefaComponent,
-    CadastrarUsuarioComponent
+    CadastrarUsuarioComponent,
+    DialgogComponent
   ],
   imports: [
     HttpClientModule,
@@ -31,6 +34,8 @@ registerLocaleData(localePt, 'pt');
     FormsModule,
     AppRoutingModule,
     MaterialExampleModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule
   ],
   providers: [

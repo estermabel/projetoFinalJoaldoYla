@@ -1,10 +1,11 @@
+import { DialgogComponent } from './../dialgog/dialgog.component';
+import { CasoTesteService } from './../../service/caso-teste/caso-teste.service';
 import { CasoTesteDTO } from './../../model/DTO/CasoTesteDTO';
 import { CasoTeste } from './../../model/casoTeste';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
-import { CasoTesteService } from 'src/app/service/caso-teste/caso-teste.service';
 import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 
 @Component({
@@ -13,10 +14,22 @@ import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
   styleUrls: ['./cadastrar-tarefa.component.css']
 })
 export class CadastrarTarefaComponent implements OnInit {
+  name = "nome"
+
+  animal = "animal"
+
+
+
   casosTestes = new MatTableDataSource<CasoTeste>();
+
   casoTeste = new CasoTesteDTO();
   tarefa = new  TarefaDTO();
 
+  displayedColumns = [
+    'nomeTeste',
+    'entrada',
+    'saida'
+  ];
   constructor(
     public tarefaService: TarefaService,
     public dialog: MatDialog,
@@ -24,6 +37,7 @@ export class CadastrarTarefaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.buscarCasosTeste()
   }
 
   cadastrarTarefa(){
@@ -45,9 +59,24 @@ export class CadastrarTarefaComponent implements OnInit {
 
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialgogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+
   addData(){
-    this.adicionarCasoTeste();
-    //this.casosTestes.renderRows();
+    /*
+    this.socket.on('newMessage', function(event) {
+    const data = this.dataSource.data;
+    data.push(event);
+    this.dataSource.data = data;
+    });
+    */
   }
 
   removeData(){
@@ -61,8 +90,6 @@ export class CadastrarTarefaComponent implements OnInit {
     });
   }
 
-  openDialog() {
 
-  }
 
 }
