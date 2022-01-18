@@ -24,10 +24,8 @@ public class CasoTesteRequestDto {
     }
 
     public CasoTeste toModel(TarefaRepository tarefaRepository) {
-        Tarefa tarefa = null;
-        if(tarefaId != null){
-            tarefa = tarefaId == null ? null : tarefaRepository.findById(tarefaId).orElseThrow();
-        }
+        Tarefa tarefa = tarefaRepository.findById(tarefaId).orElseThrow();
+
         return new CasoTeste(nomeTeste, entrada, saida, comparacao, tarefa);
     }
 

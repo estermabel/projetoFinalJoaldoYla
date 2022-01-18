@@ -37,7 +37,7 @@ public class Tarefa {
 
     @Valid
     @NotNull
-    @OneToMany(mappedBy = "tarefa", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tarefa", cascade = CascadeType.PERSIST)
     private List<CasoTeste> testes = new ArrayList<>();
 
     public Tarefa(String titulo, String descricao, LocalDateTime dataEntrega, List<CasoTeste> testes) {
