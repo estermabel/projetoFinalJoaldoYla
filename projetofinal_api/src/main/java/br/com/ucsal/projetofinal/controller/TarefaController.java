@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,8 @@ public class TarefaController {
             return ResponseEntity.badRequest().build();
         }
         tarefaRepository.save(tarefa);
+
+        System.out.println(tarefa.toString() + "AAA");
         return ResponseEntity.ok().body(new TarefaResponseDto(tarefa));
     }
 

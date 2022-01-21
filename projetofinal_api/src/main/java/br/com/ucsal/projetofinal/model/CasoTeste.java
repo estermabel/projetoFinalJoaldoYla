@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class CasoTeste {
 
@@ -28,6 +30,7 @@ public class CasoTeste {
     private String saida;
 
     @NotNull
+    @Column(unique = true)
     private Integer comparacao;
 
     @Valid
@@ -36,6 +39,7 @@ public class CasoTeste {
     @JsonBackReference
     private Tarefa tarefa;
 
+
     public CasoTeste(String nomeTeste, String entrada, String saida, Integer comparacao, Tarefa tarefa) {
         this.nomeTeste = nomeTeste;
         this.entrada = entrada;
@@ -43,4 +47,5 @@ public class CasoTeste {
         this.comparacao = comparacao;
         this.tarefa = tarefa;
     }
+
 }

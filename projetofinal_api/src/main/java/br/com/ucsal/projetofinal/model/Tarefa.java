@@ -37,7 +37,8 @@ public class Tarefa {
 
     @Valid
     @NotNull
-    @OneToMany(mappedBy = "tarefa", cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tarefa_id")
     private List<CasoTeste> testes = new ArrayList<>();
 
     public Tarefa(String titulo, String descricao, LocalDateTime dataEntrega, List<CasoTeste> testes) {
