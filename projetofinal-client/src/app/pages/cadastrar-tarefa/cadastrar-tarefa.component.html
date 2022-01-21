@@ -1,32 +1,30 @@
-<div class="container-fluid">
-  <div class="container">
-  <form class="formulario" (ngSubmit)="cadastrarTarefa()">
+
+  <form  class="formulario" (ngSubmit)="cadastrarTarefa()" id="formTarefa">
     <h2 class="titulo-form">Nova Tarefa</h2>
 
 
-<p>
-    <mat-form-field class="example-full-width" appearance="outline" >
-      <mat-label>Titulo</mat-label>
-      <input matInput class="input-form" [(ngModel)]="tarefa.titulo" id="titulo" type="text"  name="titulo"/>
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field class="example-full-width" appearance="outline" >
-      <mat-label>Descrição</mat-label>
-      <textarea matInput class="input-form" [(ngModel)]="tarefa.descricao" id="descricao" type="text"  name="descricao" ></textarea>
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field class="example-full-width" appearance="outline" >
-      <mat-label>Data de Entrega</mat-label>
-      <input matInput class="input-form"  mask="99/99/9999" [(ngModel)]="tarefa.dataEntrega" id="dataEntrega" type="datetime-local"  name="dataEntrega"/>
-    </mat-form-field>
-</p>
+      <p>
+          <mat-form-field class="example-full-width" appearance="outline" >
+            <mat-label>Titulo</mat-label>
+            <input matInput class="input-form" [(ngModel)]="tarefa.titulo" id="titulo" type="text"  name="titulo"/>
+          </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field class="example-full-width" appearance="outline" >
+            <mat-label>Descrição</mat-label>
+            <textarea matInput class="input-form" [(ngModel)]="tarefa.descricao" id="descricao" type="text"  name="descricao" ></textarea>
+          </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="example-full-width" appearance="outline" >
+            <mat-label>Data de entrega</mat-label>
+            <input matInput class="input-form"  mask="99/99/9999" id="dataEntrega" type="datetime-local" [(ngModel)]="tarefa.dataEntrega" name="dataEntrega"/>
+          </mat-form-field>
+      </p>
     <h4>Casos de Teste</h4>
-    <!--(click)="openDialog()"-->
     <div class="demo-button-container">
-      <button class="botao" mat-raised-button (click)="openDialog()" class="demo-button">
-        Add data
+      <button mat-button class="botao" (click)="openDialog()" class="demo-button">
+        Adicionar Teste
       </button>
 
     </div>
@@ -59,5 +57,3 @@
 
 
   </form>
-</div>
-</div>

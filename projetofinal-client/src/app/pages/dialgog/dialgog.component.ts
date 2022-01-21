@@ -19,7 +19,8 @@ export class DialgogComponent{
     this.teste = new CasoTesteDTO();
   }
 
-  onNoClick(): void {
+  cancelar(): void {
+    this.storage.remove("teste");
     this.dialogRef.close();
   }
 

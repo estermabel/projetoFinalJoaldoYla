@@ -2,6 +2,7 @@ package br.com.ucsal.projetofinal.controller;
 
 import br.com.ucsal.projetofinal.dto.TarefaRequestDto;
 import br.com.ucsal.projetofinal.dto.TarefaResponseDto;
+import br.com.ucsal.projetofinal.model.CasoTeste;
 import br.com.ucsal.projetofinal.model.Tarefa;
 import br.com.ucsal.projetofinal.repository.CasoTesteRepository;
 import br.com.ucsal.projetofinal.repository.TarefaRepository;
@@ -44,14 +45,21 @@ public class TarefaController {
 
     @PostMapping("/")
     public ResponseEntity<TarefaResponseDto> inserir(@RequestBody @Valid TarefaRequestDto tarefaRequestDto) {
-        Tarefa tarefa = tarefaRequestDto.toModel();
-        if (tarefa.getTestes().isEmpty()){
+
+        try {
+            Tarefa tarefa = tarefaRequestDto.toModel();
+            for (CasoTeste teste: tarefa.getTestes()) { // zerar o id dos teste q vem como 0 do front
+                teste.setId(null);
+            }
+            if (tarefa.getTestes().isEmpty()) {
+                return ResponseEntity.badRequest().build();
+            }
+            tarefaRepository.save(tarefa);
+            return ResponseEntity.ok().body(new TarefaResponseDto(tarefa));
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
             return ResponseEntity.badRequest().build();
         }
-        tarefaRepository.save(tarefa);
-
-        System.out.println(tarefa.toString() + "AAA");
-        return ResponseEntity.ok().body(new TarefaResponseDto(tarefa));
     }
 
     @PutMapping("/{id}")

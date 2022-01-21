@@ -11,17 +11,17 @@
 <p>
   <mat-form-field class="example-full-width" appearance="outline" >
     <mat-label>Entrada</mat-label>
-    <input matInput class="input-form" [(ngModel)]="teste.entrada" id="entrada" type="text"  name="entrada"/>
+    <textarea matInput class="input-form" [(ngModel)]="teste.entrada" id="entrada" type="text"  name="entrada" ></textarea>
   </mat-form-field>
 </p>
 
 <p>
   <mat-form-field class="example-full-width" appearance="outline" >
     <mat-label>Saída</mat-label>
-    <input matInput class="input-form" [(ngModel)]="teste.saida" id="saida" type="text"  name="saida"/>
+    <textarea matInput class="input-form" [(ngModel)]="teste.saida" id="saida" type="text"  name="saida"></textarea>
   </mat-form-field>
 </p>
 
-  <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button cdkFocusInitial (click)="cadastrarCasoTeste()" >Salvar</button>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-button (click)="cadastrarCasoTeste()" >Salvar</button>
 </form>

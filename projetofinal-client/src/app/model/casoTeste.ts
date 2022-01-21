@@ -1,5 +1,5 @@
 export interface CasoTeste{
-  id: number,
+  id: number;
   nomeTeste: string;
   entrada: string;
   saida: string;

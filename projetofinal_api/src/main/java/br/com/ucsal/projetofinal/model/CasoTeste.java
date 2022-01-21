@@ -30,7 +30,6 @@ public class CasoTeste {
     private String saida;
 
     @NotNull
-    @Column(unique = true)
     private Integer comparacao;
 
     @Valid

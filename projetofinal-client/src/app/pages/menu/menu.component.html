@@ -10,7 +10,7 @@
 <button mat-button [matMenuTriggerFor]="belowMenu">Tarefas</button>
 <mat-menu #belowMenu="matMenu" yPosition="below">
   <button (click)="listarTarefas()" mat-menu-item>Listar</button>
-  <button mat-menu-item>Item 2</button>
+  <button (click)="cadastrarTarefas()" mat-menu-item>Cadastrar</button>
 </mat-menu>
 </mat-toolbar>
 

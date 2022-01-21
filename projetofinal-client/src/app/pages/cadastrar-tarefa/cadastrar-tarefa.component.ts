@@ -8,6 +8,8 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
 import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { Router } from '@angular/router';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -27,10 +29,20 @@ export class CadastrarTarefaComponent implements OnInit {
     'entrada',
     'saida'
   ];
+
+  formTarefa = this.formBuilder.group({
+    titulo: new FormControl("", Validators.required),
+    descricao: new FormControl("", Validators.required),
+    dataEntrega: new FormControl("", Validators.required),
+  });
+
+
   constructor(
     public tarefaService: TarefaService,
+    private formBuilder: FormBuilder,
     public dialog: MatDialog,
     private detectorRef: ChangeDetectorRef,
+    private router: Router,
     private casoTesteService: CasoTesteService,
     @Inject(SESSION_STORAGE) private storage: StorageService  ) { }
 
@@ -39,8 +51,11 @@ export class CadastrarTarefaComponent implements OnInit {
   }
 
   cadastrarTarefa(){
+    // Fri Jan 21 2022 16:08:05 GMT-0300 (Horário Padrão de Brasília)
+    this.tarefa.testes = this.casosTestes.data
     this.tarefaService.save(this.tarefa).subscribe(data =>{
       console.log("cadastrado com sucesso", data);
+      this.router.navigate(["tarefas"])
     }, (error) =>{
       console.log(error.error);
     }
@@ -48,41 +63,31 @@ export class CadastrarTarefaComponent implements OnInit {
   }
 
   adicionarCasoTeste(){
-
     this.casoTeste.nomeTeste = "teste"
     this.casoTeste.entrada = "entrada teste"
     this.casoTeste.saida = "saida teste"
     this.casoTeste.comparacao = 1
+    this.tarefa.testes.push(this.casoTeste)
 
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialgogComponent);
+    const dialogRef = this.dialog.open(DialgogComponent, {
+      width: '400px',
+
+    });
 
     dialogRef.afterClosed().subscribe(result => {
 
       this.casoTeste = this.storage.get("teste");
-      const data = this.casosTestes.data;
-      data.push(this.casoTeste)
-      this.casosTestes.data = data
+      if(this.casoTeste != null){
+        const data = this.casosTestes.data;
+        data.push(this.casoTeste)
+        this.casosTestes.data = data
+      }
     });
   }
 
-
-
-  addData(){
-    /*
-    this.socket.on('newMessage', function(event) {
-    const data = this.dataSource.data;
-    data.push(event);
-    this.dataSource.data = data;
-    });
-    */
-  }
-
-  removeData(){
-    //this.casosTestes.renderRows();
-  }
 
   buscarCasosTeste(){
     this.casoTesteService.findAll().subscribe((data: any[]) => {

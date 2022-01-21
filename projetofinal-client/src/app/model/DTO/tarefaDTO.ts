@@ -3,7 +3,7 @@ export class TarefaDTO{
   id: number
   titulo: string;
   descricao: string;
-  dataEntrega: Date;
+  dataEntrega= new Date();
   testes:  Array<CasoTeste>;
 
   constructor() {

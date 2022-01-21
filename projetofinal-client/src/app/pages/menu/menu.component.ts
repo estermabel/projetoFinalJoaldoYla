@@ -26,4 +26,8 @@ export class MenuComponent implements OnInit {
   cadastrarUsuarios(){
     this.router.navigate(["cadastrarUsuario"])
   }
+
+  cadastrarTarefas(){
+    this.router.navigate(["cadastrarTarefa"])
+  }
 }
