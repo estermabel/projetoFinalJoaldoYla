@@ -11,9 +11,9 @@ public class UsuarioRequestDto {
     private String login;
     private String senha;
     private Integer perfil;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+
     private Instant dataCriacao;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+
     private Instant dataUltimoAcesso;
 
     public UsuarioRequestDto() {

@@ -8,7 +8,7 @@ back-end feito em Java, com Sptring Boot, JPA, Hibernate e banco de dados h2-con
 
 ## projetoFinal_client
 
-front-end do projeto feito em Angular [Angular CLI](https://github.com/angular/angular-cli) versão 13.1.2.
+front-end do projeto feito em Angular [Angular CLI](https://github.com/angular/angular-cli) versão 13.1.3.
 
 ## Executando o projeto
 
