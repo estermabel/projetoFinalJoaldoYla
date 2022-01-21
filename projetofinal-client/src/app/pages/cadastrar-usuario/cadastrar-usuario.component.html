@@ -2,12 +2,14 @@
   <div class="container">
   <form class="formulario" (ngSubmit)="cadastrarUsuario()">
     <h2 class="titulo-form">Novo Usuario</h2>
+
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Nome</mat-label>
       <input matInput   class="input-form" id="nome" type="text" [(ngModel)]="usuario.nome" name="nome"/>
     </mat-form-field>
     </p>
+
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Login</mat-label>
@@ -21,7 +23,7 @@
     </mat-form-field>
 </p>
     <div class="botao-wrapper">
-      <button class="botao" type="submit">Cadastrar</button>
+      <button mat-button class="botao" type="submit">Cadastrar</button>
     </div>
 
   </form>

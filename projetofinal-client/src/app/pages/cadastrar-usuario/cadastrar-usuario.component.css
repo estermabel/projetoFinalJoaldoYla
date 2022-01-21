@@ -1,7 +1,11 @@
 .input-form {
-  width: 200px;
+  width: 300px;
 }
 
 .formulario {
   width: 100%;
+}
+
+.mat-form-field{
+  width: 300px
 }
