@@ -23,7 +23,11 @@ export class TarefaService extends GenericService {
     return this.postMethod(tarefa, this.relativePath);
   }
 
+  override findOne(value: number): Observable<any> {
+    return this.getMethod(this.relativePath + value);
+  }
+
   buscarCasosTestes(id: number): Observable<any>{
-    return this.getMethod(this.relativePath);
+    return this.getMethod(this.relativePath + id);
   }
 }

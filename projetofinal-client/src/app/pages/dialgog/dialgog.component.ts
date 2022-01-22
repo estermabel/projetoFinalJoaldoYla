@@ -11,6 +11,12 @@ import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 export class DialgogComponent{
   teste: CasoTeste
 
+  comparacoes = [
+    {value: 0, viewValue: "Igual"},
+    {value: 1, viewValue: "Igual ignorando case sensitive"},
+    {value: 2, viewValue: "Contém"},
+  ]
+
   constructor(
     public dialogRef: MatDialogRef<DialgogComponent>,
 

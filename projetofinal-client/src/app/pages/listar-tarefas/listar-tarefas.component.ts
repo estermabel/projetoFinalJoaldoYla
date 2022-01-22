@@ -1,7 +1,8 @@
 import { TarefaService } from './../../service/tarefa/tarefa.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Tarefa } from 'src/app/model/tarefa';
 import { MatTableDataSource } from '@angular/material/table';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,17 +15,19 @@ export class ListarTarefasComponent implements OnInit {
   displayedColumns = [
     'titulo',
     'descricao',
-    'data de entrega'
+    'data de entrega',
+    'Acoes'
   ];
   constructor(private tarefaService: TarefaService,
-    private router: Router) { }
+    private router: Router,
+    @Inject(SESSION_STORAGE) private storage: StorageService ) { }
 
   ngOnInit(): void {
     this.buscarTarefa();
   }
 
   buscarTarefa(){
-    this.tarefaService.findAll().subscribe((data: any[]) => {
+      this.tarefaService.findAll().subscribe((data: any[]) => {
       this.tarefas.data = data;
       console.log(this.tarefas);
     });
@@ -32,5 +35,10 @@ export class ListarTarefasComponent implements OnInit {
 
   cadastrarTarefa(){
       this.router.navigate(["cadastrarTarefa"])
+  }
+
+  respoderTarefa(tarefa: Tarefa){
+      this.storage.set("tarefa", tarefa)
+      this.router.navigate(["cadastrarResposta"])
   }
 }
