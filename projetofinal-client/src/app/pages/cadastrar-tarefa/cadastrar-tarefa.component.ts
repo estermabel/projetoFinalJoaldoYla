@@ -20,7 +20,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 export class CadastrarTarefaComponent implements OnInit {
 
   casosTestes = new MatTableDataSource<CasoTeste>();
-
+  stausDialog = "";
   casoTeste = new CasoTesteDTO();
   tarefa = new  TarefaDTO();
 
@@ -74,16 +74,23 @@ export class CadastrarTarefaComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(DialgogComponent, {
       width: '400px',
+      data:{ teste: this.casoTeste},
+
+
 
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.stausDialog = this.storage.get("status");
 
-      this.casoTeste = this.storage.get("teste");
-      if(this.casoTeste != null){
+      if(this.stausDialog == "cadastrar"){
+        this.casoTeste = this.storage.get("teste");
         const data = this.casosTestes.data;
         data.push(this.casoTeste)
         this.casosTestes.data = data
+        this.storage.remove("teste");
+      }else if(this.stausDialog == "cancelar"){
+        console.log("cancelado");
       }
     });
   }
