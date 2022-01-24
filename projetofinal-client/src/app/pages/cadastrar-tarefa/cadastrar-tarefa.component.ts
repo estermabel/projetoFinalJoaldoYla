@@ -27,14 +27,15 @@ export class CadastrarTarefaComponent implements OnInit {
   displayedColumns = [
     'nomeTeste',
     'entrada',
-    'saida'
+    'saida',
+    'comparacao'
   ];
 
-  formTarefa = this.formBuilder.group({
+  /*formTarefa = this.formBuilder.group({
     titulo: new FormControl("", Validators.required),
     descricao: new FormControl("", Validators.required),
     dataEntrega: new FormControl("", Validators.required),
-  });
+  });*/
 
 
   constructor(

@@ -3,5 +3,9 @@
 }
 
 .input-form{
-  width: "300px";
+  width: 300px;
+}
+
+.mat-form-field{
+  width: 300px
 }

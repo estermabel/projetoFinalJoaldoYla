@@ -21,9 +21,11 @@
     <textarea matInput class="input-form" [(ngModel)]="teste.saida" id="saida" type="text"  name="saida"></textarea>
   </mat-form-field>
 </p>
+
 <p>
   <mat-form-field class="example-full-width" appearance="outline" >
-    <mat-select [(ngModel)]="teste.comparacao" >
+    <mat-label>Comparação</mat-label>
+    <mat-select [(ngModel)]="teste.comparacao"  name="comparacao">
       <mat-option *ngFor="let c of comparacoes" [value]="c.value">{{c.viewValue}}</mat-option>
 
     </mat-select>

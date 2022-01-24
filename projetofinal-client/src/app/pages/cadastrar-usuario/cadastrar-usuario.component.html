@@ -1,27 +1,39 @@
 <div class="container-fluid">
   <div class="container">
-  <form class="formulario" (ngSubmit)="cadastrarUsuario()">
+  <form [formGroup]="formCadastrarUsuario" class="formulario" (ngSubmit)="cadastrarUsuario()">
     <h2 class="titulo-form">Novo Usuario</h2>
 
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Nome</mat-label>
-      <input matInput   class="input-form" id="nome" type="text" [(ngModel)]="usuario.nome" name="nome"/>
+      <input matInput   class="input-form" id="nome" type="text" [(ngModel)]="usuario.nome" name="nome" formControlName="nome"/>
     </mat-form-field>
     </p>
 
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Login</mat-label>
-      <input matInput class="input-form" id="login" type="text" [(ngModel)]="usuario.login" name="login"/>
+      <input matInput class="input-form" id="login" type="text" [(ngModel)]="usuario.login" name="login" formControlName="login"/>
     </mat-form-field>
     </p>
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Senha</mat-label>
-      <input matInput class="input-form" id="senha" type="text" [(ngModel)]="usuario.senha" name="senha"/>
+      <input matInput class="input-form" id="senha" type="text" [(ngModel)]="usuario.senha" name="senha" formControlName="senha"/>
     </mat-form-field>
     </p>
+
+    <p>
+      <mat-form-field class="example-full-width" appearance="outline" >
+        <mat-label>Perfil</mat-label>
+        <mat-select [(ngModel)]="usuario.perfil" formControlName="perfil">
+          <mat-option *ngFor="let p of perfis" [value]="p.value">{{p.viewValue}}</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+    </p>
+
+
     <div class="botao-wrapper">
       <button mat-button class="botao" type="submit">Cadastrar</button>
     </div>
