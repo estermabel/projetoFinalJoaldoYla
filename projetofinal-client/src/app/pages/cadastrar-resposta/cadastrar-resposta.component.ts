@@ -1,9 +1,11 @@
+import { DialogRespostaComponent } from './../dialog-resposta/dialog-resposta.component';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
 import { Tarefa } from 'src/app/model/tarefa';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cadastrar-resposta',
@@ -14,6 +16,7 @@ export class CadastrarRespostaComponent implements OnInit {
   tarefa = new TarefaDTO();
 
   constructor(private tarefaService: TarefaService,
+    public dialog: MatDialog,
     private router: Router,
     @Inject(SESSION_STORAGE) private storage: StorageService,
   ) { }
@@ -23,9 +26,16 @@ export class CadastrarRespostaComponent implements OnInit {
   }
 
   buscarTarefa(){
+    this.tarefa = this.storage.get("tarefa");
     this.tarefaService.findOne(this.tarefa.id).subscribe((data) => {
       this.tarefa = data;
       console.log(this.tarefa);
+    });
+  }
+
+  openDialogResposta(){
+    const dialogRef = this.dialog.open(DialogRespostaComponent, {
+      width: '400px'
     });
   }
 }

@@ -1,3 +1,15 @@
-<div class="botao-wrapper">
-  <button mat-button class="botao" type="button" color="primary">Submeter Resposta</button>
+<div class="container-fluid">
+  <div class="container">
+  <form  class="formulario" id="formTarefa">
+    <h2 class="titulo-form">{{tarefa.titulo}}</h2>
+    <label>
+      {{tarefa.descricao}}
+    </label>
+    <div class="botao-wrapper">
+      <button mat-button class="botao" type="button" (click)="openDialogResposta()" color="primary">Submeter Resposta</button>
+    </div>
+
+  </form>
+  </div>
 </div>
+

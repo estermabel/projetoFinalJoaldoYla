@@ -17,6 +17,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import localePt from '@angular/common/locales/pt';
 import { DialgogComponent } from './pages/dialgog/dialgog.component';
 import { CadastrarRespostaComponent } from './pages/cadastrar-resposta/cadastrar-resposta.component';
+import { DialogRespostaComponent } from './pages/dialog-resposta/dialog-resposta.component';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
@@ -28,7 +29,8 @@ registerLocaleData(localePt, 'pt');
     CadastrarTarefaComponent,
     CadastrarUsuarioComponent,
     DialgogComponent,
-    CadastrarRespostaComponent
+    CadastrarRespostaComponent,
+    DialogRespostaComponent
   ],
   imports: [
     HttpClientModule,
