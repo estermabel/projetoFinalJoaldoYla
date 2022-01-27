@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
+import java.time.*;
 
 @Entity
 @Getter
@@ -33,11 +33,11 @@ public class Usuario {
     private Integer perfil;
 
     @NotNull
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "UTC-2")
     private Instant dataCriacao;
 
     @NotNull
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "UTC-2")
     private Instant dataUltimoAcesso;
 
     public Usuario(String nome, String login, String senha, Integer perfil) {
@@ -45,7 +45,8 @@ public class Usuario {
         this.login = login;
         this.senha = senha;
         this.perfil = perfil;
-        this.dataCriacao = Instant.now();
+        ZoneId brazilZone = ZoneId.of("America/Sao_Paulo");
+        this.dataCriacao = LocalDateTime.now(brazilZone).toInstant(ZoneOffset.UTC);
         this.dataUltimoAcesso = Instant.now();
     }
 
