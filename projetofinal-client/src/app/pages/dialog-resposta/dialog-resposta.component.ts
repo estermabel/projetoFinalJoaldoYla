@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-dialog-resposta',
   templateUrl: './dialog-resposta.component.html',
@@ -10,6 +11,7 @@ export class DialogRespostaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   EnviarResposta(){
