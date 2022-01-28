@@ -1,6 +1,6 @@
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AceEditorModule } from 'ng2-ace-editor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,7 @@ import localePt from '@angular/common/locales/pt';
 import { DialgogComponent } from './pages/dialgog/dialgog.component';
 import { CadastrarRespostaComponent } from './pages/cadastrar-resposta/cadastrar-resposta.component';
 import { DialogRespostaComponent } from './pages/dialog-resposta/dialog-resposta.component';
+import { TesteEditorComponent } from './pages/teste-editor/teste-editor.component';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
@@ -30,7 +31,8 @@ registerLocaleData(localePt, 'pt');
     CadastrarUsuarioComponent,
     DialgogComponent,
     CadastrarRespostaComponent,
-    DialogRespostaComponent
+    DialogRespostaComponent,
+    TesteEditorComponent
   ],
   imports: [
     HttpClientModule,
@@ -40,6 +42,7 @@ registerLocaleData(localePt, 'pt');
     MaterialExampleModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    AceEditorModule,
     BrowserAnimationsModule
   ],
   providers: [

@@ -1,3 +1,4 @@
+import { TesteEditorComponent } from './pages/teste-editor/teste-editor.component';
 
 import { CadastrarUsuarioComponent } from './pages/cadastrar-usuario/cadastrar-usuario.component';
 import { CadastrarTarefaComponent } from './pages/cadastrar-tarefa/cadastrar-tarefa.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'tarefas', component: ListarTarefasComponent },
   { path: 'cadastrarTarefa', component: CadastrarTarefaComponent },
   { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent },
-  { path: 'cadastrarResposta', component: CadastrarRespostaComponent }
+  { path: 'cadastrarResposta', component: CadastrarRespostaComponent },
+  { path: 'testeEditor', component: TesteEditorComponent }
 ];
 
 @NgModule({

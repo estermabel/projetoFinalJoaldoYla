@@ -1,6 +1,12 @@
 
-<form class="formulario" (ngSubmit)="EnviarResposta()">
-  <div ace-editor class="editor" ></div>
+<form [formGroup]="formCadastrarResposta" class="formulario" (ngSubmit)="EnviarResposta()">
+
+  <div ace-editor class="editor" [(ngModel)]="resposta.codigo"
+  mode="{{linguagem}}"
+  text="{{text}}"
+  (textChanged)="onChange($event)"
+  name="codigo" formControlName="codigo"></div>
+
 
   <div class="botao-wrapper">
     <button mat-button class="botao" type="submit" color="primary">Enviar</button>
