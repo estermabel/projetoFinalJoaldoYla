@@ -39,12 +39,14 @@ export class CadastrarUsuarioComponent implements OnInit {
 
 
   cadastrarUsuario(){
-    this.usuarioService.save(this.usuario).subscribe(data =>{
-      console.log("cadastrado com sucesso", data);
-    }, (error) =>{
-      console.log(error.error);
+    if(this.formCadastrarUsuario.valid){
+      this.usuarioService.save(this.usuario).subscribe(data =>{
+        console.log("cadastrado com sucesso", data);
+      }, (error) =>{
+        console.log(error.error);
+      }
+      )
+      this.router.navigate(["usuarios"])
     }
-    )
-    this.router.navigate(["usuarios"])
   }
 }

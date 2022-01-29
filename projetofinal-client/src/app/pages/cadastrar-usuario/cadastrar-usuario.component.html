@@ -6,20 +6,20 @@
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Nome</mat-label>
-      <input matInput   class="input-form" id="nome" type="text" [(ngModel)]="usuario.nome" name="nome" formControlName="nome"/>
+      <input matInput   class="input-form" id="nome" type="text" [(ngModel)]="usuario.nome" name="nome" formControlName="nome" required/>
     </mat-form-field>
     </p>
 
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Login</mat-label>
-      <input matInput class="input-form" id="login" type="text" [(ngModel)]="usuario.login" name="login" formControlName="login"/>
+      <input matInput class="input-form" id="login" type="text" [(ngModel)]="usuario.login" name="login" formControlName="login" required/>
     </mat-form-field>
     </p>
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Senha</mat-label>
-      <input matInput class="input-form" id="senha" type="text" [(ngModel)]="usuario.senha" name="senha" formControlName="senha"/>
+      <input matInput class="input-form" id="senha" type="text" [(ngModel)]="usuario.senha" name="senha" formControlName="senha" required/>
     </mat-form-field>
     </p>
 
