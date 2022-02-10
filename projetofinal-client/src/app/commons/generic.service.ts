@@ -26,4 +26,7 @@ export class GenericService extends AbstractHttpService {
         return this.getMethod(relativePath + value);
     }
 
+    update (value: any, relativePath: string = '') {
+      return this.putMethod(value, relativePath);
+  }
 }

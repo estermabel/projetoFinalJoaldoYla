@@ -24,6 +24,10 @@ export class UsuarioService extends GenericService {
       return this.getMethod(this.relativePath + 'sessao');
   }
 
+  override update(usuario: UsuarioDTO){
+    return this.putMethod(usuario, this.relativePath + usuario.id);
+  }
+
   override findOne(value: number): Observable<any> {
     return this.getMethod(this.relativePath + value);
   }

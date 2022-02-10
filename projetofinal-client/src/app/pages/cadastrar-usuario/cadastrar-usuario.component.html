@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="container">
-  <form [formGroup]="formCadastrarUsuario" class="formulario" (ngSubmit)="cadastrarUsuario()">
-    <h2 class="titulo-form">Novo Usuario</h2>
+  <form [formGroup]="formCadastrarUsuario" class="formulario" (ngSubmit)="enviarForm()">
+    <h2 class="titulo-form">{{nomeTela}} Usuario</h2>
 
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >

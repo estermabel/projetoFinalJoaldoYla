@@ -19,6 +19,7 @@ import { DialgogComponent } from './pages/dialgog/dialgog.component';
 import { CadastrarRespostaComponent } from './pages/cadastrar-resposta/cadastrar-resposta.component';
 import { DialogRespostaComponent } from './pages/dialog-resposta/dialog-resposta.component';
 import { TesteEditorComponent } from './pages/teste-editor/teste-editor.component';
+import { CommonsModule } from './commons/commons.module';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
@@ -43,7 +44,8 @@ registerLocaleData(localePt, 'pt');
     MatNativeDateModule,
     ReactiveFormsModule,
     AceEditorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

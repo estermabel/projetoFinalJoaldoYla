@@ -52,8 +52,9 @@ export class DialogRespostaComponent implements OnInit {
 
   EnviarResposta(){
     this.resposta.codigo = this.codigo
-    this.resposta.usuario = this.usuario;
-    this.resposta.tarefa = this.tarefa;
+    this.resposta.usuarioId = this.usuario.id;
+    this.resposta.tarefaId = this.tarefa.id;
+    this.resposta.dataEnvio = new Date();
     this.respostaService.save(this.resposta).subscribe(data =>{
       console.log("cadastrado com sucesso", data);
     }, (error) =>{
