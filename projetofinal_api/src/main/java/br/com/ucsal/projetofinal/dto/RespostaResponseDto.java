@@ -10,14 +10,14 @@ public class RespostaResponseDto {
 
     private String codigo;
     private LocalDateTime dataEnvio;
-    private Usuario usuario;
-    private Tarefa tarefa;
+    private Long usuarioId;
+    private Long tarefaId;
 
     public RespostaResponseDto(Resposta resposta) {
         this.codigo = resposta.getCodigo();
         this.dataEnvio = resposta.getDataEnvio();
-        this.usuario = resposta.getUsuario();
-        this.tarefa = resposta.getTarefa();
+        this.usuarioId = resposta.getUsuario().getId();
+        this.tarefaId = resposta.getTarefa().getId();
     }
 
     public String getCodigo() {
@@ -28,11 +28,11 @@ public class RespostaResponseDto {
         return dataEnvio;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Long getUsuario() {
+        return usuarioId;
     }
 
-    public Tarefa getTarefa() {
-        return tarefa;
+    public Long getTarefa() {
+        return tarefaId;
     }
 }
