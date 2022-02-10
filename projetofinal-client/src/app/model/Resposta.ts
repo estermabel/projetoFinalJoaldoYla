@@ -5,6 +5,8 @@ export interface Resposta{
   codigo: string,
   dataEnvio: Date,
   usuario: Usuario,
-  tarefa: Tarefa
+  tarefa: Tarefa,
+  usuarioId: number,
+  tarefaId: number,
 
 }
