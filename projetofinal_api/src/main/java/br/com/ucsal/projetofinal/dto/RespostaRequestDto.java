@@ -34,6 +34,8 @@ public class RespostaRequestDto {
     public Resposta toModel(UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository){
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
         Tarefa tarefa = tarefaRepository.findById(tarefaId).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrada"));
+        System.out.println(usuarioId);
+        System.out.println(tarefaId);
         return new Resposta(codigo, dataEnvio, usuario, tarefa);
     }
 
