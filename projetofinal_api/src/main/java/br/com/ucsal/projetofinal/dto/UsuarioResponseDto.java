@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.Instant;
 
 public class UsuarioResponseDto {
-
+    private long id;
     private String nome;
     private String login;
     private String senha;
@@ -17,12 +17,16 @@ public class UsuarioResponseDto {
     private Instant dataUltimoAcesso;
 
     public UsuarioResponseDto(Usuario usuario) {
+        this.id = usuario.getId();
         this.nome = usuario.getNome();
         this.login = usuario.getLogin();
         this.senha = usuario.getSenha();
         this.perfil = usuario.getPerfil();
         this.dataCriacao = Instant.now();
         this.dataUltimoAcesso = Instant.now();
+    }
+    public long getId() {
+        return id;
     }
 
     public String getNome() {

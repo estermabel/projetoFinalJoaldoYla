@@ -10,16 +10,21 @@ import java.util.List;
 
 public class TarefaResponseDto {
 
+    private long id;
     private String titulo;
     private String descricao;
     private LocalDateTime dataEntrega;
     private List<CasoTeste> testes = new ArrayList<>();
 
     public TarefaResponseDto(Tarefa tarefa) {
+        this.id = tarefa.getId();
         this.titulo = tarefa.getTitulo();
         this.descricao = tarefa.getDescricao();
         this.dataEntrega = tarefa.getDataEntrega();
         this.testes = tarefa.getTestes();
+    }
+    public long getId() {
+        return id;
     }
 
     public String getTitulo() {
