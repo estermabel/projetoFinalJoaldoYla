@@ -1,8 +1,6 @@
 package br.com.ucsal.projetofinal.dto;
 
 import br.com.ucsal.projetofinal.model.Resposta;
-import br.com.ucsal.projetofinal.model.Tarefa;
-import br.com.ucsal.projetofinal.model.Usuario;
 
 import java.time.LocalDateTime;
 

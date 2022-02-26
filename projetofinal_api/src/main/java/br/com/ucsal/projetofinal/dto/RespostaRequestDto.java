@@ -6,12 +6,6 @@ import br.com.ucsal.projetofinal.model.Usuario;
 import br.com.ucsal.projetofinal.repository.TarefaRepository;
 import br.com.ucsal.projetofinal.repository.UsuarioRepository;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class RespostaRequestDto {
@@ -31,11 +25,9 @@ public class RespostaRequestDto {
         this.tarefaId = tarefaId;
     }
 
-    public Resposta toModel(UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository){
+    public Resposta toModel(UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
         Tarefa tarefa = tarefaRepository.findById(tarefaId).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrada"));
-        System.out.println(usuarioId);
-        System.out.println(tarefaId);
         return new Resposta(codigo, dataEnvio, usuario, tarefa);
     }
 
