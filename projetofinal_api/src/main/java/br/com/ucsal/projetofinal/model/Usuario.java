@@ -33,6 +33,9 @@ public class Usuario {
     private Integer perfil;
 
     @NotNull
+    private Boolean flagAtivo;
+
+    @NotNull
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "UTC-2")
     private Instant dataCriacao;
 
@@ -40,11 +43,12 @@ public class Usuario {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "UTC-2")
     private Instant dataUltimoAcesso;
 
-    public Usuario(String nome, String login, String senha, Integer perfil) {
+    public Usuario(String nome, String login, String senha, Integer perfil, Boolean flagAtivo) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.perfil = perfil;
+        this.flagAtivo = flagAtivo;
         ZoneId brazilZone = ZoneId.of("America/Sao_Paulo");
         this.dataCriacao = LocalDateTime.now(brazilZone).toInstant(ZoneOffset.UTC);
         this.dataUltimoAcesso = Instant.now();

@@ -11,25 +11,25 @@ public class UsuarioRequestDto {
     private String login;
     private String senha;
     private Integer perfil;
-
+    private Boolean flagAtivo;
     private Instant dataCriacao;
-
     private Instant dataUltimoAcesso;
 
     public UsuarioRequestDto() {
     }
 
-    public UsuarioRequestDto(String nome, String login, String senha, Integer perfil) {
+    public UsuarioRequestDto(String nome, String login, String senha, Integer perfil, Boolean flagAtivo) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.perfil = perfil;
+        this.flagAtivo = flagAtivo;
         this.dataCriacao = Instant.now();
         this.dataUltimoAcesso = Instant.now();
     }
 
     public Usuario toModel() {
-        return new Usuario(nome, login, senha, perfil);
+        return new Usuario(nome, login, senha, perfil, flagAtivo);
     }
 
     public String getNome() {
@@ -46,6 +46,10 @@ public class UsuarioRequestDto {
 
     public Integer getPerfil() {
         return perfil;
+    }
+
+    public Boolean getFlagAtivo() {
+        return flagAtivo;
     }
 
     public Instant getDataCriacao() {

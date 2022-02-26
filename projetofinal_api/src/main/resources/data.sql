@@ -1,5 +1,5 @@
-INSERT INTO usuario(data_criacao, data_ultimo_acesso, login, nome, perfil, senha)
-values ('2021-12-20 18:47:52', '2021-12-21 18:47:52', 'neivacaju', 'Neiva', 1, 'caju');
+INSERT INTO usuario(data_criacao, data_ultimo_acesso, flag_ativo, login, nome, perfil, senha)
+values ('2021-12-20 18:47:52', '2021-12-21 18:47:52', true, 'neivacaju', 'Neiva', 1, 'caju');
 
 INSERT INTO tarefa(data_entrega, descricao, status, titulo)
 values ('2022-01-12 18:47:52', 'Printar um hello world!', 1, 'Hello world!');

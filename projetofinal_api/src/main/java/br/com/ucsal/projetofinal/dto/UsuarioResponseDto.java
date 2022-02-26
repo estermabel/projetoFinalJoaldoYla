@@ -11,6 +11,7 @@ public class UsuarioResponseDto {
     private String login;
     private String senha;
     private Integer perfil;
+    private Boolean flagAtivo;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant dataCriacao;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
@@ -22,6 +23,7 @@ public class UsuarioResponseDto {
         this.login = usuario.getLogin();
         this.senha = usuario.getSenha();
         this.perfil = usuario.getPerfil();
+        this.flagAtivo = usuario.getFlagAtivo();
         this.dataCriacao = Instant.now();
         this.dataUltimoAcesso = Instant.now();
     }
@@ -43,6 +45,10 @@ public class UsuarioResponseDto {
 
     public Integer getPerfil() {
         return perfil;
+    }
+
+    public Boolean getFlagAtivo() {
+        return flagAtivo;
     }
 
     public Instant getDataCriacao() {
