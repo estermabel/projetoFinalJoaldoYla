@@ -9,6 +9,7 @@ public class CasoTesteResponseDto {
     private String entrada;
     private String saida;
     private Integer comparacao;
+    private Boolean flagExibir;
     private Long tarefaId;
 
     public CasoTesteResponseDto(CasoTeste casoTeste) {
@@ -16,6 +17,7 @@ public class CasoTesteResponseDto {
         this.entrada = casoTeste.getEntrada();
         this.saida = casoTeste.getSaida();
         this.comparacao = casoTeste.getComparacao();
+        this.flagExibir = casoTeste.getFlagExibir();
         this.tarefaId = casoTeste.getTarefa().getId();
     }
 
@@ -33,6 +35,10 @@ public class CasoTesteResponseDto {
 
     public Integer getComparacao() {
         return comparacao;
+    }
+
+    public Boolean getFlagExibir() {
+        return flagExibir;
     }
 
     public Long getTarefaId() {

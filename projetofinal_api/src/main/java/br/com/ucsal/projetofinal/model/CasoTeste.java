@@ -32,6 +32,9 @@ public class CasoTeste {
     @NotNull
     private Integer comparacao;
 
+    @NotNull
+    private Boolean flagExibir;
+
     @Valid
     @ManyToOne
     @JoinColumn(name="tarefa_id")
@@ -39,11 +42,12 @@ public class CasoTeste {
     private Tarefa tarefa;
 
 
-    public CasoTeste(String nomeTeste, String entrada, String saida, Integer comparacao, Tarefa tarefa) {
+    public CasoTeste(String nomeTeste, String entrada, String saida, Integer comparacao, Boolean flagExibir, Tarefa tarefa) {
         this.nomeTeste = nomeTeste;
         this.entrada = entrada;
         this.saida = saida;
         this.comparacao = comparacao;
+        this.flagExibir = flagExibir;
         this.tarefa = tarefa;
     }
 

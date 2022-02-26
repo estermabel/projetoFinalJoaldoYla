@@ -13,6 +13,7 @@ public class TarefaResponseDto {
     private long id;
     private String titulo;
     private String descricao;
+    private Integer status;
     private LocalDateTime dataEntrega;
     private List<CasoTeste> testes = new ArrayList<>();
 
@@ -20,6 +21,7 @@ public class TarefaResponseDto {
         this.id = tarefa.getId();
         this.titulo = tarefa.getTitulo();
         this.descricao = tarefa.getDescricao();
+        this.status = tarefa.getStatus();
         this.dataEntrega = tarefa.getDataEntrega();
         this.testes = tarefa.getTestes();
     }
@@ -33,6 +35,10 @@ public class TarefaResponseDto {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public Integer getStatus() {
+        return status;
     }
 
     public LocalDateTime getDataEntrega() {

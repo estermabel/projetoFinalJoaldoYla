@@ -32,6 +32,9 @@ public class Tarefa {
     private String descricao;
 
     @NotNull
+    private Integer status;
+
+    @NotNull
     @JsonFormat(pattern = "dd-MM-yyyy@HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataEntrega;
 
@@ -41,9 +44,10 @@ public class Tarefa {
     @JoinColumn(name = "tarefa_id")
     private List<CasoTeste> testes = new ArrayList<>();
 
-    public Tarefa(String titulo, String descricao, LocalDateTime dataEntrega, List<CasoTeste> testes) {
+    public Tarefa(String titulo, String descricao, Integer status, LocalDateTime dataEntrega, List<CasoTeste> testes) {
         this.titulo = titulo;
         this.descricao = descricao;
+        this.status = status;
         this.dataEntrega = dataEntrega;
         this.testes = testes;
     }

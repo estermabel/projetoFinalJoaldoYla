@@ -12,21 +12,23 @@ public class TarefaRequestDto {
 
     private String titulo;
     private String descricao;
+    private Integer status;
     private LocalDateTime dataEntrega;
     private List<CasoTeste> testes;
 
     public TarefaRequestDto() {
     }
 
-    public TarefaRequestDto(String titulo, String descricao, LocalDateTime dataEntrega, List<CasoTeste> testes) {
+    public TarefaRequestDto(String titulo, String descricao, Integer status, LocalDateTime dataEntrega, List<CasoTeste> testes) {
         this.titulo = titulo;
         this.descricao = descricao;
+        this.status = status;
         this.dataEntrega = dataEntrega;
         this.testes = testes;
     }
 
     public Tarefa toModel() {
-        return new Tarefa(titulo, descricao, dataEntrega, testes);
+        return new Tarefa(titulo, descricao, status, dataEntrega, testes);
     }
 
     public String getTitulo() {
@@ -43,5 +45,9 @@ public class TarefaRequestDto {
 
     public List<CasoTeste> getTestes() {
         return testes;
+    }
+
+    public Integer getStatus() {
+        return status;
     }
 }

@@ -10,23 +10,25 @@ public class CasoTesteRequestDto {
     private String entrada;
     private String saida;
     private Integer comparacao;
+    private Boolean flagExibir;
     private Long tarefaId;
 
     public CasoTesteRequestDto() {
     }
 
-    public CasoTesteRequestDto(String nomeTeste, String entrada, String saida, Integer comparacao, Long tarefaId) {
+    public CasoTesteRequestDto(String nomeTeste, String entrada, String saida, Integer comparacao, Boolean flagExibir, Long tarefaId) {
         this.nomeTeste = nomeTeste;
         this.entrada = entrada;
         this.saida = saida;
         this.comparacao = comparacao;
+        this.flagExibir = flagExibir;
         this.tarefaId = tarefaId;
     }
 
     public CasoTeste toModel(TarefaRepository tarefaRepository) {
         Tarefa tarefa = tarefaRepository.findById(tarefaId).orElseThrow();
 
-        return new CasoTeste(nomeTeste, entrada, saida, comparacao, tarefa);
+        return new CasoTeste(nomeTeste, entrada, saida, comparacao, flagExibir, tarefa);
     }
 
     public String getNomeTeste() {
@@ -43,6 +45,10 @@ public class CasoTesteRequestDto {
 
     public Integer getComparacao() {
         return comparacao;
+    }
+
+    public Boolean getFlagExibir() {
+        return flagExibir;
     }
 
     public Long getTarefaId() {
