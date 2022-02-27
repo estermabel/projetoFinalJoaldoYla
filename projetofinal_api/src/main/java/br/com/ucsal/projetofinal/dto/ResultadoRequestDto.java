@@ -4,9 +4,6 @@ import br.com.ucsal.projetofinal.model.Resposta;
 import br.com.ucsal.projetofinal.model.Resultado;
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
 
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
-
 public class ResultadoRequestDto {
 
     private String saidaObtida;

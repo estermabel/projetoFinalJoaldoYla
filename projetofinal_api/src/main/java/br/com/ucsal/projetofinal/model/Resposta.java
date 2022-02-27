@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Setter
@@ -39,10 +40,15 @@ public class Resposta {
     @OneToOne
     private Tarefa tarefa;
 
-    public Resposta(String codigo, LocalDateTime dataEnvio, Usuario usuario, Tarefa tarefa) {
+    @Valid
+    @OneToOne
+    private Resultado resultado;
+
+    public Resposta(String codigo, LocalDateTime dataEnvio, Usuario usuario, Tarefa tarefa, Resultado resultado) {
         this.codigo = codigo;
         this.dataEnvio = LocalDateTime.now();
         this.usuario = usuario;
         this.tarefa = tarefa;
+        this.resultado = resultado;
     }
 }
