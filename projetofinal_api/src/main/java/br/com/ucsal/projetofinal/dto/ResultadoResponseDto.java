@@ -7,11 +7,13 @@ public class ResultadoResponseDto {
     private String saidaObtida;
     private Boolean resultado;
     private Long respostaId;
+    private Long casoTesteId;
 
     public ResultadoResponseDto(Resultado resultado) {
         this.saidaObtida = resultado.getSaidaObtida();
         this.resultado = resultado.getResultado();
         this.respostaId = resultado.getResposta().getId();
+        this.casoTesteId = resultado.getCasoTeste().getId();
     }
 
     public String getSaidaObtida() {
@@ -24,5 +26,9 @@ public class ResultadoResponseDto {
 
     public Long getRespostaId() {
         return respostaId;
+    }
+
+    public Long getCasoTesteId() {
+        return casoTesteId;
     }
 }

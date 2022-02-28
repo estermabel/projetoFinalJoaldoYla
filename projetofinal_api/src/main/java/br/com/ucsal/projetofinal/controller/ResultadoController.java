@@ -3,6 +3,7 @@ package br.com.ucsal.projetofinal.controller;
 import br.com.ucsal.projetofinal.dto.ResultadoRequestDto;
 import br.com.ucsal.projetofinal.dto.ResultadoResponseDto;
 import br.com.ucsal.projetofinal.model.Resultado;
+import br.com.ucsal.projetofinal.repository.CasoTesteRepository;
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
 import br.com.ucsal.projetofinal.repository.ResultadoRepository;
 import org.springframework.http.HttpStatus;
@@ -19,10 +20,12 @@ public class ResultadoController {
 
     private final RespostaRepository respostaRepository;
     private final ResultadoRepository resultadoRepository;
+    private final CasoTesteRepository casoTesteRepository;
 
-    public ResultadoController(RespostaRepository respostaRepository, ResultadoRepository resultadoRepository) {
+    public ResultadoController(RespostaRepository respostaRepository, ResultadoRepository resultadoRepository, CasoTesteRepository casoTesteRepository) {
         this.respostaRepository = respostaRepository;
         this.resultadoRepository = resultadoRepository;
+        this.casoTesteRepository = casoTesteRepository;
     }
 
     @GetMapping("/")
@@ -42,7 +45,7 @@ public class ResultadoController {
 
     @PostMapping("/")
     public ResponseEntity<ResultadoResponseDto> inserir(@RequestBody @Valid ResultadoRequestDto resultadoRequestDto) {
-        Resultado resultado = resultadoRequestDto.toModel(respostaRepository);
+        Resultado resultado = resultadoRequestDto.toModel(respostaRepository, casoTesteRepository);
         resultadoRepository.save(resultado);
         return ResponseEntity.ok().body(new ResultadoResponseDto(resultado));
     }
