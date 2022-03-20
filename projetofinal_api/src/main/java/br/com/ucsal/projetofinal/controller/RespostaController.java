@@ -3,11 +3,10 @@ package br.com.ucsal.projetofinal.controller;
 import br.com.ucsal.projetofinal.dto.RespostaRequestDto;
 import br.com.ucsal.projetofinal.dto.RespostaResponseDto;
 import br.com.ucsal.projetofinal.model.Resposta;
-import br.com.ucsal.projetofinal.model.Tarefa;
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
+import br.com.ucsal.projetofinal.repository.ResultadoRepository;
 import br.com.ucsal.projetofinal.repository.TarefaRepository;
 import br.com.ucsal.projetofinal.repository.UsuarioRepository;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +22,13 @@ public class RespostaController {
     private final RespostaRepository respostaRepository;
     private final UsuarioRepository usuarioRepository;
     private final TarefaRepository tarefaRepository;
+    private final ResultadoRepository resultadoRepository;
 
-    public RespostaController(RespostaRepository respostaRepository, UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository) {
+    public RespostaController(RespostaRepository respostaRepository, UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository, ResultadoRepository resultadoRepository) {
         this.respostaRepository = respostaRepository;
         this.usuarioRepository = usuarioRepository;
         this.tarefaRepository = tarefaRepository;
+        this.resultadoRepository = resultadoRepository;
     }
 
     @GetMapping("/")
@@ -47,7 +48,7 @@ public class RespostaController {
 
     @PostMapping("/")
     public ResponseEntity<RespostaResponseDto> inserir(@RequestBody @Valid RespostaRequestDto respostaRequestDto){
-        Resposta resposta = respostaRequestDto.toModel(usuarioRepository, tarefaRepository);
+        Resposta resposta = respostaRequestDto.toModel(usuarioRepository, tarefaRepository, resultadoRepository);
         respostaRepository.save(resposta);
         return ResponseEntity.ok().body(new RespostaResponseDto(resposta));
     }

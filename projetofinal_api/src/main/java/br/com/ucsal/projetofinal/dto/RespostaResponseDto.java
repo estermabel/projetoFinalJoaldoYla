@@ -10,12 +10,14 @@ public class RespostaResponseDto {
     private LocalDateTime dataEnvio;
     private Long usuarioId;
     private Long tarefaId;
+    private Long resultadoId;
 
     public RespostaResponseDto(Resposta resposta) {
         this.codigo = resposta.getCodigo();
         this.dataEnvio = resposta.getDataEnvio();
         this.usuarioId = resposta.getUsuario().getId();
         this.tarefaId = resposta.getTarefa().getId();
+        this.resultadoId = resposta.getResultado().getId();
     }
 
     public String getCodigo() {
@@ -32,5 +34,9 @@ public class RespostaResponseDto {
 
     public Long getTarefa() {
         return tarefaId;
+    }
+
+    public Long getResultado() {
+        return resultadoId;
     }
 }

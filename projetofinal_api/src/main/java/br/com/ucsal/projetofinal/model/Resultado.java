@@ -27,9 +27,13 @@ public class Resultado {
     @OneToOne
     private Resposta resposta;
 
-    public Resultado(String saidaObtida, Boolean resultado, Resposta resposta) {
+    @OneToOne
+    private CasoTeste casoTeste;
+
+    public Resultado(String saidaObtida, Boolean resultado, Resposta resposta, CasoTeste casoTeste) {
         this.saidaObtida = saidaObtida;
         this.resultado = resultado;
         this.resposta = resposta;
+        this.casoTeste = casoTeste;
     }
 }
