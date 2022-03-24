@@ -1,20 +1,24 @@
 package br.com.ucsal.projetofinal;
 
+import br.com.ucsal.projetofinal.repository.RespostaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class JavaExecutor {
 
-    public static void main(String[] args) {
+    private static RespostaRepository respostaRepository;
 
+    public JavaExecutor(RespostaRepository respostaRepository) {
+        this.respostaRepository = respostaRepository;
+    }
+    public static void main(String[] args) {
+        String resposta = respostaRepository.findById(2L).toString();
 
         //Codigo
-        String codigo = "public class AloMundo { " +
-                "public static void main(String[] args){" +
-                "   System.out.println(\"Olá Mundo\");" +
-                "}" +
-                "}";
+        String codigo = resposta;
 
         //Cria arquivo
         File file = new File("./AloMundo.java");

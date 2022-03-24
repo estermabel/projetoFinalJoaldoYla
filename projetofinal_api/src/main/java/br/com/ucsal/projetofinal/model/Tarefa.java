@@ -31,7 +31,6 @@ public class Tarefa {
     @NotBlank
     private String descricao;
 
-    @NotNull
     private Integer status;
 
     @NotNull

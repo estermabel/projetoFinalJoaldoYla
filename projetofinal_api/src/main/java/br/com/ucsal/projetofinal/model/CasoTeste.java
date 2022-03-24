@@ -32,12 +32,11 @@ public class CasoTeste {
     @NotNull
     private Integer comparacao;
 
-    @NotNull
     private Boolean flagExibir;
 
     @Valid
     @ManyToOne
-    @JoinColumn(name="tarefa_id")
+    @JoinColumn(name = "tarefa_id")
     @JsonBackReference
     private Tarefa tarefa;
 

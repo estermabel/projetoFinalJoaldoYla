@@ -30,9 +30,14 @@ public class RespostaRequestDto {
     }
 
     public Resposta toModel(UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository, ResultadoRepository resultadoRepository) {
+        Resultado resultado = null;
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
         Tarefa tarefa = tarefaRepository.findById(tarefaId).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrada"));
-        Resultado resultado = resultadoRepository.findById(resultadoId).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrada"));
+        if(resultadoId == null){
+            resultadoId = 0L;
+        }else{
+            resultado = resultadoRepository.findById(resultadoId).orElseThrow(() -> new RuntimeException("Id do resultado não encontrada"));
+        }
         return new Resposta(codigo, dataEnvio, usuario, tarefa, resultado);
     }
 
