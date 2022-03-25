@@ -9,7 +9,7 @@ values (1, 'Hello world', true, 'Primeira palavra', 'Hello', 1),
 (2, 'Hello! world', false, 'Primeira palavra', 'Hello!', 1);
 
 INSERT INTO resposta(codigo, data_envio, tarefa_id, usuario_id)
-values ('public class AloMundo {', '2021-12-29 18:47:52', 1, 1);
+values ('public class AloMundo { \r\npublic static void main(String[] args){\r\n  System.out.println(\"Olá Mundo\");\r\n }\r\n}', '2021-12-29 18:47:52', 1, 1);
 
 INSERT INTO resultado(caso_teste_id, resultado, saida_obtida, resposta_id)
 values (1, true, 'Primeira palavra', 1);

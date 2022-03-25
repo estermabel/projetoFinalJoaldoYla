@@ -1,1 +1,1 @@
-public class AloMundo { public static void main(String[] args){   System.out.println("Olá Mundo");}}
+public class AloMundo { \r\npublic static void main(String[] args){\r\n  System.out.println(\"Olá Mundo\");\r\n }\r\n}

@@ -1,4 +1,5 @@
-package br.com.ucsal.projetofinal;
+package br.com.ucsal.projetofinal.executor;
+
 
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,20 +10,35 @@ import java.util.StringTokenizer;
 
 public class JavaExecutor {
 
-    private static RespostaRepository respostaRepository;
+    String path;
+    String comando;
+    String arquivo;
+    String entrada;
+    String saida;
 
-    public JavaExecutor(RespostaRepository respostaRepository) {
-        this.respostaRepository = respostaRepository;
+
+    public JavaExecutor() {
+
     }
-    public static void main(String[] args) {
 
 
+    public JavaExecutor(String path, String comando, String arquivo, String entrada, String saida) {
+        this.path = path;
+        this.comando = comando;
+        this.arquivo = arquivo;
+        this.entrada = entrada;
+        this.saida = saida;
+    }
+
+    public static String execute(String codigo){
         //Codigo
-        String codigo = "public class AloMundo { " +
-                "public static void main(String[] args){" +
-                "   System.out.println(\"Olá Mundo\");" +
-                "}" +
-                "}";
+        if(codigo == null) {
+            codigo = "public class AloMundo { " +
+                    "public static void main(String[] args){" +
+                    "   System.out.println(\"Olá Mundo\");" +
+                    "}" +
+                    "}";
+        }
 
         //Cria arquivo
         File file = new File("./AloMundo.java");
@@ -44,13 +60,13 @@ public class JavaExecutor {
         //compila
         System.out.println(compile("./","javac", "AloMundo.java" ));
 
-        //executa
-        execute("./","java","AloMundo");
-
         executeWithTest("./","java","AloMundo","\n","Olá Mundo");
+
+        //executa
+        return execute("./","java","AloMundo");
+
+
     }
-
-
 
     public static String compile(String path, String comando, String arquivo) {
 
@@ -81,7 +97,7 @@ public class JavaExecutor {
             e.printStackTrace();
             sb.append(e.getMessage() + "\n");
         }
-        System.out.println("compile:"+sb.toString());
+
         return sb.toString();
 
     }
@@ -115,11 +131,11 @@ public class JavaExecutor {
             e.printStackTrace();
         }
 
-        System.out.println("execute:"+sb.toString());
+        System.out.println(sb.toString());
         return sb.toString();
     }
 
-    public static void executeWithTest(String path, String comando, String arquivo, String entrada, String saida) {
+    public static boolean executeWithTest(String path, String comando, String arquivo, String entrada, String saida) {
 
         var builder = new ProcessBuilder(comando, arquivo);
         builder.directory(new File(path));
@@ -169,16 +185,18 @@ public class JavaExecutor {
 
             boolean isCorrect = resposta.toString().equals(saida);
 
-            System.out.println("executeWithTest: "+resposta);
-            System.out.println("executeWithTest: "+isCorrect);
+            System.out.println(resposta);
+            System.out.println(isCorrect);
+            return isCorrect;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
+        return false;
 
 
     }
 
 }
+
