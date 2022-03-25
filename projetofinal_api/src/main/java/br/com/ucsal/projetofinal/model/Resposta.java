@@ -40,15 +40,13 @@ public class Resposta {
     @OneToOne
     private Tarefa tarefa;
 
-    @Valid
     @OneToOne
     private Resultado resultado;
 
-    public Resposta(String codigo, LocalDateTime dataEnvio, Usuario usuario, Tarefa tarefa, Resultado resultado) {
+    public Resposta(String codigo, LocalDateTime dataEnvio, Usuario usuario, Tarefa tarefa) {
         this.codigo = codigo;
         this.dataEnvio = LocalDateTime.now();
         this.usuario = usuario;
         this.tarefa = tarefa;
-        this.resultado = resultado;
     }
 }
