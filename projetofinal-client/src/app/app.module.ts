@@ -20,6 +20,8 @@ import { CadastrarRespostaComponent } from './pages/cadastrar-resposta/cadastrar
 import { DialogRespostaComponent } from './pages/dialog-resposta/dialog-resposta.component';
 import { TesteEditorComponent } from './pages/teste-editor/teste-editor.component';
 import { CommonsModule } from './commons/commons.module';
+import { ExibirResultadoComponent } from './pages/exibir-resultado/exibir-resultado.component';
+import { ListarResultadosComponent } from './pages/listar-resultados/listar-resultados.component';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
@@ -33,7 +35,9 @@ registerLocaleData(localePt, 'pt');
     DialgogComponent,
     CadastrarRespostaComponent,
     DialogRespostaComponent,
-    TesteEditorComponent
+    TesteEditorComponent,
+    ExibirResultadoComponent,
+    ListarResultadosComponent
   ],
   imports: [
     HttpClientModule,
