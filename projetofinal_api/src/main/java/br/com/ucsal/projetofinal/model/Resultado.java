@@ -23,16 +23,16 @@ public class Resultado {
     @NotBlank
     private String saidaObtida;
 
-    @NotNull
     private Boolean resultado;
 
+    @NotNull
+    @Valid
     @OneToOne
     private Resposta resposta;
 
     @OneToOne
     private CasoTeste casoTeste;
 
-    @Valid
     @ManyToOne
     @JoinColumn(name = "feedback_id")
     @JsonBackReference

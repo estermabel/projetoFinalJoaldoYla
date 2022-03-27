@@ -15,15 +15,17 @@ public class RespostaRequestDto {
     private LocalDateTime dataEnvio;
     private Long usuarioId;
     private Long tarefaId;
+    private Long resultadoId;
 
     public RespostaRequestDto() {
     }
 
-    public RespostaRequestDto(String codigo, Long usuarioId, Long tarefaId) {
+    public RespostaRequestDto(String codigo, Long usuarioId, Long tarefaId, Long resultadoId) {
         this.codigo = codigo;
         this.dataEnvio = LocalDateTime.now();
         this.usuarioId = usuarioId;
         this.tarefaId = tarefaId;
+        this.resultadoId = resultadoId;
     }
 
     public Resposta toModel(UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository, ResultadoRepository resultadoRepository) {
@@ -46,5 +48,9 @@ public class RespostaRequestDto {
 
     public Long getTarefaId() {
         return tarefaId;
+    }
+
+    public Long getResultadoId() {
+        return resultadoId;
     }
 }

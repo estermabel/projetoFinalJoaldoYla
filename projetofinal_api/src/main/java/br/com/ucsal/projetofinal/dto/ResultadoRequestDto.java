@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.dto;
 
+import br.com.ucsal.projetofinal.JavaExecutor;
 import br.com.ucsal.projetofinal.model.CasoTeste;
 import br.com.ucsal.projetofinal.model.Resposta;
 import br.com.ucsal.projetofinal.model.Resultado;
@@ -12,6 +13,7 @@ public class ResultadoRequestDto {
     private Boolean resultado;
     private Long respostaId;
     private Long casoTesteId;
+    private JavaExecutor javaExecutor = new JavaExecutor();
 
     public ResultadoRequestDto(String saidaObtida, Boolean resultado, Long respostaId, Long casoTesteId) {
         this.saidaObtida = saidaObtida;
@@ -23,7 +25,8 @@ public class ResultadoRequestDto {
     public Resultado toModel(RespostaRepository respostaRepository, CasoTesteRepository casoTesteRepository) {
         Resposta resposta = respostaRepository.findById(respostaId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
         CasoTeste casoTeste = casoTesteRepository.findById(casoTesteId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
-        return new Resultado(saidaObtida, resultado, resposta, casoTeste);
+        javaExecutor.start(resposta.getCodigo());
+        return new Resultado(javaExecutor.getSaida(), javaExecutor.getTeste(), resposta, casoTeste);
     }
 
     public String getSaidaObtida() {

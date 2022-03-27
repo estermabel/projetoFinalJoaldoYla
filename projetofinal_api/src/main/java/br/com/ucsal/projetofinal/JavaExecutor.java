@@ -1,27 +1,26 @@
 package br.com.ucsal.projetofinal;
 
-import br.com.ucsal.projetofinal.repository.RespostaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class JavaExecutor {
 
-    private static RespostaRepository respostaRepository;
+    private String saida;
+    private boolean teste;
 
-    public JavaExecutor(RespostaRepository respostaRepository) {
-        this.respostaRepository = respostaRepository;
+    public String getSaida() {
+        return saida;
     }
-    public static void main(String[] args) {
-        String resposta = respostaRepository.findById(2L).toString();
 
-        //Codigo
-        String codigo = resposta;
+    public boolean getTeste() {
+        return teste;
+    }
+
+    public void start(String codigo) {
 
         //Cria arquivo
-        File file = new File("./AloMundo.java");
+        File file = new File("./Main.java");
 
         //Adiciona o codigo ao arquivo
         FileWriter fileWritter = null;
@@ -38,15 +37,14 @@ public class JavaExecutor {
         }
 
         //compila
-        System.out.println(compile("./","javac", "AloMundo.java" ));
+        compile("./", "javac", "Main.java");
 
         //executa
-        execute("./","java","AloMundo");
+        execute("./", "java", "Main");
 
-        executeWithTest("./","java","AloMundo","\n","Olá Mundo");
+        //OBS: O ultimo parametro, "saida:" é a saida esperada do teste
+        executeWithTest("./", "java", "Main", "\n", "Olá Mundo");
     }
-
-
 
     public static String compile(String path, String comando, String arquivo) {
 
@@ -70,20 +68,15 @@ public class JavaExecutor {
                 sb.append(line + "\n");
             }
 
-            // int exitCode = process.waitFor();
-            // System.out.println("\nExited with error code : " + exitCode);
-
         } catch (IOException e) {
             e.printStackTrace();
             sb.append(e.getMessage() + "\n");
         }
 
         return sb.toString();
-
     }
 
-
-    public static void execute(String path, String comando, String arquivo)  {
+    public static String execute(String path, String comando, String arquivo) {
 
         var sb = new StringBuilder();
 
@@ -97,7 +90,7 @@ public class JavaExecutor {
             var reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
             var error = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            String line ="";
+            String line = "";
 
             while ((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
@@ -111,11 +104,10 @@ public class JavaExecutor {
             e.printStackTrace();
         }
 
-        System.out.println(sb.toString());
-
+        return sb.toString();
     }
 
-    public static void executeWithTest(String path, String comando, String arquivo, String entrada, String saida) {
+    private void executeWithTest(String path, String comando, String arquivo, String entrada, String saida) {
 
         var builder = new ProcessBuilder(comando, arquivo);
         builder.directory(new File(path));
@@ -125,9 +117,6 @@ public class JavaExecutor {
             process = builder.start();
             var stdin = process.getOutputStream();
             var stdout = process.getInputStream();
-
-//		var reader = new BufferedReader(new InputStreamReader(stdout));
-//		var error = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
             var writer = new BufferedWriter(new OutputStreamWriter(stdin));
             var isFirstLine = true;
@@ -161,20 +150,16 @@ public class JavaExecutor {
             scanner.close();
 
             StringBuilder output = new StringBuilder();
-            output.append(resposta.toString());
+            output.append(resposta);
 
             boolean isCorrect = resposta.toString().equals(saida);
 
-            System.out.println(resposta);
-            System.out.println(isCorrect);
+            this.saida = resposta.toString();
+            this.teste = isCorrect;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
     }
 
 }
