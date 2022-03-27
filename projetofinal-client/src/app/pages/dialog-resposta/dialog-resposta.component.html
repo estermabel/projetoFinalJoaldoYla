@@ -1,11 +1,13 @@
 
-<form [formGroup]="formCadastrarResposta" class="formulario" (ngSubmit)="EnviarResposta()">
+<form  class="formulario" (ngSubmit)="EnviarResposta()">
 
   <div ace-editor class="editor" [(ngModel)]="resposta.codigo"
   mode="{{linguagem}}"
   text="{{text}}"
   (textChanged)="onChange($event)"
-  name="codigo" formControlName="codigo"></div>
+  name="codigo" ></div>
+
+
 
 
   <div class="botao-wrapper">

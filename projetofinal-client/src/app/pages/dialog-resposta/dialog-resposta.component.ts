@@ -1,3 +1,4 @@
+import { MatDialogRef } from '@angular/material/dialog';
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
@@ -24,11 +25,12 @@ export class DialogRespostaComponent implements OnInit {
     private usuarioService: UsuarioService,
     private tarefaService: TarefaService,
     private router: Router,
+    public dialogRef: MatDialogRef<DialogRespostaComponent>,
     @Inject(SESSION_STORAGE) private storage: StorageService,) { }
 
-    formCadastrarResposta = new FormGroup({
+   /* formCadastrarResposta = new FormGroup({
       codigo: new FormControl(''),
-    });
+    });*/
 
   usuario = new UsuarioDTO();
   resposta = new RespostaDTO();
@@ -51,7 +53,7 @@ export class DialogRespostaComponent implements OnInit {
   }
 
   EnviarResposta(){
-    this.resposta.codigo = this.codigo
+    this.resposta.codigo = this.codigo;
     this.resposta.usuarioId = this.usuario.id;
     this.resposta.tarefaId = this.tarefa.id;
     this.resposta.dataEnvio = new Date();
@@ -61,7 +63,7 @@ export class DialogRespostaComponent implements OnInit {
       console.log(error.error);
     }
     )
-
+    this.dialogRef.close();
   }
 
   onChange(code: any){

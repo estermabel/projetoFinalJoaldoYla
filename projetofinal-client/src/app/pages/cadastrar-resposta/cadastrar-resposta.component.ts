@@ -35,7 +35,7 @@ export class CadastrarRespostaComponent implements OnInit {
 
   openDialogResposta(){
     const dialogRef = this.dialog.open(DialogRespostaComponent, {
-      width: '400px'
+      width: '800px'
     });
   }
 }
