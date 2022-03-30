@@ -1,3 +1,4 @@
+import { CasoTeste } from 'src/app/model/casoTeste';
 import { DialogRespostaComponent } from './../dialog-resposta/dialog-resposta.component';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
 import { Tarefa } from 'src/app/model/tarefa';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-cadastrar-resposta',
@@ -13,6 +15,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./cadastrar-resposta.component.css']
 })
 export class CadastrarRespostaComponent implements OnInit {
+  testes = new MatTableDataSource<CasoTeste>();
+  displayedColumns = [
+    'entrada',
+    'saida'
+  ];
+
   tarefa = new TarefaDTO();
 
   constructor(private tarefaService: TarefaService,

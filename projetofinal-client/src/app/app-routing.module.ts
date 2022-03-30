@@ -1,6 +1,4 @@
 import { ListarResultadosComponent } from './pages/listar-resultados/listar-resultados.component';
-import { TesteEditorComponent } from './pages/teste-editor/teste-editor.component';
-
 import { CadastrarUsuarioComponent } from './pages/cadastrar-usuario/cadastrar-usuario.component';
 import { CadastrarTarefaComponent } from './pages/cadastrar-tarefa/cadastrar-tarefa.component';
 import { ListarTarefasComponent } from './pages/listar-tarefas/listar-tarefas.component';
@@ -15,7 +13,6 @@ const routes: Routes = [
   { path: 'cadastrarTarefa', component: CadastrarTarefaComponent },
   { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent },
   { path: 'cadastrarResposta', component: CadastrarRespostaComponent },
-  { path: 'testeEditor', component: TesteEditorComponent },
   { path: 'resultados', component: ListarResultadosComponent}
 ];
 

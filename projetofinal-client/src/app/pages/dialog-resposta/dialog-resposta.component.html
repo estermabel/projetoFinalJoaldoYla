@@ -1,11 +1,10 @@
 
 <form  class="formulario" (ngSubmit)="EnviarResposta()">
 
-  <div ace-editor class="editor" [(ngModel)]="resposta.codigo"
-  mode="{{linguagem}}"
-  text="{{text}}"
-  (textChanged)="onChange($event)"
-  name="codigo" ></div>
+    <div
+      class="app-ace-editor"
+      #editor
+    ></div>
 
 
 

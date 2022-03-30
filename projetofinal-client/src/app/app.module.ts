@@ -18,7 +18,6 @@ import localePt from '@angular/common/locales/pt';
 import { DialgogComponent } from './pages/dialgog/dialgog.component';
 import { CadastrarRespostaComponent } from './pages/cadastrar-resposta/cadastrar-resposta.component';
 import { DialogRespostaComponent } from './pages/dialog-resposta/dialog-resposta.component';
-import { TesteEditorComponent } from './pages/teste-editor/teste-editor.component';
 import { CommonsModule } from './commons/commons.module';
 import { ExibirResultadoComponent } from './pages/exibir-resultado/exibir-resultado.component';
 import { ListarResultadosComponent } from './pages/listar-resultados/listar-resultados.component';
@@ -35,7 +34,6 @@ registerLocaleData(localePt, 'pt');
     DialgogComponent,
     CadastrarRespostaComponent,
     DialogRespostaComponent,
-    TesteEditorComponent,
     ExibirResultadoComponent,
     ListarResultadosComponent
   ],

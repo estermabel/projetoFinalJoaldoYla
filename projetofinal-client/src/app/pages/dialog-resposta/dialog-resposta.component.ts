@@ -1,4 +1,5 @@
 import { MatDialogRef } from '@angular/material/dialog';
+import * as ace from "ace-builds";
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
@@ -6,7 +7,7 @@ import { Usuario } from 'src/app/model/usuario';
 import { RespostaService } from './../../service/resposta/resposta.service';
 import { RespostaDTO } from './../../model/DTO/RespostaDTO';
 import { Resposta } from './../../model/Resposta';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
@@ -18,7 +19,10 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   templateUrl: './dialog-resposta.component.html',
   styleUrls: ['./dialog-resposta.component.css']
 })
-export class DialogRespostaComponent implements OnInit {
+export class DialogRespostaComponent implements OnInit, AfterViewInit {
+
+  @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
+
   codigo: string = "";
 
   constructor(private respostaService: RespostaService,
@@ -26,7 +30,8 @@ export class DialogRespostaComponent implements OnInit {
     private tarefaService: TarefaService,
     private router: Router,
     public dialogRef: MatDialogRef<DialogRespostaComponent>,
-    @Inject(SESSION_STORAGE) private storage: StorageService,) { }
+    @Inject(SESSION_STORAGE) private storage: StorageService,
+    elementRef: ElementRef) { }
 
    /* formCadastrarResposta = new FormGroup({
       codigo: new FormControl(''),
@@ -35,8 +40,6 @@ export class DialogRespostaComponent implements OnInit {
   usuario = new UsuarioDTO();
   resposta = new RespostaDTO();
   tarefa = new TarefaDTO();
-  linguagem: string = "java";
-  text : string = "public class Main {\npublic static void main(String[] args) {\n\n\n}";
 
   ngOnInit(): void {
     this.tarefa = this.storage.get("tarefa");
@@ -49,6 +52,23 @@ export class DialogRespostaComponent implements OnInit {
     this.usuarioService.findOne(1).subscribe((data) => {
       this.usuario = data;
       console.log(this.tarefa);
+    });
+  }
+
+  ngAfterViewInit(): void {
+    //ace.config.set("fontSize", "14px");
+    ace.config.set(
+      "basePath",
+      "https://unpkg.com/ace-builds@1.4.12/src-noconflict"
+    );
+    const aceEditor = ace.edit(this.editor.nativeElement);
+    aceEditor.session.setValue("public class Main {\n\tpublic static void main(String[] args) {\n\n\n\t}\n}");
+    aceEditor.setTheme("ace/theme/twilight");
+    aceEditor.session.setMode("ace/mode/java");
+
+    aceEditor.on("change", () => {
+      //console.log(aceEditor.getValue());
+      this.codigo = aceEditor.getValue();
     });
   }
 
@@ -66,9 +86,6 @@ export class DialogRespostaComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onChange(code: any){
-    //console.log("new code", code);
-    this.codigo = code;
-  }
+
 }
 
