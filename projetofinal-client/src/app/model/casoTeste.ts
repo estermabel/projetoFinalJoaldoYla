@@ -4,4 +4,5 @@ export interface CasoTeste{
   entrada: string;
   saida: string;
   comparacao: number;
+  flagExibir: boolean;
 }

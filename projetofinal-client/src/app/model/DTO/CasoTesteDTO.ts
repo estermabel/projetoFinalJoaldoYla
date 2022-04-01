@@ -4,6 +4,7 @@ export class CasoTesteDTO{
   entrada: string;
   saida: string;
   comparacao: number;
+  flagExibir: boolean;
 
   constructor() {
     this.id = 0;
@@ -11,5 +12,6 @@ export class CasoTesteDTO{
     this.entrada=  '';
     this.saida = '';
     this.comparacao = 0;
+    this.flagExibir = false;
   }
 }

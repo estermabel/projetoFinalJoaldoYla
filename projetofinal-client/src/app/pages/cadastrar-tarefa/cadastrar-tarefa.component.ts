@@ -28,8 +28,16 @@ export class CadastrarTarefaComponent implements OnInit {
     'nomeTeste',
     'entrada',
     'saida',
-    'comparacao'
+    'comparacao',
+    'flagExibir',
+    'acoes'
   ];
+
+  comparacoes = [
+    {value: 0, viewValue: "Igual"},
+    {value: 1, viewValue: "Igual ignorando case sensitive"},
+    {value: 2, viewValue: "Contém"},
+  ]
 
   /*formTarefa = this.formBuilder.group({
     titulo: new FormControl("", Validators.required),
@@ -70,6 +78,18 @@ export class CadastrarTarefaComponent implements OnInit {
     this.casoTeste.comparacao = 1
     this.tarefa.testes.push(this.casoTeste)
 
+  }
+
+  excluirCasoTeste(teste: CasoTeste){
+    this.removerItemArray(teste, this.casosTestes)
+  }
+
+  removerItemArray(object: any, dataSource: MatTableDataSource<any>) {
+    const index = dataSource.data.indexOf(object);
+    if (index > -1) {
+      dataSource.data.splice(index, 1);
+      dataSource._updateChangeSubscription();
+    }
   }
 
   openDialog() {
