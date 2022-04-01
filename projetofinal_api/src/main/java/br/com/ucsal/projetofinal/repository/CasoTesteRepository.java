@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface CasoTesteRepository extends JpaRepository<CasoTeste, Long> {
 
-    @Query(value = "SELECT * FROM CASO_TESTE WHERE TAREFA_ID = ?1 AND FLAG_EXIBIR = TRUE ", nativeQuery = true)
+    @Query(value = "SELECT * FROM CASO_TESTE WHERE TAREFA_ID = :id AND FLAG_EXIBIR = TRUE ", nativeQuery = true)
     List<CasoTeste> findByTarefaId(Long id);
 
 }

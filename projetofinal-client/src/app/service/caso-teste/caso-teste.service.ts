@@ -7,6 +7,7 @@ import { CasoTesteDTO } from 'src/app/model/DTO/CasoTesteDTO';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CasoTesteService extends GenericService{
   private relativePath = 'api/casoteste/';
 
@@ -16,7 +17,11 @@ export class CasoTesteService extends GenericService{
 
   override findAll(): Observable<Array<CasoTesteDTO>>{
     return this.getMethod(this.relativePath);
-}
+  }
+
+  listarPorTarefa(id: number): Observable<Array<CasoTesteDTO>>{
+    return this.getMethod(this.relativePath+'tarefa/'+id);
+  }
 
 
 }

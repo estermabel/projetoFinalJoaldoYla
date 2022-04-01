@@ -4,5 +4,6 @@ export interface Tarefa{
   titulo: string,
   descricao: string,
   dataEntrega: Date,
+  status: number,
   testes : Array<CasoTeste>
 }
