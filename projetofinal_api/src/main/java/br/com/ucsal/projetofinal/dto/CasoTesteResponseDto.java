@@ -5,6 +5,7 @@ import br.com.ucsal.projetofinal.model.Tarefa;
 
 public class CasoTesteResponseDto {
 
+    private Long id;
     private String nomeTeste;
     private String entrada;
     private String saida;
@@ -13,12 +14,17 @@ public class CasoTesteResponseDto {
     private Long tarefaId;
 
     public CasoTesteResponseDto(CasoTeste casoTeste) {
+        this.id = casoTeste.getId();
         this.nomeTeste = casoTeste.getNomeTeste();
         this.entrada = casoTeste.getEntrada();
         this.saida = casoTeste.getSaida();
         this.comparacao = casoTeste.getComparacao();
         this.flagExibir = casoTeste.getFlagExibir();
         this.tarefaId = casoTeste.getTarefa().getId();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getNomeTeste() {

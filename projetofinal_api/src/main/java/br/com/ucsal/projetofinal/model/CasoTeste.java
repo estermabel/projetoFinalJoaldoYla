@@ -1,6 +1,7 @@
 package br.com.ucsal.projetofinal.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,7 +38,7 @@ public class CasoTeste {
     @Valid
     @ManyToOne
     @JoinColumn(name = "tarefa_id")
-    @JsonBackReference
+    @JsonIgnore
     private Tarefa tarefa;
 
 

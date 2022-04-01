@@ -2,6 +2,7 @@ package br.com.ucsal.projetofinal.controller;
 
 import br.com.ucsal.projetofinal.dto.CasoTesteRequestDto;
 import br.com.ucsal.projetofinal.dto.CasoTesteResponseDto;
+import br.com.ucsal.projetofinal.dto.TarefaResponseDto;
 import br.com.ucsal.projetofinal.model.CasoTeste;
 import br.com.ucsal.projetofinal.repository.CasoTesteRepository;
 import br.com.ucsal.projetofinal.repository.TarefaRepository;
@@ -21,7 +22,7 @@ public class CasoTesteController {
 
     private final TarefaRepository tarefaRepository;
 
-    public CasoTesteController(CasoTesteRepository casoTesteRepository,TarefaRepository tarefaRepository) {
+    public CasoTesteController(CasoTesteRepository casoTesteRepository, TarefaRepository tarefaRepository) {
         this.casoTesteRepository = casoTesteRepository;
         this.tarefaRepository = tarefaRepository;
     }
@@ -40,6 +41,15 @@ public class CasoTesteController {
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/tarefa/{id}")
+    public ResponseEntity<?> listarPorTarefa(@PathVariable Long id) {
+        List<CasoTeste> casoTestes = casoTesteRepository.findByTarefaId(id);
+
+        return ResponseEntity.ok().body(casoTestes);
+
+
     }
 
     @PostMapping("/")
