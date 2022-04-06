@@ -1,10 +1,9 @@
 <form class="formulario" (ngSubmit)="cadastrarCasoTeste()">
 <h1>Caso de Teste</h1>
-
 <p>
   <mat-form-field class="example-full-width" appearance="outline" >
     <mat-label>Titulo</mat-label>
-    <input matInput class="input-form" [(ngModel)]="teste.nomeTeste" id="nomeTeste" type="text"  name="nomeTeste"/>
+    <input matInput class="input-form" [(ngModel)]="teste.nomeTeste" [value]="teste.nomeTeste" id="nomeTeste" type="text"  name="nomeTeste"/>
   </mat-form-field>
 </p>
 
@@ -18,7 +17,7 @@
 <p>
   <mat-form-field class="example-full-width" appearance="outline" >
     <mat-label>Saída</mat-label>
-    <textarea matInput class="input-form" [(ngModel)]="teste.saida" id="saida" type="text"  name="saida"></textarea>
+    <textarea matInput class="input-form" [(ngModel)]="teste.saida"  id="saida" type="text"  name="saida"></textarea>
   </mat-form-field>
 </p>
 

@@ -1,5 +1,5 @@
 import { CasoTeste } from 'src/app/model/casoTeste';
-import { DialgogComponent } from './../dialgog/dialgog.component';
+import { DialogCasoTesteComponent } from '../dialog-caso-teste/dialog-caso-teste.component';
 import { CasoTesteService } from './../../service/caso-teste/caso-teste.service';
 import { CasoTesteDTO } from './../../model/DTO/CasoTesteDTO';
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
@@ -10,6 +10,7 @@ import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { DialogEditarCasoTesteComponent } from '../dialog-editar-caso-teste/dialog-editar-caso-teste.component';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class CadastrarTarefaComponent implements OnInit {
   casosTestes = new MatTableDataSource<CasoTeste>();
   stausDialog = "";
   casoTeste = new CasoTesteDTO();
+  casoTesteEditar = new CasoTesteDTO();
   tarefa = new  TarefaDTO();
 
   displayedColumns = [
@@ -45,7 +47,6 @@ export class CadastrarTarefaComponent implements OnInit {
     dataEntrega: new FormControl("", Validators.required),
   });*/
 
-
   constructor(
     public tarefaService: TarefaService,
     private formBuilder: FormBuilder,
@@ -53,7 +54,7 @@ export class CadastrarTarefaComponent implements OnInit {
     private detectorRef: ChangeDetectorRef,
     private router: Router,
     private casoTesteService: CasoTesteService,
-    @Inject(SESSION_STORAGE) private storage: StorageService  ) { }
+    @Inject(SESSION_STORAGE) private storage: StorageService  ) {}
 
   ngOnInit(): void {
 
@@ -86,19 +87,57 @@ export class CadastrarTarefaComponent implements OnInit {
 
   removerItemArray(object: any, dataSource: MatTableDataSource<any>) {
     const index = dataSource.data.indexOf(object);
+
     if (index > -1) {
       dataSource.data.splice(index, 1);
       dataSource._updateChangeSubscription();
     }
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DialgogComponent, {
+  edit (object: any, editado: CasoTeste, dataSource: MatTableDataSource<any>){
+    const index = dataSource.data.indexOf(object);
+
+
+    if (index > -1) {
+      this.casoTesteEditar = dataSource.data.at(index);
+      this.casoTesteEditar.nomeTeste = editado.nomeTeste;
+      this.casoTesteEditar.entrada = editado.entrada;
+      this.casoTesteEditar.saida = editado.saida;
+      this.casoTesteEditar.comparacao = editado.comparacao;
+      this.casoTesteEditar.flagExibir = editado.flagExibir;
+      //dataSource.data.splice(index, 1);
+      //dataSource.data.push(this.casoTesteEditar)
+      dataSource._updateChangeSubscription();
+    }
+  }
+
+
+
+  editarCasoTeste(teste: CasoTeste){
+    this.storage.set("testeEditar", teste);
+    const dialogRef = this.dialog.open(DialogCasoTesteComponent, {
       width: '400px',
-      data:{ teste: this.casoTeste},
+      data: {teste: teste}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      this.storage.remove("testeEditar");
+      this.stausDialog = this.storage.get("status");
+      if (this.stausDialog == "editar") {
+        this.casoTeste = this.storage.get("teste");
+        // Then you update that record using data from dialogData (values you enetered)
+        this.edit(teste, this.casoTeste, this.casosTestes)
+        // And lastly refresh table
+        //this.refreshTable();
+      }else if(this.stausDialog == "cancelar"){
+        console.log("cancelado");
+      }
+    });
+  }
 
-
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogCasoTesteComponent, {
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
