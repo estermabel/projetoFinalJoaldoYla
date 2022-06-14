@@ -2,10 +2,12 @@ package br.com.ucsal.projetofinal.controller;
 
 import br.com.ucsal.projetofinal.dto.ResultadoRequestDto;
 import br.com.ucsal.projetofinal.dto.ResultadoResponseDto;
+import br.com.ucsal.projetofinal.model.CasoTeste;
 import br.com.ucsal.projetofinal.model.Resultado;
 import br.com.ucsal.projetofinal.repository.CasoTesteRepository;
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
 import br.com.ucsal.projetofinal.repository.ResultadoRepository;
+import br.com.ucsal.projetofinal.repository.TarefaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +43,12 @@ public class ResultadoController {
             return ResponseEntity.ok().body(new ResultadoResponseDto(resultado.get()));
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/resposta/{id}")
+    public ResponseEntity<?> listarPorTarefa(@PathVariable Long id) {
+        List<Resultado> resultados = resultadoRepository.findByRespotaId(id);
+        return ResponseEntity.ok().body(resultados);
     }
 
     @PostMapping("/")
