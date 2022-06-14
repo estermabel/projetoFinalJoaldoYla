@@ -21,6 +21,7 @@ import { DialogRespostaComponent } from './pages/dialog-resposta/dialog-resposta
 import { CommonsModule } from './commons/commons.module';
 import { ExibirResultadoComponent } from './pages/exibir-resultado/exibir-resultado.component';
 import { ListarResultadosComponent } from './pages/listar-resultados/listar-resultados.component';
+import { BlockUIModule } from 'ng-block-ui';
 import { DialogEditarCasoTesteComponent } from './pages/dialog-editar-caso-teste/dialog-editar-caso-teste.component';
 
 registerLocaleData(localePt, 'pt');
@@ -49,6 +50,7 @@ registerLocaleData(localePt, 'pt');
     ReactiveFormsModule,
     AceEditorModule,
     BrowserAnimationsModule,
+    BlockUIModule.forRoot(),
     CommonsModule
   ],
   providers: [

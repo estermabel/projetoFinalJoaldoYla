@@ -1,3 +1,4 @@
+import { ResultadoDTO } from './../../model/DTO/resultadoDTO';
 import { Resultado } from './../../model/resultado';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,6 +13,10 @@ export class ResultadoService extends GenericService{
 
   constructor(http: HttpClient) {
     super(http);
+  }
+
+  override save(resultado: ResultadoDTO): Observable<ResultadoDTO> {
+    return this.postMethod(resultado, this.relativePath)
   }
 
   override findAll(): Observable<Array<Resultado>>{

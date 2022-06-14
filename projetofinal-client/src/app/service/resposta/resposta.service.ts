@@ -14,6 +14,7 @@ export class RespostaService extends GenericService {
   }
 
   override save(resposta: RespostaDTO): Observable<RespostaDTO> {
-    return this.postMethod(resposta, this.relativePath)
+
+    return this.postMethod(resposta, this.relativePath);
   }
 }

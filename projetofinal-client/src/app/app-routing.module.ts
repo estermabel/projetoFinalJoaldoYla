@@ -1,3 +1,4 @@
+import { ExibirResultadoComponent } from './pages/exibir-resultado/exibir-resultado.component';
 import { ListarResultadosComponent } from './pages/listar-resultados/listar-resultados.component';
 import { CadastrarUsuarioComponent } from './pages/cadastrar-usuario/cadastrar-usuario.component';
 import { CadastrarTarefaComponent } from './pages/cadastrar-tarefa/cadastrar-tarefa.component';
@@ -10,6 +11,7 @@ import { CadastrarRespostaComponent } from './pages/cadastrar-resposta/cadastrar
 const routes: Routes = [
   { path: 'usuarios', component: ListarUsuariosComponent },
   { path: 'tarefas', component: ListarTarefasComponent },
+  { path: 'resultado', component: ExibirResultadoComponent },
   { path: 'cadastrarTarefa', component: CadastrarTarefaComponent },
   { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent },
   { path: 'cadastrarResposta', component: CadastrarRespostaComponent },

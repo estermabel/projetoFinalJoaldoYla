@@ -3,10 +3,12 @@ import { Resposta } from './Resposta';
 
 export interface Resultado{
   id: number;
-  saidaObtida: String;
+  saidaObtida: string;
   resultado: boolean;
+
   resposta: Resposta;
   casoTeste: CasoTeste;
+
   respostaId: number;
   casoTesteId: number;
 }

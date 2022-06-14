@@ -4,6 +4,7 @@ export interface Usuario {
   login: string,
   senha: string,
   perfil: number,
+  flagAtivo: boolean,
   dataCriacao: Date,
   dataUltimoAcesso: Date
 }
