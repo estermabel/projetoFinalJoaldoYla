@@ -4,8 +4,10 @@ import br.com.ucsal.projetofinal.JavaExecutor;
 import br.com.ucsal.projetofinal.model.CasoTeste;
 import br.com.ucsal.projetofinal.model.Resposta;
 import br.com.ucsal.projetofinal.model.Resultado;
+import br.com.ucsal.projetofinal.model.Tarefa;
 import br.com.ucsal.projetofinal.repository.CasoTesteRepository;
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
+import br.com.ucsal.projetofinal.repository.TarefaRepository;
 
 public class ResultadoRequestDto {
 
@@ -26,6 +28,9 @@ public class ResultadoRequestDto {
         Resposta resposta = respostaRepository.findById(respostaId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
         CasoTeste casoTeste = casoTesteRepository.findById(casoTesteId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
         javaExecutor.start(resposta.getCodigo());
+        resposta.getTarefa().getTestes().stream().map(
+            it -> it.getSaida()
+        );
         return new Resultado(javaExecutor.getSaida(), javaExecutor.getTeste(), resposta, casoTeste);
     }
 
