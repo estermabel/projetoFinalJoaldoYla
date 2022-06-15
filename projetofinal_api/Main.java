@@ -1,4 +1,1 @@
-public class Main {
- public static void main(String[] args) {
- System.out.println('Olá Mundo');
-}
+public class Main {\n  public static void main(String[] args) { \n System.out.println("Olá Mundo"); \n}

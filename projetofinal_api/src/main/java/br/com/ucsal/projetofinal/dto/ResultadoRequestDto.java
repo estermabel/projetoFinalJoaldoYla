@@ -25,8 +25,8 @@ public class ResultadoRequestDto {
     }
 
     public Resultado toModel(RespostaRepository respostaRepository, CasoTesteRepository casoTesteRepository) {
-        Resposta resposta = respostaRepository.findById(respostaId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
-        CasoTeste casoTeste = casoTesteRepository.findById(casoTesteId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
+        Resposta resposta = respostaRepository.findById(respostaId).orElseThrow(() -> new RuntimeException("Id de resposta não encontrado"));
+        CasoTeste casoTeste = casoTesteRepository.findById(casoTesteId).orElseThrow(() -> new RuntimeException("Id de caso de teste não encontrado"));
         javaExecutor.start(resposta.getCodigo());
         resposta.getTarefa().getTestes().stream().map(
             it -> it.getSaida()
