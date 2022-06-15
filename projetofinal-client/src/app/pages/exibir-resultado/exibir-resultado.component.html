@@ -1,1 +1,16 @@
-<p>exibir-resultado works!</p>
+<div class="codigo">
+  <mat-card >
+    <!-- {{resultados[0].resposta.codigo}} -->
+  </mat-card>
+</div>
+
+<div *ngFor="let result of resultados">
+  <mat-card >
+    <mat-card-content>
+      <mat-icon *ngIf="result.resultado">check_circle_outline</mat-icon>
+      <mat-icon *ngIf="!result.resultado">error_outline</mat-icon>
+      <p>{{result.saidaObtida}}</p>
+      <p>{{result.casoTeste.saida}}</p>
+  </mat-card-content>
+  </mat-card>
+</div>

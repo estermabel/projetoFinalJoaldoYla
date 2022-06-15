@@ -12,7 +12,9 @@ import { Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-
+import { ResultadoDTO } from 'src/app/model/DTO/resultadoDTO';
+import { ResultadoService } from 'src/app/service/resultado/resultado.service';
+import { ResultadoRequestDTO } from 'src/app/model/DTO/resultadoRequestDTO';
 
 @Component({
   selector: 'app-dialog-resposta',
@@ -24,13 +26,14 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
   @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
 
   codigo: string = "";
-
+  idResposta: number = 0;
   constructor(private respostaService: RespostaService,
     private usuarioService: UsuarioService,
     private tarefaService: TarefaService,
     private router: Router,
     public dialogRef: MatDialogRef<DialogRespostaComponent>,
     @Inject(SESSION_STORAGE) private storage: StorageService,
+    private resultadoService: ResultadoService,
     elementRef: ElementRef) { }
 
    /* formCadastrarResposta = new FormGroup({
@@ -40,6 +43,8 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
   usuario = new UsuarioDTO();
   resposta = new RespostaDTO();
   tarefa = new TarefaDTO();
+  resultado = new ResultadoDTO();
+  resultadoRequestDTO= new ResultadoRequestDTO()
 
   ngOnInit(): void {
     this.tarefa = this.storage.get("tarefa");
@@ -51,7 +56,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
     // DEPOIS SUBSTITUIR PELO USUARIO LOGADO
     this.usuarioService.findOne(1).subscribe((data) => {
       this.usuario = data;
-      console.log(this.tarefa);
+      console.log(this.usuario);
     });
   }
 
@@ -76,16 +81,53 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
     this.resposta.codigo = this.codigo;
     this.resposta.usuarioId = this.usuario.id;
     this.resposta.tarefaId = this.tarefa.id;
-    this.resposta.dataEnvio = new Date();
-    this.respostaService.save(this.resposta).subscribe(data =>{
+    //this.resposta.dataEnvio = new Date();
+
+    this.respostaService.save(this.resposta).subscribe( data =>{
+      //this.executarCodigo(data.id)
+      this.storage.set("respostaEnviada", data);
       console.log("cadastrado com sucesso", data);
     }, (error) =>{
       console.log(error.error);
+    },
+    () => {
+      console.log(this.storage.get("respostaEnviada"));
+      this.executarCodigo()
+      this.dialogRef.close();
+
     }
     )
-    this.dialogRef.close();
+
+    // this.respostaService.save(this.resposta).subscribe({
+    //   next(x) {
+    //     console.log("cadastrado com sucesso", x);
+
+    //   },
+    //   error(err) { console.error('something wrong occurred: ' + err); },
+    //   complete() { console.log('done'); }
+    // });
+
+
+
+
+
   }
 
+  executarCodigo(){
+    let r = new RespostaDTO()
+    r = this.storage.get("respostaEnviada")
+    //this.storage.get("respostaEnviada")
+    this.resultadoRequestDTO.casoTesteId = 1;
+    this.resultadoRequestDTO.respostaId = r.id;
 
+    console.log(this.resultadoRequestDTO);
+    this.resultadoService.save(this.resultadoRequestDTO).subscribe(data =>{
+      console.log("resultado cadastrado com sucesso", data);
+    }, (error) =>{
+      console.log("erro ao cadastrar resultado ",error);
+    },()=>
+    this.router.navigate(["resultado"])
+    )
+  }
 }
 

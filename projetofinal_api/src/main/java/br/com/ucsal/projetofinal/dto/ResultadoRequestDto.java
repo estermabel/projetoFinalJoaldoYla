@@ -8,6 +8,7 @@ import br.com.ucsal.projetofinal.model.Tarefa;
 import br.com.ucsal.projetofinal.repository.CasoTesteRepository;
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
 import br.com.ucsal.projetofinal.repository.TarefaRepository;
+import lombok.NoArgsConstructor;
 
 public class ResultadoRequestDto {
 
@@ -16,6 +17,9 @@ public class ResultadoRequestDto {
     private Long respostaId;
     private Long casoTesteId;
     private JavaExecutor javaExecutor = new JavaExecutor();
+
+    public ResultadoRequestDto() {
+    }
 
     public ResultadoRequestDto(String saidaObtida, Boolean resultado, Long respostaId, Long casoTesteId) {
         this.saidaObtida = saidaObtida;
