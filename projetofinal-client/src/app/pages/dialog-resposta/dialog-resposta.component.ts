@@ -14,6 +14,7 @@ import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ResultadoDTO } from 'src/app/model/DTO/resultadoDTO';
 import { ResultadoService } from 'src/app/service/resultado/resultado.service';
+import { ResultadoRequestDTO } from 'src/app/model/DTO/resultadoRequestDTO';
 
 @Component({
   selector: 'app-dialog-resposta',
@@ -43,6 +44,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
   resposta = new RespostaDTO();
   tarefa = new TarefaDTO();
   resultado = new ResultadoDTO();
+  resultadoRequestDTO= new ResultadoRequestDTO()
 
   ngOnInit(): void {
     this.tarefa = this.storage.get("tarefa");
@@ -90,8 +92,9 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
     },
     () => {
       console.log(this.storage.get("respostaEnviada"));
+      this.executarCodigo()
       this.dialogRef.close();
-      this.router.navigate(["resultado"])
+
     }
     )
 
@@ -110,17 +113,21 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
 
   }
 
-  executarCodigo(id: number){
-    this.storage.set("respostaId", id)
-    this.resultado.casoTesteId = 1;
-    this.resultado.respostaId = 1;
+  executarCodigo(){
+    let r = new RespostaDTO()
+    r = this.storage.get("respostaEnviada")
+    //this.storage.get("respostaEnviada")
+    this.resultadoRequestDTO.casoTesteId = 1;
+    this.resultadoRequestDTO.respostaId = r.id;
 
-    // console.log(this.resultado);
-    // this.resultadoService.save(this.resultado).subscribe(data =>{
-    //   console.log("cadastrado com sucesso", data);
-    // }, (error) =>{
-    //   console.log(error);
-    // })
+    console.log(this.resultadoRequestDTO);
+    this.resultadoService.save(this.resultadoRequestDTO).subscribe(data =>{
+      console.log("resultado cadastrado com sucesso", data);
+    }, (error) =>{
+      console.log("erro ao cadastrar resultado ",error);
+    },()=>
+    this.router.navigate(["resultado"])
+    )
   }
 }
 

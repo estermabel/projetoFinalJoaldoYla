@@ -1,3 +1,4 @@
+import { ResultadoRequestDTO } from './../../model/DTO/resultadoRequestDTO';
 import { CasoTesteDTO } from './../../model/DTO/CasoTesteDTO';
 import { CasoTeste } from './../../model/casoTeste';
 import { RespostaService } from './../../service/resposta/resposta.service';
@@ -70,7 +71,7 @@ export class ExibirResultadoComponent implements OnInit {
     console.log("id:"+ this.idResposta);
     //console.log(this.resultadosMock)
 
-    this.resultadoService.findAll().subscribe((busca: Resultado[]) => {
+    this.resultadoService.listarPorResposta(this.idResposta).subscribe((busca: Resultado[]) => {
       this.resultados = busca
       console.log(this.resultados);
     });

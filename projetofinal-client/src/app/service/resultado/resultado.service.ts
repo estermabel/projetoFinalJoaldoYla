@@ -1,3 +1,4 @@
+import { ResultadoRequestDTO } from './../../model/DTO/resultadoRequestDTO';
 import { ResultadoDTO } from './../../model/DTO/resultadoDTO';
 import { Resultado } from './../../model/resultado';
 import { HttpClient } from '@angular/common/http';
@@ -15,7 +16,7 @@ export class ResultadoService extends GenericService{
     super(http);
   }
 
-  override save(resultado: ResultadoDTO): Observable<ResultadoDTO> {
+  override save(resultado: ResultadoRequestDTO): Observable<ResultadoDTO> {
     return this.postMethod(resultado, this.relativePath)
   }
 
@@ -25,5 +26,9 @@ export class ResultadoService extends GenericService{
 
   override findOne(value: number): Observable<any> {
     return this.getMethod(this.relativePath + value);
+  }
+
+  listarPorResposta(idResposta: number): Observable<Array<Resultado>>{
+    return this.getMethod(this.relativePath+'resposta/'+idResposta);
   }
 }
