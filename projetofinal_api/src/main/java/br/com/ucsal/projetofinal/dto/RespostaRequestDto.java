@@ -3,7 +3,6 @@ package br.com.ucsal.projetofinal.dto;
 import br.com.ucsal.projetofinal.model.Resposta;
 import br.com.ucsal.projetofinal.model.Tarefa;
 import br.com.ucsal.projetofinal.model.Usuario;
-import br.com.ucsal.projetofinal.repository.ResultadoRepository;
 import br.com.ucsal.projetofinal.repository.TarefaRepository;
 import br.com.ucsal.projetofinal.repository.UsuarioRepository;
 
@@ -28,7 +27,7 @@ public class RespostaRequestDto {
         this.resultadoId = resultadoId;
     }
 
-    public Resposta toModel(UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository, ResultadoRepository resultadoRepository) {
+    public Resposta toModel(UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
         Tarefa tarefa = tarefaRepository.findById(tarefaId).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrada"));
         return new Resposta(codigo, dataEnvio, usuario, tarefa);

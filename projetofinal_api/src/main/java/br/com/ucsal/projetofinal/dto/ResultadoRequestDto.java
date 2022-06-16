@@ -4,11 +4,8 @@ import br.com.ucsal.projetofinal.JavaExecutor;
 import br.com.ucsal.projetofinal.model.CasoTeste;
 import br.com.ucsal.projetofinal.model.Resposta;
 import br.com.ucsal.projetofinal.model.Resultado;
-import br.com.ucsal.projetofinal.model.Tarefa;
 import br.com.ucsal.projetofinal.repository.CasoTesteRepository;
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
-import br.com.ucsal.projetofinal.repository.TarefaRepository;
-import lombok.NoArgsConstructor;
 
 public class ResultadoRequestDto {
 

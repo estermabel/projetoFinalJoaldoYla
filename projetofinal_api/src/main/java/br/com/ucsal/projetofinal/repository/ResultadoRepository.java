@@ -9,5 +9,5 @@ import java.util.List;
 public interface ResultadoRepository extends JpaRepository<Resultado, Long> {
 
     @Query(value = "SELECT * FROM RESULTADO WHERE RESPOSTA_ID = :id", nativeQuery = true)
-    List<Resultado> findByRespotaId(Long id);
+    List<Resultado> findByRespostaId(Long id);
 }

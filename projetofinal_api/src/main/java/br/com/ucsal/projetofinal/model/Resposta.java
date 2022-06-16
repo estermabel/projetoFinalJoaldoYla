@@ -5,15 +5,18 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.Nullable;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Setter
@@ -42,11 +45,14 @@ public class Resposta {
     @OneToOne
     private Tarefa tarefa;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "resposta")
+    @Valid
+    @JsonBackReference
     private Resultado resultado;
 
     public Resposta(String codigo, LocalDateTime dataEnvio, Usuario usuario, Tarefa tarefa) {
         this.codigo = codigo;
+        this.dataEnvio = dataEnvio;
         this.dataEnvio = LocalDateTime.now();
         this.usuario = usuario;
         this.tarefa = tarefa;

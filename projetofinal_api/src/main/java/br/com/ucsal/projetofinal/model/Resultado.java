@@ -5,7 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,6 +24,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Resultado {
 
     @Id
@@ -28,12 +39,15 @@ public class Resultado {
     @NotNull
     @Valid
     @OneToOne
+    @JoinColumn(name = "resposta_id")
+    @JsonBackReference
     private Resposta resposta;
 
     @OneToOne
     private CasoTeste casoTeste;
 
     @ManyToOne
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "feedback_id")
     @JsonBackReference
     private Feedback feedback;

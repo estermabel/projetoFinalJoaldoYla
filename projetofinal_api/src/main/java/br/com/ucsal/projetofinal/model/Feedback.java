@@ -1,16 +1,19 @@
 package br.com.ucsal.projetofinal.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -30,13 +33,14 @@ public class Feedback {
     private Resposta resposta;
 
     @Valid
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "resultado_id")
-    private List<Resultado> resultados = new ArrayList<>();
+    @JsonIgnore
+    private Resultado resultados;
 
-    public Feedback(String complexidade, Resposta resposta, List<Resultado> resultados) {
+    public Feedback(String complexidade, Resposta resposta, Resultado resultado) {
         this.complexidade = complexidade;
         this.resposta = resposta;
-        this.resultados = resultados;
+        this.resultados = resultado;
     }
 }
