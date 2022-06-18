@@ -1,5 +1,7 @@
 package br.com.ucsal.projetofinal;
 
+import br.com.ucsal.projetofinal.model.CasoTeste;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -17,7 +19,43 @@ public class JavaExecutor {
         return teste;
     }
 
-    public void start(String codigo) {
+//    public static void main(String[] args) {
+//
+//
+//        //Codigo
+//        String codigo = "public class Main { " +
+//                "public static void main(String[] args){" +
+//                "   System.out.println(\"Hello!\");" +
+//                "}" +
+//                "}";
+//
+//        //Cria arquivo
+//        File file = new File("./Main.java");
+//
+//        //Adiciona o codigo ao arquivo
+//        FileWriter fileWritter = null;
+//        try {
+//            fileWritter = new FileWriter(file.getAbsolutePath(), false);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try (BufferedWriter bufferWritter = new BufferedWriter(fileWritter)) {
+//            bufferWritter.write(codigo);
+//            bufferWritter.flush();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        //compila
+//        System.out.println(compile("./","javac", "Main.java" ));
+//
+//        //executa
+//        execute("./","java","Main");
+//
+//        executeWithTest("./","java","Main","\n","Hello!");
+//    }
+
+    public void start(String codigo, CasoTeste casoTeste) {
 
         //Cria arquivo
         File file = new File("./Main.java");
@@ -42,8 +80,8 @@ public class JavaExecutor {
         //executa
         execute("./", "java", "Main");
 
-        //OBS: O ultimo parametro, "saida:" é a saida esperada do teste
-        executeWithTest("./", "java", "Main", "\n", "Olá Mundo");
+        //OBS: Os parametros, "saida:" e entrada: são a entrada e saida esperada do caso de teste
+        executeWithTest("./", "java", "Main", casoTeste.getEntrada(), casoTeste.getSaida());
     }
 
     public static String compile(String path, String comando, String arquivo) {
@@ -113,6 +151,7 @@ public class JavaExecutor {
         builder.directory(new File(path));
         builder.redirectErrorStream(true);
         Process process = null;
+
         try {
             process = builder.start();
             var stdin = process.getOutputStream();
