@@ -1,16 +1,39 @@
-<div class="codigo">
-  <mat-card >
-    <!-- {{resultados[0].resposta.codigo}} -->
-  </mat-card>
-</div>
 
-<div *ngFor="let result of resultados">
-  <mat-card >
-    <mat-card-content>
-      <mat-icon *ngIf="result.resultado">check_circle_outline</mat-icon>
-      <mat-icon *ngIf="!result.resultado">error_outline</mat-icon>
-      <p>{{result.saidaObtida}}</p>
-      <p>{{result.casoTeste.saida}}</p>
-  </mat-card-content>
-  </mat-card>
+<div class="container">
+
+  <div class="porcentagemResultado">
+    <mat-card >
+      <mat-card-content >
+        <div class="center">
+          <h1 class="porcentagem"> %</h1>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- <div class="codigo">
+    <mat-card >
+     {{resultados[0].resposta.codigo}}
+    </mat-card>
+  </div> -->
+
+  <div *ngFor="let result of resultados" >
+    <mat-card >
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-2">
+            <mat-icon *ngIf="result.resultado"  color = "primary">check_circle_outline</mat-icon>
+            <mat-icon *ngIf="!result.resultado"  color = "warn">error_outline</mat-icon>
+          </div>
+          <div class="col-md-5">
+            <p>{{result.saidaObtida}}</p>
+          </div>
+          <div class="col-md-5">
+            <p>{{result.casoTeste.saida}}</p>
+          </div>
+        </div>
+    </mat-card-content>
+    </mat-card>
+  </div>
+
 </div>

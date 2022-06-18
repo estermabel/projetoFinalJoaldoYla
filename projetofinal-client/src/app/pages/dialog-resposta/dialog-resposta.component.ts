@@ -98,18 +98,6 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
     }
     )
 
-    // this.respostaService.save(this.resposta).subscribe({
-    //   next(x) {
-    //     console.log("cadastrado com sucesso", x);
-
-    //   },
-    //   error(err) { console.error('something wrong occurred: ' + err); },
-    //   complete() { console.log('done'); }
-    // });
-
-
-
-
 
   }
 
