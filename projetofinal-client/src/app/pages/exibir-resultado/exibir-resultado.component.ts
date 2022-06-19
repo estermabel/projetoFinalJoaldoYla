@@ -30,23 +30,7 @@ export class ExibirResultadoComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI | undefined;
 
   resultados: Resultado[] = [];
-
-  resultadosMock: ResultadoDTO[] = [
-    {saidaObtida: "Hello Word!",
-      resultado: true,
-      resposta: new RespostaDTO(),
-      casoTeste: new CasoTesteDTO(),
-      respostaId: 1,
-      casoTesteId: 1,
-    },
-    {saidaObtida: "Helloooooo Word!",
-      resultado: false,
-      resposta: new RespostaDTO(),
-      casoTeste: new CasoTesteDTO(),
-      respostaId: 1,
-      casoTesteId: 1,
-    }
-  ]
+  porcentagem: number = 0;
 
   constructor(
     @Inject(SESSION_STORAGE) private storage: StorageService,
@@ -55,28 +39,37 @@ export class ExibirResultadoComponent implements OnInit {
     private respostaService: RespostaService,
     private activatedRoute: ActivatedRoute
   ) {
-    this.casoTeste = new CasoTesteDTO()
-    this.blockUI?.start('Loading...'); // Start blocking
-
-    setTimeout(() => {
-      this.blockUI?.stop(); // Stop blocking
-    }, 2000);
+    this.casoTeste = new CasoTesteDTO();
   }
 
   ngOnInit(): void {
     this.resposta = this.storage.get("respostaEnviada")
-    this.blockUI?.start();
+
     //const par = this.activatedRoute.snapshot.paramMap.get('parametro');
     this.idResposta = this.resposta.id;
     console.log("id:"+ this.idResposta);
     //console.log(this.resultadosMock)
 
     this.resultadoService.listarPorResposta(this.idResposta).subscribe((busca: Resultado[]) => {
-      this.resultados = busca
+      this.resultados = busca;
       console.log(this.resultados);
     });
 
-    this.blockUI?.stop()
+
+  }
+
+  calcularPorcentagem(){
+    let count = 0;
+    this.resultados.forEach(element => {
+      if (element.resultado == true){
+        count++;
+      }
+    });
+
+    this.porcentagem = count/this.resultados.length
+    console.log("porcentagem", this.porcentagem)
+
+    return this.porcentagem
   }
 
 }

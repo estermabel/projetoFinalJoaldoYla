@@ -12,6 +12,12 @@ import { Router } from '@angular/router';
 })
 export class ListarUsuariosComponent implements OnInit {
 
+  perfis = [
+    {value: 0, viewValue: "Professor"},
+    {value: 1, viewValue: "Aluno"},
+    {value: 2, viewValue: "Administrador"},
+  ]
+
   usuarios = new MatTableDataSource<Usuario>();
   displayedColumns = [
     'nome',
@@ -40,6 +46,10 @@ export class ListarUsuariosComponent implements OnInit {
 
   editarUsuario(usuario: Usuario){
     this.storage.set("usuario", usuario)
+    this.router.navigate(["cadastrarUsuario"])
+  }
+
+  cadastrarUsuario(){
     this.router.navigate(["cadastrarUsuario"])
   }
 }

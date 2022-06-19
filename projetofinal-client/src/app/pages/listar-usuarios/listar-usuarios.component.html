@@ -1,4 +1,56 @@
-<table mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+<div class="center">
+  <mat-card class="cardPesquisa">
+    <mat-card-content>
+      <h3>Pesquisar Usuário</h3>
+
+          <div class="row">
+            <div class="col-md-12">
+            <mat-form-field class="example-full-width" class="input-form" appearance="outline" >
+              <mat-label>Nome</mat-label>
+              <input matInput  id="nome" type="text" name="nome" />
+            </mat-form-field>
+          </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width" class="input-form" appearance="outline" >
+                <mat-label>Login</mat-label>
+                <input matInput class="input-form" id="login" type="text"  name="login" />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width"  class="input-form" appearance="outline" >
+                <mat-label>Perfil</mat-label>
+                <mat-select >
+                  <mat-option *ngFor="let p of perfis" [value]="p.value">{{p.viewValue}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+            <div class="row justify-content-center align-items-center ">
+
+                <button mat-raised-button  id="btn" class="demo-button">
+                  Pesquisar
+                </button>
+
+            </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="left container">
+  <button mat-raised-button (click)="cadastrarUsuario()" id="btn" class="demo-button">
+    Cadastrar Usuário
+  </button>
+</div>
+
+<div class="center">
+
+<table mat-table [dataSource]="usuarios" class="mat-elevation-z8" >
 
   <ng-container matColumnDef="nome">
     <th mat-header-cell *matHeaderCellDef> Nome </th>
@@ -37,3 +89,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>
+
