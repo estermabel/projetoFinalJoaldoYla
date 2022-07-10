@@ -3,7 +3,6 @@ package br.com.ucsal.projetofinal.controller;
 import br.com.ucsal.projetofinal.dto.ResultadoRequestDto;
 import br.com.ucsal.projetofinal.dto.ResultadoResponseDto;
 import br.com.ucsal.projetofinal.model.Resultado;
-import br.com.ucsal.projetofinal.repository.CasoTesteRepository;
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
 import br.com.ucsal.projetofinal.repository.ResultadoRepository;
 import org.springframework.http.HttpStatus;
@@ -43,7 +42,7 @@ public class ResultadoController {
 
     @GetMapping("/resposta/{id}")
     public ResponseEntity<?> listarPorTarefa(@PathVariable Long id) {
-        List<Resultado> resultados = resultadoRepository.findByRespostaId(id);
+        Resultado resultados = resultadoRepository.findByRespostaId(id);
         return ResponseEntity.ok().body(resultados);
     }
 
