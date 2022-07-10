@@ -2,10 +2,13 @@ package br.com.ucsal.projetofinal.controller;
 
 import br.com.ucsal.projetofinal.dto.RespostaRequestDto;
 import br.com.ucsal.projetofinal.dto.RespostaResponseDto;
+import br.com.ucsal.projetofinal.model.CasoTeste;
 import br.com.ucsal.projetofinal.model.Resposta;
 import br.com.ucsal.projetofinal.repository.RespostaRepository;
 import br.com.ucsal.projetofinal.repository.TarefaRepository;
 import br.com.ucsal.projetofinal.repository.UsuarioRepository;
+import br.com.ucsal.projetofinal.testcode.TestResult;
+import br.com.ucsal.projetofinal.testcode.TestService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +57,17 @@ public class RespostaController {
     @PostMapping("/")
     public ResponseEntity<RespostaResponseDto> inserir(@RequestBody @Valid RespostaRequestDto respostaRequestDto){
         Resposta resposta = respostaRequestDto.toModel(usuarioRepository, tarefaRepository);
+        List<String> input = new ArrayList<>();
+        List<String> output = new ArrayList<>();
         respostaRepository.save(resposta);
+        for (CasoTeste teste: resposta.getTarefa().getTestes()) {
+            input.add(teste.getEntrada());
+            output.add(teste.getSaida());
+        }
+        Object[] array1 = input.toArray();
+        Object[] array2 = output.toArray();
+
+        TestResult tr = new TestService().executetest(resposta.getCodigo(), "Main.java", "", array1, array2);
         return ResponseEntity.ok().body(new RespostaResponseDto(resposta));
     }
 
