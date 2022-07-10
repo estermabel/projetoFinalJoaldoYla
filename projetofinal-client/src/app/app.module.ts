@@ -23,6 +23,7 @@ import { ExibirResultadoComponent } from './pages/exibir-resultado/exibir-result
 import { ListarResultadosComponent } from './pages/listar-resultados/listar-resultados.component';
 import { BlockUIModule } from 'ng-block-ui';
 import { DialogEditarCasoTesteComponent } from './pages/dialog-editar-caso-teste/dialog-editar-caso-teste.component';
+import { LoginComponent } from './pages/login/login.component';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
@@ -38,7 +39,8 @@ registerLocaleData(localePt, 'pt');
     DialogRespostaComponent,
     ExibirResultadoComponent,
     ListarResultadosComponent,
-    DialogEditarCasoTesteComponent
+    DialogEditarCasoTesteComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,

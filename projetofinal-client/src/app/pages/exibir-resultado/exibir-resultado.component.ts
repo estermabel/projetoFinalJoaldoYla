@@ -48,7 +48,6 @@ export class ExibirResultadoComponent implements OnInit {
     //const par = this.activatedRoute.snapshot.paramMap.get('parametro');
     this.idResposta = this.resposta.id;
     console.log("id:"+ this.idResposta);
-    //console.log(this.resultadosMock)
 
     this.resultadoService.listarPorResposta(this.idResposta).subscribe((busca: Resultado[]) => {
       this.resultados = busca;

@@ -21,14 +21,20 @@
     <mat-card >
       <mat-card-content>
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-3">
             <mat-icon *ngIf="result.resultado"  color = "primary">check_circle_outline</mat-icon>
             <mat-icon *ngIf="!result.resultado"  color = "warn">error_outline</mat-icon>
           </div>
-          <div class="col-md-5">
+          <div class="col-md-3">
+            <p>Entrada</p>
+            <p>{{result.casoTeste.entrada}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>Saida Obtida</p>
             <p>{{result.saidaObtida}}</p>
           </div>
-          <div class="col-md-5">
+          <div class="col-md-3">
+            <p>Saida Esperada</p>
             <p>{{result.casoTeste.saida}}</p>
           </div>
         </div>
