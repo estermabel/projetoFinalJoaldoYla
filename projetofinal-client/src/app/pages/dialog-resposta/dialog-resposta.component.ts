@@ -80,6 +80,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
   EnviarResposta(){
     this.resposta.codigo = this.codigo;
     this.resposta.usuarioId = this.usuario.id;
+    this.resposta.tarefa = this.tarefa;
     this.resposta.tarefaId = this.tarefa.id;
     //this.resposta.dataEnvio = new Date();
 
@@ -91,8 +92,10 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
       console.log(error.error);
     },
     () => {
-      console.log(this.storage.get("respostaEnviada"));
-      this.executarCodigo()
+      this.resposta.tarefa.testes.forEach(casoTeste => {
+        this.executarCodigo(casoTeste.id)
+      });
+
       this.dialogRef.close();
 
     }
@@ -101,11 +104,11 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
 
   }
 
-  executarCodigo(){
+  executarCodigo(id: number){
     let r = new RespostaDTO()
     r = this.storage.get("respostaEnviada")
     //this.storage.get("respostaEnviada")
-    this.resultadoRequestDTO.casoTesteId = 1;
+    this.resultadoRequestDTO.casoTesteId = id;
     this.resultadoRequestDTO.respostaId = r.id;
 
     console.log(this.resultadoRequestDTO);
