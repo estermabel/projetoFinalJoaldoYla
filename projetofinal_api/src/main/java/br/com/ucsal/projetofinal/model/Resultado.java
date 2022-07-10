@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,7 +26,11 @@ public class Resultado {
     @NotBlank
     private String saidaObtida;
 
-    private Boolean resultado;
+    private Boolean create;
+
+    private Boolean compile;
+
+    private Double porcentagem;
 
     @NotNull
     @Valid
@@ -33,19 +39,24 @@ public class Resultado {
     @JsonBackReference
     private Resposta resposta;
 
-    @OneToOne
-    private CasoTeste casoTeste;
-
     @ManyToOne
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "feedback_id")
     @JsonBackReference
     private Feedback feedback;
 
-    public Resultado(String saidaObtida, Boolean resultado, Resposta resposta, CasoTeste casoTeste) {
+    @Valid
+    @NotNull
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "resultado_id")
+    private List<Teste> testes = new ArrayList<>();
+
+    public Resultado(String saidaObtida, Boolean create, Boolean compile, Double porcentagem, Resposta resposta, List<Teste> testes) {
         this.saidaObtida = saidaObtida;
-        this.resultado = resultado;
+        this.create = create;
+        this.compile = compile;
+        this.porcentagem = porcentagem;
         this.resposta = resposta;
-        this.casoTeste = casoTeste;
+        this.testes = testes;
     }
 }

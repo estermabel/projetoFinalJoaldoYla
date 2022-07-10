@@ -11,5 +11,8 @@ values (1, '\n', true, 'Hello World', 'Olá Mundo', 1),
 INSERT INTO resposta(codigo, data_envio, tarefa_id, usuario_id)
 values ('public class Main {\n  public static void main(String[] args) { \n System.out.println("Olá Mundo"); \n}', '2021-12-29 18:47:52', 1, 1);
 
-INSERT INTO resultado(caso_teste_id, resultado, saida_obtida, resposta_id)
-values (1, true, 'Primeira palavra', 1);
+INSERT INTO resultado(compile, create, porcentagem, saida_obtida, resposta_id)
+values (true, true, 22.0, 'Hello!', 1);
+
+INSERT INTO teste(exception, execute, resultado_final, saida_esperada, saida_obtida, resultado_id)
+values ('RunTimeException blá blá blá', true, true, 'Hello!', 'Hello!', 1);

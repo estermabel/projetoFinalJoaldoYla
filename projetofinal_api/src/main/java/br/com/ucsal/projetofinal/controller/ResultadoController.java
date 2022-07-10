@@ -20,12 +20,10 @@ public class ResultadoController {
 
     private final RespostaRepository respostaRepository;
     private final ResultadoRepository resultadoRepository;
-    private final CasoTesteRepository casoTesteRepository;
 
-    public ResultadoController(RespostaRepository respostaRepository, ResultadoRepository resultadoRepository, CasoTesteRepository casoTesteRepository) {
+    public ResultadoController(RespostaRepository respostaRepository, ResultadoRepository resultadoRepository) {
         this.respostaRepository = respostaRepository;
         this.resultadoRepository = resultadoRepository;
-        this.casoTesteRepository = casoTesteRepository;
     }
 
     @GetMapping("/")
@@ -51,7 +49,7 @@ public class ResultadoController {
 
     @PostMapping("/")
     public ResponseEntity<ResultadoResponseDto> inserir(@RequestBody @Valid ResultadoRequestDto resultadoRequestDto) {
-        Resultado resultado = resultadoRequestDto.toModel(respostaRepository, casoTesteRepository);
+        Resultado resultado = resultadoRequestDto.toModel(respostaRepository);
         resultadoRepository.save(resultado);
         return ResponseEntity.ok().body(new ResultadoResponseDto(resultado));
     }

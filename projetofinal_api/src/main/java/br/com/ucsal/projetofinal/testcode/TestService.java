@@ -1,6 +1,5 @@
 package br.com.ucsal.projetofinal.testcode;
 
-import lombok.Data;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 
@@ -8,8 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestService {
 
-
-    public TestResult executetest(String codigo, String filename, String folder, String[] inputs, String[] outputs){
+    public TestResult executetest(String codigo, String filename, String folder, Object[] inputs, Object[] outputs){
 
         CodeExecutor codeExecutor = CodeExecutor.builder().codigo(codigo).
                 compileCommand("javac").
@@ -20,7 +18,7 @@ public class TestService {
                 .outputs(outputs)
                 .build();
 
-        return   codeExecutor.runTests();
+        return codeExecutor.runTests();
     }
 
 

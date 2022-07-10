@@ -1,34 +1,48 @@
 package br.com.ucsal.projetofinal.dto;
 
-import br.com.ucsal.projetofinal.model.Resultado;
+import br.com.ucsal.projetofinal.model.*;
+import java.util.List;
 
 public class ResultadoResponseDto {
 
     private String saidaObtida;
-    private Boolean resultado;
+    private Boolean create;
+    private Boolean compile;
+    private Double porcentagem;
     private Long respostaId;
-    private Long casoTesteId;
+    private List<Teste> testes;
+
 
     public ResultadoResponseDto(Resultado resultado) {
         this.saidaObtida = resultado.getSaidaObtida();
-        this.resultado = resultado.getResultado();
+        this.create = resultado.getCreate();
+        this.compile = resultado.getCompile();
+        this.porcentagem = resultado.getPorcentagem();
         this.respostaId = resultado.getResposta().getId();
-        this.casoTesteId = resultado.getCasoTeste().getId();
+        this.testes = resultado.getTestes();
     }
 
     public String getSaidaObtida() {
         return saidaObtida;
     }
 
-    public Boolean getResultado() {
-        return resultado;
+    public Boolean getCreate() {
+        return create;
+    }
+
+    public Boolean getCompile() {
+        return compile;
+    }
+
+    public Double getPorcentagem() {
+        return porcentagem;
     }
 
     public Long getRespostaId() {
         return respostaId;
     }
 
-    public Long getCasoTesteId() {
-        return casoTesteId;
+    public List<Teste> getTestes() {
+        return testes;
     }
 }

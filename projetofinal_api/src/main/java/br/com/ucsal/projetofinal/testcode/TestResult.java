@@ -14,9 +14,6 @@ public class TestResult {
     private Boolean compile;
     private List<Test> test = new ArrayList<>();
 
-
-
-
     @Data
     public static class Test {
         private Boolean execute;

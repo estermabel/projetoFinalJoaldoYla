@@ -15,7 +15,7 @@ public class TarefaResponseDto {
     private String descricao;
     private Integer status;
     private LocalDateTime dataEntrega;
-    private List<CasoTeste> testes = new ArrayList<>();
+    private List<CasoTeste> testes;
 
     public TarefaResponseDto(Tarefa tarefa) {
         this.id = tarefa.getId();

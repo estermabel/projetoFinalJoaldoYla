@@ -20,9 +20,9 @@ public class CodeExecutor {
 
     private String executeCommand;
 
-    private String inputs[];
+    private Object inputs[];
 
-    private String outputs[];
+    private Object outputs[];
 
     @Builder.Default
     private List<String> details = new ArrayList<>();
@@ -67,10 +67,13 @@ public class CodeExecutor {
         }
 
         for (int i = 0; i < outputs.length; i++) {
-            TestResult.Test test = runTest(inputs[i],outputs[i], file);
+            System.out.println("***********");
+            System.out.println(inputs[i].toString());
+            System.out.println("+++++++++");
+            System.out.println(outputs[i].toString());
+            TestResult.Test test = runTest(inputs[i].toString(), outputs[i].toString(), file);
             result.getTest().add(test);
         }
-
 
         return result;
 
@@ -178,15 +181,15 @@ public class CodeExecutor {
                 }
             }
             scanner.close();
-            StringBuilder console = new StringBuilder();
-            console.append('\n' );
-            console.append("Expected: " );
-            console.append(output);
-            console.append('\n' );
-            console.append("Found: ");
-            console.append(resposta );
-            console.append('\n' );
-            details.add(console.toString());
+//            StringBuilder console = new StringBuilder();
+//            console.append('\n' );
+//            console.append("expected:");
+//            console.append(output);
+//            console.append('\n' );
+//            console.append("Result:" );
+//            console.append(resposta);
+//            console.append('\n' );
+            details.add(output);
 
             if (output == null || output.isEmpty() ) {
                 return true;
