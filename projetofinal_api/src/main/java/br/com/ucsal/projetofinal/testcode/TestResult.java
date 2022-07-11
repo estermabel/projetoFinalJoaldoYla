@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.testcode;
 
+import br.com.ucsal.projetofinal.model.Teste;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -12,13 +13,13 @@ public class TestResult {
     private Exception exception;
     private Boolean create;
     private Boolean compile;
-    private List<Test> test = new ArrayList<>();
+    private List<Teste> test = new ArrayList<>();
 
-    @Data
-    public static class Test {
-        private Boolean execute;
-        private Boolean test;
-        private Exception exception;
-        private String output;
-    }
+//    @Data
+//    public static class Test {
+//        private Boolean execute;
+//        private Boolean test;
+//        private Exception exception;
+//        private String output;
+//    }
 }

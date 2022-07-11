@@ -42,4 +42,17 @@ public class Teste {
         this.saidaObtida = saidaObtida;
         this.resultado = resultado;
     }
+
+    @Override
+    public String toString() {
+        return "Teste{" +
+                "id=" + id +
+                ", execute=" + execute +
+                ", resultadoFinal=" + resultadoFinal +
+                ", exception='" + exception + '\'' +
+                ", saidaEsperada='" + saidaEsperada + '\'' +
+                ", saidaObtida='" + saidaObtida + '\'' +
+                ", resultado=" + resultado +
+                '}';
+    }
 }

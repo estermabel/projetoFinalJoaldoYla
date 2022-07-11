@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.testcode;
 
+import br.com.ucsal.projetofinal.model.Teste;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -26,8 +27,6 @@ public class CodeExecutor {
 
     @Builder.Default
     private List<String> details = new ArrayList<>();
-
-
 
     public TestResult runTests()  {
         TestResult result = new TestResult();
@@ -71,28 +70,31 @@ public class CodeExecutor {
             System.out.println(inputs[i].toString());
             System.out.println("+++++++++");
             System.out.println(outputs[i].toString());
-            TestResult.Test test = runTest(inputs[i].toString(), outputs[i].toString(), file);
+            Teste test = runTest(inputs[i].toString(), outputs[i].toString(), file);
             result.getTest().add(test);
         }
+
+        result.setOutput("Falou n");
 
         return result;
 
     }
 
 
-    public TestResult.Test runTest(String input, String output, File file) {
-        TestResult.Test test = new TestResult.Test();
+    public Teste runTest(String input, String output, File file) {
+        Teste test = new Teste();
+
         try {
             Boolean isOK = execute(file,input, output );
             test.setExecute(true);
             if (isOK){
-                test.setTest(true);
+                test.setResultadoFinal(true);
             }else{
-                test.setTest(false);
+                test.setResultadoFinal(false);
             }
-            test.setOutput(Arrays.toString(details.toArray()));
+            test.setSaidaObtida(Arrays.toString(details.toArray()));
         } catch (IOException e) {
-            test.setException(e);
+            test.setException(e.toString());
             test.setExecute(false);
             return test;
         }
