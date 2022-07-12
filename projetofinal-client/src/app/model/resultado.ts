@@ -1,14 +1,16 @@
+import { Teste } from './teste';
 import { CasoTeste } from 'src/app/model/casoTeste';
-import { Resposta } from './Resposta';
+import { Resposta } from './resposta';
+
 
 export interface Resultado{
   id: number;
   saidaObtida: string;
-  resultado: boolean;
+  // execption: string;
+  create: boolean;
+  compile: boolean;
+  porcentagem: number;
 
   resposta: Resposta;
-  casoTeste: CasoTeste;
-
-  respostaId: number;
-  casoTesteId: number;
+  testes: Array<Teste>
 }

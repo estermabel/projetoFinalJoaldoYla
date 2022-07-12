@@ -24,11 +24,11 @@ export class ResultadoService extends GenericService{
     return this.getMethod(this.relativePath);
   }
 
-  override findOne(value: number): Observable<any> {
+  override findOne(value: number): Observable<Resultado> {
     return this.getMethod(this.relativePath + value);
   }
 
-  listarPorResposta(idResposta: number): Observable<Array<Resultado>>{
+  listarPorResposta(idResposta: number): Observable<Resultado>{
     return this.getMethod(this.relativePath+'resposta/'+idResposta);
   }
 }

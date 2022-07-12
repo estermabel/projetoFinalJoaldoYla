@@ -1,24 +1,26 @@
+import { Teste } from './../teste';
 import { CasoTesteDTO } from './CasoTesteDTO';
 import { RespostaDTO } from './RespostaDTO';
-import { Resposta } from './../Resposta';
 import { CasoTeste } from '../casoTeste';
+import { Resposta } from '../resposta';
 
 export class ResultadoDTO{
   saidaObtida: string;
-  resultado: boolean;
+  // execption: string;
+  create: boolean;
+  compile: boolean;
+  porcentagem: number;
 
   resposta: Resposta;
-  casoTeste: CasoTeste;
-
-  respostaId: number;
-  casoTesteId: number;
+  testes: Array<Teste>
 
   constructor(){
     this.saidaObtida = "";
-    this.resultado = false;
+    // this.execption = "";
+    this.create = false;
+    this.compile = false;
+    this.porcentagem = 0;
     this.resposta = new RespostaDTO();
-    this.casoTeste = new CasoTesteDTO();
-    this.respostaId = 0;
-    this.casoTesteId = 0;
+    this.testes = new Array<Teste>()
   }
 }

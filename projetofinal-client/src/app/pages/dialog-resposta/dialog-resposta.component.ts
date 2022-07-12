@@ -6,7 +6,7 @@ import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
 import { Usuario } from 'src/app/model/usuario';
 import { RespostaService } from './../../service/resposta/resposta.service';
 import { RespostaDTO } from './../../model/DTO/RespostaDTO';
-import { Resposta } from './../../model/Resposta';
+import { Resposta } from './../../model/resposta';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
@@ -92,12 +92,12 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
       console.log(error.error);
     },
     () => {
-      this.resposta.tarefa.testes.forEach(casoTeste => {
-        this.executarCodigo(casoTeste.id)
-      });
+      // this.resposta.tarefa.testes.forEach(casoTeste => {
+      //   this.executarCodigo(casoTeste.id)
+      // });
 
       this.dialogRef.close();
-
+      this.router.navigate(["resultado"])
     }
     )
 

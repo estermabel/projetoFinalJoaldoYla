@@ -1,3 +1,4 @@
+import * as ace from "ace-builds";
 import { ResultadoRequestDTO } from './../../model/DTO/resultadoRequestDTO';
 import { CasoTesteDTO } from './../../model/DTO/CasoTesteDTO';
 import { CasoTeste } from './../../model/casoTeste';
@@ -5,10 +6,10 @@ import { RespostaService } from './../../service/resposta/resposta.service';
 import { CasoTesteService } from './../../service/caso-teste/caso-teste.service';
 import { ResultadoDTO } from './../../model/DTO/resultadoDTO';
 import { RespostaDTO } from 'src/app/model/DTO/RespostaDTO';
-import { Resposta } from './../../model/Resposta';
+import { Resposta } from './../../model/resposta';
 import { Resultado } from './../../model/resultado';
 import { ResultadoService } from './../../service/resultado/resultado.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,9 +28,10 @@ export class ExibirResultadoComponent implements OnInit {
   resposta = new RespostaDTO();
   resultado = new ResultadoDTO();
   idResposta = 0
-  @BlockUI() blockUI: NgBlockUI | undefined;
 
-  resultados: Resultado[] = [];
+  @BlockUI() blockUI: NgBlockUI | undefined;
+  // @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
+
   porcentagem: number = 0;
 
   constructor(
@@ -49,26 +51,23 @@ export class ExibirResultadoComponent implements OnInit {
     this.idResposta = this.resposta.id;
     console.log("id:"+ this.idResposta);
 
-    this.resultadoService.listarPorResposta(this.idResposta).subscribe((busca: Resultado[]) => {
-      this.resultados = busca;
-      console.log(this.resultados);
+    this.resultadoService.listarPorResposta(this.idResposta).subscribe((busca: Resultado) => {
+      this.resultado = busca;
+      console.log(this.resultado);
     });
-
 
   }
 
-  calcularPorcentagem(){
-    let count = 0;
-    this.resultados.forEach(element => {
-      if (element.resultado == true){
-        count++;
-      }
-    });
+  // ngAfterViewInit(): void {
+  //   //ace.config.set("fontSize", "14px");
+  //   ace.config.set(
+  //     "basePath",
+  //     "https://unpkg.com/ace-builds@1.4.12/src-noconflict"
+  //   );
+  //   const aceEditor = ace.edit(this.editor.nativeElement);
 
-    this.porcentagem = count/this.resultados.length
-    console.log("porcentagem", this.porcentagem)
-
-    return this.porcentagem
-  }
+  //   aceEditor.setTheme("ace/theme/twilight");
+  //   aceEditor.session.setMode("ace/mode/java");
+  // }
 
 }

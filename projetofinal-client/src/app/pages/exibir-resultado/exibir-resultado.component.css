@@ -3,6 +3,13 @@
   margin: auto;
 }
 
+.accepted{
+  color: #36b80f;
+}
+
+.warn{
+  color: #dbf549;
+}
 
 mat-card{
   margin: 25px;
