@@ -7,8 +7,8 @@ values ('2022-01-12 18:47:52', 'Digite numeros separados por espaço que a soma 
 INSERT INTO caso_teste(comparacao, entrada, flag_exibir, nome_teste, saida, tarefa_id)
 values (1, '1 2 3 4', true, 'Até 10', '10', 1),
 (2, '5 5', false, 'Até 10', '10', 1),
-(2, '7 1 1 1', false, 'Até 10', '10', 1),
-(2, '4 3 2 1', true, 'Até 10', '10', 1);
+(2, '7 1 1 1', true, 'Até 10', '10', 1),
+(2, '4 3 2 1', false, 'Até 10', '10', 1);
 
 INSERT INTO resposta(codigo, data_envio, tarefa_id, usuario_id)
 values ('public class Main {\n  public static void main(String[] args) { \n System.out.println("Olá Mundo"); \n}', '2021-12-29 18:47:52', 1, 1);
