@@ -1,10 +1,5 @@
 package br.com.ucsal.projetofinal.resultado;
 
-import br.com.ucsal.projetofinal.resultado.ResultadoRequestDto;
-import br.com.ucsal.projetofinal.resultado.ResultadoResponseDto;
-import br.com.ucsal.projetofinal.resultado.Resultado;
-import br.com.ucsal.projetofinal.resposta.RespostaRepository;
-import br.com.ucsal.projetofinal.resultado.ResultadoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,23 +12,21 @@ import java.util.Optional;
 @RequestMapping("/api/resultados")
 public class ResultadoController {
 
-    private final RespostaRepository respostaRepository;
-    private final ResultadoRepository resultadoRepository;
+   private final ResultadoService resultadoService;
 
-    public ResultadoController(RespostaRepository respostaRepository, ResultadoRepository resultadoRepository) {
-        this.respostaRepository = respostaRepository;
-        this.resultadoRepository = resultadoRepository;
+    public ResultadoController(ResultadoService resultadoService) {
+        this.resultadoService = resultadoService;
     }
 
     @GetMapping("/")
     public ResponseEntity<List<Resultado>> listar() {
-        List<Resultado> resultados = resultadoRepository.findAll();
+        List<Resultado> resultados = resultadoService.listar();
         return ResponseEntity.ok().body(resultados);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable Long id) {
-        Optional<Resultado> resultado = resultadoRepository.findById(id);
+        Optional<Resultado> resultado = resultadoService.listarPorId(id);
         if (resultado.isPresent()) {
             return ResponseEntity.ok().body(new ResultadoResponseDto(resultado.get()));
         }
@@ -42,14 +35,17 @@ public class ResultadoController {
 
     @GetMapping("/resposta/{id}")
     public ResponseEntity<?> listarPorTarefa(@PathVariable Long id) {
-        Resultado resultados = resultadoRepository.findByRespostaId(id);
+        Resultado resultados = resultadoService.listarPorTarefa(id);
         return ResponseEntity.ok().body(resultados);
     }
 
     @PostMapping("/")
     public ResponseEntity<ResultadoResponseDto> inserir(@RequestBody @Valid ResultadoRequestDto resultadoRequestDto) {
-        Resultado resultado = resultadoRequestDto.toModel(respostaRepository);
-        resultadoRepository.save(resultado);
-        return ResponseEntity.ok().body(new ResultadoResponseDto(resultado));
+        try {
+            return ResponseEntity.ok().body(new ResultadoResponseDto(resultadoService.inserir(resultadoRequestDto)));
+        }catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
+
     }
 }

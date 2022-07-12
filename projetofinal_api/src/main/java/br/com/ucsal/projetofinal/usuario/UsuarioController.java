@@ -2,6 +2,7 @@ package br.com.ucsal.projetofinal.usuario;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,21 +18,21 @@ import java.util.Optional;
 public class UsuarioController {
     private final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listar() {
-        List<Usuario> usuarios = usuarioRepository.findAll();
+        List<Usuario> usuarios = usuarioService.listar();
         return ResponseEntity.ok().body(usuarios);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable Long id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        Optional<Usuario> usuario = usuarioService.listarPorId(id);
         if (usuario.isPresent()) {
             return ResponseEntity.ok(new UsuarioResponseDto(usuario.get()));
         }
@@ -43,21 +44,19 @@ public class UsuarioController {
     @CrossOrigin
     @PostMapping("/")
     public ResponseEntity<UsuarioResponseDto> inserir(@RequestBody @Valid UsuarioRequestDto usuarioRequestDto) {
-        Usuario usuario = usuarioRequestDto.toModel();
-        usuarioRepository.save(usuario);
-        return ResponseEntity.ok().body(new UsuarioResponseDto(usuario));
+        try {
+            return ResponseEntity.ok().body(new UsuarioResponseDto(usuarioService.inserir(usuarioRequestDto)));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
-        return usuarioRepository.findById(id).map(
-                user -> {
-                    user.setNome(usuario.getNome());
-                    user.setLogin(usuario.getLogin());
-                    user.setSenha(usuario.getSenha());
-                    user.setDataUltimoAcesso(Instant.now());
-                    Usuario usuarioAtualizado = usuarioRepository.save(user);
-                    return ResponseEntity.ok().body(usuarioAtualizado);
-                }).orElse(ResponseEntity.notFound().build());
+        try {
+            return ResponseEntity.ok().body(new UsuarioResponseDto(usuarioService.atualizar(id, usuario)));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

@@ -3,11 +3,9 @@ package br.com.ucsal.projetofinal.resposta;
 import br.com.ucsal.projetofinal.casoteste.CasoTeste;
 import br.com.ucsal.projetofinal.resultado.Resultado;
 import br.com.ucsal.projetofinal.teste.Teste;
-import br.com.ucsal.projetofinal.resultado.ResultadoRepository;
-import br.com.ucsal.projetofinal.tarefa.TarefaRepository;
-import br.com.ucsal.projetofinal.usuario.UsuarioRepository;
 import br.com.ucsal.projetofinal.testcode.TestResult;
 import br.com.ucsal.projetofinal.testcode.TestService;
+import br.com.ucsal.projetofinal.usuario.UsuarioResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,27 +25,21 @@ import java.util.Optional;
 @RequestMapping("/api/respostas")
 public class RespostaController {
 
-    private final RespostaRepository respostaRepository;
-    private final UsuarioRepository usuarioRepository;
-    private final TarefaRepository tarefaRepository;
-    private final ResultadoRepository resultadoRepository;
+    private final RespostaService respostaService;
 
-    public RespostaController(RespostaRepository respostaRepository, UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository, ResultadoRepository resultadoRepository) {
-        this.respostaRepository = respostaRepository;
-        this.usuarioRepository = usuarioRepository;
-        this.tarefaRepository = tarefaRepository;
-        this.resultadoRepository = resultadoRepository;
+    public RespostaController(RespostaService respostaService) {
+        this.respostaService = respostaService;
     }
 
     @GetMapping("/")
     public ResponseEntity<List<Resposta>> listar() {
-        List<Resposta> respostas = respostaRepository.findAll();
+        List<Resposta> respostas = respostaService.listar();
         return ResponseEntity.ok().body(respostas);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable Long id) {
-        Optional<Resposta> resposta = respostaRepository.findById(id);
+        Optional<Resposta> resposta = respostaService.listarPorId(id);
         if (resposta.isPresent()) {
             return ResponseEntity.ok().body(new RespostaResponseDto(resposta.get()));
         }
@@ -56,38 +48,19 @@ public class RespostaController {
 
     @PostMapping("/")
     public ResponseEntity<RespostaResponseDto> inserir(@RequestBody @Valid RespostaRequestDto respostaRequestDto) {
-        Resposta resposta = respostaRequestDto.toModel(usuarioRepository, tarefaRepository);
-        List<String> input = new ArrayList<>();
-        List<String> output = new ArrayList<>();
-        respostaRepository.save(resposta);
-        for (CasoTeste teste : resposta.getTarefa().getTestes()) {
-            input.add(teste.getEntrada());
-            output.add(teste.getSaida());
-        }
-        Object[] array1 = input.toArray();
-        Object[] array2 = output.toArray();
-
-        gerarResulado(resposta, array1, array2);
+        Resposta resposta = respostaService.inserir(respostaRequestDto);
+        respostaService.gerarResultado(resposta);
         return ResponseEntity.ok().body(new RespostaResponseDto(resposta));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Resposta> atualizar(@PathVariable Long id, @RequestBody Resposta resposta) {
-        return respostaRepository.findById(id).map(
-                response -> {
-                    response.setCodigo(resposta.getCodigo());
-                    Resposta novaResposta = respostaRepository.save(response);
-                    return ResponseEntity.ok().body(novaResposta);
-                }
-        ).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody Resposta resposta) {
+        try {
+            return ResponseEntity.ok().body(new RespostaResponseDto(respostaService.atualizar(id, resposta)));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-    private void gerarResulado(Resposta resposta, Object[] array1, Object[] array2) {
-        TestResult testResult = new TestService().executetest(resposta.getCodigo(), "Main.java", "", array1, array2);
 
-        List<Teste> testes = new ArrayList<>(testResult.getTest());
-
-        Resultado resultado = new Resultado(testResult.getOutput(), testResult.getCreate(), testResult.getCompile(), 22.0, resposta, testes);
-        resultadoRepository.save(resultado);
-    }
 }
