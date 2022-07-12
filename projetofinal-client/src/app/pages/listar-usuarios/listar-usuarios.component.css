@@ -1,8 +1,5 @@
 table {
   width: 800px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-
 }
 
 .input-form {
@@ -11,4 +8,13 @@ table {
 
 .formulario {
   width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
 }

@@ -12,6 +12,10 @@
   justify-content: center;
 }
 
+.mat-form-field{
+  width: 100%;
+}
+
 .input-login {
   width: 100%;
   padding: 9px 15px 7px 15px;

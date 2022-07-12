@@ -1,20 +1,27 @@
 import { TarefaService } from './../../service/tarefa/tarefa.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Tarefa } from 'src/app/model/tarefa';
 import { MatTableDataSource } from '@angular/material/table';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listar-tarefas',
   templateUrl: './listar-tarefas.component.html',
   styleUrls: ['./listar-tarefas.component.css']
 })
-export class ListarTarefasComponent implements OnInit {
+export class ListarTarefasComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort)
+  sort!: MatSort;
+
   tarefas = new MatTableDataSource<Tarefa>();
   displayedColumns = [
     'titulo',
-    'descricao',
     'data de entrega',
     'Acoes'
   ];
@@ -24,6 +31,11 @@ export class ListarTarefasComponent implements OnInit {
 
   ngOnInit(): void {
     this.buscarTarefa();
+  }
+
+  ngAfterViewInit() {
+    this.tarefas.paginator = this.paginator;
+    this.tarefas.sort = this.sort;
   }
 
   buscarTarefa(){
