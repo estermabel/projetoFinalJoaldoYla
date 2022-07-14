@@ -2,18 +2,20 @@
     <div class="containerLogin">
 
             <mat-card class="cardLogin ">
-              <form class="example-form">
+              <form class="example-form" [formGroup]="formLogin" (ngSubmit)="login()">
                 <div>
                   <div class="input-login">
                       <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Login</mat-label>
                           <mat-icon class="icon" matPrefix color = "primary">person</mat-icon>
-                          <input class="input-form" name="login" maxLength="14"  type="text" matInput placeholder="Login">
+                          <input class="input-form" name="login" maxLength="14"  type="text" [(ngModel)]="usuario.login" formControlName="login" matInput >
                       </mat-form-field>
                   </div>
                   <div class="input-login">
                       <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Senha</mat-label>
                           <mat-icon class="icon" matPrefix color = "primary">lock</mat-icon>
-                          <input class="input-form" name="senha" type="password" maxLength="70" matInput placeholder="Senha">
+                          <input class="input-form" name="senha" type="password" maxLength="70" [(ngModel)]="usuario.senha" formControlName="senha" matInput >
                       </mat-form-field>
                   </div>
                 </div>

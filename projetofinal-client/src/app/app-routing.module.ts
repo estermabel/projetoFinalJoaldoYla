@@ -1,3 +1,5 @@
+import { AuthenticationComponent } from './layout/authentication/authentication.component';
+import { HomeComponent } from './layout/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ExibirResultadoComponent } from './pages/exibir-resultado/exibir-resultado.component';
 import { ListarResultadosComponent } from './pages/listar-resultados/listar-resultados.component';
@@ -10,17 +12,28 @@ import { ListarUsuariosComponent } from './pages/listar-usuarios/listar-usuarios
 import { CadastrarRespostaComponent } from './pages/cadastrar-resposta/cadastrar-resposta.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'usuarios', component: ListarUsuariosComponent },
-  { path: 'tarefas', component: ListarTarefasComponent },
-  { path: 'resultado', component: ExibirResultadoComponent },
-  // { path: 'resultado/:id', component: ExibirResultadoComponent },
-  { path: 'cadastrarTarefa', component: CadastrarTarefaComponent },
-  { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent },
-  { path: 'cadastrarResposta', component: CadastrarRespostaComponent },
+  {
+    path: '', component: HomeComponent,
+    children:[
+      { path: 'usuarios', component: ListarUsuariosComponent },
+      { path: 'tarefas', component: ListarTarefasComponent },
+      { path: 'resultado', component: ExibirResultadoComponent },
+      // { path: 'resultado/:id', component: ExibirResultadoComponent },
+      { path: 'cadastrarTarefa', component: CadastrarTarefaComponent },
+      { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent },
+      { path: 'cadastrarResposta', component: CadastrarRespostaComponent },
+      { path: 'resultados', component: ListarResultadosComponent}
+    ]
+  },
+  {
+    path: '', component:AuthenticationComponent,
+    children:[
+      { path: '', redirectTo:'login', pathMatch:'full' },
+      { path: 'login', component: LoginComponent }
+    ]
+  }
 
-  { path: 'resultados', component: ListarResultadosComponent}
+
 ];
 
 @NgModule({

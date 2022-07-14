@@ -24,6 +24,8 @@ import { ListarResultadosComponent } from './pages/listar-resultados/listar-resu
 import { BlockUIModule } from 'ng-block-ui';
 import { DialogEditarCasoTesteComponent } from './pages/dialog-editar-caso-teste/dialog-editar-caso-teste.component';
 import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './layout/home/home.component';
+import { AuthenticationComponent } from './layout/authentication/authentication.component';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
@@ -40,7 +42,9 @@ registerLocaleData(localePt, 'pt');
     ExibirResultadoComponent,
     ListarResultadosComponent,
     DialogEditarCasoTesteComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    AuthenticationComponent
   ],
   imports: [
     HttpClientModule,
