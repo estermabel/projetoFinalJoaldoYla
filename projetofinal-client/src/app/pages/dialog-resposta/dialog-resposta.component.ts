@@ -24,6 +24,21 @@ import { ResultadoRequestDTO } from 'src/app/model/DTO/resultadoRequestDTO';
 export class DialogRespostaComponent implements OnInit, AfterViewInit {
 
   @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
+  valorInicial: string =
+  `public class Main {
+
+    public static void main(String[] args) {
+
+
+    }
+
+  }`;
+
+  options: any = {
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: true,
+  };
 
   codigo: string = "";
   idResposta: number = 0;
@@ -62,19 +77,25 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     //ace.config.set("fontSize", "14px");
-    ace.config.set(
-      "basePath",
-      "https://unpkg.com/ace-builds@1.4.12/src-noconflict"
-    );
+    ace.config.set('basePath', "https://ace.c9.io/build/src-noconflict/");
     const aceEditor = ace.edit(this.editor.nativeElement);
-    aceEditor.session.setValue("public class Main {\n\tpublic static void main(String[] args) {\n\n\n\t}\n}");
-    aceEditor.setTheme("ace/theme/twilight");
+
+
+    aceEditor.setFontSize("14px");
+    aceEditor.session.setValue(this.valorInicial);
+    aceEditor.setTheme("ace/theme/one_dark");
     aceEditor.session.setMode("ace/mode/java");
 
     aceEditor.on("change", () => {
       //console.log(aceEditor.getValue());
       this.codigo = aceEditor.getValue();
     });
+    aceEditor.renderer.attachToShadowRoot()
+  }
+
+  aumentarFonte(){
+    const aceEditor = ace.edit(this.editor.nativeElement);
+    console.log(aceEditor.getFontSize());
   }
 
   EnviarResposta(){
@@ -92,9 +113,6 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
       console.log(error.error);
     },
     () => {
-      // this.resposta.tarefa.testes.forEach(casoTeste => {
-      //   this.executarCodigo(casoTeste.id)
-      // });
 
       this.dialogRef.close();
       this.router.navigate(["resultado"])
