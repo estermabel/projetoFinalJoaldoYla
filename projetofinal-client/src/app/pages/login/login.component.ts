@@ -55,11 +55,11 @@ export class LoginComponent implements OnInit {
 
   validarCampos(): boolean{
     const formulario = this.formLogin.value;
-    if(formulario.login.value == null || formulario.login.value === ''){
+    if(formulario.login == null || formulario.login === ''){
       return false;
     }
 
-    if(formulario.senha.value == null || formulario.senha.value === ''){
+    if(formulario.senha == null || formulario.senha === ''){
       return false;
     }
 
