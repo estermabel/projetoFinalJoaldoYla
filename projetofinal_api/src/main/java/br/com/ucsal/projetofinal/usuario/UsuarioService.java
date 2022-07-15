@@ -40,4 +40,8 @@ public class UsuarioService {
                     return usuarioAtualizado;
                 }).orElse(null);
     }
+
+    public Optional<Usuario> listarPorLogin(String login) {
+        return usuarioRepository.findByLogin(login);
+    }
 }

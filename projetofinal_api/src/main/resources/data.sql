@@ -1,5 +1,10 @@
-INSERT INTO usuario(data_criacao, data_ultimo_acesso, flag_ativo, login, nome, perfil, senha)
-values ('2021-12-20 18:47:52', '2021-12-21 18:47:52', true, 'neivacaju', 'Neiva', 1, 'caju');
+INSERT INTO usuario(data_criacao, data_ultimo_acesso, flag_ativo, login, nome, senha)
+values ('2021-12-20 18:47:52', '2021-12-21 18:47:52', true, 'neivacaju', 'Neiva', '$2a$10$Le.iEd4ISlBGn65MJuSeMuLfwlcES6zMfHKBnm07xWKfTAv1S/sw6');
+
+INSERT INTO perfil(nome)
+values('Admin'),
+('Aluno'),
+('Professor');
 
 INSERT INTO tarefa(data_entrega, descricao, status, titulo)
 values ('2022-01-12 18:47:52', 'Digite numeros separados por espaço que a soma seja 10', 1, 'Até 10');
