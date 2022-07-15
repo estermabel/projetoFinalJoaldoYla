@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { throwError, retry, catchError} from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable()
 export class AbstractHttpService {
 
-    protected url: string = "http://localhost:8080/";
+    protected url: string = environment.url;
 
     private extractData: any;
 

@@ -1,3 +1,4 @@
+import { httpInterceptorProviders } from './account/';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -26,6 +27,7 @@ import { DialogEditarCasoTesteComponent } from './pages/dialog-editar-caso-teste
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './layout/home/home.component';
 import { AuthenticationComponent } from './layout/authentication/authentication.component';
+
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
@@ -60,6 +62,7 @@ registerLocaleData(localePt, 'pt');
     CommonsModule
   ],
   providers: [
+    httpInterceptorProviders,
     { provide: LOCALE_ID, useValue: 'pt' },
     {
       provide: DEFAULT_CURRENCY_CODE,

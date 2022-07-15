@@ -1,9 +1,11 @@
+import { LoginDTO } from './../../model/DTO/loginDTO';
 
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/account/service/account.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 @Component({
   selector: 'app-login',
@@ -14,18 +16,54 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router:Router,
-    private accountService: AccountService
+    private accountService: AccountService,
+    @Inject(SESSION_STORAGE) private storage: StorageService
   ) { }
-  usuario = new  UsuarioDTO();
-  formLogin =  new FormGroup({
-    login: new FormControl([Validators.required]),
-    senha: new FormControl([Validators.required]),
-  });
 
+
+  usuario = new  LoginDTO();
+
+
+  mensagemErro: string= ""
+  formLogin: any
   ngOnInit(): void {
+    this.accountService.clearAuthentication();
+    this.formLogin =  new FormGroup({
+      login: new FormControl([Validators.required]),
+      senha: new FormControl([Validators.required]),
+    });
+
   }
 
   login(){
-    this.router.navigate(['tarefas'])
+      if(this.validarCampos()){
+        this.accountService.login(this.usuario).subscribe(data =>{
+          const token = JSON.parse(JSON.stringify(data)).token;
+          this.storage.set("token", token);
+          //console.log('login efetuado: ', this.storage.get("token"))
+          this.mensagemErro = "";
+          this.router.navigate(['tarefas']);
+        }, (error)=>{
+          console.error("Erro ao fazer login");
+          this.mensagemErro = "Login ou Senha Inválidos";
+        }
+        )
+      }else{
+        this.mensagemErro = "Preencha todos os campos";
+      }
+  }
+
+  validarCampos(): boolean{
+    const formulario = this.formLogin.value;
+    if(formulario.login.value == null || formulario.login.value === ''){
+      return false;
+    }
+
+    if(formulario.senha.value == null || formulario.senha.value === ''){
+      return false;
+    }
+
+    return true;
+
   }
 }
