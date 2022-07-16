@@ -2,7 +2,7 @@ import { LoginDTO } from './../../model/DTO/loginDTO';
 
 import { Router } from '@angular/router';
 import { Component, Inject, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/account/service/account.service';
+import { AccountService } from 'src/app/account/_service/account.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
@@ -38,11 +38,12 @@ export class LoginComponent implements OnInit {
   login(){
       if(this.validarCampos()){
         this.accountService.login(this.usuario).subscribe(data =>{
-          const token = JSON.parse(JSON.stringify(data)).token;
-          this.storage.set("token", token);
-          //console.log('login efetuado: ', this.storage.get("token"))
-          this.mensagemErro = "";
-          this.router.navigate(['tarefas']);
+
+          if(data.ok){
+            console.log('login efetuado: ', data)
+            this.mensagemErro = "";
+            this.router.navigate(['tarefas']);
+          }
         }, (error)=>{
           console.error("Erro ao fazer login");
           this.mensagemErro = "Login ou Senha Inválidos";
