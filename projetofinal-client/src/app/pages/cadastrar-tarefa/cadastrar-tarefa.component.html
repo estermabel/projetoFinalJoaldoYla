@@ -34,22 +34,22 @@
     <table mat-table [dataSource]="casosTestes" class="mat-elevation-z8">
       <ng-container matColumnDef="nomeTeste">
         <th mat-header-cell *matHeaderCellDef> Nome do Teste </th>
-        <td mat-cell *matCellDef="let teste"> {{teste.nomeTeste}} </td>
+        <td mat-cell *matCellDef="let teste">{{teste.nomeTeste}}</td>
       </ng-container>
 
       <ng-container matColumnDef="entrada">
         <th mat-header-cell *matHeaderCellDef> Entrada </th>
-        <td mat-cell *matCellDef="let teste"> {{teste.entrada}} </td>
+        <td mat-cell *matCellDef="let teste">{{teste.entrada}}</td>
       </ng-container>
 
       <ng-container matColumnDef="saida">
         <th mat-header-cell *matHeaderCellDef> Saida </th>
-        <td mat-cell *matCellDef="let teste"> {{teste.saida}} </td>
+        <td mat-cell *matCellDef="let teste">{{teste.saida}}</td>
       </ng-container>
 
       <ng-container matColumnDef="comparacao">
         <th mat-header-cell *matHeaderCellDef> Comparação </th>
-        <td mat-cell *matCellDef="let teste" > {{teste.comparacao}} </td>
+        <td mat-cell *matCellDef="let teste" >{{teste.comparacao}}</td>
       </ng-container>
 
       <ng-container matColumnDef="flagExibir">
