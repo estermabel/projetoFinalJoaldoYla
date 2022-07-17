@@ -54,7 +54,7 @@
 
       <ng-container matColumnDef="flagExibir">
         <th mat-header-cell *matHeaderCellDef> Exibir para o aluno </th>
-        <td mat-cell *matCellDef="let teste"> {{teste.flagExibir}} </td>
+        <td mat-cell *matCellDef="let teste"><mat-slide-toggle color="primary" (change)="alterarExibirParaAlunor(teste)" [checked]="teste.flagExibir"></mat-slide-toggle></td>
       </ng-container>
 
       <ng-container matColumnDef="acoes">

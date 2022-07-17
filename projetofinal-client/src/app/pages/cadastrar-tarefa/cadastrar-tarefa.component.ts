@@ -23,7 +23,7 @@ export class CadastrarTarefaComponent implements OnInit {
   casosTestes = new MatTableDataSource<CasoTeste>();
   stausDialog = "";
   casoTeste = new CasoTesteDTO();
-  casoTesteEditar = new CasoTesteDTO();
+
   tarefa = new  TarefaDTO();
 
   displayedColumns = [
@@ -96,15 +96,15 @@ export class CadastrarTarefaComponent implements OnInit {
 
   edit (object: any, editado: CasoTeste, dataSource: MatTableDataSource<any>){
     const index = dataSource.data.indexOf(object);
-
+    let casoTesteEditar = new CasoTesteDTO();
 
     if (index > -1) {
-      this.casoTesteEditar = dataSource.data.at(index);
-      this.casoTesteEditar.nomeTeste = editado.nomeTeste;
-      this.casoTesteEditar.entrada = editado.entrada;
-      this.casoTesteEditar.saida = editado.saida;
-      this.casoTesteEditar.comparacao = editado.comparacao;
-      this.casoTesteEditar.flagExibir = editado.flagExibir;
+      casoTesteEditar = dataSource.data.at(index);
+      casoTesteEditar.nomeTeste = editado.nomeTeste;
+      casoTesteEditar.entrada = editado.entrada;
+      casoTesteEditar.saida = editado.saida;
+      casoTesteEditar.comparacao = editado.comparacao;
+      casoTesteEditar.flagExibir = editado.flagExibir;
       //dataSource.data.splice(index, 1);
       //dataSource.data.push(this.casoTesteEditar)
       dataSource._updateChangeSubscription();
@@ -155,6 +155,21 @@ export class CadastrarTarefaComponent implements OnInit {
     });
   }
 
+  alterarExibirParaAlunor(teste: CasoTeste){
+    teste.flagExibir = teste.flagExibir == false ? true : false;
+    this.editExibir(teste, this.casosTestes)
+  }
+
+  editExibir(editar: CasoTeste, dataSource: MatTableDataSource<any>){
+    let casoTesteEditar = new CasoTesteDTO();
+    const index = dataSource.data.indexOf(editar);
+
+    if (index > -1) {
+      casoTesteEditar = dataSource.data.at(index);
+      casoTesteEditar.flagExibir = editar.flagExibir;
+      dataSource._updateChangeSubscription();
+    }
+  }
 
   buscarCasosTeste(){
     this.casoTesteService.findAll().subscribe((data: any[]) => {
