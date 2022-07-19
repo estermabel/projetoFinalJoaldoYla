@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { throwError, retry, catchError} from 'rxjs';
-
+import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AbstractHttpService {
 
-    protected url: string = "http://localhost:8080/";
+    protected url: string = environment.url;
 
     private extractData: any;
 
@@ -29,14 +30,9 @@ export class AbstractHttpService {
     }
 
     protected putMethod(value: any, relativePath: string = '') {
-      console.log('Put Method: ' + this.url + relativePath);
-      return this.http.put(this.url, JSON.stringify(value), { headers: this.getHeaders() })
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-
-    }
+      console.log('PUT Method: ' + this.url + relativePath);
+      return this.http.put(this.url + relativePath, value, { headers: this.getHeaders() });
+  }
 
     protected deleteMethod<T>(value: any, relativePath: string = '') {
       return this.http.delete<T>(this.url +  relativePath+"/", { headers: this.getHeaders() })

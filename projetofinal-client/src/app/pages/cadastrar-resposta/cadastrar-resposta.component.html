@@ -1,10 +1,8 @@
 <div class="container-fluid">
   <div class="container">
-  <form  class="formulario" id="formTarefa">
-    <h2 class="titulo-form">{{tarefa.titulo}}</h2>
-    <p>
-      {{tarefa.descricao}}
-    </p>
+
+    <h2 class="titulo center">{{tarefa.titulo}}</h2>
+    <p class="descricaoTarefa">{{tarefa.descricao}}</p>
 
     <table mat-table [dataSource]="casosTeste" class="mat-elevation-z8">
 
@@ -26,7 +24,7 @@
       <button mat-button class="botao" id="btn" type="button" (click)="openDialogResposta()" color="primary">Submeter Resposta</button>
     </div>
 
-  </form>
+
   </div>
 </div>
 

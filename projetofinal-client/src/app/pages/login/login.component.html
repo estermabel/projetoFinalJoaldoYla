@@ -19,7 +19,9 @@
                       </mat-form-field>
                   </div>
                 </div>
+                <span class="text-danger center" *ngIf="mensagemErro != ''">{{mensagemErro}}</span>
               <button class="bot-login" (click)="login()" mat-button>Login</button>
+
               </form>
             </mat-card>
 

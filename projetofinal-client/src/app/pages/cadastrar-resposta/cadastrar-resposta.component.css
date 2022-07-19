@@ -1,7 +1,21 @@
+.titulo{
+  font: 500 34px/68px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.descricaoTarefa{
+  text-align: justify;
+  white-space: pre-wrap;
+  margin-bottom: 16px;
+}
+
 table {
   width: 100%;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   white-space: pre-wrap;
 
+}
+
+.mat-row {
+  padding-top: 16px;
 }
