@@ -23,3 +23,6 @@ values (true, true, 22.0, 'Hello!', 1);
 
 INSERT INTO teste(exception, execute, resultado_final, saida_esperada, saida_obtida, resultado_id)
 values ('RunTimeException blá blá blá', true, true, 'Hello!', 'Hello!', 1);
+
+INSERT INTO usuario_perfis(usuario_id, perfis_id)
+values (1, 1)
