@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.usuario;
 
+import br.com.ucsal.projetofinal.perfil.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.*;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -47,9 +51,12 @@ public class Usuario implements UserDetails {
     private Instant dataUltimoAcesso;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Perfil> perfis = new ArrayList<>();
+    @JoinTable(joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "perfil_id")
+    )
+    private List<Perfil> perfil = new ArrayList<>();
 
-    public Usuario(String nome, String login, String senha, Boolean flagAtivo) {
+    public Usuario(String nome, String login, String senha, Boolean flagAtivo, Perfil perfil) {
         this.nome = nome;
         this.login = login;
         this.senha = new BCryptPasswordEncoder().encode(senha);
@@ -57,11 +64,12 @@ public class Usuario implements UserDetails {
         ZoneId brazilZone = ZoneId.of("America/Sao_Paulo");
         this.dataCriacao = LocalDateTime.now(brazilZone).toInstant(ZoneOffset.UTC);
         this.dataUltimoAcesso = Instant.now();
+        this.perfil.add(perfil);
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.perfis;
+        return this.perfil;
     }
 
     @Override

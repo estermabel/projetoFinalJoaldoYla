@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.usuario;
 
+import br.com.ucsal.projetofinal.perfil.PerfilRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -11,21 +12,23 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
+    private final PerfilRepository perfilRepository;
+
+    public UsuarioService(UsuarioRepository usuarioRepository, PerfilRepository perfilRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.perfilRepository = perfilRepository;
     }
 
-    public List<Usuario> listar(){
-        return  usuarioRepository.findAll();
+    public List<Usuario> listar() {
+        return usuarioRepository.findAll();
     }
 
     public Optional<Usuario> listarPorId(Long id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
-        return usuario;
+        return usuarioRepository.findById(id);
     }
 
     public Usuario inserir(UsuarioRequestDto usuarioRequestDto) {
-        Usuario usuario = usuarioRequestDto.toModel();
+        Usuario usuario = usuarioRequestDto.toModel(perfilRepository);
         return usuarioRepository.save(usuario);
     }
 
@@ -36,8 +39,7 @@ public class UsuarioService {
                     user.setLogin(usuario.getLogin());
                     user.setSenha(usuario.getSenha());
                     user.setDataUltimoAcesso(Instant.now());
-                    Usuario usuarioAtualizado = usuarioRepository.save(user);
-                    return usuarioAtualizado;
+                    return usuarioRepository.save(user);
                 }).orElse(null);
     }
 

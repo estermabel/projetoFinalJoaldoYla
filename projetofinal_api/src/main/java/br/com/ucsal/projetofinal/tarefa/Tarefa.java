@@ -28,6 +28,7 @@ public class Tarefa {
     private String titulo;
 
     @NotBlank
+    @Column(length = 5000)
     private String descricao;
 
     private Integer status;

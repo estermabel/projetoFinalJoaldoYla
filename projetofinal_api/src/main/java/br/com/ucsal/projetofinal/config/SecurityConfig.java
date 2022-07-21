@@ -6,6 +6,7 @@ import br.com.ucsal.projetofinal.config.token.TokenService;
 import br.com.ucsal.projetofinal.usuario.UsuarioService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -48,12 +49,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/api/login/**").permitAll()
-                .antMatchers("/api/respostas/**").permitAll()
-                .antMatchers("/api/usuarios/**").permitAll()
-                .antMatchers("/api/tarefa/**").permitAll()
-                .antMatchers("/api/resultados/**").permitAll()
+                .antMatchers("/api/respostas/**").access("hasAnyAuthority('Admin', 'Professor')")
+                .antMatchers(HttpMethod.GET, "/api/respostas/usuario/**").access("hasAnyAuthority('Aluno')")
+                .antMatchers(HttpMethod.GET, "/api/tarefas/**").access("hasAnyAuthority('Aluno')")
+                .antMatchers(HttpMethod.GET, "/api/casoteste//**").access("hasAnyAuthority('Aluno')")
+                .antMatchers("/api/usuarios/**").access("hasAnyAuthority('Admin')")
+                .antMatchers("/api/tarefa/**").access("hasAnyAuthority('Admin', 'Professor')")
+                .antMatchers("/api/resultados/**").access("hasAnyAuthority('Admin', 'Professor')")
+                .antMatchers("/api/casoteste/**").access("hasAnyAuthority('Professor')")
                 .anyRequest().authenticated()
-                .and().headers().frameOptions() .disable()
+                .and().headers().frameOptions().disable()
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, usuarioService), UsernamePasswordAuthenticationFilter.class);

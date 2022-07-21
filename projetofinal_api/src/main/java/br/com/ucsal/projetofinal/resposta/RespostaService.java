@@ -8,7 +8,6 @@ import br.com.ucsal.projetofinal.testcode.TestResult;
 import br.com.ucsal.projetofinal.testcode.TestService;
 import br.com.ucsal.projetofinal.teste.Teste;
 import br.com.ucsal.projetofinal.usuario.UsuarioRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,9 +33,13 @@ public class RespostaService {
         return respostaRepository.findAll();
     }
 
-    public Optional<Resposta> listarPorId(Long id){
+    public Optional<Resposta> listarPorId(Long id) {
         Optional<Resposta> resposta = respostaRepository.findById(id);
         return resposta;
+    }
+
+    public List<Resposta> listarPorIdUsuario(Long id) {
+        return respostaRepository.findByUsuarioId(id);
     }
 
     public Resposta inserir(RespostaRequestDto respostaRequestDto) {
@@ -44,7 +47,7 @@ public class RespostaService {
         return respostaRepository.save(resposta);
     }
 
-    public Resposta atualizar(Long id, Resposta resposta){
+    public Resposta atualizar(Long id, Resposta resposta) {
         return respostaRepository.findById(id).map(
                 response -> {
                     response.setCodigo(resposta.getCodigo());

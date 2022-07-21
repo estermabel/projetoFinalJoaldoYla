@@ -1,8 +1,8 @@
 package br.com.ucsal.projetofinal.resultado;
 
 import br.com.ucsal.projetofinal.resposta.Resposta;
-import br.com.ucsal.projetofinal.teste.Teste;
 import br.com.ucsal.projetofinal.resposta.RespostaRepository;
+import br.com.ucsal.projetofinal.teste.Teste;
 
 import java.util.List;
 
@@ -14,7 +14,6 @@ public class ResultadoRequestDto {
     private Double porcentagem;
     private Long respostaId;
     private List<Teste> testes;
-    //private JavaExecutor javaExecutor = new JavaExecutor();
 
     public ResultadoRequestDto() {
     }
@@ -30,7 +29,6 @@ public class ResultadoRequestDto {
 
     public Resultado toModel(RespostaRepository respostaRepository) {
         Resposta resposta = respostaRepository.findById(respostaId).orElseThrow(() -> new RuntimeException("Id de resposta não encontrado"));
-        //javaExecutor.start(resposta.getCodigo(), casoTeste);
         return new Resultado(saidaObtida, create, compile, porcentagem, resposta, testes);
     }
 

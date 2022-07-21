@@ -1,17 +1,10 @@
 package br.com.ucsal.projetofinal.resposta;
 
-import br.com.ucsal.projetofinal.casoteste.CasoTeste;
-import br.com.ucsal.projetofinal.resultado.Resultado;
-import br.com.ucsal.projetofinal.teste.Teste;
-import br.com.ucsal.projetofinal.testcode.TestResult;
-import br.com.ucsal.projetofinal.testcode.TestService;
-import br.com.ucsal.projetofinal.usuario.UsuarioResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +32,15 @@ public class RespostaController {
             return ResponseEntity.ok().body(new RespostaResponseDto(resposta.get()));
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<List<Resposta>> listarPorIdUsuario(@PathVariable Long id) {
+        List<Resposta> respostas = respostaService.listarPorIdUsuario(id);
+        if (respostas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok().body(respostas);
     }
 
     @PostMapping("/")
