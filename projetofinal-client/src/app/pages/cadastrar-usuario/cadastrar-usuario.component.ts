@@ -31,9 +31,9 @@ export class CadastrarUsuarioComponent implements OnInit {
   usuario = new  UsuarioDTO();
   nomeTela : string = 'Novo'
   perfis = [
-    {value: 0, viewValue: "Professor"},
+    {value: 0, viewValue: "Administrador"},
     {value: 1, viewValue: "Aluno"},
-    {value: 2, viewValue: "Administrador"},
+    {value: 2, viewValue: "Professor"},
   ]
 
   ngOnInit( ): void {

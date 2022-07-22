@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['tarefas']);
           }
         }, (error)=>{
-          console.error("Erro ao fazer login");
+          console.error("Erro ao fazer login", error);
           this.mensagemErro = "Login ou Senha Inválidos";
         }
         )

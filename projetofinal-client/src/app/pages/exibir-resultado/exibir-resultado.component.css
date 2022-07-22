@@ -14,3 +14,17 @@
 mat-card{
   margin: 25px;
 }
+
+.app-ace-editor {
+  min-height: 200px;
+  width:100%;
+  height: 100%;
+  overflow: auto;
+  border: 2px solid #f8f9fa;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  margin-bottom: 25px;
+}
+
+.iconResultado{
+  font-size: 35px;
+}

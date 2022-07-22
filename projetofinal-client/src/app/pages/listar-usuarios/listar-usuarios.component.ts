@@ -69,10 +69,11 @@ export class ListarUsuariosComponent implements OnInit, AfterViewInit{
   atualizarSituacao(usuario:Usuario){
     usuario.flagAtivo = usuario.flagAtivo == false ? true : false;
     this.usuarioService.update(usuario).subscribe(data =>{
-      console.log("alterado com sucesso", data);
+      console.log("Atualizado com sucesso", data);
     }, (error) =>{
       console.log(error.error);
-    })
+    }
+    )
   }
 
   retornarPerfil(value: number){

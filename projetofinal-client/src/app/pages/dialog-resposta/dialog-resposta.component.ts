@@ -14,6 +14,7 @@ import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ResultadoDTO } from 'src/app/model/DTO/resultadoDTO';
 import { ResultadoService } from 'src/app/service/resultado/resultado.service';
+import { AccountService } from 'src/app/account/_service/account.service';
 import { ResultadoRequestDTO } from 'src/app/model/DTO/resultadoRequestDTO';
 
 @Component({
@@ -46,6 +47,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
     private usuarioService: UsuarioService,
     private tarefaService: TarefaService,
     private router: Router,
+    private accountService: AccountService,
     public dialogRef: MatDialogRef<DialogRespostaComponent>,
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private resultadoService: ResultadoService,
@@ -69,7 +71,8 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
     });
 
     // DEPOIS SUBSTITUIR PELO USUARIO LOGADO
-    this.usuarioService.findOne(1).subscribe((data) => {
+    let id  = this.accountService.getSubject()
+    this.usuarioService.findOne(id).subscribe((data) => {
       this.usuario = data;
       console.log(this.usuario);
     });

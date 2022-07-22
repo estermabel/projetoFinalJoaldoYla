@@ -1,3 +1,5 @@
+import { AuthProfessorGuard } from './account/_guards/auth-professor.guard';
+import { AuthAdminGuard } from './account/_guards/auth-admin.guard';
 import { AuthenticationComponent } from './layout/authentication/authentication.component';
 import { HomeComponent } from './layout/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -10,18 +12,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListarUsuariosComponent } from './pages/listar-usuarios/listar-usuarios.component';
 import { CadastrarRespostaComponent } from './pages/cadastrar-resposta/cadastrar-resposta.component';
+import { AuthGuard } from './account/_guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
     children:[
-      { path: 'usuarios', component: ListarUsuariosComponent },
-      { path: 'tarefas', component: ListarTarefasComponent },
-      { path: 'resultado', component: ExibirResultadoComponent },
+      { path: 'usuarios', component: ListarUsuariosComponent, canActivate: [AuthAdminGuard] },
+      { path: 'tarefas', component: ListarTarefasComponent, canActivate: [AuthGuard] },
+      { path: 'resultado', component: ExibirResultadoComponent, canActivate: [AuthGuard] },
       // { path: 'resultado/:id', component: ExibirResultadoComponent },
-      { path: 'cadastrarTarefa', component: CadastrarTarefaComponent },
-      { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent },
-      { path: 'cadastrarResposta', component: CadastrarRespostaComponent },
+      { path: 'cadastrarTarefa', component: CadastrarTarefaComponent, canActivate: [AuthProfessorGuard, AuthAdminGuard] },
+      { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent, canActivate: [AuthAdminGuard] },
+      { path: 'cadastrarResposta', component: CadastrarRespostaComponent, canActivate: [AuthGuard] },
       { path: 'resultados', component: ListarResultadosComponent}
     ]
   },

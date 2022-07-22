@@ -1,7 +1,9 @@
 package br.com.ucsal.projetofinal.usuario;
 
 import br.com.ucsal.projetofinal.perfil.Perfil;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -54,6 +56,7 @@ public class Usuario implements UserDetails {
     @JoinTable(joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "perfil_id")
     )
+    @JsonManagedReference
     private List<Perfil> perfil = new ArrayList<>();
 
     public Usuario(String nome, String login, String senha, Boolean flagAtivo, Perfil perfil) {

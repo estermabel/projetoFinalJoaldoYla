@@ -27,4 +27,4 @@ INSERT INTO teste(exception, execute, resultado_final, saida_esperada, saida_obt
 values ('RunTimeException blá blá blá', true, true, 'Hello!', 'Hello!', 1);
 
 INSERT INTO USUARIO_PERFIL(USUARIO_ID, PERFIL_ID)
-values (1, 1)
+values (1, 1),(2, 2),(3, 3)

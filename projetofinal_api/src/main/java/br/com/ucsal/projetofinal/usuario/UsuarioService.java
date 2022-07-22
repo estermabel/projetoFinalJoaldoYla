@@ -38,6 +38,7 @@ public class UsuarioService {
                     user.setNome(usuario.getNome());
                     user.setLogin(usuario.getLogin());
                     user.setSenha(usuario.getSenha());
+                    user.setFlagAtivo(usuario.getFlagAtivo());
                     user.setDataUltimoAcesso(Instant.now());
                     return usuarioRepository.save(user);
                 }).orElse(null);

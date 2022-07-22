@@ -1,9 +1,11 @@
+
+import { Perfil } from "../perfil";
 export class UsuarioDTO {
   id: number;
   nome: string;
   login: string;
   senha: string;
-  perfil: number;
+  perfil: Array<Perfil>;
   flagAtivo: boolean;
   dataCriacao: Date;
   dataUltimoAcesso: Date
@@ -13,7 +15,7 @@ export class UsuarioDTO {
     this.nome = '',
     this.login = '',
     this.senha = '',
-    this.perfil = 0,
+    this.perfil = new Array<Perfil>(),
     this.flagAtivo = true;
     this.dataCriacao =  new Date(),
     this.dataUltimoAcesso = new Date()

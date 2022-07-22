@@ -1,3 +1,4 @@
+import { IdentityStorage } from './../_models/identity.storage';
 import { UsuarioDTO } from './../../model/DTO/usuarioDTO';
 import { LoginDTO } from '../../model/DTO/loginDTO';
 import { HttpClient } from '@angular/common/http';
@@ -7,8 +8,10 @@ import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 import { environment } from 'src/environments/environment';
-import { IdentityStorage } from '../_models/identity.storage';
 import { map } from 'rxjs/operators';
+import jwt_decode from 'jwt-decode';
+import { Identity } from '../_models/identity';
+
 
 class AuthorityResponse {
   public authority!: string;
@@ -47,18 +50,16 @@ class AuthenticationResult {
 })
 
 export class AccountService  {
-
+  usuarioLogado = new UsuarioDTO()
   baseUrl = environment.url;
   urlLogin = 'api/login/';
   private messageSource = new BehaviorSubject(false);
-  identityStorage: IdentityStorage;
+
   constructor(
     private http: HttpClient,
-    private router: Router,
-    private usuarioService: UsuarioService,
-    private idStorage: IdentityStorage,
-    @Inject(SESSION_STORAGE) private storage: StorageService) {
-      this.identityStorage = this.idStorage;
+    private identityStorage: IdentityStorage,
+    private usuarioService: UsuarioService) {
+
   }
 
   login(user: LoginDTO): Observable<AuthenticationResult> {
@@ -67,15 +68,10 @@ export class AccountService  {
           map(resp=>{
             if(resp.token){
               const token = resp.token;
-
               if(token){
-                const userAuthData = {
-                  token: token,
-                };
-
-                console.log(`Usuário autenticou: Nome: `);
-                this.identityStorage.saveAuthData(userAuthData);
-                this.storage.set("token", token);
+                console.log(`Usuário autenticou`);
+                //this.storage.set("token", token);
+                this.authenticate(token);
                 this.messageSource.next(true);
                 return new AuthenticationResult(true, "");
               }
@@ -89,34 +85,97 @@ export class AccountService  {
 
     }
 
-  authenticate(user: LoginDTO) {
-    const result = this.http.post<any>(this.baseUrl+this.urlLogin, user).subscribe(data=>
-      console.log("login:", data.token));
-    if(result && result){
-      this.storage.set("token", result);
-      return true;
-    }
-    return false;
-  }
+  authenticate(token: string) {
+    const decoded: any = jwt_decode(token);
 
-  isExpired() {
-    this.usuarioService.sessao().subscribe(_ => { }, _ => {
-        console.log('A sessão expirou, por favor realize o login.');
-        this.identityStorage.clearAuthData();
-        this.router.navigate(['login']);
+    const user : number = decoded.sub;
+
+    let userAuthenticate = new UsuarioDTO();
+    this.usuarioService.findOne(user).subscribe((data) => {
+      userAuthenticate = data;
+      const userAuthData = {
+        id: userAuthenticate.id,
+        login: userAuthenticate.login,
+        perfil: userAuthenticate.perfil[0].id,
+        token:token
+      };
+      this.identityStorage.saveAuthData(userAuthData)
+      //console.log(`autenticado no storage ${userAuthData}`);
     });
   }
 
   clearAuthentication(): void {
-    this.storage.remove("token");
+    this.identityStorage.clearAuthData();
+  }
+
+  getIdentity(): Identity{
+    return this.identityStorage.getIdentity();
   }
 
   getAuthorizationToken(){
-    const token = this.storage.get("token");
+    const token = this.identityStorage.getIdentity().token;
     return token;
   }
 
-  isAuthenticated(): boolean {
-    return this.identityStorage.authenticationPresent();
+  getTokenExpirationDate(token: string): Date {
+    const decoded: any = jwt_decode(token);
+
+    if (decoded.exp === undefined) {
+      console.error("decoded.exp undefined")
+    }
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  getSubject(){
+    const decoded: any = jwt_decode(this.getAuthorizationToken());
+    if (decoded.sub === undefined) {
+      console.error("decoded.exp undefined");
+    }
+    const user : number = decoded.sub;
+    return user;
+  }
+
+  isAdmin(): boolean{
+    const perfil = this.identityStorage.getIdentity().perfil;
+    if(perfil == 1)
+      return true
+    else
+      return false
+
+  }
+
+  isProfessor(): boolean{
+    const perfil = this.identityStorage.getIdentity().perfil;
+    if(perfil == 3)
+      return true
+    else
+      return false
+  }
+
+  isTokenExpired(token?: string): boolean {
+    if (!token) {
+      return true;
+    }
+
+    const date = this.getTokenExpirationDate(token);
+    if (date === undefined) {
+      return false;
+    }
+
+    return !(date.valueOf() > new Date().valueOf());
+  }
+
+  isUserLoggedIn() {
+    const token = this.getAuthorizationToken();
+    if (!token) {
+      return false;
+    } else if (this.isTokenExpired(token)) {
+      return false;
+    }
+
+    return true;
   }
 }

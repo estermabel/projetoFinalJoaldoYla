@@ -5,17 +5,19 @@
     <mat-card >
       <mat-card-content >
         <div class="center">
-          <h1 class="porcentagem"> %</h1>
+          <h1 class="porcentagem">{{resultado.porcentagem}}%</h1>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
 
-  <!-- <div class="codigo">
+  <div class="codigo">
     <mat-card >
-     {{resposta.codigo}}
+      <mat-card-content >
+      <div class="app-ace-editor" #editor></div>
+      </mat-card-content>
     </mat-card>
-  </div> -->
+  </div>
 
   <div *ngIf="resultado.compile">
     <div *ngFor="let result of resultado.testes" >
@@ -24,8 +26,8 @@
 
           <div class="row" *ngIf="result.exception == null">
             <div class="col-md-3">
-              <mat-icon *ngIf="result.resultadoFinal"  class="accepted">check_circle_outline</mat-icon>
-              <mat-icon *ngIf="!result.resultadoFinal"  color = "warn">error_outline</mat-icon>
+              <mat-icon *ngIf="result.resultadoFinal"  class="iconResultado accepted">check_circle_outline</mat-icon>
+              <mat-icon *ngIf="!result.resultadoFinal"  class="iconResultado" color = "warn" >error_outline</mat-icon>
             </div>
             <div class="col-md-3">
               <p>Entrada</p>

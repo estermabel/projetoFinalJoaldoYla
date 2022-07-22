@@ -32,7 +32,7 @@ export class UsuarioService extends GenericService {
     return this.getMethod(this.relativePath + value);
   }
 
-  override findAll(): Observable<Array<Usuario>>{
+  override findAll(): Observable<Array<UsuarioDTO>>{
       return this.getMethod(this.relativePath);
   }
 
