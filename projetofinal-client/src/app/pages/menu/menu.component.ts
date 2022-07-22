@@ -30,6 +30,16 @@ export class MenuComponent implements OnInit {
     });
   }
 
+
+
+  isAdmin(): boolean{
+    return this.accountService.isAdmin();
+  }
+
+  isProfessor():boolean{
+    return this.accountService.isProfessor();
+  }
+
   perfil(){
 
   }
@@ -37,6 +47,10 @@ export class MenuComponent implements OnInit {
   sair(){
     this.accountService.clearAuthentication();
     this.router.navigate(["login"])
+  }
+
+  listarSubmissoes(){
+    this.router.navigate(["submissoes"])
   }
 
   listarUsuarios(){

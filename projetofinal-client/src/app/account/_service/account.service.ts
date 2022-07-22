@@ -70,10 +70,9 @@ export class AccountService  {
               const token = resp.token;
               if(token){
                 console.log(`Usuário autenticou`);
-                //this.storage.set("token", token);
                 this.authenticate(token);
+
                 this.messageSource.next(true);
-                return new AuthenticationResult(true, "");
               }
               return new AuthenticationResult(false, 'Token vazio');
             } else {
@@ -81,6 +80,7 @@ export class AccountService  {
               return new AuthenticationResult(false, 'Login ou Senha Inválidos');
             }
           })
+
       )
 
     }

@@ -1,3 +1,4 @@
+import { ListarSubmissoesComponent } from './pages/listar-submissoes/listar-submissoes.component';
 import { AuthProfessorGuard } from './account/_guards/auth-professor.guard';
 import { AuthAdminGuard } from './account/_guards/auth-admin.guard';
 import { AuthenticationComponent } from './layout/authentication/authentication.component';
@@ -16,25 +17,27 @@ import { AuthGuard } from './account/_guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '', component: HomeComponent,
-    children:[
-      { path: 'usuarios', component: ListarUsuariosComponent, canActivate: [AuthAdminGuard] },
-      { path: 'tarefas', component: ListarTarefasComponent, canActivate: [AuthGuard] },
-      { path: 'resultado', component: ExibirResultadoComponent, canActivate: [AuthGuard] },
-      // { path: 'resultado/:id', component: ExibirResultadoComponent },
-      { path: 'cadastrarTarefa', component: CadastrarTarefaComponent, canActivate: [AuthProfessorGuard, AuthAdminGuard] },
-      { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent, canActivate: [AuthAdminGuard] },
-      { path: 'cadastrarResposta', component: CadastrarRespostaComponent, canActivate: [AuthGuard] },
-      { path: 'resultados', component: ListarResultadosComponent}
-    ]
-  },
-  {
     path: '', component:AuthenticationComponent,
     children:[
       { path: '', redirectTo:'login', pathMatch:'full' },
       { path: 'login', component: LoginComponent }
     ]
-  }
+  },
+  {
+    path: '', component: HomeComponent,
+    children:[
+      { path: 'usuarios', component: ListarUsuariosComponent, canActivate: [AuthAdminGuard] },
+      { path: 'tarefas', component: ListarTarefasComponent, canActivate: [AuthGuard] },
+      { path: 'resultado', component: ExibirResultadoComponent, canActivate: [AuthGuard] },
+      { path: 'submissoes', component: ListarSubmissoesComponent, canActivate: [AuthGuard] },
+      // { path: 'resultado/:id', component: ExibirResultadoComponent },
+      { path: 'cadastrarTarefa', component: CadastrarTarefaComponent, canActivate: [AuthProfessorGuard] },
+      { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent, canActivate: [AuthAdminGuard] },
+      { path: 'cadastrarResposta', component: CadastrarRespostaComponent, canActivate: [AuthGuard] },
+      { path: 'resultados', component: ListarResultadosComponent}
+    ]
+  },
+
 
 
 ];

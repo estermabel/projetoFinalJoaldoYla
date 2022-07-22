@@ -27,6 +27,7 @@ import { DialogEditarCasoTesteComponent } from './pages/dialog-editar-caso-teste
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './layout/home/home.component';
 import { AuthenticationComponent } from './layout/authentication/authentication.component';
+import { ListarSubmissoesComponent } from './pages/listar-submissoes/listar-submissoes.component';
 
 
 registerLocaleData(localePt, 'pt');
@@ -46,7 +47,8 @@ registerLocaleData(localePt, 'pt');
     DialogEditarCasoTesteComponent,
     LoginComponent,
     HomeComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    ListarSubmissoesComponent
   ],
   imports: [
     HttpClientModule,

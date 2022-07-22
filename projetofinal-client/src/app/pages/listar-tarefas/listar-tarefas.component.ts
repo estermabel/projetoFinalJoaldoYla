@@ -6,6 +6,7 @@ import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { AccountService } from 'src/app/account/_service/account.service';
 
 @Component({
   selector: 'app-listar-tarefas',
@@ -27,6 +28,7 @@ export class ListarTarefasComponent implements OnInit, AfterViewInit {
   ];
   constructor(private tarefaService: TarefaService,
     private router: Router,
+    private accountService: AccountService,
     @Inject(SESSION_STORAGE) private storage: StorageService ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,14 @@ export class ListarTarefasComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.tarefas.paginator = this.paginator;
     this.tarefas.sort = this.sort;
+  }
+
+  isAdmin(): boolean{
+    return this.accountService.isAdmin();
+  }
+
+  isProfessor():boolean{
+    return this.accountService.isProfessor();
   }
 
   buscarTarefa(){

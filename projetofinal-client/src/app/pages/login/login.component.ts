@@ -36,13 +36,13 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    let validado: boolean = false
       if(this.validarCampos()){
         this.accountService.login(this.usuario).subscribe(data =>{
-
           if(data.ok){
             console.log('login efetuado: ', data)
             this.mensagemErro = "";
-            this.router.navigate(['tarefas']);
+            validado = true
           }
         }, (error)=>{
           console.error("Erro ao fazer login", error);
@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
       }else{
         this.mensagemErro = "Preencha todos os campos";
       }
+      this.router.navigate(['tarefas']);
   }
 
   validarCampos(): boolean{

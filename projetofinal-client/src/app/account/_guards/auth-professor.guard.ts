@@ -16,7 +16,7 @@ export class AuthProfessorGuard implements CanActivate {
   usuarioLogado = new UsuarioDTO()
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
-    if (this.accountService.isUserLoggedIn() && this.accountService.isProfessor() ) {
+    if (this.accountService.isUserLoggedIn() && this.accountService.isProfessor() ||  this.accountService.isAdmin() ) {
       return true;
     } else {
       this.router.navigate(['tarefas']);

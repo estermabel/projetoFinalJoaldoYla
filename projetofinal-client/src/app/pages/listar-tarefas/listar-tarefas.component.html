@@ -1,4 +1,4 @@
-<div class="left container">
+<div class="left container" *ngIf="isProfessor() || isAdmin()">
   <button mat-raised-button (click)="cadastrarTarefa()" id="btn" class="demo-button">
     Cadastrar Tarefa
   </button>
