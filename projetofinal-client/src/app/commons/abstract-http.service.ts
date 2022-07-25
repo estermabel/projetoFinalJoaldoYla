@@ -15,29 +15,31 @@ export class AbstractHttpService {
 
     protected getMethod<T>(relativePath: string = '', params: any = null) {
         if (params != null) {
-
+          console.log('Get Method: ' + this.url + relativePath +" Params: ", params);
             return this.http.get<T>(this.url + relativePath, {
                 params: params
             });
         } else {
+            console.log('Get Method: ' + this.url + relativePath );
             return this.http.get<T>(this.url + relativePath);
         }
     }
 
     protected postMethod<T>(value: any, relativePath: string = '') {
         console.log('Post Method: ' + this.url + relativePath);
-        return this.http.post<T>(this.url + relativePath, value, { headers: this.getHeaders() });
+        return this.http.post<T>(this.url + relativePath, value, { headers: this.getHeaders() }).pipe(
+          catchError(this.handleError)
+        );
     }
 
     protected putMethod(value: any, relativePath: string = '') {
-      console.log('PUT Method: ' + this.url + relativePath);
-      return this.http.put(this.url + relativePath, value, { headers: this.getHeaders() });
+      console.log('Put Method: ' + this.url + relativePath);
+      return this.http.put(this.url + relativePath, JSON.stringify(value), { headers: this.getHeaders() })
   }
 
     protected deleteMethod<T>(value: any, relativePath: string = '') {
       return this.http.delete<T>(this.url +  relativePath+"/", { headers: this.getHeaders() })
       .pipe(
-        retry(1),
         catchError(this.handleError)
       )
     }

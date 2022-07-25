@@ -70,7 +70,6 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
       console.log(this.tarefa);
     });
 
-    // DEPOIS SUBSTITUIR PELO USUARIO LOGADO
     let id  = this.accountService.getSubject()
     this.usuarioService.findOne(id).subscribe((data) => {
       this.usuario = data;
@@ -93,7 +92,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
       //console.log(aceEditor.getValue());
       this.codigo = aceEditor.getValue();
     });
-    aceEditor.renderer.attachToShadowRoot()
+    //aceEditor.renderer.attachToShadowRoot()
   }
 
   aumentarFonte(){

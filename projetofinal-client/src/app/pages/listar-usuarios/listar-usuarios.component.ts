@@ -6,6 +6,7 @@ import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
 
 @Component({
   selector: 'app-listar-usuarios',
@@ -20,9 +21,9 @@ export class ListarUsuariosComponent implements OnInit, AfterViewInit{
   sort!: MatSort;
 
   perfis = [
-    {value: 0, viewValue: "Professor"},
-    {value: 1, viewValue: "Aluno"},
-    {value: 2, viewValue: "Administrador"},
+    {value: 1, viewValue: "Administrador"},
+    {value: 2, viewValue: "Aluno"},
+    {value: 3, viewValue: "Professor"},
   ]
 
   usuarios = new MatTableDataSource<Usuario>();
@@ -53,7 +54,7 @@ export class ListarUsuariosComponent implements OnInit, AfterViewInit{
   buscarUsuarios(){
     this.usuarioService.findAll().subscribe((data: any[]) => {
       this.usuarios.data = data;
-      console.log(this.usuarios);
+      //console.log(this.usuarios);
     });
   }
 
@@ -66,7 +67,7 @@ export class ListarUsuariosComponent implements OnInit, AfterViewInit{
     this.router.navigate(["cadastrarUsuario"])
   }
 
-  atualizarSituacao(usuario:Usuario){
+  atualizarSituacao(usuario: Usuario){
     usuario.flagAtivo = usuario.flagAtivo == false ? true : false;
     this.usuarioService.update(usuario).subscribe(data =>{
       console.log("Atualizado com sucesso", data);

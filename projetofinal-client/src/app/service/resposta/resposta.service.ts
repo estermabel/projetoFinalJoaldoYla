@@ -18,7 +18,7 @@ export class RespostaService extends GenericService {
     return this.postMethod(resposta, this.relativePath);
   }
 
-  listarPorUsuario(idUsuario: number): Observable<Array<RespostaDTO>>{
-    return this.getMethod(this.relativePath+'usuario/'+idUsuario);
+  listarPorUsuario(idUsuario: number): Observable<any>{
+    return this.getMethod(this.relativePath+'usuario/'+idUsuario)
   }
 }

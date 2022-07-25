@@ -5,6 +5,7 @@ export interface Usuario {
   login: string,
   senha: string,
   perfil: Array<Perfil>,
+  perfilId: number,
   flagAtivo: boolean,
   dataCriacao: Date,
   dataUltimoAcesso: Date

@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 
+
 @Component({
   selector: 'app-cadastrar-usuario',
   templateUrl: './cadastrar-usuario.component.html',
@@ -25,15 +26,15 @@ export class CadastrarUsuarioComponent implements OnInit {
       nome: new FormControl([Validators.required]),
       login: new FormControl([Validators.required]),
       senha: new FormControl([Validators.required]),
-      perfil: new FormControl(''),
+      perfilId: new FormControl(''),
     });
 
   usuario = new  UsuarioDTO();
   nomeTela : string = 'Novo'
   perfis = [
-    {value: 0, viewValue: "Administrador"},
-    {value: 1, viewValue: "Aluno"},
-    {value: 2, viewValue: "Professor"},
+    {value: 1, viewValue: "Administrador"},
+    {value: 2, viewValue: "Aluno"},
+    {value: 3, viewValue: "Professor"},
   ]
 
   ngOnInit( ): void {
@@ -71,6 +72,7 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   salvarAlteracao(){
     if(this.formCadastrarUsuario.valid){
+      this.usuario.perfilId = this.formCadastrarUsuario.value.perfilId
       this.usuarioService.update(this.usuario).subscribe(data =>{
         console.log("Atualizado com sucesso", data);
       }, (error) =>{

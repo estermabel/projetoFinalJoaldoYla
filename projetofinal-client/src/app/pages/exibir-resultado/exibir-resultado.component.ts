@@ -70,19 +70,8 @@ export class ExibirResultadoComponent implements OnInit, AfterViewInit {
     aceEditor.setTheme("ace/theme/one_dark");
     aceEditor.session.setMode("ace/mode/java");
     aceEditor.setReadOnly(true);
-    aceEditor.renderer.attachToShadowRoot()
   }
 
-  // ngAfterViewInit(): void {
-  //   //ace.config.set("fontSize", "14px");
-  //   ace.config.set(
-  //     "basePath",
-  //     "https://unpkg.com/ace-builds@1.4.12/src-noconflict"
-  //   );
-  //   const aceEditor = ace.edit(this.editor.nativeElement);
 
-  //   aceEditor.setTheme("ace/theme/twilight");
-  //   aceEditor.session.setMode("ace/mode/java");
-  // }
 
 }

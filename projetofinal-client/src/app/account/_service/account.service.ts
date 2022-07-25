@@ -44,7 +44,7 @@ class AuthenticationResult {
   }
 }
 
-
+const USER_AUTH_TOKEN_KEY = 'SessionDataToken';
 @Injectable({
   providedIn: 'root'
 })
@@ -70,6 +70,7 @@ export class AccountService  {
               const token = resp.token;
               if(token){
                 console.log(`Usuário autenticou`);
+                window.sessionStorage.setItem(USER_AUTH_TOKEN_KEY, token);
                 this.authenticate(token);
 
                 this.messageSource.next(true);
@@ -169,7 +170,9 @@ export class AccountService  {
   }
 
   isUserLoggedIn() {
+
     const token = this.getAuthorizationToken();
+    console.log("isUserLoggedIn", token)
     if (!token) {
       return false;
     } else if (this.isTokenExpired(token)) {

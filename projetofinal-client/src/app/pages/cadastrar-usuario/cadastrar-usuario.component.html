@@ -26,7 +26,7 @@
     <p>
       <mat-form-field class="example-full-width" appearance="outline" >
         <mat-label>Perfil</mat-label>
-        <mat-select [(ngModel)]="usuario.perfil" formControlName="perfil">
+        <mat-select [(ngModel)]="usuario.perfilId" formControlName="perfilId">
           <mat-option *ngFor="let p of perfis" [value]="p.value">{{p.viewValue}}</mat-option>
 
         </mat-select>

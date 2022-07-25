@@ -6,6 +6,7 @@ export class UsuarioDTO {
   login: string;
   senha: string;
   perfil: Array<Perfil>;
+  perfilId: number;
   flagAtivo: boolean;
   dataCriacao: Date;
   dataUltimoAcesso: Date
@@ -16,7 +17,8 @@ export class UsuarioDTO {
     this.login = '',
     this.senha = '',
     this.perfil = new Array<Perfil>(),
-    this.flagAtivo = true;
+    this.perfilId = 0,
+    this.flagAtivo = true,
     this.dataCriacao =  new Date(),
     this.dataUltimoAcesso = new Date()
   }

@@ -5,6 +5,7 @@ import { CasoTeste } from '../casoTeste';
 import { Resposta } from '../resposta';
 
 export class ResultadoDTO{
+  id: number;
   saidaObtida: string;
   // execption: string;
   create: boolean;
@@ -15,6 +16,7 @@ export class ResultadoDTO{
   testes: Array<Teste>
 
   constructor(){
+    this.id = 0
     this.saidaObtida = "";
     // this.execption = "";
     this.create = false;
