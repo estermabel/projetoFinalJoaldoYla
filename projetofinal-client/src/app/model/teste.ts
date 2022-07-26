@@ -3,6 +3,7 @@ export interface Teste{
   execute: boolean;
   resultadoFinal: boolean;
   exception: String;
+  entrada: String;
   saidaEsperada: string;
   saidaObtida: string;
 }

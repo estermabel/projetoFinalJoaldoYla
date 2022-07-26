@@ -25,6 +25,8 @@ public class Teste {
 
     private String exception;
 
+    private String entrada;
+
     private String saidaEsperada;
 
     private String saidaObtida;
@@ -35,10 +37,11 @@ public class Teste {
     @JsonIgnore
     private Resultado resultado;
 
-    public Teste(Boolean execute, Boolean resultadoFinal, String exception, String saidaEsperada, String saidaObtida, Resultado resultado) {
+    public Teste(Boolean execute, Boolean resultadoFinal, String exception, String entrada, String saidaEsperada, String saidaObtida, Resultado resultado) {
         this.execute = execute;
         this.resultadoFinal = resultadoFinal;
         this.exception = exception;
+        this.entrada = entrada;
         this.saidaEsperada = saidaEsperada;
         this.saidaObtida = saidaObtida;
         this.resultado = resultado;
@@ -51,6 +54,7 @@ public class Teste {
                 ", execute=" + execute +
                 ", resultadoFinal=" + resultadoFinal +
                 ", exception='" + exception + '\'' +
+                ", entrada='" + entrada + '\'' +
                 ", saidaEsperada='" + saidaEsperada + '\'' +
                 ", saidaObtida='" + saidaObtida + '\'' +
                 ", resultado=" + resultado +

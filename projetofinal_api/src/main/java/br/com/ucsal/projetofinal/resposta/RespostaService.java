@@ -64,10 +64,10 @@ public class RespostaService {
             input.add(teste.getEntrada());
             output.add(teste.getSaida());
         }
-        Object[] array1 = input.toArray();
-        Object[] array2 = output.toArray();
+//        Object[] array1 = input.toArray();
+//        Object[] array2 = output.toArray();
 
-        TestResult testResult = new TestService().executetest(resposta.getCodigo(), "Main.java", "", array1, array2);
+        TestResult testResult = new TestService().executetest(resposta.getCodigo(), "Main.java", "", input.toArray(), output.toArray());
 
         List<Teste> testes = new ArrayList<>(testResult.getTest());
 

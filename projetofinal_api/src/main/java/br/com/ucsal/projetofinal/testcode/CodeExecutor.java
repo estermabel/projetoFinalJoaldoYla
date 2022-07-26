@@ -93,6 +93,7 @@ public class CodeExecutor {
             } else {
                 test.setResultadoFinal(false);
             }
+            test.setEntrada(input);
             test.setSaidaEsperada(output);
             test.setSaidaObtida(saidaCodigoExecutado);
         } catch (IOException e) {
