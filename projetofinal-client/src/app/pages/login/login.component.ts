@@ -15,6 +15,9 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 })
 export class LoginComponent implements OnInit {
 
+  @BlockUI()
+  blockUI!: NgBlockUI;
+
   constructor(
     private router:Router,
     private accountService: AccountService,
@@ -55,8 +58,9 @@ export class LoginComponent implements OnInit {
     }else{
       this.mensagemErro = "Preencha todos os campos";
     }
+    this.blockUI.start();
     setTimeout(() =>{
-      console.log("I am the third log after 5 seconds");
+      this.blockUI.stop();
       this.router.navigate(['tarefas']);
     },1000);
 
@@ -74,5 +78,9 @@ export class LoginComponent implements OnInit {
 
     return true;
 
+  }
+
+  cadastrar(){
+    this.router.navigate(['cadastrarAluno']);
   }
 }

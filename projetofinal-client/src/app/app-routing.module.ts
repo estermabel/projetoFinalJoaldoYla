@@ -1,3 +1,4 @@
+import { CadastrarAlunoComponent } from './pages/cadastrar-aluno/cadastrar-aluno.component';
 import { ListarSubmissoesComponent } from './pages/listar-submissoes/listar-submissoes.component';
 import { AuthProfessorGuard } from './account/_guards/auth-professor.guard';
 import { AuthAdminGuard } from './account/_guards/auth-admin.guard';
@@ -20,7 +21,8 @@ const routes: Routes = [
     path: '', component:AuthenticationComponent,
     children:[
       { path: '', redirectTo:'login', pathMatch:'full' },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'cadastrarAluno', component: CadastrarAlunoComponent }
     ]
   },
   {

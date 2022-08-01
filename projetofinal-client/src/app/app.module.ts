@@ -28,6 +28,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './layout/home/home.component';
 import { AuthenticationComponent } from './layout/authentication/authentication.component';
 import { ListarSubmissoesComponent } from './pages/listar-submissoes/listar-submissoes.component';
+import { CadastrarAlunoComponent } from './pages/cadastrar-aluno/cadastrar-aluno.component';
 
 
 registerLocaleData(localePt, 'pt');
@@ -48,7 +49,8 @@ registerLocaleData(localePt, 'pt');
     LoginComponent,
     HomeComponent,
     AuthenticationComponent,
-    ListarSubmissoesComponent
+    ListarSubmissoesComponent,
+    CadastrarAlunoComponent
   ],
   imports: [
     HttpClientModule,

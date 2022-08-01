@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="container">
+  <form [formGroup]="formCadastrarUsuario" class="formulario" (ngSubmit)="cadastrarUsuario()">
+    <h2 class="titulo-form">Cadastrar Aluno</h2>
+
+    <p>
+    <mat-form-field class="example-full-width" appearance="outline" >
+      <mat-label>Nome</mat-label>
+      <input matInput   class="input-form" id="nome" type="text" [(ngModel)]="usuario.nome" name="nome" formControlName="nome" required/>
+    </mat-form-field>
+    </p>
+
+    <p>
+    <mat-form-field class="example-full-width" appearance="outline" >
+      <mat-label>Login</mat-label>
+      <input matInput class="input-form" id="login" type="text" [(ngModel)]="usuario.login" name="login" formControlName="login" required/>
+    </mat-form-field>
+    </p>
+    <p>
+    <mat-form-field class="example-full-width" appearance="outline" >
+      <mat-label>Senha</mat-label>
+      <input matInput class="input-form" id="senha" type="text" [(ngModel)]="usuario.senha" name="senha" formControlName="senha" required/>
+    </mat-form-field>
+    </p>
+
+    <div class="botao-wrapper">
+      <button  mat-stroked-button color="primary" class="bot-cadastrar" (click)="voltar()">Voltar</button>
+      <button mat-button class="botao" id="btn" type="submit">Cadastrar</button>
+    </div>
+
+  </form>
+  </div>
+</div>
