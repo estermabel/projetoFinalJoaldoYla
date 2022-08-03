@@ -13,8 +13,10 @@
       <p>
           <mat-form-field class="example-full-width" appearance="outline" >
             <mat-label>Descrição</mat-label>
-            <textarea matInput class="input-form" [(ngModel)]="tarefa.descricao" id="descricao" type="text"  name="descricao" ></textarea>
+            <textarea matInput class="input-form" [(ngModel)]="tarefa.descricao" id="descricao" type="text"  name="descricao" rows="5"></textarea>
+            <span class="right">{{5000 - tarefa.descricao.length}}/5000</span>
           </mat-form-field>
+
       </p>
       <p>
         <mat-form-field class="example-full-width" appearance="outline" >

@@ -172,7 +172,7 @@ export class AccountService  {
   isUserLoggedIn() {
 
     const token = this.getAuthorizationToken();
-    console.log("isUserLoggedIn", token)
+    //console.log("isUserLoggedIn", token)
     if (!token) {
       return false;
     } else if (this.isTokenExpired(token)) {

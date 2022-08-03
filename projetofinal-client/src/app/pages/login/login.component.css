@@ -38,7 +38,7 @@ input.mat-input-element {
   width: 100%;
   background-color:  #3f51b5;
   color: #dedede;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .bot-login:hover{
@@ -48,6 +48,7 @@ input.mat-input-element {
 
 .bot-cadastrar {
   width: 100%;
+  margin-bottom: 15px;
 }
 
 .container-fluid {

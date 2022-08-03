@@ -18,7 +18,7 @@
   <button mat-button (click)="listarSubmissoes()">Submissões</button>
   <span class="example-spacer"></span>
 
-  <button mat-button [matMenuTriggerFor]="LoginMenu">{{usuarioLogado.nome}} <label *ngFor="let p of usuarioLogado.perfil">{{p.nome}}</label></button>
+  <button mat-button [matMenuTriggerFor]="LoginMenu">{{usuarioLogado.nome}} </button>
   <mat-menu #LoginMenu="matMenu" xPosition="before">
     <button mat-menu-item>Perfil</button>
     <button mat-menu-item (click)="sair()">Sair</button>
@@ -34,7 +34,7 @@
   <button mat-button (click)="listarSubmissoes()">Submissões</button>
   <span class="example-spacer"></span>
 
-  <button mat-button [matMenuTriggerFor]="LoginMenu">{{usuarioLogado.nome}} <label *ngFor="let p of usuarioLogado.perfil">{{p.nome}}</label></button>
+  <button mat-button [matMenuTriggerFor]="LoginMenu">{{usuarioLogado.nome}} </button>
   <mat-menu #LoginMenu="matMenu" xPosition="before">
     <button mat-menu-item>Perfil</button>
     <button mat-menu-item (click)="sair()">Sair</button>
