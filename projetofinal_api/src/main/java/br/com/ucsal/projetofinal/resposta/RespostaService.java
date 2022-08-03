@@ -60,18 +60,30 @@ public class RespostaService {
     public Resultado gerarResultado(Resposta resposta) {
         List<String> input = new ArrayList<>();
         List<String> output = new ArrayList<>();
+
+
         for (CasoTeste teste : resposta.getTarefa().getTestes()) {
             input.add(teste.getEntrada());
             output.add(teste.getSaida());
         }
-//        Object[] array1 = input.toArray();
-//        Object[] array2 = output.toArray();
 
         TestResult testResult = new TestService().executetest(resposta.getCodigo(), "Main.java", "", input.toArray(), output.toArray());
-
         List<Teste> testes = new ArrayList<>(testResult.getTest());
 
-        Resultado resultado = new Resultado(testResult.getOutput(), testResult.getCreate(), testResult.getCompile(), 22.0, resposta, testes);
+
+        Resultado resultado = new Resultado(testResult.getOutput(), testResult.getCreate(), testResult.getCompile(), obterPorcentagem(testes), resposta, testes);
         return resultadoRepository.save(resultado);
+    }
+
+    private double obterPorcentagem(List<Teste> testes) {
+        int testesCorretos = 0;
+
+        for (Teste teste : testes) {
+            if (teste.getResultadoFinal() == true) {
+                testesCorretos++;
+            }
+        }
+        double percent = ((testesCorretos * 100) / testes.size());
+        return percent;
     }
 }
