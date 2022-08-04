@@ -2,17 +2,23 @@ import { Resposta } from './../../model/resposta';
 import { AccountService } from 'src/app/account/_service/account.service';
 import { RespostaService } from './../../service/resposta/resposta.service';
 import { RespostaDTO } from './../../model/DTO/RespostaDTO';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listar-submissoes',
   templateUrl: './listar-submissoes.component.html',
   styleUrls: ['./listar-submissoes.component.css']
 })
-export class ListarSubmissoesComponent implements OnInit {
+export class ListarSubmissoesComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort)
+  sort!: MatSort;
 
   constructor(
     private respostaService: RespostaService,
@@ -38,10 +44,12 @@ export class ListarSubmissoesComponent implements OnInit {
       //console.log(this.respostas.data)
       //descobrir pq não ta vindo o resultado
 
-    })
+  })
+  }
 
-
-
+  ngAfterViewInit() {
+    this.respostas.paginator = this.paginator;
+    this.respostas.sort = this.sort;
   }
 
   detalhar(resposta: Resposta){
