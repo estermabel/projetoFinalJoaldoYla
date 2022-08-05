@@ -1,6 +1,7 @@
+import { Resposta2 } from '../resposta';
 import { Teste } from './../teste';
 import { RespostaDTO } from './RespostaDTO';
-import { Resposta2 } from '../resposta';
+
 
 export class ResultadoDTO{
   id: number;
