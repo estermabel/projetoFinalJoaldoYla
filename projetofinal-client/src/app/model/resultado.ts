@@ -1,4 +1,4 @@
-import { Resposta2 } from './resposta';
+import { RespostaDTO } from 'src/app/model/DTO/RespostaDTO';
 import { Teste } from './teste';
 
 
@@ -10,6 +10,6 @@ export interface Resultado{
   compile: boolean;
   porcentagem: number;
 
-  resposta: Resposta2;
+  resposta: RespostaDTO;
   testes: Array<Teste>
 }

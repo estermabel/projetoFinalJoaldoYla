@@ -1,4 +1,4 @@
-import { Resposta2 } from '../resposta';
+
 import { Teste } from './../teste';
 import { RespostaDTO } from './RespostaDTO';
 
@@ -11,7 +11,7 @@ export class ResultadoDTO{
   compile: boolean;
   porcentagem: number;
 
-  resposta: Resposta2;
+  resposta: RespostaDTO;
   testes: Array<Teste>
 
   constructor(){
