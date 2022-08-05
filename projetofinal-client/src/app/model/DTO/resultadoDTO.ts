@@ -2,7 +2,7 @@ import { Teste } from './../teste';
 import { CasoTesteDTO } from './CasoTesteDTO';
 import { RespostaDTO } from './RespostaDTO';
 import { CasoTeste } from '../casoTeste';
-import { Resposta } from '../resposta';
+import { Resposta2 } from '../resposta';
 
 export class ResultadoDTO{
   id: number;
@@ -12,7 +12,7 @@ export class ResultadoDTO{
   compile: boolean;
   porcentagem: number;
 
-  resposta: Resposta;
+  resposta: Resposta2;
   testes: Array<Teste>
 
   constructor(){
