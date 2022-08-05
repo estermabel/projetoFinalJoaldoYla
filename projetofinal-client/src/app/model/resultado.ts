@@ -1,6 +1,6 @@
 import { Teste } from './teste';
 import { CasoTeste } from 'src/app/model/casoTeste';
-import { Resposta } from './resposta';
+import { Resposta2 } from './resposta';
 
 
 export interface Resultado{
@@ -11,6 +11,6 @@ export interface Resultado{
   compile: boolean;
   porcentagem: number;
 
-  resposta: Resposta;
+  resposta: Resposta2;
   testes: Array<Teste>
 }

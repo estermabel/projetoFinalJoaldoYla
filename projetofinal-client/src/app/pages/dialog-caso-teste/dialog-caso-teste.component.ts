@@ -1,9 +1,8 @@
-import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
 import { CasoTesteDTO } from '../../model/DTO/CasoTesteDTO';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CasoTeste } from 'src/app/model/casoTeste';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
   selector: 'app-dialgog',
   templateUrl: './dialog-caso-teste.component.html',

@@ -1,10 +1,8 @@
 import { LoginDTO } from './../../model/DTO/loginDTO';
-
 import { Router } from '@angular/router';
 import { Component, Inject, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/account/_service/account.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 

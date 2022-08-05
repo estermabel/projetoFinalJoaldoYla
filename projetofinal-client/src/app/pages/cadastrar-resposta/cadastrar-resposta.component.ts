@@ -1,9 +1,7 @@
-import { CasoTesteDTO } from 'src/app/model/DTO/CasoTesteDTO';
 import { CasoTesteService } from './../../service/caso-teste/caso-teste.service';
 import { CasoTeste } from 'src/app/model/casoTeste';
 import { DialogRespostaComponent } from './../dialog-resposta/dialog-resposta.component';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
-import { Tarefa } from 'src/app/model/tarefa';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';

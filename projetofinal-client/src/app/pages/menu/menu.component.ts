@@ -2,7 +2,7 @@ import { UsuarioService } from './../../service/usuario/usuario.service';
 import { UsuarioDTO } from './../../model/DTO/usuarioDTO';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/account/_service/account.service';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',

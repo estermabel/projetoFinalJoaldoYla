@@ -4,13 +4,12 @@ import { CasoTesteService } from './../../service/caso-teste/caso-teste.service'
 import { CasoTesteDTO } from './../../model/DTO/CasoTesteDTO';
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
 import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { DialogEditarCasoTesteComponent } from '../dialog-editar-caso-teste/dialog-editar-caso-teste.component';
+import { FormBuilder } from '@angular/forms';
 
 
 @Component({

@@ -1,19 +1,16 @@
 import * as ace from "ace-builds";
-import { ResultadoRequestDTO } from './../../model/DTO/resultadoRequestDTO';
 import { CasoTesteDTO } from './../../model/DTO/CasoTesteDTO';
 import { CasoTeste } from './../../model/casoTeste';
 import { RespostaService } from './../../service/resposta/resposta.service';
 import { CasoTesteService } from './../../service/caso-teste/caso-teste.service';
 import { ResultadoDTO } from './../../model/DTO/resultadoDTO';
 import { RespostaDTO } from 'src/app/model/DTO/RespostaDTO';
-import { Resposta } from './../../model/resposta';
 import { Resultado } from './../../model/resultado';
 import { ResultadoService } from './../../service/resultado/resultado.service';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
