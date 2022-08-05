@@ -1,4 +1,4 @@
-import { Resposta2 } from './../../model/resposta';
+
 import { AccountService } from 'src/app/account/_service/account.service';
 import { RespostaService } from './../../service/resposta/resposta.service';
 import { RespostaDTO } from './../../model/DTO/RespostaDTO';
@@ -52,9 +52,9 @@ export class ListarSubmissoesComponent implements OnInit, AfterViewInit {
     this.respostas.sort = this.sort;
   }
 
-  detalhar(resposta: Resposta2){
-    this.storage.set("respostaEnviada", resposta);
-    this.router.navigate(["resultado"]);
-  }
+  // detalhar(resposta: Resposta2){
+  //   this.storage.set("respostaEnviada", resposta);
+  //   this.router.navigate(["resultado"]);
+  // }
 
 }

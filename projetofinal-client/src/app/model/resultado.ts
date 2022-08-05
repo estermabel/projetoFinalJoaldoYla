@@ -1,5 +1,4 @@
 import { Teste } from './teste';
-import { CasoTeste } from 'src/app/model/casoTeste';
 import { Resposta2 } from './resposta';
 
 

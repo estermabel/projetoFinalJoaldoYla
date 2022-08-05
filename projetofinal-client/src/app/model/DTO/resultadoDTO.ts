@@ -1,7 +1,5 @@
 import { Teste } from './../teste';
-import { CasoTesteDTO } from './CasoTesteDTO';
 import { RespostaDTO } from './RespostaDTO';
-import { CasoTeste } from '../casoTeste';
 import { Resposta2 } from '../resposta';
 
 export class ResultadoDTO{
