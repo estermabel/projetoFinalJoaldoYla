@@ -1,6 +1,9 @@
 package br.com.ucsal.projetofinal.tarefa;
 
 import br.com.ucsal.projetofinal.casoteste.CasoTeste;
+import br.com.ucsal.projetofinal.prova.Prova;
+import br.com.ucsal.projetofinal.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,21 +36,28 @@ public class Tarefa {
 
     private Integer status;
 
-    @NotNull
-    @JsonFormat(pattern = "dd-MM-yyyy@HH:mm:ss", shape = JsonFormat.Shape.STRING)
-    private LocalDateTime dataEntrega;
-
     @Valid
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tarefa_id")
+    @JoinColumn
     private List<CasoTeste> testes = new ArrayList<>();
 
-    public Tarefa(String titulo, String descricao, Integer status, LocalDateTime dataEntrega, List<CasoTeste> testes) {
+    @ManyToMany(mappedBy = "tarefas", fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<Prova> prova;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    @JsonBackReference
+    @Valid
+    @NotNull
+    private Usuario usuario;
+
+    public Tarefa(String titulo, String descricao, Integer status, List<CasoTeste> testes, Usuario usuario) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.status = status;
-        this.dataEntrega = dataEntrega;
         this.testes = testes;
+        this.usuario = usuario;
     }
 }

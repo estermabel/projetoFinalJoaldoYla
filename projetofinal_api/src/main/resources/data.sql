@@ -8,8 +8,8 @@ values('Admin'),
 ('Aluno'),
 ('Professor');
 
-INSERT INTO tarefa(data_entrega, descricao, status, titulo)
-values ('2022-01-12 18:47:52', 'Digite numeros separados por espaço que a soma seja 10', 1, 'Até 10');
+INSERT INTO tarefa(descricao, status, titulo, usuario_id)
+values ('Digite numeros separados por espaço que a soma seja 10', 1, 'Até 10', 2);
 
 INSERT INTO caso_teste(comparacao, entrada, flag_exibir, nome_teste, saida, tarefa_id)
 values (1, '1 2 3 4', true, 'Até 10', '10', 1),
@@ -27,4 +27,10 @@ INSERT INTO teste(exception, execute, resultado_final, saida_esperada, saida_obt
 values ('RunTimeException blá blá blá', true, true, 'Hello!', 'Hello!', 1);
 
 INSERT INTO USUARIO_PERFIL(USUARIO_ID, PERFIL_ID)
-values (1, 1),(2, 2),(3, 3)
+values (1, 1),(2, 2),(3, 3);
+
+INSERT INTO PROVA(DATA_ENTREGA, NOME)
+values ('2022-11-11 23:59:59', 'Prova final');
+
+INSERT INTO PROVA_TAREFAS(PROVA_ID, TAREFA_ID)
+values (1, 1);

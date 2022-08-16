@@ -1,6 +1,7 @@
 package br.com.ucsal.projetofinal.usuario;
 
 import br.com.ucsal.projetofinal.perfil.Perfil;
+import br.com.ucsal.projetofinal.tarefa.Tarefa;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -57,6 +58,10 @@ public class Usuario implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "perfil_id")
     )
     private List<Perfil> perfil = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @JsonBackReference
+    private Tarefa tarefa;
 
     public Usuario(String nome, String login, String senha, Boolean flagAtivo, Perfil perfil) {
         this.nome = nome;
