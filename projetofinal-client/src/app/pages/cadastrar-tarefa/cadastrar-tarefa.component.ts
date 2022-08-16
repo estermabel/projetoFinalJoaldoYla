@@ -10,6 +10,9 @@ import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
+import { AccountService } from 'src/app/account/_service/account.service';
+import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 
 
 @Component({
@@ -22,7 +25,7 @@ export class CadastrarTarefaComponent implements OnInit {
   casosTestes = new MatTableDataSource<CasoTeste>();
   stausDialog = "";
   casoTeste = new CasoTesteDTO();
-
+  usuario = new UsuarioDTO();
   tarefa = new  TarefaDTO();
 
   displayedColumns = [
@@ -52,15 +55,22 @@ export class CadastrarTarefaComponent implements OnInit {
     public dialog: MatDialog,
     private detectorRef: ChangeDetectorRef,
     private router: Router,
+    private accountService: AccountService,
+    private usuarioService: UsuarioService,
     private casoTesteService: CasoTesteService,
     @Inject(SESSION_STORAGE) private storage: StorageService  ) {}
 
   ngOnInit(): void {
-
+    let id  = this.accountService.getSubject()
+    this.usuarioService.findOne(id).subscribe((data) => {
+      this.usuario = data;
+      console.log(this.usuario);
+    });
   }
 
   cadastrarTarefa(){
     // Fri Jan 21 2022 16:08:05 GMT-0300 (Horário Padrão de Brasília)
+    this.tarefa.usuarioId = this.usuario.id
     this.tarefa.testes = this.casosTestes.data
     this.tarefaService.save(this.tarefa).subscribe(data =>{
       console.log("cadastrado com sucesso", data);
@@ -69,15 +79,6 @@ export class CadastrarTarefaComponent implements OnInit {
       console.log(error.error);
     }
     )
-  }
-
-  adicionarCasoTeste(){
-    this.casoTeste.nomeTeste = "teste"
-    this.casoTeste.entrada = "entrada teste"
-    this.casoTeste.saida = "saida teste"
-    this.casoTeste.comparacao = 1
-    this.tarefa.testes.push(this.casoTeste)
-
   }
 
   excluirCasoTeste(teste: CasoTeste){

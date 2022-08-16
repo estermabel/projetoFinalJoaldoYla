@@ -23,7 +23,6 @@ export class ListarTarefasComponent implements OnInit, AfterViewInit {
   tarefas = new MatTableDataSource<Tarefa>();
   displayedColumns = [
     'titulo',
-    'data de entrega',
     'Acoes'
   ];
   constructor(private tarefaService: TarefaService,
