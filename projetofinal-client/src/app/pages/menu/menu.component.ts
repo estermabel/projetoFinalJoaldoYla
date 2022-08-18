@@ -69,4 +69,10 @@ export class MenuComponent implements OnInit {
   cadastrarTarefas(){
     this.router.navigate(["cadastrarTarefa"])
   }
+
+  cadastrarProva(){
+    this.router.navigate(["cadastrarProva"])
+  }
 }
+
+
