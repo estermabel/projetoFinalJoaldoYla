@@ -39,7 +39,7 @@ public class Tarefa {
     @Valid
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn
+    @JoinColumn(name = "tarefa_id")
     private List<CasoTeste> testes = new ArrayList<>();
 
     @ManyToMany(mappedBy = "tarefas", fetch = FetchType.LAZY)

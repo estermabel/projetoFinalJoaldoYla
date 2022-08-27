@@ -9,13 +9,17 @@ values('Admin'),
 ('Professor');
 
 INSERT INTO tarefa(descricao, status, titulo, usuario_id)
-values ('Digite numeros separados por espaço que a soma seja 10', 1, 'Até 10', 2);
+values ('Digite numeros separados por espaço que a soma seja 10', 1, 'Até 10', 1),
+       ('Mostre a divisão entre dois numeros', 1, 'Divisão', 3);
 
 INSERT INTO caso_teste(comparacao, entrada, flag_exibir, nome_teste, saida, tarefa_id)
 values (1, '1 2 3 4', true, 'Até 10', '10', 1),
 (2, '5 5', false, 'Até 10', '10', 1),
 (2, '7 1 1 1', true, 'Até 10', '10', 1),
-(2, '4 3 2 1', false, 'Até 10', '10', 1);
+(2, 'a 3 2 1', false, 'Até 10', '10', 1),
+       (1, '4 2', true, 'teste 1', '2', 2),
+       (1, '10 0', true, 'divisão por 0', 'undefined', 2),
+       (1, '8 2', true, 'teste 2', '4', 2) ;
 
 INSERT INTO resposta(codigo, data_envio, tarefa_id, usuario_id)
 values ('public class Main {\n  public static void main(String[] args) { \n System.out.println("Olá Mundo"); \n}', '2021-12-29 18:47:52', 1, 1);
