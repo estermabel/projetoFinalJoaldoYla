@@ -16,7 +16,6 @@ INSERT INTO caso_teste(comparacao, entrada, flag_exibir, nome_teste, saida, tare
 values (1, '1 2 3 4', true, 'Até 10', '10', 1),
 (2, '5 5', false, 'Até 10', '10', 1),
 (2, '7 1 1 1', true, 'Até 10', '10', 1),
-(2, 'a 3 2 1', false, 'Até 10', '10', 1),
        (1, '4 2', true, 'teste 1', '2', 2),
        (1, '10 0', true, 'divisão por 0', 'undefined', 2),
        (1, '8 2', true, 'teste 2', '4', 2) ;
