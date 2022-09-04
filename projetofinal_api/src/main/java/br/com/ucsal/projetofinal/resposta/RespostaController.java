@@ -43,6 +43,15 @@ public class RespostaController {
         return ResponseEntity.ok().body(respostas);
     }
 
+    @GetMapping("/tarefa/{id}")
+    public ResponseEntity<List<Resposta>> listarPorIdTarefa(@PathVariable Long id) {
+        List<Resposta> respostas = respostaService.listarPorIdTarefa(id);
+        if (respostas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok().body(respostas);
+    }
+
     @PostMapping("/")
     public ResponseEntity<RespostaResponseDto> inserir(@RequestBody @Valid RespostaRequestDto respostaRequestDto) {
         Resposta resposta = respostaService.inserir(respostaRequestDto);

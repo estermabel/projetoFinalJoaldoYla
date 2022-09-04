@@ -4,7 +4,7 @@ import br.com.ucsal.projetofinal.casoteste.CasoTeste;
 import br.com.ucsal.projetofinal.prova.Prova;
 import br.com.ucsal.projetofinal.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +13,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Tarefa {
+public class Tarefa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,9 +48,9 @@ public class Tarefa {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
-    @JsonBackReference
     @Valid
     @NotNull
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario usuario;
 
     public Tarefa(String titulo, String descricao, Integer status, List<CasoTeste> testes, Usuario usuario) {

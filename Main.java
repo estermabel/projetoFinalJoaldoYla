@@ -1,12 +1,10 @@
-import java.util.Scanner; 
+import java.util.Scanner;
  public class Main {
- public static void main(String[] args) {
+ public static void main(String args[]){
  Scanner scanner = new Scanner(System.in); 
- String[] soma = scanner.nextLine().split(" "); 
- int total = 0; 
- for (String s: soma ) { 
- total += Integer.parseInt(s); 
-  } 
- System.out.println(total); 
-}
-}
+ int valor1 =scanner.nextInt(); 
+ int valor2 = scanner.nextInt(); 
+ System.out.println(valor1/valor2); 
+ scanner.close(); 
+ }
+ }
