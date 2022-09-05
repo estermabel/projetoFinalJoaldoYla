@@ -1,3 +1,4 @@
+import { UsuarioService } from './../../service/usuario/usuario.service';
 import { CasoTesteService } from './../../service/caso-teste/caso-teste.service';
 import { CasoTeste } from 'src/app/model/casoTeste';
 import { DialogRespostaComponent } from './../dialog-resposta/dialog-resposta.component';
@@ -29,6 +30,7 @@ export class CadastrarRespostaComponent implements OnInit {
 
   constructor(private tarefaService: TarefaService,
     public dialog: MatDialog,
+    private usuarioService: UsuarioService,
     private router: Router,
     private casoTesteService: CasoTesteService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
@@ -37,7 +39,6 @@ export class CadastrarRespostaComponent implements OnInit {
   ngOnInit(): void {
     this.tarefa = this.storage.get("tarefa");
     this.buscarTarefa();
-    this.buscarCasosTeste();
   }
 
   buscarCasosTeste(){
@@ -50,8 +51,21 @@ export class CadastrarRespostaComponent implements OnInit {
   buscarTarefa(){
     this.tarefaService.findOne(this.tarefa.id).subscribe((data) => {
       this.tarefa = data;
-      console.log(this.tarefa);
+    },(error) =>{
+      console.log(error.error);
+    },
+    ()=>{
+      console.log('teste')
+      this.buscarUsuario();
+      this.buscarCasosTeste();
     });
+  }
+
+  buscarUsuario(){
+    this.usuarioService.findOne(this.tarefa.usuarioId).subscribe(data =>{
+      this.tarefa.usuario = data
+      console.log(data)
+    })
   }
 
   openDialogResposta(){

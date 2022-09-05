@@ -24,14 +24,17 @@
       <mat-card >
         <mat-card-content>
 
-          <div class="row" *ngIf="result.exception == null">
-            <div class="col-md-3">
-              <mat-icon *ngIf="result.resultadoFinal"  class="iconResultado accepted">check_circle_outline</mat-icon>
-              <mat-icon *ngIf="!result.resultadoFinal"  class="iconResultado" color = "warn" >error_outline</mat-icon>
+          <div class="row lista-resultado" *ngIf="result.exception == null">
+            <div class="col-md-1 d-flex  align-items-center">
+              <div >
+                <mat-icon *ngIf="result.resultadoFinal"  class="iconResultado accepted">check_circle_outline</mat-icon>
+                <mat-icon *ngIf="!result.resultadoFinal"  class="iconResultado" color = "warn" >error_outline</mat-icon>
+              </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
               <p>Entrada</p>
-              <p>{{result.entrada}}</p>
+              <p>{{result.entrada.length>100 && ! result.isMore ? result.entrada.substring(0,50)+"...": result.entrada }}</p>
+                <a *ngIf=" result.entrada.length>100"(click)="result.isMore= !result.isMore">{{!result.isMore && result.entrada.length > 100 ? 'Ver Mais' : 'Ver Menos' }}</a>
             </div>
             <div class="col-md-3">
               <p>Saida Obtida</p>

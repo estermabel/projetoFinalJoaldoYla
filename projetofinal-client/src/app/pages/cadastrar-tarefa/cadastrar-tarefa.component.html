@@ -46,7 +46,7 @@
 
       <ng-container matColumnDef="comparacao">
         <th mat-header-cell *matHeaderCellDef> Comparação </th>
-        <td mat-cell *matCellDef="let teste" >{{teste.comparacao}}</td>
+        <td mat-cell *matCellDef="let teste" >{{retornarTipoComparacao(teste.comparacao)}}</td>
       </ng-container>
 
       <ng-container matColumnDef="flagExibir">
@@ -73,7 +73,7 @@
     </table>
 
 
-    <div class="botao-wrapper">
+    <div class="botao-wrapper center">
       <button mat-button class="botao" id="btn" type="submit" color="primary">Cadastrar</button>
     </div>
 

@@ -52,9 +52,9 @@ export class ListarSubmissoesComponent implements OnInit, AfterViewInit {
     this.respostas.sort = this.sort;
   }
 
-  // detalhar(resposta: Resposta2){
-  //   this.storage.set("respostaEnviada", resposta);
-  //   this.router.navigate(["resultado"]);
-  // }
+  detalhar(resposta: RespostaDTO){
+    this.storage.set("respostaEnviada", resposta);
+    this.router.navigate(["resultado"]);
+  }
 
 }
