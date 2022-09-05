@@ -1,3 +1,4 @@
+import { UsuarioDTO } from './../../model/DTO/usuarioDTO';
 import { UsuarioService } from './../../service/usuario/usuario.service';
 import { CasoTesteService } from './../../service/caso-teste/caso-teste.service';
 import { CasoTeste } from 'src/app/model/casoTeste';
@@ -26,6 +27,8 @@ export class CadastrarRespostaComponent implements OnInit {
   ];
 
   tarefa = new TarefaDTO();
+  tarefaStorage = new TarefaDTO();
+  user = new UsuarioDTO();
   casosTeste = new MatTableDataSource<CasoTeste>();
 
   constructor(private tarefaService: TarefaService,
@@ -37,20 +40,21 @@ export class CadastrarRespostaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.tarefa = this.storage.get("tarefa");
+    this.tarefaStorage = this.storage.get("tarefa");
     this.buscarTarefa();
   }
 
   buscarCasosTeste(){
-    this.casoTesteService.listarPorTarefa(this.tarefa.id).subscribe((data) => {
+    this.casoTesteService.listarPorTarefa(this.tarefaStorage.id).subscribe((data) => {
       this.casosTeste.data = data;
-      console.log(this.casosTeste.data);
+      //console.log(this.casosTeste.data);
     });
   }
 
   buscarTarefa(){
-    this.tarefaService.findOne(this.tarefa.id).subscribe((data) => {
+    this.tarefaService.findOne(this.tarefaStorage.id).subscribe((data) => {
       this.tarefa = data;
+      //console.log(data);
     },(error) =>{
       console.log(error.error);
     },
@@ -62,9 +66,9 @@ export class CadastrarRespostaComponent implements OnInit {
   }
 
   buscarUsuario(){
-    this.usuarioService.findOne(this.tarefa.usuarioId).subscribe(data =>{
-      this.tarefa.usuario = data
-      console.log(data)
+    this.usuarioService.findOne(this.tarefaStorage.usuario.id).subscribe(data =>{
+      this.user = data
+      //console.log(data)
     })
   }
 

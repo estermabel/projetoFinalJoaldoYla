@@ -42,8 +42,6 @@ export class ListarSubmissoesComponent implements OnInit, AfterViewInit {
       this.respostas.data=data
       this.teste = data
       //console.log(this.respostas.data)
-      //descobrir pq não ta vindo o resultado
-
   })
   }
 
