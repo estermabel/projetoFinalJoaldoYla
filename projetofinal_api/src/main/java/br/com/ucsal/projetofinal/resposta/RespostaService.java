@@ -42,6 +42,10 @@ public class RespostaService {
         return respostaRepository.findByUsuarioId(id);
     }
 
+    public List<Resposta> listarPorIdTarefa(Long id) {
+        return respostaRepository.findByTarefaId(id);
+    }
+
     public Resposta inserir(RespostaRequestDto respostaRequestDto) {
         Resposta resposta = respostaRequestDto.toModel(usuarioRepository, tarefaRepository);
         return respostaRepository.save(resposta);
