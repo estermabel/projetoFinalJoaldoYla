@@ -12,7 +12,7 @@ front-end do projeto feito em Angular [Angular CLI](https://github.com/angular/a
 
 ## Executando o projeto
 
-Como existem dois modulos diferentes é preciso executar cada modulo separadamente
+Como existem três modulos diferentes, é preciso executar cada modulo separadamente
 
 ### Executanto o projeto do back-end
 
@@ -25,3 +25,13 @@ Rodar `npm install` no terminal dentro do diretório `projetoFinal_client` para 
 Depois que as dependencias foram instaladas corretamente, rodar `ng serve` para subir o projeto para o servido local
 
 Pelo navegador, acessar `http://localhost:4200/`, as alterações salvas são carregadas automaticamente
+
+### Executando o projeto mobile
+
+Fazer a instalação da framework Flutter [aqui](https://docs.flutter.dev/get-started/install).
+
+Assim que o framework estiver devidamente instalado, basta executar `flutter pub get` para a instalação dos pacotes remotos e, em sequência, `flutter run` no terminal para executar o projeto.
+
+**Obs: O device padrão é o chrome, caso queira um device específico, basta abrir ele antes de executar o comando `flutter run`.**
+
+**Obs: É obrigatório ter o Android Studio instalado na máquina caso deseje rodar em dispositivos virtuais Android. Mas, é possível fazer alterações em qualquer IDE ou Editor de Texto com suporte para Flutter e Dart.**
