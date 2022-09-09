@@ -46,6 +46,8 @@ public class Resposta implements Serializable {
     @OneToOne
     private Tarefa tarefa;
 
+    private Double porcentagemAcerto;
+
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "resposta")
     @Valid
     @JsonBackReference
@@ -57,5 +59,6 @@ public class Resposta implements Serializable {
         this.dataEnvio = LocalDateTime.now();
         this.usuario = usuario;
         this.tarefa = tarefa;
+        this.porcentagemAcerto = 0.0;
     }
 }

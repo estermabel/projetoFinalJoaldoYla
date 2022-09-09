@@ -3,7 +3,6 @@ package br.com.ucsal.projetofinal.usuario;
 import br.com.ucsal.projetofinal.perfil.PerfilRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +38,6 @@ public class UsuarioService {
                     user.setLogin(usuario.getLogin());
                     user.setSenha(usuario.getSenha());
                     user.setFlagAtivo(usuario.getFlagAtivo());
-                    user.setDataUltimoAcesso(Instant.now());
                     return usuarioRepository.save(user);
                 }).orElse(null);
     }
