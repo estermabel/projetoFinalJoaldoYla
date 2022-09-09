@@ -31,7 +31,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario atualizar(Long id, Usuario usuario) {
+    public Usuario atualizar(Long id, UsuarioRequestDto usuario) {
         return usuarioRepository.findById(id).map(
                 user -> {
                     user.setNome(usuario.getNome());
