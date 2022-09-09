@@ -3,9 +3,21 @@
 }
 
 .input-form{
-  width: 300px;
+  width: 100%;
 }
 
 .mat-form-field{
-  width: 300px
+  width: 100%
 }
+
+.divButtons{
+  text-align: justify;
+  display: inline-block;
+}
+
+
+button{
+  margin: 15px 25px 25px;
+}
+
+

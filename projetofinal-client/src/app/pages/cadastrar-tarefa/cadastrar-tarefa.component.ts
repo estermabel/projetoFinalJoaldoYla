@@ -137,7 +137,7 @@ export class CadastrarTarefaComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogCasoTesteComponent, {
-      width: '400px',
+      width: '600px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -178,6 +178,22 @@ export class CadastrarTarefaComponent implements OnInit {
     });
   }
 
-
+  retornarTipoComparacao(value: number): string{
+    var val: string;
+    switch(value){
+      case 0:
+        val =  'Igual';
+        break;
+      case 1:
+        val =  'Igual ignorando case sensitive';
+        break;
+      case 2:
+        val =  'Contém';
+        break;
+      default:
+        val = 'value';
+    }
+    return val;
+  }
 
 }

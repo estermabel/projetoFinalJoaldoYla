@@ -19,15 +19,15 @@ export class TarefaService extends GenericService {
     return this.getMethod(this.relativePath);
   }
 
-  override save(tarefa: Tarefa): Observable<any> {
+  override save(tarefa: Tarefa): Observable<Tarefa> {
     return this.postMethod(tarefa, this.relativePath);
   }
 
-  override findOne(value: number): Observable<any> {
+  override findOne(value: number): Observable<Tarefa> {
     return this.getMethod(this.relativePath + value);
   }
 
-  buscarCasosTestes(id: number): Observable<any>{
+  buscarCasosTestes(id: number): Observable<Tarefa>{
     return this.getMethod(this.relativePath + id);
   }
 }

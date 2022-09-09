@@ -21,9 +21,8 @@
     <ng-container matColumnDef="Acoes">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let tarefa">
-          <button mat-button (click)="respoderTarefa(tarefa)" id="btn2">
-              Responder<mat-icon class="icon">navigate_next</mat-icon>
-          </button>
+          <button mat-button (click)="respoderTarefa(tarefa)" id="btn2"> Responder  <!--<mat-icon class="icon">navigate_next</mat-icon>--></button>
+          <button *ngIf="isProfessor() || isAdmin()" mat-button id="btn2" (click)="listarSubmissoesAlunos(tarefa)">Respostas dos alunos</button>
       </td>
     </ng-container>
 

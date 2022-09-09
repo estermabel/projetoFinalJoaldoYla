@@ -30,6 +30,7 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
 import { ListarSubmissoesComponent } from './pages/listar-submissoes/listar-submissoes.component';
 import { CadastrarAlunoComponent } from './pages/cadastrar-aluno/cadastrar-aluno.component';
 import { CadastrarProvaComponent } from './pages/cadastrar-prova/cadastrar-prova.component';
+import { ListarSubmissoesAlunosComponent } from './pages/listar-submissoes-alunos/listar-submissoes-alunos.component';
 
 
 registerLocaleData(localePt, 'pt');
@@ -52,7 +53,8 @@ registerLocaleData(localePt, 'pt');
     AuthenticationComponent,
     ListarSubmissoesComponent,
     CadastrarAlunoComponent,
-    CadastrarProvaComponent
+    CadastrarProvaComponent,
+    ListarSubmissoesAlunosComponent
   ],
   imports: [
     HttpClientModule,

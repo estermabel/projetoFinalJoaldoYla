@@ -28,3 +28,17 @@ mat-card{
 .iconResultado{
   font-size: 35px;
 }
+
+.lista-resultado{
+  overflow: hidden;
+  white-space: pre-wrap;
+
+  word-wrap: break-word;
+}
+
+/* p{
+  white-space: pre-wrap;
+  width: 20em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */

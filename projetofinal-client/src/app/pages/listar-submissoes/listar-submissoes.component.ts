@@ -42,8 +42,6 @@ export class ListarSubmissoesComponent implements OnInit, AfterViewInit {
       this.respostas.data=data
       this.teste = data
       //console.log(this.respostas.data)
-      //descobrir pq não ta vindo o resultado
-
   })
   }
 
@@ -52,9 +50,9 @@ export class ListarSubmissoesComponent implements OnInit, AfterViewInit {
     this.respostas.sort = this.sort;
   }
 
-  // detalhar(resposta: Resposta2){
-  //   this.storage.set("respostaEnviada", resposta);
-  //   this.router.navigate(["resultado"]);
-  // }
+  detalhar(resposta: RespostaDTO){
+    this.storage.set("respostaEnviada", resposta);
+    this.router.navigate(["resultado"]);
+  }
 
 }

@@ -36,7 +36,13 @@
     <mat-slide-toggle color="primary" [(ngModel)]="teste.flagExibir"  name="flagExibir">Exibir caso de teste para o aluno</mat-slide-toggle>
 
 </p>
+  <div class=" center">
+    <!-- <div class="col-6 center"> -->
+      <button mat-stroked-button  type="button" (click)="cancelar()">Cancelar</button>
+    <!-- </div> -->
+    <!-- <div class="col-6 center"> -->
+      <button mat-button type="button" (click)="cadastrarCasoTeste()" color="primary" id="btn">Salvar</button>
 
-  <button mat-button type="button" (click)="cancelar()">Cancelar</button>
-  <button mat-button type="button" (click)="cadastrarCasoTeste()" color="primary" >Salvar</button>
+    <!-- </div> -->
+  </div>
 </form>
