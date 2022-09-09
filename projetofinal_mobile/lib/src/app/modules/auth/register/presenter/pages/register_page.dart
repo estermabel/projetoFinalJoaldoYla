@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:projetofinal_mobile/src/app/modules/auth/login/presenter/bloc/login_bloc.dart';
-import 'package:projetofinal_mobile/src/app/modules/auth/register/presenter/pages/register_page.dart';
-import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_page.dart';
-import 'package:projetofinal_mobile/src/app/modules/navigation/presenter/pages/navigation_page.dart';
+import 'package:projetofinal_mobile/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_event.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_layout.dart';
 import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
@@ -12,17 +9,17 @@ import 'package:projetofinal_mobile/src/components/widgets/safe_button.dart';
 import 'package:projetofinal_mobile/src/components/widgets/safe_text_form_field.dart';
 import 'package:projetofinal_mobile/src/core/l10n/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
-import 'package:projetofinal_mobile/src/domain/entity/login_entity.dart';
+import 'package:projetofinal_mobile/src/domain/entity/register_entity.dart';
 
-class LoginPage extends StatefulWidget {
-  static const route = '/login/';
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  static const route = '/register';
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
+class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
@@ -32,52 +29,57 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
     SafeLogUtil.instance.route(Modular.to.path);
   }
 
-  void navigateToHome() {
-    Modular.to.pushNamedAndRemoveUntil(
-      NavigationPage.route + TasksPage.route,
-      (r) => false,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: SafeColors.generalColors.secondary,
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(S.current.textRegister),
+        centerTitle: false,
+      ),
       body: Center(
         child: Container(
           margin: const EdgeInsets.symmetric(
             horizontal: 20,
-            vertical: 50,
+            vertical: 20,
           ),
           decoration: BoxDecoration(
             color: SafeColors.generalColors.primary,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: StreamBuilder<SafeEvent<LoginEntity>>(
-              stream: controller.doLoginController.stream,
+          child: StreamBuilder<SafeEvent<RegisterEntity>>(
+              stream: controller.doRegisterController.stream,
               initialData: SafeEvent.initial(),
               builder: (context, snapshot) {
                 return SafeLayout(
                   snapshot: snapshot,
                   context: context,
-                  onDone: navigateToHome,
-                  onInitial: LoginPageBodyWidget(
+                  onDone: () {},
+                  onInitial: RegisterPageBodyWidget(
                     formKey: _formKey,
-                    buttonLoginStream: controller.loginButtonController.stream,
+                    buttonRegisterStream:
+                        controller.registerButtonController.stream,
+                    nameController: controller.nameController,
                     userController: controller.userController,
                     passwordController: controller.passwordController,
-                    toogleLoginButton: () => controller.toogleLoginButton(),
-                    doLogin: () async => controller.doLogin(),
+                    toogleRegisterButton: () =>
+                        controller.toogleRegisterButton(),
+                    doRegister: () async => controller.doRegister(),
                   ),
-                  onError: LoginPageBodyWidget(
+                  onError: RegisterPageBodyWidget(
                     formKey: _formKey,
-                    buttonLoginStream: controller.loginButtonController.stream,
+                    buttonRegisterStream:
+                        controller.registerButtonController.stream,
+                    nameController: controller.nameController,
                     userController: controller.userController,
                     passwordController: controller.passwordController,
-                    toogleLoginButton: () => controller.toogleLoginButton(),
-                    doLogin: () async => controller.doLogin(),
+                    toogleRegisterButton: () =>
+                        controller.toogleRegisterButton(),
+                    doRegister: () async => controller.doRegister(),
                   ),
+                  onCompleted: const RegisterSuccessWidget(),
                 ).build;
               }),
         ),
@@ -86,21 +88,59 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
   }
 }
 
-class LoginPageBodyWidget extends StatelessWidget {
+class RegisterSuccessWidget extends StatelessWidget {
+  const RegisterSuccessWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 90, 20, 0),
+      child: Column(
+        children: [
+          Icon(
+            Icons.check_circle_outline,
+            size: 100,
+            color: SafeColors.statusColors.success,
+          ),
+          const SizedBox(height: 20),
+          Text(
+            S.current.textUserRegiteredSuccess.toUpperCase(),
+            textAlign: TextAlign.center,
+            style: TextStyles.headline2(
+              fontWeight: FontWeight.bold,
+              color: SafeColors.statusColors.success,
+            ),
+          ),
+          const SizedBox(height: 90),
+          SafeButton(
+            title: S.current.textGoToLogin,
+            onTap: () => Modular.to.pop(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class RegisterPageBodyWidget extends StatelessWidget {
   final GlobalKey<FormState> formKey;
+  final TextEditingController nameController;
   final TextEditingController userController;
   final TextEditingController passwordController;
-  final Stream<bool> buttonLoginStream;
-  final Future<void> Function() doLogin;
-  final void Function() toogleLoginButton;
-  const LoginPageBodyWidget({
+  final Stream<bool> buttonRegisterStream;
+  final Future<void> Function() doRegister;
+  final void Function() toogleRegisterButton;
+  const RegisterPageBodyWidget({
     Key? key,
     required this.formKey,
-    required this.buttonLoginStream,
-    required this.doLogin,
+    required this.buttonRegisterStream,
+    required this.doRegister,
+    required this.nameController,
     required this.userController,
     required this.passwordController,
-    required this.toogleLoginButton,
+    required this.toogleRegisterButton,
   }) : super(key: key);
 
   @override
@@ -117,9 +157,19 @@ class LoginPageBodyWidget extends StatelessWidget {
             const LogoWidget(),
             const SizedBox(height: 60),
             SafeTextFormField(
+              controller: nameController,
+              hintText: S.current.textName,
+              onChanged: (value) => toogleRegisterButton(),
+              prefixIcon: Icon(
+                Icons.person,
+                color: SafeColors.componentsColors.iconColors.primary,
+              ),
+            ),
+            const SizedBox(height: 20),
+            SafeTextFormField(
               controller: userController,
               hintText: S.current.textUser,
-              onChanged: (value) => toogleLoginButton(),
+              onChanged: (value) => toogleRegisterButton(),
               prefixIcon: Icon(
                 Icons.person,
                 color: SafeColors.componentsColors.iconColors.primary,
@@ -130,20 +180,18 @@ class LoginPageBodyWidget extends StatelessWidget {
               controller: passwordController,
               hintText: S.current.textPassword,
               obscureText: true,
-              onChanged: (value) => toogleLoginButton(),
+              onChanged: (value) => toogleRegisterButton(),
               prefixIcon: Icon(
                 Icons.lock,
                 color: SafeColors.componentsColors.iconColors.primary,
               ),
             ),
             const SizedBox(height: 40),
-            LoginButtonWidget(
-              stream: buttonLoginStream,
+            RegisterButtonWidget(
+              stream: buttonRegisterStream,
               formKey: formKey,
-              doLogin: doLogin,
+              doRegister: doRegister,
             ),
-            const SizedBox(height: 10),
-            const RegisterButtonWidget(),
           ],
         ),
       ),
@@ -177,16 +225,16 @@ class LogoWidget extends StatelessWidget {
   }
 }
 
-class LoginButtonWidget extends StatelessWidget {
+class RegisterButtonWidget extends StatelessWidget {
   final Stream<bool> stream;
   final GlobalKey<FormState> formKey;
-  final Future<void> Function() doLogin;
+  final Future<void> Function() doRegister;
 
-  const LoginButtonWidget({
+  const RegisterButtonWidget({
     Key? key,
     required this.stream,
     required this.formKey,
-    required this.doLogin,
+    required this.doRegister,
   }) : super(key: key);
 
   @override
@@ -196,49 +244,17 @@ class LoginButtonWidget extends StatelessWidget {
       initialData: false,
       builder: (context, snapshot) {
         return SafeButton(
-          title: S.current.textLogin,
+          title: S.current.textRegister,
           state:
               snapshot.data == true ? ButtonState.active : ButtonState.disabled,
           onTap: () async {
             formKey.currentState?.validate();
             if (snapshot.data ?? false) {
-              await doLogin();
+              await doRegister();
             }
           },
         );
       },
-    );
-  }
-}
-
-class RegisterButtonWidget extends StatelessWidget {
-  const RegisterButtonWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.8,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            S.current.textDoYouHaveAccount,
-            style: TextStyles.button(),
-          ),
-          TextButton(
-            onPressed: () => Modular.to.pushNamed(RegisterPage.route),
-            child: Text(
-              S.current.textRegister,
-              style: TextStyles.button(
-                color: SafeColors.buttonColors.primary,
-                textDecoration: TextDecoration.underline,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

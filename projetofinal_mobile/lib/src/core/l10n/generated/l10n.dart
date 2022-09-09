@@ -50,6 +50,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Projeto Final`
+  String get textProjectName {
+    return Intl.message(
+      'Projeto Final',
+      name: 'textProjectName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Algo deu errado!`
   String get errorSomethingWentWrong {
     return Intl.message(
@@ -75,6 +85,156 @@ class S {
     return Intl.message(
       'Ok',
       name: 'textOk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get textLogin {
+    return Intl.message(
+      'Login',
+      name: 'textLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Usuário`
+  String get textUser {
+    return Intl.message(
+      'Usuário',
+      name: 'textUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get textPassword {
+    return Intl.message(
+      'Password',
+      name: 'textPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registrar`
+  String get textRegister {
+    return Intl.message(
+      'Registrar',
+      name: 'textRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não tem uma conta?`
+  String get textDoYouHaveAccount {
+    return Intl.message(
+      'Não tem uma conta?',
+      name: 'textDoYouHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get textHome {
+    return Intl.message(
+      'Home',
+      name: 'textHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Perfil`
+  String get textProfile {
+    return Intl.message(
+      'Perfil',
+      name: 'textProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ranking`
+  String get textRanking {
+    return Intl.message(
+      'Ranking',
+      name: 'textRanking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tarefas`
+  String get textTasks {
+    return Intl.message(
+      'Tarefas',
+      name: 'textTasks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Provas`
+  String get textTests {
+    return Intl.message(
+      'Provas',
+      name: 'textTests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submissões`
+  String get textSubimission {
+    return Intl.message(
+      'Submissões',
+      name: 'textSubimission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sair`
+  String get textLogout {
+    return Intl.message(
+      'Sair',
+      name: 'textLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nome`
+  String get textName {
+    return Intl.message(
+      'Nome',
+      name: 'textName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Usuário registrado com sucesso!`
+  String get textUserRegiteredSuccess {
+    return Intl.message(
+      'Usuário registrado com sucesso!',
+      name: 'textUserRegiteredSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ir para o login`
+  String get textGoToLogin {
+    return Intl.message(
+      'Ir para o login',
+      name: 'textGoToLogin',
       desc: '',
       args: [],
     );

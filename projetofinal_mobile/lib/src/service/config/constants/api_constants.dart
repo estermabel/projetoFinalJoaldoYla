@@ -4,7 +4,7 @@ import 'dart:convert';
 class ApiConstants {
   ///Credenciais de autenticação
   static const String kClientCredentials = '';
-  static const String kAuthorization = '';
+  static const String kAuthorization = 'Authorization';
   static const String kContentType = 'Content-Type';
 
   ///Base64 de credenciais de autenticação
@@ -13,10 +13,15 @@ class ApiConstants {
   );
 
   ///Url default para requisições da API
-  static const String kUrl = '';
+  static const String kUrl = 'http://localhost:8081/api/';
 
   /*--------------------------------------------------------------------*/
 
   //Auth
-  static const String doAuth = '';
+  static const String doAuth = '${kUrl}login/';
+  static const String doRegister = '';
+  static const String doRegisterAdmin = '${kUrl}usuarios/';
+
+  //Tasks
+  static const String getTasks = '${kUrl}tarefa/';
 }

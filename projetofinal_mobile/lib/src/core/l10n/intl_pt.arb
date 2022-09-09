@@ -1,6 +1,23 @@
 {
+    "textProjectName":"Projeto Final",
+
     "errorSomethingWentWrong": "Algo deu errado!",
     "errorTryAgain": "Tente novamente em alguns instantes.",
 
-    "textOk":"Ok"
+    "textOk":"Ok",
+    "textLogin":"Login",
+    "textUser":"Usuário",
+    "textPassword":"Password",
+    "textRegister":"Registrar",
+    "textDoYouHaveAccount":"Não tem uma conta?",
+    "textHome":"Home",
+    "textProfile":"Perfil",
+    "textRanking":"Ranking",
+    "textTasks":"Tarefas",
+    "textTests":"Provas",
+    "textSubimission":"Submissões",
+    "textLogout":"Sair",
+    "textName":"Nome",
+    "textUserRegiteredSuccess":"Usuário registrado com sucesso!",
+    "textGoToLogin":"Ir para o login"
 }

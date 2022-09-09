@@ -26,6 +26,26 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
         "errorTryAgain": MessageLookupByLibrary.simpleMessage(
             "Tente novamente em alguns instantes."),
-        "textOk": MessageLookupByLibrary.simpleMessage("Ok")
+        "textDoYouHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Não tem uma conta?"),
+        "textGoToLogin":
+            MessageLookupByLibrary.simpleMessage("Ir para o login"),
+        "textHome": MessageLookupByLibrary.simpleMessage("Home"),
+        "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
+        "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
+        "textName": MessageLookupByLibrary.simpleMessage("Nome"),
+        "textOk": MessageLookupByLibrary.simpleMessage("Ok"),
+        "textPassword": MessageLookupByLibrary.simpleMessage("Password"),
+        "textProfile": MessageLookupByLibrary.simpleMessage("Perfil"),
+        "textProjectName":
+            MessageLookupByLibrary.simpleMessage("Projeto Final"),
+        "textRanking": MessageLookupByLibrary.simpleMessage("Ranking"),
+        "textRegister": MessageLookupByLibrary.simpleMessage("Registrar"),
+        "textSubimission": MessageLookupByLibrary.simpleMessage("Submissões"),
+        "textTasks": MessageLookupByLibrary.simpleMessage("Tarefas"),
+        "textTests": MessageLookupByLibrary.simpleMessage("Provas"),
+        "textUser": MessageLookupByLibrary.simpleMessage("Usuário"),
+        "textUserRegiteredSuccess": MessageLookupByLibrary.simpleMessage(
+            "Usuário registrado com sucesso!")
       };
 }
