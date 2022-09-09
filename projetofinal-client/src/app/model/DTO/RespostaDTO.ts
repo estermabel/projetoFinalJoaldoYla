@@ -14,22 +14,24 @@ export class RespostaDTO{
   dataEnvio: Date;
   usuario: Usuario;
   tarefa: Tarefa;
-  //resultado: Resultado;
   usuarioId: number;
   tarefaId: number;
-  resultadoId: number
+  resultadoId: number;
+
+  porcentagemAcerto: number;
 
 
   constructor(){
     this.id= 0,
     this.codigo = "",
     this.dataEnvio = new Date(),
-    //this.resultado= new ResultadoDTO(),
     this.usuario = new UsuarioDTO(),
     this.tarefa = new TarefaDTO(),
 
     this.usuarioId = 0,
     this.tarefaId = 0,
     this.resultadoId =0
+
+    this.porcentagemAcerto = 0
   }
 }

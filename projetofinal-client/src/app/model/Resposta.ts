@@ -8,9 +8,9 @@ export interface Resposta2{
   dataEnvio: Date,
   usuario: Usuario,
   tarefa: Tarefa,
-  //resultado: Resultado,
   usuarioId: number,
   tarefaId: number,
-  //resultadoId: number
 
+
+  porcentagemAcerto: number,
 }

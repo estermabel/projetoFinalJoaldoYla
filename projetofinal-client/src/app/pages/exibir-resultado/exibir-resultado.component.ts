@@ -66,6 +66,7 @@ export class ExibirResultadoComponent implements OnInit, AfterViewInit {
     aceEditor.session.setValue(this.resposta.codigo);
     aceEditor.setTheme("ace/theme/one_dark");
     aceEditor.session.setMode("ace/mode/java");
+    aceEditor.setShowPrintMargin(false);
     aceEditor.setReadOnly(true);
   }
 

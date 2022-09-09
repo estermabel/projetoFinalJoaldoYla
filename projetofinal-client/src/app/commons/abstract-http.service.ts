@@ -34,7 +34,7 @@ export class AbstractHttpService {
 
     protected putMethod(value: any, relativePath: string = '') {
       console.log('Put Method: ' + this.url + relativePath);
-      return this.http.put(this.url + relativePath, JSON.stringify(value), { headers: this.getHeaders() }).pipe(
+      return this.http.put(this.url + relativePath, value, { headers: this.getHeaders() }).pipe(
         catchError(this.handleError)
       );
   }

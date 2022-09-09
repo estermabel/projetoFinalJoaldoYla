@@ -1,6 +1,6 @@
 import { UsuarioDTO } from './../../model/DTO/usuarioDTO';
 import { Router } from '@angular/router';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
@@ -11,7 +11,7 @@ import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
   templateUrl: './cadastrar-usuario.component.html',
   styleUrls: ['./cadastrar-usuario.component.css']
 })
-export class CadastrarUsuarioComponent implements OnInit {
+export class CadastrarUsuarioComponent implements OnInit, AfterViewInit {
 
 
 
@@ -21,14 +21,13 @@ export class CadastrarUsuarioComponent implements OnInit {
     @Inject(SESSION_STORAGE) private storage: StorageService ) {
 
     }
+  ngAfterViewInit(): void {
+    this.storage.remove("usuario");
+  }
 
-    formCadastrarUsuario =  new FormGroup({
-      nome: new FormControl([Validators.required]),
-      login: new FormControl([Validators.required]),
-      senha: new FormControl([Validators.required]),
-      perfilId: new FormControl(''),
-    });
 
+
+  formCadastrarUsuario: any
   usuario = new  UsuarioDTO();
   nomeTela : string = 'Novo'
   perfis = [
@@ -40,14 +39,25 @@ export class CadastrarUsuarioComponent implements OnInit {
   ngOnInit( ): void {
       this.usuario = this.storage.get("usuario")
 
-      if(this.usuario != null){
+      this.formCadastrarUsuario =  this.formBuilder.group({
+        nome:['',Validators.required],
+        login: ['',Validators.required],
+        senha:['', (Validators.required, Validators.minLength(6))],
+        perfil:['',Validators.required],
+      });
 
+      if(this.usuario != null){
+        this.usuarioService.findOne(this.usuario.id).subscribe(data=>{
+          this.usuario = data
+        })
         this.nomeTela = 'Alterar';
       }else{
         this.usuario = new UsuarioDTO();
         this.nomeTela = 'Novo';
       }
   }
+
+
 
   enviarForm(){
     if(this.nomeTela === 'Novo'){
@@ -60,6 +70,7 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   cadastrarUsuario(){
     if(this.formCadastrarUsuario.valid){
+      console.log( JSON.stringify(this.usuario));
       this.usuarioService.save(this.usuario).subscribe(data =>{
         console.log("cadastrado com sucesso", data);
       }, (error) =>{
@@ -72,7 +83,11 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   salvarAlteracao(){
     if(this.formCadastrarUsuario.valid){
-      this.usuario.perfilId = this.formCadastrarUsuario.value.perfilId
+
+      //this.usuario.perfilId = this.formCadastrarUsuario.value.perfilId
+      this.usuario.dataCriacao = new Date(this.usuario.dataCriacao)
+      this.usuario.dataUltimoAcesso = new Date(this.usuario.dataUltimoAcesso)
+      console.log( JSON.stringify(this.usuario));
       this.usuarioService.update(this.usuario).subscribe(data =>{
         console.log("Atualizado com sucesso", data);
       }, (error) =>{
@@ -82,4 +97,6 @@ export class CadastrarUsuarioComponent implements OnInit {
       this.router.navigate(["usuarios"])
     }
   }
+
+
 }

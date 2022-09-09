@@ -89,6 +89,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
       //console.log(aceEditor.getValue());
       this.codigo = aceEditor.getValue();
     });
+    aceEditor.setShowPrintMargin(false);
     //aceEditor.renderer.attachToShadowRoot()
   }
 

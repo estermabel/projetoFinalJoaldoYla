@@ -59,17 +59,8 @@ export class CadastrarRespostaComponent implements OnInit {
       console.log(error.error);
     },
     ()=>{
-      console.log('teste')
-      this.buscarUsuario();
       this.buscarCasosTeste();
     });
-  }
-
-  buscarUsuario(){
-    this.usuarioService.findOne(this.tarefaStorage.usuario.id).subscribe(data =>{
-      this.user = data
-      //console.log(data)
-    })
   }
 
   openDialogResposta(){

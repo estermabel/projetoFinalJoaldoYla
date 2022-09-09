@@ -7,6 +7,12 @@
         <div class="center">
           <h1 class="porcentagem">{{resultado.porcentagem}}%</h1>
         </div>
+        <div class="center">
+          <div class="resumo" *ngFor="let result of resultado.testes">
+            <mat-icon *ngIf="result.resultadoFinal"   class="iconResumo accepted">check_circle_outline</mat-icon>
+            <mat-icon *ngIf="!result.resultadoFinal" class="iconResumo"  color = "warn" >error_outline</mat-icon>
+          </div>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
