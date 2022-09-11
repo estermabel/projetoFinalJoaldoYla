@@ -4,10 +4,8 @@ import br.com.ucsal.projetofinal.config.autenticacao.AutenticacaoService;
 import br.com.ucsal.projetofinal.config.autenticacao.AutenticacaoTokenFilter;
 import br.com.ucsal.projetofinal.config.token.TokenService;
 import br.com.ucsal.projetofinal.usuario.UsuarioService;
-import com.google.common.collect.ImmutableList;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,12 +16,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -57,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().authorizeRequests()
                 .antMatchers("/h2/**").permitAll()
                 .antMatchers("/api/login/**").permitAll()
+                .antMatchers("/api/usuarios/").permitAll()
                 .antMatchers("/api/**").access("hasAnyAuthority('Aluno', 'Admin', 'Professor')")
                 .anyRequest().authenticated()
                 .and().headers().frameOptions().disable()
