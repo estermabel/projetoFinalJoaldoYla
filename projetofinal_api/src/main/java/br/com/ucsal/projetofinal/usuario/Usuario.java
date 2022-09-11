@@ -40,6 +40,7 @@ public class Usuario implements UserDetails, Serializable {
 
     @NotBlank
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(unique = true)
     private String login;
 
     @NotBlank

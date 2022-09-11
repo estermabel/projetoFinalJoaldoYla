@@ -20,15 +20,6 @@ values (1, '1 2 3 4', true, 'Até 10', '10', 1),
        (1, '10 0', true, 'divisão por 0', 'undefined', 2),
        (1, '8 2', true, 'teste 2', '4', 2) ;
 
-INSERT INTO resposta(codigo, data_envio, tarefa_id, usuario_id)
-values ('public class Main {\n  public static void main(String[] args) { \n System.out.println("Olá Mundo"); \n}', '2021-12-29 18:47:52', 1, 1);
-
-INSERT INTO resultado(compile, create, porcentagem, saida_obtida, resposta_id)
-values (true, true, 22.0, 'Hello!', 1);
-
-INSERT INTO teste(exception, execute, resultado_final, saida_esperada, saida_obtida, resultado_id)
-values ('RunTimeException blá blá blá', true, true, 'Hello!', 'Hello!', 1);
-
 INSERT INTO USUARIO_PERFIL(USUARIO_ID, PERFIL_ID)
 values (1, 1),(2, 2),(3, 3);
 
