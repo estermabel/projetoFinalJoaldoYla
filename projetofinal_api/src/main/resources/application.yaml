@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: heroku
+    active: local
   config:
     name: ucsal-tcc
 
