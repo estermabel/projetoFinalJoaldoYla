@@ -6,4 +6,6 @@ export interface Teste{
   entrada: String;
   saidaEsperada: string;
   saidaObtida: string;
+
+  isMore: boolean;
 }

@@ -2,6 +2,7 @@ package br.com.ucsal.projetofinal.tarefa;
 
 import br.com.ucsal.projetofinal.casoteste.CasoTeste;
 import br.com.ucsal.projetofinal.casoteste.CasoTesteRepository;
+import br.com.ucsal.projetofinal.usuario.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +15,12 @@ public class TarefaService {
 
     private final CasoTesteRepository casoTesteRepository;
 
-    public TarefaService(TarefaRepository tarefaRepository, CasoTesteRepository casoTesteRepository) {
+    private final UsuarioRepository usuarioRepository;
+
+    public TarefaService(TarefaRepository tarefaRepository, CasoTesteRepository casoTesteRepository, UsuarioRepository usuarioRepository) {
         this.tarefaRepository = tarefaRepository;
         this.casoTesteRepository = casoTesteRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<Tarefa> listar() {
@@ -24,12 +28,12 @@ public class TarefaService {
     }
 
     public Optional<Tarefa> listarPorId(Long id) {
-        Optional<Tarefa> tarefa =tarefaRepository.findById(id);
+        Optional<Tarefa> tarefa = tarefaRepository.findById(id);
         return tarefa;
     }
 
     public Tarefa inserir(TarefaRequestDto tarefaRequestDto) throws Exception{
-        Tarefa tarefa = tarefaRequestDto.toModel();
+        Tarefa tarefa = tarefaRequestDto.toModel(usuarioRepository);
         for (CasoTeste teste: tarefa.getTestes()) { // zerar o id dos teste q vem como 0 do front
             teste.setId(null);
         }
@@ -45,7 +49,6 @@ public class TarefaService {
                 task -> {
                     task.setTitulo(tarefa.getTitulo());
                     task.setDescricao(tarefa.getDescricao());
-                    task.setDataEntrega(tarefa.getDataEntrega());
                     task.setTestes(tarefa.getTestes());
                     Tarefa novaTarefa = tarefaRepository.save(task);
                     return novaTarefa;

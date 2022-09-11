@@ -6,6 +6,8 @@ export class TesteDTO{
   saidaEsperada: string;
   saidaObtida: string;
 
+  isMore: boolean;
+
   constructor(){
     this.execute = false;
     this.resultado = false;
@@ -13,5 +15,7 @@ export class TesteDTO{
     this.entrada = "";
     this.saidaEsperada = "";
     this.saidaObtida = "";
+
+    this.isMore = false;
   }
 }

@@ -13,6 +13,7 @@ import { ResultadoDTO } from 'src/app/model/DTO/resultadoDTO';
 import { ResultadoService } from 'src/app/service/resultado/resultado.service';
 import { AccountService } from 'src/app/account/_service/account.service';
 import { ResultadoRequestDTO } from 'src/app/model/DTO/resultadoRequestDTO';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-dialog-resposta',
@@ -20,6 +21,8 @@ import { ResultadoRequestDTO } from 'src/app/model/DTO/resultadoRequestDTO';
   styleUrls: ['./dialog-resposta.component.css']
 })
 export class DialogRespostaComponent implements OnInit, AfterViewInit {
+  @BlockUI()
+  blockUI!: NgBlockUI;
 
   @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
   valorInicial: string =
@@ -89,6 +92,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
       //console.log(aceEditor.getValue());
       this.codigo = aceEditor.getValue();
     });
+    aceEditor.setShowPrintMargin(false);
     //aceEditor.renderer.attachToShadowRoot()
   }
 
@@ -98,6 +102,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
   }
 
   EnviarResposta(){
+    this.blockUI.start();
     this.resposta.codigo = this.codigo;
     this.resposta.usuarioId = this.usuario.id;
     this.resposta.tarefa = this.tarefa;
@@ -112,7 +117,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
       console.log(error.error);
     },
     () => {
-
+      this.blockUI.stop();
       this.dialogRef.close();
       this.router.navigate(["resultado"])
     }

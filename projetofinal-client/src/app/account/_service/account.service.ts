@@ -113,6 +113,10 @@ export class AccountService  {
     return this.identityStorage.getIdentity();
   }
 
+  getToken(): string{
+    return this.identityStorage.getIdentity().token;
+  }
+
   getAuthorizationToken(){
     const token = this.identityStorage.getIdentity().token;
     return token;

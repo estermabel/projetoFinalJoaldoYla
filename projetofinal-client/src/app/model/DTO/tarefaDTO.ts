@@ -1,10 +1,15 @@
+import { UsuarioDTO } from './usuarioDTO';
+import { Usuario } from './../usuario';
 import { CasoTeste } from './../casoTeste';
 export class TarefaDTO{
   id: number
   titulo: string;
   descricao: string;
   status: number;
-  dataEntrega= new Date();
+  select: boolean;
+
+  usuario: Usuario;
+  usuarioId: number;
   testes:  Array<CasoTeste>;
 
   constructor() {
@@ -12,7 +17,10 @@ export class TarefaDTO{
     this.titulo = '',
     this.descricao = '',
     this.status = 0,
-    this.dataEntrega = new Date(),
+    this.select = false,
+
+    this.usuario = new UsuarioDTO(),
+    this.usuarioId = 0,
     this.testes = new Array<CasoTeste>()
 
   }

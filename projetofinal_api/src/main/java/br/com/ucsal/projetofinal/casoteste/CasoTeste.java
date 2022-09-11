@@ -26,8 +26,10 @@ public class CasoTeste {
     @NotBlank
     private String nomeTeste;
 
+    @Column(length = 110000)
     private String entrada;
 
+    @Column(length = 110000)
     private String saida;
 
     @NotNull

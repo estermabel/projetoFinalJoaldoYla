@@ -27,6 +27,7 @@ public class Resultado {
     private Long id;
 
     @NotBlank
+    @Column(length = 110000)
     private String saidaObtida;
 
     private Boolean create;

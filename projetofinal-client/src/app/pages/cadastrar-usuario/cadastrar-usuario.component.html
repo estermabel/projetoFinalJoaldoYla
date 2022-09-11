@@ -6,36 +6,53 @@
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Nome</mat-label>
-      <input matInput   class="input-form" id="nome" type="text" [(ngModel)]="usuario.nome" name="nome" formControlName="nome" required/>
+      <input matInput   class="input-form" id="nome" type="text" [(ngModel)]="usuario.nome" name="nome" formControlName="nome" />
     </mat-form-field>
     </p>
 
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Login</mat-label>
-      <input matInput class="input-form" id="login" type="text" [(ngModel)]="usuario.login" name="login" formControlName="login" required/>
+      <input matInput class="input-form" id="login" type="text" [(ngModel)]="usuario.login" name="login" formControlName="login" />
     </mat-form-field>
     </p>
     <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Senha</mat-label>
-      <input matInput class="input-form" id="senha" type="text" [(ngModel)]="usuario.senha" name="senha" formControlName="senha" required/>
+      <input matInput class="input-form" id="senha" type="password" [(ngModel)]="usuario.senha" name="senha" formControlName="senha" />
     </mat-form-field>
     </p>
 
-    <p>
-      <mat-form-field class="example-full-width" appearance="outline" >
-        <mat-label>Perfil</mat-label>
-        <mat-select [(ngModel)]="usuario.perfilId" formControlName="perfilId">
-          <mat-option *ngFor="let p of perfis" [value]="p.value">{{p.viewValue}}</mat-option>
 
-        </mat-select>
-      </mat-form-field>
-    </p>
+      <div *ngIf="usuario.perfil.length > 0; else cadastrar">
+        <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label>Perfil</mat-label>
+            <mat-select  [(ngModel)]="usuario.perfil[0].id" formControlName="perfil">
+              <mat-option *ngFor="let p of perfis" [value]="p.value">{{p.viewValue}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+
+      <ng-template #cadastrar>
+        <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label>Perfil</mat-label>
+          <mat-select  [(ngModel)]="usuario.perfilId" formControlName="perfil">
+            <mat-option *ngFor="let p of perfis" [value]="p.value">{{p.viewValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-template>
+
+      <div *ngIf="nomeTela == 'Alterar'">
+        <div class="div-slide"  >
+          <mat-slide-toggle color="primary" [(ngModel)]="usuario.flagAtivo"  [checked]="usuario.flagAtivo">Usuário ativo</mat-slide-toggle>
+        </div>
+      </div>
+
 
 
     <div class="botao-wrapper">
-      <button mat-button class="botao" id="btn" type="submit">Cadastrar</button>
+      <button mat-button class="botao" id="btn" type="submit" *ngIf="nomeTela == 'Novo'">Cadastrar</button>
+      <button mat-button class="botao" id="btn" type="submit" *ngIf="nomeTela == 'Alterar'">Salvar</button>
     </div>
 
   </form>

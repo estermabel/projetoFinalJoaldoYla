@@ -1,3 +1,5 @@
+import { ListarSubmissoesAlunosComponent } from './pages/listar-submissoes-alunos/listar-submissoes-alunos.component';
+import { CadastrarProvaComponent } from './pages/cadastrar-prova/cadastrar-prova.component';
 import { CadastrarAlunoComponent } from './pages/cadastrar-aluno/cadastrar-aluno.component';
 import { ListarSubmissoesComponent } from './pages/listar-submissoes/listar-submissoes.component';
 import { AuthProfessorGuard } from './account/_guards/auth-professor.guard';
@@ -32,11 +34,12 @@ const routes: Routes = [
       { path: 'tarefas', component: ListarTarefasComponent, canActivate: [AuthGuard] },
       { path: 'resultado', component: ExibirResultadoComponent, canActivate: [AuthGuard] },
       { path: 'submissoes', component: ListarSubmissoesComponent, canActivate: [AuthGuard] },
-      // { path: 'resultado/:id', component: ExibirResultadoComponent },
+      { path: 'submissoesAlunos', component: ListarSubmissoesAlunosComponent, canActivate: [AuthProfessorGuard] },
+      { path: 'cadastrarProva', component: CadastrarProvaComponent, canActivate: [AuthProfessorGuard] },
       { path: 'cadastrarTarefa', component: CadastrarTarefaComponent, canActivate: [AuthProfessorGuard] },
       { path: 'cadastrarUsuario', component: CadastrarUsuarioComponent, canActivate: [AuthAdminGuard] },
       { path: 'cadastrarResposta', component: CadastrarRespostaComponent, canActivate: [AuthGuard] },
-      { path: 'resultados', component: ListarResultadosComponent}
+      { path: 'resultados', component: ListarResultadosComponent, canActivate: [AuthGuard]}
     ]
   },
 

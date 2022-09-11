@@ -25,10 +25,13 @@ public class Teste {
 
     private String exception;
 
+    @Column(length = 110000)
     private String entrada;
 
+    @Column(length = 110000)
     private String saidaEsperada;
 
+    @Column(length = 110000)
     private String saidaObtida;
 
     @Valid

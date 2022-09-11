@@ -1,3 +1,4 @@
+import { RespostaService } from './../../service/resposta/resposta.service';
 import { TarefaService } from './../../service/tarefa/tarefa.service';
 import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Tarefa } from 'src/app/model/tarefa';
@@ -23,12 +24,12 @@ export class ListarTarefasComponent implements OnInit, AfterViewInit {
   tarefas = new MatTableDataSource<Tarefa>();
   displayedColumns = [
     'titulo',
-    'data de entrega',
     'Acoes'
   ];
   constructor(private tarefaService: TarefaService,
     private router: Router,
     private accountService: AccountService,
+    private respostaService: RespostaService,
     @Inject(SESSION_STORAGE) private storage: StorageService ) { }
 
   ngOnInit(): void {
@@ -51,7 +52,7 @@ export class ListarTarefasComponent implements OnInit, AfterViewInit {
   buscarTarefa(){
       this.tarefaService.findAll().subscribe((data: any[]) => {
       this.tarefas.data = data;
-      console.log(this.tarefas);
+      //console.log(data);
     });
   }
 
@@ -62,5 +63,10 @@ export class ListarTarefasComponent implements OnInit, AfterViewInit {
   respoderTarefa(tarefa: Tarefa){
       this.storage.set("tarefa", tarefa)
       this.router.navigate(["cadastrarResposta"])
+  }
+
+  listarSubmissoesAlunos(tarefa: Tarefa){
+    this.storage.set("tarefaSubmissao", tarefa)
+    this.router.navigate(["submissoesAlunos"])
   }
 }

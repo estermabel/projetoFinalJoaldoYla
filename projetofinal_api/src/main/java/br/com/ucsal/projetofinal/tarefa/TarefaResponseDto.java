@@ -12,16 +12,16 @@ public class TarefaResponseDto {
     private String titulo;
     private String descricao;
     private Integer status;
-    private LocalDateTime dataEntrega;
     private List<CasoTeste> testes;
+    private Long usuarioId;
 
     public TarefaResponseDto(Tarefa tarefa) {
         this.id = tarefa.getId();
         this.titulo = tarefa.getTitulo();
         this.descricao = tarefa.getDescricao();
         this.status = tarefa.getStatus();
-        this.dataEntrega = tarefa.getDataEntrega();
         this.testes = tarefa.getTestes();
+        this.usuarioId = tarefa.getUsuario().getId();
     }
     public long getId() {
         return id;
@@ -39,11 +39,11 @@ public class TarefaResponseDto {
         return status;
     }
 
-    public LocalDateTime getDataEntrega() {
-        return dataEntrega;
-    }
-
     public List<CasoTeste> getTestes() {
         return testes;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
     }
 }

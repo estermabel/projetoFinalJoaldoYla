@@ -1,11 +1,19 @@
 .titulo{
   font: 500 34px/68px Roboto, "Helvetica Neue", sans-serif;
+  height: 50px;
+  margin: 0 0 8px;
+}
+
+.teste{
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .descricaoTarefa{
   text-align: justify;
+  font-size: 16px;
   white-space: pre-wrap;
-  margin-bottom: 16px;
+  margin: 40px 0 15px;
 }
 
 table {

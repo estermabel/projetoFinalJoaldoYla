@@ -13,10 +13,10 @@ import java.util.Date;
 @Service
 public class TokenService {
 
-    @Value("${projetofinal.jwt.expiration}")
+    @Value("${spring.security.jwt.token.expire-length}")
     private String expiration;
 
-    @Value("${projetofinal.jwt.secret}")
+    @Value("${spring.security.jwt.token.secret-key}")
     private String secret;
 
     public String gerarToken(Authentication authentication) {

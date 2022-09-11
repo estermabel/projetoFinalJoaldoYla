@@ -16,7 +16,7 @@ mat-card{
 }
 
 .app-ace-editor {
-  min-height: 200px;
+  min-height: 400px;
   width:100%;
   height: 100%;
   overflow: auto;
@@ -28,3 +28,21 @@ mat-card{
 .iconResultado{
   font-size: 35px;
 }
+
+.iconResumo{
+  margin: 10px 2px;
+}
+
+.lista-resultado{
+  overflow: hidden;
+  white-space: pre-wrap;
+
+  word-wrap: break-word;
+}
+
+/* p{
+  white-space: pre-wrap;
+  width: 20em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
