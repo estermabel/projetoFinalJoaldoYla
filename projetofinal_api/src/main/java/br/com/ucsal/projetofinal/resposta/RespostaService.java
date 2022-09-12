@@ -42,8 +42,17 @@ public class RespostaService {
         return respostaRepository.findByUsuarioId(id);
     }
 
-    public List<Resposta> listarPorIdTarefa(Long id) {
-        return respostaRepository.findByTarefaId(id);
+    public List<RespostaPorcentagemResponseDTO> listarPorIdTarefa(Long id) {
+
+        List<RespostaPorcentagemResponseDTO> lista2 = new ArrayList<>();
+        for (Resposta resposta : respostaRepository.findByTarefaId(id)) {
+            RespostaPorcentagemResponseDTO resp = new RespostaPorcentagemResponseDTO(resposta);
+            Resultado resultado = resultadoRepository.findByRespostaId(resposta.getId());
+            resp.setPorcentagemAcerto(resultado.getPorcentagem());
+            lista2.add(resp);
+        }
+
+        return lista2;
     }
 
     public Resposta inserir(RespostaRequestDto respostaRequestDto) {
@@ -82,19 +91,7 @@ public class RespostaService {
         }
 
         Resultado resultado = new Resultado(testResult.getOutput(), testResult.getCreate(), testResult.getCompile(), percentagem, resposta, testes);
-        atribuirPorcentagemResposta(resultado, percentagem);
-
         return resultadoRepository.save(resultado);
-    }
-
-    private void atribuirPorcentagemResposta(Resultado resultado, Double porcentagemAcertoFinal) {
-        Optional<Resposta> respostaOptional = respostaRepository.findById(resultado.getResposta().getId()).map(
-                respostaEditada -> {
-                    respostaEditada.setPorcentagemAcerto(porcentagemAcertoFinal);
-                    respostaRepository.save(respostaEditada);
-                    return respostaEditada;
-                }
-        );
     }
 
     private double obterPorcentagem(List<Teste> testes) {
