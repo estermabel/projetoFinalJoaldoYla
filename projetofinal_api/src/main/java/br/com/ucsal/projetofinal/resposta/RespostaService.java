@@ -43,16 +43,14 @@ public class RespostaService {
     }
 
     public List<RespostaPorcentagemResponseDTO> listarPorIdTarefa(Long id) {
-
-        List<RespostaPorcentagemResponseDTO> lista2 = new ArrayList<>();
+        List<RespostaPorcentagemResponseDTO> listaRetornada = new ArrayList<>();
         for (Resposta resposta : respostaRepository.findByTarefaId(id)) {
-            RespostaPorcentagemResponseDTO resp = new RespostaPorcentagemResponseDTO(resposta);
+            RespostaPorcentagemResponseDTO response = new RespostaPorcentagemResponseDTO(resposta);
             Resultado resultado = resultadoRepository.findByRespostaId(resposta.getId());
-            resp.setPorcentagemAcerto(resultado.getPorcentagem());
-            lista2.add(resp);
+            response.setPorcentagemAcerto(resultado.getPorcentagem());
+            listaRetornada.add(response);
         }
-
-        return lista2;
+        return listaRetornada;
     }
 
     public Resposta inserir(RespostaRequestDto respostaRequestDto) {
