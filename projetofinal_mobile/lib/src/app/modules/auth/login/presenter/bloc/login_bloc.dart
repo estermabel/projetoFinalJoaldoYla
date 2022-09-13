@@ -6,7 +6,9 @@ import 'package:projetofinal_mobile/src/core/constants/string_constants.dart';
 import 'package:projetofinal_mobile/src/core/interfaces/safe_bloc.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 import 'package:projetofinal_mobile/src/domain/entity/login_entity.dart';
+import 'package:projetofinal_mobile/src/domain/entity/user_entity.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/do_login_use_case.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/get_user_by_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/save_user_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/save_user_role_use_case.dart';
@@ -18,6 +20,7 @@ class LoginBloc extends SafeBloC {
   final SaveUserTokenUseCase saveUserTokenUseCase;
   final SaveUserRoleUseCase saveUserRoleUseCase;
   final SaveUserIdUseCase saveUserIdUseCase;
+  final GetUserByIdUseCase getUserByIdUseCase;
 
   late StreamController<bool> loginButtonController;
   late StreamController<SafeEvent<LoginEntity>> doLoginController;
@@ -31,6 +34,7 @@ class LoginBloc extends SafeBloC {
     required this.saveUserLoginUseCase,
     required this.saveUserRoleUseCase,
     required this.saveUserIdUseCase,
+    required this.getUserByIdUseCase,
   }) {
     init();
   }
@@ -51,14 +55,27 @@ class LoginBloc extends SafeBloC {
         password: passwordController.text,
       );
       if (loginEntity.accessToken?.isNotEmpty ?? false) {
+        final user = await getUser(loginEntity.id);
         saveUserToken(loginEntity.accessToken);
         saveUserLogin(true);
+        saveUserRole(user?.roles?.first.authority);
+        saveUserId(user?.id);
       }
       doLoginController.sink.add(SafeEvent.done(loginEntity));
     } catch (e) {
       doLoginController.addError(e.toString());
       SafeLogUtil.instance.logError(e);
     }
+  }
+
+  Future<UserEntity?> getUser(int? id) async {
+    try {
+      final userEntity = await getUserByIdUseCase.call(id: id);
+      return userEntity;
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+    }
+    return null;
   }
 
   void toogleLoginButton() {
@@ -86,7 +103,15 @@ class LoginBloc extends SafeBloC {
 
   Future<void> saveUserRole(String? value) async {
     try {
-      //await saveUserRoleUseCase.call(Pro);
+      await saveUserRoleUseCase.call(value ?? StringConstants.empty);
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+    }
+  }
+
+  Future<void> saveUserId(int? value) async {
+    try {
+      await saveUserIdUseCase.call(value);
     } catch (e) {
       SafeLogUtil.instance.logError(e);
     }
