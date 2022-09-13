@@ -1,0 +1,50 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
+import 'package:projetofinal_mobile/src/service/config/constants/api_constants.dart';
+import 'package:projetofinal_mobile/src/service/config/interceptors/api_service.dart';
+import 'package:projetofinal_mobile/src/service/config/interceptors/http_method.dart';
+import 'package:projetofinal_mobile/src/service/config/interceptors/request_config.dart';
+import 'package:projetofinal_mobile/src/service/remote/auth/auth_service.dart';
+import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_answer_by_task_id.dart';
+import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_tasks.dart';
+import 'package:projetofinal_mobile/src/service/remote/tasks/tasks_service_interface.dart';
+
+class TasksService implements ITasksService {
+  final ApiService _service = ApiService();
+  final AuthService _authService;
+
+  TasksService(this._authService);
+
+  @override
+  Future<List<ResponseGetTasks>> getTasks() async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.getTasks,
+      method: HttpMethod.get,
+      options: Options(headers: {ApiConstants.kAuthorization: token}),
+    );
+
+    final response = await _service.doRequest(requestConfig);
+    return (json.decode(response.data) as List)
+        .map((e) => ResponseGetTasks.fromJson(e))
+        .toList();
+  }
+
+  @override
+  Future<List<ResponseGetAnswerByTaskId>> getAnswersByTaskId(int taskId) async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.getAnswerByTaskId + taskId.toString(),
+      method: HttpMethod.get,
+      options: Options(headers: {ApiConstants.kAuthorization: token}),
+    );
+
+    final response = await _service.doRequest(requestConfig);
+    return (json.decode(response.data) as List)
+        .map((e) => ResponseGetAnswerByTaskId.fromJson(e))
+        .toList();
+  }
+}
