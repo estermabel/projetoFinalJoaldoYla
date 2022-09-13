@@ -32,6 +32,7 @@ export class ListarSubmissoesComponent implements OnInit, AfterViewInit {
 
   displayedColumns = [
     'atividade',
+    'porcentagem',
     'data',
     'acoes'
   ];

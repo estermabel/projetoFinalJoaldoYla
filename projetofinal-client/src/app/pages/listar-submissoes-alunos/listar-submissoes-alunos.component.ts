@@ -36,6 +36,7 @@ export class ListarSubmissoesAlunosComponent implements OnInit {
     'atividade',
     'aluno',
     'data',
+    'porcentagem',
     'acoes'
   ];
 

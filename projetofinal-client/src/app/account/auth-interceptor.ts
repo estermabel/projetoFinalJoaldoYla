@@ -12,12 +12,13 @@ const USER_AUTH_TOKEN_KEY = 'SessionDataToken';
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
+    private accountService: AccountService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
 
   ){}
 
   intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
-    let token = this.storage.get("SessionDataToken");
+    let token = this.accountService.getToken();
     let request: HttpRequest<any> = req;
 
     if(token){

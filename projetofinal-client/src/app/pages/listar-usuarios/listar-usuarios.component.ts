@@ -29,7 +29,6 @@ export class ListarUsuariosComponent implements OnInit, AfterViewInit{
   usuarios = new MatTableDataSource<Usuario>();
   displayedColumns = [
     'nome',
-    'login',
     'data ultimo acesso',
     'data cadastro',
     'perfil',
@@ -68,13 +67,23 @@ export class ListarUsuariosComponent implements OnInit, AfterViewInit{
   }
 
   atualizarSituacao(usuario: Usuario){
-    usuario.flagAtivo = usuario.flagAtivo == false ? true : false;
-    this.usuarioService.update(usuario).subscribe(data =>{
-      console.log("Atualizado com sucesso", data);
+    this.usuarioService.findOne(usuario.id).subscribe(data=>{
+      usuario = data
+      usuario.perfilId = data.perfil[0].id;
+      console.log("usuario encontrado: ", data)
     }, (error) =>{
       console.log(error.error);
-    }
-    )
+    }, ()=>{
+      usuario.dataCriacao = new Date(usuario.dataCriacao)
+      usuario.dataUltimoAcesso = new Date(usuario.dataUltimoAcesso)
+      usuario.flagAtivo = usuario.flagAtivo == false ? true : false;
+      console.log( JSON.stringify(usuario));
+      this.usuarioService.update(usuario).subscribe(usuarioAtualizado =>{
+        console.log("atualizado: ", usuarioAtualizado)
+      })
+
+    })
+
   }
 
   retornarPerfil(value: number){

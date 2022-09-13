@@ -74,15 +74,27 @@ public class RespostaService {
         TestResult testResult = new TestService().executetest(resposta.getCodigo(), "Main.java", "", input.toArray(), output.toArray());
 
         List<Teste> testes = new ArrayList<>();
-        Double percente = 0.0;
+        Double percentagem = 0.0;
 
-        if(testResult.getCompile()) {
+        if (testResult.getCompile()) {
             testes = new ArrayList<>(testResult.getTest());
-            percente = obterPorcentagem(testes);
+            percentagem = obterPorcentagem(testes);
         }
 
-        Resultado resultado = new Resultado(testResult.getOutput(), testResult.getCreate(), testResult.getCompile(), percente, resposta, testes);
+        Resultado resultado = new Resultado(testResult.getOutput(), testResult.getCreate(), testResult.getCompile(), percentagem, resposta, testes);
+        atribuirPorcentagemResposta(resultado, percentagem);
+
         return resultadoRepository.save(resultado);
+    }
+
+    private void atribuirPorcentagemResposta(Resultado resultado, Double porcentagemAcertoFinal) {
+        Optional<Resposta> respostaOptional = respostaRepository.findById(resultado.getResposta().getId()).map(
+                respostaEditada -> {
+                    respostaEditada.setPorcentagemAcerto(porcentagemAcertoFinal);
+                    respostaRepository.save(respostaEditada);
+                    return respostaEditada;
+                }
+        );
     }
 
     private double obterPorcentagem(List<Teste> testes) {

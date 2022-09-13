@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     let validado: boolean = false
     if(this.validarCampos()){
       this.accountService.login(this.usuario).subscribe(data =>{
+        this.blockUI.start();
         if(data.ok){
           console.log('login efetuado: ', data)
           this.mensagemErro = "";
@@ -50,17 +51,19 @@ export class LoginComponent implements OnInit {
       }, (error)=>{
         console.error("Erro ao fazer login", error);
         this.mensagemErro = "Login ou Senha Inválidos";
-
+      },()=>{
+        this.blockUI.stop();
+        this.router.navigate(['tarefas']);
       }
       )
     }else{
       this.mensagemErro = "Preencha todos os campos";
     }
-    this.blockUI.start();
-    setTimeout(() =>{
-      this.blockUI.stop();
-      this.router.navigate(['tarefas']);
-    },1000);
+
+    // setTimeout(() =>{
+    //   this.blockUI.stop();
+    //   this.router.navigate(['tarefas']);
+    // },1500);
 
   }
 

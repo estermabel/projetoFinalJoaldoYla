@@ -23,7 +23,6 @@ import { CommonsModule } from './commons/commons.module';
 import { ExibirResultadoComponent } from './pages/exibir-resultado/exibir-resultado.component';
 import { ListarResultadosComponent } from './pages/listar-resultados/listar-resultados.component';
 import { BlockUIModule } from 'ng-block-ui';
-import { DialogEditarCasoTesteComponent } from './pages/dialog-editar-caso-teste/dialog-editar-caso-teste.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './layout/home/home.component';
 import { AuthenticationComponent } from './layout/authentication/authentication.component';
@@ -47,7 +46,6 @@ registerLocaleData(localePt, 'pt');
     DialogRespostaComponent,
     ExibirResultadoComponent,
     ListarResultadosComponent,
-    DialogEditarCasoTesteComponent,
     LoginComponent,
     HomeComponent,
     AuthenticationComponent,

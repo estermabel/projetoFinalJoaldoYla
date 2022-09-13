@@ -6,7 +6,6 @@ import br.com.ucsal.projetofinal.config.token.TokenService;
 import br.com.ucsal.projetofinal.usuario.UsuarioService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +15,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -46,19 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
+        http.cors().and().authorizeRequests()
+                .antMatchers("/h2/**").permitAll()
                 .antMatchers("/api/login/**").permitAll()
-                .antMatchers("/api/respostas/**").access("hasAnyAuthority('Admin', 'Professor')")
-                .antMatchers(HttpMethod.GET, "/api/respostas/usuario/**").access("hasAnyAuthority('Aluno')")
-                .antMatchers(HttpMethod.GET, "/api/tarefas/**").access("hasAnyAuthority('Aluno')")
-                .antMatchers(HttpMethod.GET, "/api/casoteste//**").access("hasAnyAuthority('Aluno')")
                 .antMatchers("/api/usuarios/**").permitAll()
-                .antMatchers("/api/api/provas/**").permitAll()
-                .antMatchers("/api/tarefa/**").access("hasAnyAuthority('Admin', 'Professor')")
-                .antMatchers("/api/resultados/**").access("hasAnyAuthority('Admin', 'Professor')")
-                .antMatchers("/api/casoteste/**").access("hasAnyAuthority('Professor')")
+                .antMatchers("/api/**").access("hasAnyAuthority('Aluno', 'Admin', 'Professor')")
                 .anyRequest().authenticated()
                 .and().headers().frameOptions().disable()
                 .and().csrf().disable()
@@ -69,5 +65,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.setAllowedOriginPatterns(Arrays.asList("*"));
+        config.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "responseType", "Authorization"));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE", "PATCH"));
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 }

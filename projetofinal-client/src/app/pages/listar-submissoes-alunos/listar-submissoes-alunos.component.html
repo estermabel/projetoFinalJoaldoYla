@@ -16,6 +16,11 @@
       <td mat-cell *matCellDef="let resposta"> {{resposta.dataEnvio}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="porcentagem">
+      <th mat-header-cell *matHeaderCellDef> Porcentagem </th>
+      <td mat-cell *matCellDef="let resposta"> {{resposta.porcentagemAcerto}} %</td>
+    </ng-container>
+
     <ng-container matColumnDef="acoes">
       <th mat-header-cell *matHeaderCellDef>  </th>
       <td mat-cell *matCellDef="let resposta"> <button mat-button id="btn2" (click)="detalhar(resposta)">

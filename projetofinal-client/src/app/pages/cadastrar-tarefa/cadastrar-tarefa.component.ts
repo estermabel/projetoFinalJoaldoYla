@@ -9,7 +9,7 @@ import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
 import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
 import { AccountService } from 'src/app/account/_service/account.service';
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
@@ -25,8 +25,13 @@ export class CadastrarTarefaComponent implements OnInit {
   casosTestes = new MatTableDataSource<CasoTeste>();
   stausDialog = "";
   casoTeste = new CasoTesteDTO();
-  usuario = new UsuarioDTO();
+  usuarioLogado = new UsuarioDTO();
   tarefa = new  TarefaDTO();
+  formularioTarefa: any;
+
+  submitted: boolean = false;
+  casoTesteInvalido: boolean = false
+  msgcasoTesteInvalido: string = ""
 
   displayedColumns = [
     'nomeTeste',
@@ -48,7 +53,6 @@ export class CadastrarTarefaComponent implements OnInit {
     descricao: new FormControl("", Validators.required),
     dataEntrega: new FormControl("", Validators.required),
   });*/
-
   constructor(
     public tarefaService: TarefaService,
     private formBuilder: FormBuilder,
@@ -62,23 +66,45 @@ export class CadastrarTarefaComponent implements OnInit {
 
   ngOnInit(): void {
     let id  = this.accountService.getSubject()
+    this.formularioTarefa= this.formBuilder.group({
+      titulo: ['',Validators.required],
+      descricao: ['', Validators.required]
+    })
+
     this.usuarioService.findOne(id).subscribe((data) => {
-      this.usuario = data;
-      console.log(this.usuario);
+      this.usuarioLogado = data;
+      console.log(this.usuarioLogado);
     });
   }
 
   cadastrarTarefa(){
     // Fri Jan 21 2022 16:08:05 GMT-0300 (Horário Padrão de Brasília)
-    this.tarefa.usuarioId = this.usuario.id
+    this.tarefa.usuarioId = this.usuarioLogado.id
     this.tarefa.testes = this.casosTestes.data
-    this.tarefaService.save(this.tarefa).subscribe(data =>{
+    if(this.formularioTarefa.valid && !this.validarCasosTeste(this.tarefa.testes)){
+      this.tarefaService.save(this.tarefa).subscribe(data =>{
       console.log("cadastrado com sucesso", data);
       this.router.navigate(["tarefas"])
     }, (error) =>{
       console.log(error.error);
     }
     )
+    }
+  }
+
+  validarCasosTeste(testes: Array<CasoTeste>){
+    if(testes.length == 0) this.casoTesteInvalido = true;
+    else{
+      this.casoTesteInvalido = true;
+      for (let i = 0; i < testes.length; i++) {
+        if(testes[i].flagExibir == true){
+          this.casoTesteInvalido = false;
+          break;
+        }
+      }
+    }
+
+    return this.casoTesteInvalido;
   }
 
   excluirCasoTeste(teste: CasoTeste){
@@ -116,7 +142,8 @@ export class CadastrarTarefaComponent implements OnInit {
   editarCasoTeste(teste: CasoTeste){
     this.storage.set("testeEditar", teste);
     const dialogRef = this.dialog.open(DialogCasoTesteComponent, {
-      width: '400px',
+      width: '600px',
+      disableClose: true,
       data: {teste: teste}
     });
 
@@ -138,6 +165,7 @@ export class CadastrarTarefaComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(DialogCasoTesteComponent, {
       width: '600px',
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {

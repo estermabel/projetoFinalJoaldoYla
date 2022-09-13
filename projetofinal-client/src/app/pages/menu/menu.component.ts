@@ -26,7 +26,7 @@ export class MenuComponent implements OnInit {
     let id  = this.accountService.getSubject()
     this.usuarioService.findOne(id).subscribe((data) => {
       this.usuarioLogado = data;
-      console.log(this.usuarioLogado);
+      //console.log(this.usuarioLogado);
     });
   }
 
