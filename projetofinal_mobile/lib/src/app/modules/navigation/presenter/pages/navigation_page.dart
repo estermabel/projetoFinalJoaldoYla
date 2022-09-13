@@ -4,7 +4,7 @@ import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_
 import 'package:projetofinal_mobile/src/app/modules/navigation/bloc/navigation_bloc.dart';
 import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
 import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
-import 'package:projetofinal_mobile/src/core/l10n/generated/l10n.dart';
+import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 
 class NavigationPage extends StatefulWidget {

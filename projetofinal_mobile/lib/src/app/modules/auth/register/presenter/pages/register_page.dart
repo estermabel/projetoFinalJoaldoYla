@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_event.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_layout.dart';
@@ -7,7 +8,7 @@ import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart
 import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
 import 'package:projetofinal_mobile/src/components/widgets/safe_button.dart';
 import 'package:projetofinal_mobile/src/components/widgets/safe_text_form_field.dart';
-import 'package:projetofinal_mobile/src/core/l10n/generated/l10n.dart';
+
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 import 'package:projetofinal_mobile/src/domain/entity/register_entity.dart';
 

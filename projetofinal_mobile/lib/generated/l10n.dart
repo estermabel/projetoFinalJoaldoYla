@@ -269,6 +269,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Nenhuma resposta encontrada`
+  String get textNoAnswersFound {
+    return Intl.message(
+      'Nenhuma resposta encontrada',
+      name: 'textNoAnswersFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

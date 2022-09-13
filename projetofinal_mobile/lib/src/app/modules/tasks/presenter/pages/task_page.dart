@@ -6,12 +6,11 @@ import 'package:projetofinal_mobile/src/components/config/safe_layout.dart';
 import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
 import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
 import 'package:projetofinal_mobile/src/core/constants/string_constants.dart';
-import 'package:projetofinal_mobile/src/core/l10n/generated/l10n.dart';
+import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/core/util/formatter_util.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 import 'package:projetofinal_mobile/src/domain/entity/answer_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/task_entity.dart';
-import 'package:projetofinal_mobile/src/domain/use_case/do_register_admin_use_case.dart';
 
 class TaskPage extends StatefulWidget {
   static const route = '/task';
@@ -65,30 +64,33 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
               const SizedBox(height: 10),
               TextBodySectionWidget(text: widget.task.description),
               const SizedBox(height: 20),
-              Visibility(
-                visible: widget.task.user?.roles?.first.authority !=
-                        ProfileEnum.admin.value ||
-                    widget.task.user?.roles?.first.authority ==
-                        ProfileEnum.teacher.value,
-                child: SectionTitleWidget(title: S.current.textAnswers),
+              //TODO Só liberar exibição para usuários diferentes de aluno
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SectionTitleWidget(title: S.current.textAnswers),
+                  const SizedBox(height: 15),
+                  StreamBuilder<SafeEvent<List<AnswerEntity>>>(
+                      stream: controller.getAnswersController.stream,
+                      builder: (context, snapshot) {
+                        final answers = snapshot.data?.data;
+                        return SafeLayout(
+                          snapshot: snapshot,
+                          context: context,
+                          onDone: () {},
+                          showErrorDialog: controller.isShowErrorDialog,
+                          onError: TextBodySectionWidget(
+                              text: snapshot.error.toString()),
+                          onCompleted: Column(
+                            children: List.generate(
+                              answers?.length ?? 0,
+                              (index) => AnswerWidget(answer: answers?[index]),
+                            ),
+                          ),
+                        ).build;
+                      }),
+                ],
               ),
-              const SizedBox(height: 15),
-              StreamBuilder<SafeEvent<List<AnswerEntity>>>(
-                  stream: controller.getAnswersController.stream,
-                  builder: (context, snapshot) {
-                    final answers = snapshot.data?.data;
-                    return SafeLayout(
-                      snapshot: snapshot,
-                      context: context,
-                      onDone: () {},
-                      onCompleted: Column(
-                        children: List.generate(
-                          answers?.length ?? 0,
-                          (index) => AnswerWidget(answer: answers?[index]),
-                        ),
-                      ),
-                    ).build;
-                  }),
             ],
           ),
         ),

@@ -36,6 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
+        "textNoAnswersFound":
+            MessageLookupByLibrary.simpleMessage("Nenhuma resposta encontrada"),
         "textOk": MessageLookupByLibrary.simpleMessage("Ok"),
         "textPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "textProfile": MessageLookupByLibrary.simpleMessage("Perfil"),

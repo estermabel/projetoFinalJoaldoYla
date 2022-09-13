@@ -22,5 +22,6 @@
     "textGoToLogin":"Ir para o login",
     "textTitle":"Título",
     "textDescription":"Descrição",
-    "textAnswers":"Respostas"
+    "textAnswers":"Respostas",
+    "textNoAnswersFound":"Nenhuma resposta encontrada"
 }

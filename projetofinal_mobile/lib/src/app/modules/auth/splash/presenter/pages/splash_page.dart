@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/app/modules/auth/login/presenter/pages/login_page.dart';
 import 'package:projetofinal_mobile/src/app/modules/auth/splash/presenter/bloc/splash_bloc.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_page.dart';
@@ -7,7 +8,7 @@ import 'package:projetofinal_mobile/src/app/modules/navigation/presenter/pages/n
 import 'package:projetofinal_mobile/src/components/animations/fade_animation.dart';
 import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
 import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
-import 'package:projetofinal_mobile/src/core/l10n/generated/l10n.dart';
+
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 
 class SplashPage extends StatefulWidget {
