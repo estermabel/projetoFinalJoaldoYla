@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
         "errorTryAgain": MessageLookupByLibrary.simpleMessage(
             "Tente novamente em alguns instantes."),
+        "textAnswers": MessageLookupByLibrary.simpleMessage("Respostas"),
+        "textDescription": MessageLookupByLibrary.simpleMessage("Descrição"),
         "textDoYouHaveAccount":
             MessageLookupByLibrary.simpleMessage("Não tem uma conta?"),
         "textGoToLogin":
@@ -44,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSubimission": MessageLookupByLibrary.simpleMessage("Submissões"),
         "textTasks": MessageLookupByLibrary.simpleMessage("Tarefas"),
         "textTests": MessageLookupByLibrary.simpleMessage("Provas"),
+        "textTitle": MessageLookupByLibrary.simpleMessage("Título"),
         "textUser": MessageLookupByLibrary.simpleMessage("Usuário"),
         "textUserRegiteredSuccess": MessageLookupByLibrary.simpleMessage(
             "Usuário registrado com sucesso!")

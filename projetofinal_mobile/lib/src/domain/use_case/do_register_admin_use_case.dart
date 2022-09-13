@@ -5,7 +5,22 @@ import 'package:projetofinal_mobile/src/service/remote/auth/auth_service.dart';
 import 'package:projetofinal_mobile/src/service/remote/auth/auth_service_interface.dart';
 import 'package:projetofinal_mobile/src/service/remote/auth/request/request_register.dart';
 
-enum ProfileEnum { admin, student, teacher }
+enum ProfileEnum { admin, student, teacher, none }
+
+extension ProfileEnumExtension on ProfileEnum {
+  String get value {
+    switch (this) {
+      case ProfileEnum.admin:
+        return 'Admin';
+      case ProfileEnum.student:
+        return 'Aluno';
+      case ProfileEnum.teacher:
+        return 'Professor';
+      case ProfileEnum.none:
+        return 'none';
+    }
+  }
+}
 
 class DoRegisterAdminUseCase extends SafeUseCase {
   late final IAuthService _service;

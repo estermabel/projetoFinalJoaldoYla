@@ -21,7 +21,9 @@ class ApiConstants {
   static const String doAuth = '${kUrl}login/';
   static const String doRegister = '';
   static const String doRegisterAdmin = '${kUrl}usuarios/';
+  static const String getUserById = '${kUrl}usuarios/';
 
   //Tasks
   static const String getTasks = '${kUrl}tarefa/';
+  static const String getAnswerByTaskId = '${kUrl}respostas/tarefa/';
 }

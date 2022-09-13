@@ -19,5 +19,8 @@
     "textLogout":"Sair",
     "textName":"Nome",
     "textUserRegiteredSuccess":"Usuário registrado com sucesso!",
-    "textGoToLogin":"Ir para o login"
+    "textGoToLogin":"Ir para o login",
+    "textTitle":"Título",
+    "textDescription":"Descrição",
+    "textAnswers":"Respostas"
 }

@@ -1,3 +1,5 @@
+import 'package:projetofinal_mobile/src/service/model/perfil_model.dart';
+
 class ResponseRegisterAdmin {
   int? id;
   String? name;
@@ -6,7 +8,7 @@ class ResponseRegisterAdmin {
   bool? isActive;
   String? createdAt;
   String? updatedAt;
-  List<Perfil>? profiles;
+  List<ResponseRegisterAdminPerfil>? profiles;
 
   ResponseRegisterAdmin({
     this.id,
@@ -19,7 +21,7 @@ class ResponseRegisterAdmin {
     this.profiles,
   });
 
-  factory ResponseRegisterAdmin.fromJson(Map<String, dynamic> json) {
+  factory ResponseRegisterAdmin.fromJson(dynamic json) {
     return ResponseRegisterAdmin(
       id: json["id"],
       name: json["nome"],
@@ -28,22 +30,26 @@ class ResponseRegisterAdmin {
       isActive: json["flagAtivo"],
       createdAt: json["dataCriacao"],
       updatedAt: json["dataUltimoAcesso"],
-      profiles: List<Perfil>.from(
-        json["perfil"].map((x) => Perfil.fromJson(x)),
+      profiles: List<ResponseRegisterAdminPerfil>.from(
+        json["perfil"].map((x) => ResponseRegisterAdminPerfil.fromJson(x)),
       ),
     );
   }
 }
 
-class Perfil {
-  int? id;
-  String? name;
-  String? authority;
+class ResponseRegisterAdminPerfil extends Perfil {
+  ResponseRegisterAdminPerfil({
+    int? id,
+    String? name,
+    String? authority,
+  }) : super(
+          id: id,
+          name: name,
+          authority: authority,
+        );
 
-  Perfil({this.id, this.name, this.authority});
-
-  factory Perfil.fromJson(Map<String, dynamic> json) {
-    return Perfil(
+  factory ResponseRegisterAdminPerfil.fromJson(dynamic json) {
+    return ResponseRegisterAdminPerfil(
       id: json['id'],
       name: json['nome'],
       authority: json['authority'],

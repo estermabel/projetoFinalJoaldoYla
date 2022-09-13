@@ -9,10 +9,10 @@ class LoginEntity {
     this.tokenType,
   });
 
-  factory LoginEntity.toEntity(ResponseLogin response) {
+  factory LoginEntity.toEntity(ResponseLogin? response) {
     return LoginEntity(
-      accessToken: response.accessToken,
-      tokenType: response.tokenType,
+      accessToken: response?.accessToken,
+      tokenType: response?.tokenType,
     );
   }
 }

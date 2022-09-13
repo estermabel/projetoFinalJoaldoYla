@@ -3,4 +3,5 @@ class KeyConstants {
   static const String keyUserLogged = 'userLogged';
   static const String keyUserRole = 'userRole';
   static const String keyUserToken = 'userToken';
+  static const String keyUserId = 'userId';
 }

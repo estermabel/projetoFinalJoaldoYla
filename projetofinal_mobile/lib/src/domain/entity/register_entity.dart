@@ -1,5 +1,5 @@
 import 'package:projetofinal_mobile/src/domain/entity/role_entity.dart';
-import 'package:projetofinal_mobile/src/service/remote/auth/response/response_register.dart';
+import 'package:projetofinal_mobile/src/service/remote/auth/response/response_register_admin.dart';
 
 class RegisterEntity {
   int? id;
@@ -18,14 +18,14 @@ class RegisterEntity {
     this.roles,
   });
 
-  factory RegisterEntity.toEntity(ResponseRegisterAdmin response) {
+  factory RegisterEntity.toEntity(ResponseRegisterAdmin? response) {
     return RegisterEntity(
-      id: response.id,
-      name: response.name,
-      user: response.user,
-      password: response.password,
-      isActive: response.isActive,
-      roles: response.profiles
+      id: response?.id,
+      name: response?.name,
+      user: response?.user,
+      password: response?.password,
+      isActive: response?.isActive,
+      roles: response?.profiles
           ?.map((e) => RoleEntity.toEntity(e))
           .toList()
           .cast<RoleEntity>(),

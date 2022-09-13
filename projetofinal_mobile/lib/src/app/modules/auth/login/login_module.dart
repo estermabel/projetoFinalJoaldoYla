@@ -6,7 +6,10 @@ import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_
 import 'package:projetofinal_mobile/src/app/modules/navigation/navigation_module.dart';
 import 'package:projetofinal_mobile/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/do_login_use_case.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/get_user_by_id_use_case.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/save_user_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/save_user_login_use_case.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/save_user_role_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/save_user_token_use_case.dart';
 import 'package:projetofinal_mobile/src/service/local/shared_preferences_service.dart';
 import 'package:projetofinal_mobile/src/service/remote/auth/auth_service.dart';
@@ -19,10 +22,15 @@ class LoginModule extends Module {
     Bind.lazySingleton((i) => SaveUserLoginUseCase()),
     Bind.lazySingleton((i) => SaveUserTokenUseCase()),
     Bind.lazySingleton((i) => DoLoginUseCase()),
+    Bind.lazySingleton((i) => GetUserByIdUseCase()),
+    Bind.lazySingleton((i) => SaveUserIdUseCase()),
+    Bind.lazySingleton((i) => SaveUserRoleUseCase()),
     Bind.lazySingleton((i) => LoginBloc(
           doLoginUseCase: i.get<DoLoginUseCase>(),
           saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
           saveUserTokenUseCase: i.get<SaveUserTokenUseCase>(),
+          saveUserRoleUseCase: i.get<SaveUserRoleUseCase>(),
+          saveUserIdUseCase: i.get<SaveUserIdUseCase>(),
         )),
   ];
 

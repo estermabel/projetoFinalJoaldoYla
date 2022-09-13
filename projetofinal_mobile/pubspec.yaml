@@ -26,6 +26,7 @@ dependencies:
   # Estilização
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
+  liquid_pull_to_refresh: ^3.0.1
 
   # Armazenamento
   shared_preferences: ^2.0.15
