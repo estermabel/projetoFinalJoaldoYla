@@ -42,7 +42,7 @@ public class UsuarioService {
                 }).orElse(null);
     }
 
-    public Optional<Usuario> listarPorLogin(String login) {
+    public Usuario listarPorLogin(String login) {
         return usuarioRepository.findByLogin(login);
     }
 }

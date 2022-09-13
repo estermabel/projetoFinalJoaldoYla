@@ -2,15 +2,16 @@ package br.com.ucsal.projetofinal.resposta;
 
 import java.time.LocalDateTime;
 
-public class RespostaResponseDto {
+public class RespostaPorcentagemResponseDTO {
 
     private Long id;
     private String codigo;
     private LocalDateTime dataEnvio;
     private Long usuarioId;
     private Long tarefaId;
+    private Double porcentagemAcerto;
 
-    public RespostaResponseDto(Resposta resposta) {
+    public RespostaPorcentagemResponseDTO(Resposta resposta) {
         this.id = resposta.getId();
         this.codigo = resposta.getCodigo();
         this.dataEnvio = resposta.getDataEnvio();
@@ -38,4 +39,11 @@ public class RespostaResponseDto {
         return tarefaId;
     }
 
+    public Double getPorcentagemAcerto() {
+        return porcentagemAcerto;
+    }
+
+    public void setPorcentagemAcerto(Double porcentagemAcerto) {
+        this.porcentagemAcerto = porcentagemAcerto;
+    }
 }

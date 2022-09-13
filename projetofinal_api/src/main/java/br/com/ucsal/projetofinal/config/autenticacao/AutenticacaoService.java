@@ -27,10 +27,10 @@ public class AutenticacaoService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuario> usuario = usuarioService.listarPorLogin(username);
-        if (usuario.isPresent()) {
+        Usuario usuario = usuarioService.listarPorLogin(username);
+        if (usuario != null) {
 
-            return usuario.get();
+            return usuario;
         }
         throw new UsernameNotFoundException("Usuario não encontrado");
     }
