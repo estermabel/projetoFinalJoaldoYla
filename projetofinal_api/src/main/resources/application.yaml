@@ -21,6 +21,9 @@ spring:
   datasource:
     driverClassName: org.postgresql.Driver
     url: ${DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    data: classpath:data.sql
   security:
     jwt:
       token:
