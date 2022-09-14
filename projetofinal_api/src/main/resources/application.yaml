@@ -21,8 +21,6 @@ spring:
   datasource:
     driverClassName: org.postgresql.Driver
     url: ${HEROKU_POSTGRESQL_TEAL_URL}
-    username: ${JDBC_DATABASE_USERNAME}
-    password: ${JDBC_DATABASE_PASSWORD}
   security:
     jwt:
       token:
@@ -42,5 +40,4 @@ spring:
       max-request-size: 10MB
       enabled: true
 debug: true
-
 
