@@ -15,19 +15,19 @@ InputDecorationTheme _inputDecoration = InputDecorationTheme(
   hintStyle: TextStyles.helper(),
   disabledBorder: OutlineInputBorder(
     borderSide: BorderSide(
-      color: SafeColors.textColors.dark,
+      color: SafeColors.textColors.disabled,
       width: 1,
     ),
   ),
   border: OutlineInputBorder(
     borderSide: BorderSide(
-      color: SafeColors.textColors.dark,
+      color: SafeColors.textColors.disabled,
       width: 1,
     ),
   ),
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(
-      color: SafeColors.textColors.dark,
+      color: SafeColors.textColors.disabled,
       width: 1,
     ),
   ),

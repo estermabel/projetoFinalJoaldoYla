@@ -4,11 +4,13 @@ import 'package:projetofinal_mobile/src/core/constants/string_constants.dart';
 class FormatterUtil {
   ///Formata a data que vem da API.
   static String dateFromAPI(String date) {
-    var split = date.split(StringConstants.hyphen);
-    return split[2] +
+    var dateSplit = date.split(StringConstants.at);
+
+    var split = dateSplit[0].split(StringConstants.hyphen);
+    return split[0] +
         StringConstants.slash +
         split[1] +
         StringConstants.slash +
-        split[0];
+        split[2];
   }
 }

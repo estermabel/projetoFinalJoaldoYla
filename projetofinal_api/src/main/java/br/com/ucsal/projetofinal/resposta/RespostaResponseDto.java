@@ -9,7 +9,6 @@ public class RespostaResponseDto {
     private LocalDateTime dataEnvio;
     private Long usuarioId;
     private Long tarefaId;
-    private Double porcentagemAcerto;
 
     public RespostaResponseDto(Resposta resposta) {
         this.id = resposta.getId();
@@ -17,7 +16,6 @@ public class RespostaResponseDto {
         this.dataEnvio = resposta.getDataEnvio();
         this.usuarioId = resposta.getUsuario().getId();
         this.tarefaId = resposta.getTarefa().getId();
-        this.porcentagemAcerto = resposta.getPorcentagemAcerto();
     }
 
     public Long getId() {
@@ -40,7 +38,4 @@ public class RespostaResponseDto {
         return tarefaId;
     }
 
-    public Double getPorcentagemAcerto() {
-        return porcentagemAcerto;
-    }
 }

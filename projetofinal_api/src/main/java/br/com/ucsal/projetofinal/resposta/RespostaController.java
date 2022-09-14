@@ -44,8 +44,8 @@ public class RespostaController {
     }
 
     @GetMapping("/tarefa/{id}")
-    public ResponseEntity<List<Resposta>> listarPorIdTarefa(@PathVariable Long id) {
-        List<Resposta> respostas = respostaService.listarPorIdTarefa(id);
+    public ResponseEntity<List<RespostaPorcentagemResponseDTO>> listarPorIdTarefa(@PathVariable Long id) {
+        List<RespostaPorcentagemResponseDTO> respostas = respostaService.listarPorIdTarefa(id);
         if (respostas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
