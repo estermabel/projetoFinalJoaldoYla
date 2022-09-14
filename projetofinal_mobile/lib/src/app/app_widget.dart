@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/components/theme/light_theme.dart';
-import 'package:projetofinal_mobile/src/core/l10n/generated/l10n.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);

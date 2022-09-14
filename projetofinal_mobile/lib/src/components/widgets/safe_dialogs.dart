@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
 import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
-import 'package:projetofinal_mobile/src/core/l10n/generated/l10n.dart';
 
 ///O [SafeDialog] é um widget responsável por gerenciar e armazenar variádos
 ///tipos de dialogs.
