@@ -23,7 +23,6 @@ spring:
     url: ${DATABASE_URL}
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
-    data: data.sql
   security:
     jwt:
       token:
