@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2/**").permitAll()
                 .antMatchers("/api/login/**").permitAll()
                 .antMatchers("/api/usuarios/**").permitAll()
-                .antMatchers("/api/tarefa/**").permitAll()
+                .antMatchers("/api/**").access("hasAnyAuthority('Aluno', 'Admin', 'Professor')")
                 .anyRequest().authenticated()
                 .and().headers().frameOptions().disable()
                 .and().csrf().disable()
