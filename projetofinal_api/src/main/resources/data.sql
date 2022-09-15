@@ -9,7 +9,7 @@ values('Admin'),
 ('Professor');
 
 INSERT INTO tarefa(descricao, status, titulo, usuario_id)
-values ('Digite numeros separados por espaço que a soma seja 10', 1, 'Até 10', 1),
+values ('Digite numeros separados por espaço que a soma seja 10', 1, 'Até 10', 3),
        ('Mostre a divisão entre dois numeros', 1, 'Divisão', 3);
 
 INSERT INTO caso_teste(comparacao, entrada, flag_exibir, nome_teste, saida, tarefa_id)

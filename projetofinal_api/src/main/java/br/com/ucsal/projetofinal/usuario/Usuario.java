@@ -64,10 +64,6 @@ public class Usuario implements UserDetails, Serializable {
     )
     private List<Perfil> perfil = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
-    @JsonBackReference
-    private Tarefa tarefa;
-
     public Usuario(String nome, String login, String senha, Boolean flagAtivo, Perfil perfil) {
         this.nome = nome;
         this.login = login;

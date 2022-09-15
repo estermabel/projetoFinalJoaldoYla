@@ -4,6 +4,7 @@ import br.com.ucsal.projetofinal.casoteste.CasoTeste;
 import br.com.ucsal.projetofinal.prova.Prova;
 import br.com.ucsal.projetofinal.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,11 +48,10 @@ public class Tarefa implements Serializable {
     @JsonBackReference
     private List<Prova> prova;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
     @Valid
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     @NotNull
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario usuario;
 
     public Tarefa(String titulo, String descricao, Integer status, List<CasoTeste> testes, Usuario usuario) {
