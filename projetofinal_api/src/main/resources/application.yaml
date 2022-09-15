@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: heroku
+    active: local
   config:
     name: ucsal-tcc
 
@@ -20,7 +20,7 @@ spring:
     suffix: .html
   datasource:
     driverClassName: org.postgresql.Driver
-    url: ${HEROKU_POSTGRESQL_TEAL_URL}
+    url: ${DATABASE_URL}
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
   security:
