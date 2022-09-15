@@ -30,8 +30,10 @@ public class Resultado {
     @Column(length = 110000)
     private String saidaObtida;
 
+    @Column(name = "criado")
     private Boolean create;
 
+    @Column(name = "compilado")
     private Boolean compile;
 
     private Double porcentagem;
