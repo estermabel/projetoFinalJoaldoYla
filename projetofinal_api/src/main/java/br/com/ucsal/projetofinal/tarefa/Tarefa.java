@@ -41,6 +41,7 @@ public class Tarefa implements Serializable {
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "tarefa_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<CasoTeste> testes = new ArrayList<>();
 
     @ManyToMany(mappedBy = "tarefas", fetch = FetchType.LAZY)

@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: local
+    active: dev
   config:
     name: ucsal-tcc
 
@@ -45,6 +45,9 @@ debug: true
 
 
 ---
+
+server:
+  port: 8081
 
 spring:
   config:
@@ -92,4 +95,40 @@ spring:
         trace: false
         web-allow-others: false
 
+---
 
+spring:
+  config:
+    activate:
+      on-profile: dev
+  thymeleaf:
+    cache: false
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    suffix: .html
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/projeto_final
+    username: postgres
+    password: postgres
+  security:
+    jwt:
+      token:
+        secret-key: A+X;fTJP&Pd,TD9dwVq(hsHX,ya^<wsD_UK7L+@=S;{'CydP]{v@}G'b>et;yz$*yL5S8EJN:%P:X%H9>#nYLrX}@s?CQcpspH,2emzBc!Q[V'AYa~uzF8WR~AUrMzxp/V$9([S9X#zj/CH('#]B_Hc+%fGhe27YB;^j4Xk=Ju"Ap~_&<L;=!Z;!,2UP;!hF3P]j85#*`&T]/kB/W^6$v~u6qpejL>kY^f)sy4:qTq_Ec!-z!@aAp~sLKGU>$
+        expire-length: 86400000
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: 'true'
+        dialect: org.hibernate.dialect.PostgreSQL81Dialect
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+      enabled: true
+debug: true
