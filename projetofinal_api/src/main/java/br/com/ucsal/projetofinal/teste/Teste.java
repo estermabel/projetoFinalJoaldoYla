@@ -35,7 +35,7 @@ public class Teste {
     private String saidaObtida;
 
     @Valid
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "resultado_id")
     @JsonIgnore
     private Resultado resultado;
