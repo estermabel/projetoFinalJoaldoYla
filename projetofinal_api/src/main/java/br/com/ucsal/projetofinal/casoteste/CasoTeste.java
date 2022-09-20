@@ -39,7 +39,7 @@ public class CasoTeste {
     private Boolean flagExibir;
 
     @Valid
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tarefa_id")
     private Tarefa tarefa;
 
