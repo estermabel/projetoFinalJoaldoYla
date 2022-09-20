@@ -37,8 +37,8 @@ public class Resposta implements Serializable {
 
     @Valid
     @NotNull
-    @ManyToOne
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @Valid
