@@ -120,7 +120,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -131,4 +131,3 @@ spring:
       max-file-size: 5MB
       max-request-size: 10MB
       enabled: true
-debug: true
