@@ -1,6 +1,7 @@
 package br.com.ucsal.projetofinal.casoteste;
 
 import br.com.ucsal.projetofinal.tarefa.Tarefa;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,9 +39,8 @@ public class CasoTeste {
     private Boolean flagExibir;
 
     @Valid
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tarefa_id")
-    @JsonIgnore
     private Tarefa tarefa;
 
 
