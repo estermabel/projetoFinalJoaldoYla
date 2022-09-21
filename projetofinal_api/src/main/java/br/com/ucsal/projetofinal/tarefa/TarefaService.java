@@ -5,10 +5,12 @@ import br.com.ucsal.projetofinal.casoteste.CasoTesteRepository;
 import br.com.ucsal.projetofinal.usuario.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class TarefaService {
 
     private final TarefaRepository tarefaRepository;
