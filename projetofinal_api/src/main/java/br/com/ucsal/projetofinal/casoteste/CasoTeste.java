@@ -41,7 +41,6 @@ public class CasoTeste {
     @Valid
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tarefa_id")
-    @JsonIgnore
     private Tarefa tarefa;
 
 
