@@ -1,11 +1,9 @@
 package br.com.ucsal.projetofinal.usuario;
 
 import br.com.ucsal.projetofinal.perfil.Perfil;
+import br.com.ucsal.projetofinal.resposta.Resposta;
 import br.com.ucsal.projetofinal.tarefa.Tarefa;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -57,6 +56,13 @@ public class Usuario implements UserDetails, Serializable {
     @NotNull
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "UTC-2")
     private Instant dataUltimoAcesso;
+
+    @Valid
+    @NotNull
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "resposta_id")
+    @JsonIgnore
+    private List<Resposta> respostas = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "usuario_id"),
