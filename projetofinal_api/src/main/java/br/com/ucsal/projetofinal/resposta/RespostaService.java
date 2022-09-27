@@ -42,16 +42,20 @@ public class RespostaService {
         return respostaRepository.findByUsuarioId(id);
     }
 
-    public List<RespostaPorcentagemResponseDTO> listarPorIdTarefa(Long id) {
-        List<RespostaPorcentagemResponseDTO> listaRetornada = new ArrayList<>();
-        for (Resposta resposta : respostaRepository.findByTarefaId(id)) {
-            RespostaPorcentagemResponseDTO response = new RespostaPorcentagemResponseDTO(resposta);
-            Resultado resultado = resultadoRepository.findByRespostaId(resposta.getId());
-            response.setPorcentagemAcerto(resultado.getPorcentagem());
-            listaRetornada.add(response);
-        }
-        return listaRetornada;
+    public List<Resposta> listarPorIdTarefa(Long id) {
+        return respostaRepository.findByTarefaId(id);
     }
+
+//    public List<RespostaPorcentagemResponseDTO> listarPorIdTarefa(Long id) {
+//        List<RespostaPorcentagemResponseDTO> listaRetornada = new ArrayList<>();
+//        for (Resposta resposta : respostaRepository.findByTarefaId(id)) {
+//            RespostaPorcentagemResponseDTO response = new RespostaPorcentagemResponseDTO(resposta);
+//            Resultado resultado = resultadoRepository.findByRespostaId(resposta.getId());
+//            response.setPorcentagemAcerto(resultado.getPorcentagem());
+//            listaRetornada.add(response);
+//        }
+//        return listaRetornada;
+//    }
 
     public Resposta inserir(RespostaRequestDto respostaRequestDto) {
         Resposta resposta = respostaRequestDto.toModel(usuarioRepository, tarefaRepository);
@@ -89,7 +93,18 @@ public class RespostaService {
         }
 
         Resultado resultado = new Resultado(testResult.getOutput(), testResult.getCreate(), testResult.getCompile(), percentagem, resposta, testes);
+        atribuirPorcentagemResposta(resultado, percentagem);
         return resultadoRepository.save(resultado);
+    }
+
+    private void atribuirPorcentagemResposta(Resultado resultado, Double porcentagemAcertoFinal) {
+        Optional<Resposta> respostaOptional = respostaRepository.findById(resultado.getResposta().getId()).map(
+                respostaEditada -> {
+                    respostaEditada.setPorcentagemAcerto(porcentagemAcertoFinal);
+                    respostaRepository.save(respostaEditada);
+                    return respostaEditada;
+                }
+        );
     }
 
     private double obterPorcentagem(List<Teste> testes) {
