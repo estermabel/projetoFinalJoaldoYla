@@ -2,12 +2,16 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/tasks_module.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_page.dart';
 import 'package:projetofinal_mobile/src/app/modules/navigation/bloc/navigation_bloc.dart';
+import 'package:projetofinal_mobile/src/service/local/shared_preferences_service.dart';
+import 'package:projetofinal_mobile/src/service/remote/auth/auth_service.dart';
 
 import 'presenter/pages/navigation_page.dart';
 
 class NavigationModule extends Module {
   @override
   final List<Bind> binds = [
+    Bind.lazySingleton((i) => SharedPreferencesService()),
+    Bind.lazySingleton((i) => AuthService()),
     Bind.lazySingleton((i) => NavigationBloc()),
   ];
 

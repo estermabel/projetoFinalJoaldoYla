@@ -12,15 +12,12 @@ import 'package:projetofinal_mobile/src/domain/use_case/get_tasks_use_case.dart'
 import 'package:projetofinal_mobile/src/domain/use_case/get_user_by_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_user_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_user_role_use_case.dart';
-import 'package:projetofinal_mobile/src/service/local/shared_preferences_service.dart';
 import 'package:projetofinal_mobile/src/service/remote/auth/auth_service.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/tasks_service.dart';
 
 class TasksModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton((i) => AuthService()),
     Bind.lazySingleton((i) => TasksService(i.get<AuthService>())),
     Bind.lazySingleton((i) => GetTasksUseCase()),
     Bind.lazySingleton((i) => GetUserRoleUseCase()),
