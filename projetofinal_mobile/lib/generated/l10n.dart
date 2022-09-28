@@ -270,11 +270,41 @@ class S {
     );
   }
 
+  /// `Minhas Respostas`
+  String get textMyAnswers {
+    return Intl.message(
+      'Minhas Respostas',
+      name: 'textMyAnswers',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nenhuma resposta encontrada`
   String get textNoAnswersFound {
     return Intl.message(
       'Nenhuma resposta encontrada',
       name: 'textNoAnswersFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resultado`
+  String get textResult {
+    return Intl.message(
+      'Resultado',
+      name: 'textResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Teste`
+  String get textTest {
+    return Intl.message(
+      'Teste',
+      name: 'textTest',
       desc: '',
       args: [],
     );

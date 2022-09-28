@@ -23,5 +23,8 @@
     "textTitle":"Título",
     "textDescription":"Descrição",
     "textAnswers":"Respostas",
-    "textNoAnswersFound":"Nenhuma resposta encontrada"
+    "textMyAnswers":"Minhas Respostas",
+    "textNoAnswersFound":"Nenhuma resposta encontrada",
+    "textResult":"Resultado",
+    "textTest":"Teste"
 }
