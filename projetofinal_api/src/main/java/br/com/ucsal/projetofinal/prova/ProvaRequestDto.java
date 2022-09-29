@@ -24,7 +24,7 @@ public class ProvaRequestDto {
     public Prova toModel(TarefaRepository tarefaRepository) {
         List<Tarefa> tarefasEncontradas = new ArrayList<>();
         for (Long idTarefa : tarefas) {
-            Tarefa tarefa = tarefaRepository.findById(idTarefa).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrado"));
+            Tarefa tarefa = tarefaRepository.buscarTarefa(idTarefa).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrado"));
             tarefasEncontradas.add(tarefa);
         }
         return new Prova(nome, tarefasEncontradas, dataEntrega);
