@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textHome": MessageLookupByLibrary.simpleMessage("Home"),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
+        "textMyAnswers":
+            MessageLookupByLibrary.simpleMessage("Minhas Respostas"),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
         "textNoAnswersFound":
             MessageLookupByLibrary.simpleMessage("Nenhuma resposta encontrada"),
@@ -45,8 +47,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Projeto Final"),
         "textRanking": MessageLookupByLibrary.simpleMessage("Ranking"),
         "textRegister": MessageLookupByLibrary.simpleMessage("Registrar"),
+        "textResult": MessageLookupByLibrary.simpleMessage("Resultado"),
         "textSubimission": MessageLookupByLibrary.simpleMessage("Submissões"),
         "textTasks": MessageLookupByLibrary.simpleMessage("Tarefas"),
+        "textTest": MessageLookupByLibrary.simpleMessage("Teste"),
         "textTests": MessageLookupByLibrary.simpleMessage("Provas"),
         "textTitle": MessageLookupByLibrary.simpleMessage("Título"),
         "textUser": MessageLookupByLibrary.simpleMessage("Usuário"),

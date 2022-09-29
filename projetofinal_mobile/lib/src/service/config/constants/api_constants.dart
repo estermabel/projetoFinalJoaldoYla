@@ -26,4 +26,6 @@ class ApiConstants {
   //Tasks
   static const String getTasks = '${kUrl}tarefa/';
   static const String getAnswerByTaskId = '${kUrl}respostas/tarefa/';
+  static const String getAnswerByUserId = '${kUrl}respostas/usuario/';
+  static const String getResultByAnswerId = '${kUrl}resultados/resposta/';
 }

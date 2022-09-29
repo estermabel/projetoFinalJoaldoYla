@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
-    @Query(value = "SELECT * from tarefa inner join caso_teste on tarefa.id = caso_teste.tarefa_id where tarefa.id = :id", nativeQuery = true)
-    Optional<Tarefa> findById(Long id);
+    @Query("SELECT t FROM Tarefa t WHERE t.id=:id")
+    Optional<Tarefa> buscarTarefa(Long id);
 }
