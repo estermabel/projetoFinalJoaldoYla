@@ -28,6 +28,8 @@ public class CodeExecutor {
 
     private Object[] output;
 
+    private Object[] nomesTestes;
+
     private String saidaCodigoExecutado;
 
     @Builder.Default
@@ -72,7 +74,7 @@ public class CodeExecutor {
         }
 
         for (int i = 0; i < output.length; i++) {
-            Teste test = runTest(inputs[i].toString(), output[i].toString(), file);
+            Teste test = runTest(inputs[i].toString(), output[i].toString(), nomesTestes[i].toString(),file);
 
             result.getTest().add(test);
         }
@@ -82,7 +84,7 @@ public class CodeExecutor {
 
     }
 
-    public Teste runTest(String input, String output, File file) {
+    public Teste runTest(String input, String output, String nomeTeste, File file) {
         Teste test = new Teste();
 
         try {
@@ -93,6 +95,7 @@ public class CodeExecutor {
             } else {
                 test.setResultadoFinal(false);
             }
+            test.setNome(nomeTeste);
             test.setEntrada(input);
             test.setSaidaEsperada(output);
             test.setSaidaObtida(saidaCodigoExecutado);
