@@ -28,7 +28,7 @@ public class TarefaService {
     }
 
     public Optional<Tarefa> listarPorId(Long id) {
-        Optional<Tarefa> tarefa = tarefaRepository.findById(id);
+        Optional<Tarefa> tarefa = tarefaRepository.buscarTarefa(id);
         return tarefa;
     }
 
@@ -45,7 +45,7 @@ public class TarefaService {
     }
 
     public Tarefa atualizar(Long id, Tarefa tarefa){
-        return tarefaRepository.findById(id).map(
+        return tarefaRepository.buscarTarefa(id).map(
                 task -> {
                     task.setTitulo(tarefa.getTitulo());
                     task.setDescricao(tarefa.getDescricao());

@@ -13,22 +13,20 @@ public class RespostaRequestDto {
     private LocalDateTime dataEnvio;
     private Long usuarioId;
     private Long tarefaId;
-    private Long resultadoId;
 
     public RespostaRequestDto() {
     }
 
-    public RespostaRequestDto(String codigo, Long usuarioId, Long tarefaId, Long resultadoId) {
+    public RespostaRequestDto(String codigo, Long usuarioId, Long tarefaId) {
         this.codigo = codigo;
         this.dataEnvio = LocalDateTime.now();
         this.usuarioId = usuarioId;
         this.tarefaId = tarefaId;
-        this.resultadoId = resultadoId;
     }
 
     public Resposta toModel(UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Id de usuario não encontrado"));
-        Tarefa tarefa = tarefaRepository.findById(tarefaId).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrada"));
+        Tarefa tarefa = tarefaRepository.buscarTarefa(tarefaId).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrada"));
         return new Resposta(codigo, dataEnvio, usuario, tarefa);
     }
 
@@ -46,9 +44,5 @@ public class RespostaRequestDto {
 
     public Long getTarefaId() {
         return tarefaId;
-    }
-
-    public Long getResultadoId() {
-        return resultadoId;
     }
 }

@@ -31,8 +31,6 @@ public class Resposta implements Serializable {
     @Column(length = 5000)
     private String codigo;
 
-    private Double porcentagemAcerto;
-
     @NotNull
     @JsonFormat(pattern = "dd-MM-yyyy@HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataEnvio;
@@ -59,6 +57,5 @@ public class Resposta implements Serializable {
         this.dataEnvio = LocalDateTime.now();
         this.usuario = usuario;
         this.tarefa = tarefa;
-        this.porcentagemAcerto = 0.0;
     }
 }
