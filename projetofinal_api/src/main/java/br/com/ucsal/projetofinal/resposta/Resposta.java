@@ -46,7 +46,7 @@ public class Resposta implements Serializable {
     @OneToOne
     private Tarefa tarefa;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "resposta")
+    @OneToOne(mappedBy = "resposta")
     @Valid
     @JsonBackReference
     private Resultado resultado;
