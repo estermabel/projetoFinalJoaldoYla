@@ -5,6 +5,8 @@ class Answer {
   int? id;
   String? code;
   String? sendDate;
+  int? userId;
+  int? taskId;
   Usuario? user;
   Task? task;
 
@@ -12,7 +14,9 @@ class Answer {
     this.id,
     this.code,
     this.sendDate,
-    this.user,
+    this.userId,
+    this.taskId,
     this.task,
+    this.user,
   });
 }
