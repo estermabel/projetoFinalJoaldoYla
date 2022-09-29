@@ -46,7 +46,8 @@ public class Main {
                         "   System.out.println(total);" +
                         "   scanner.close();" +
                         "   }" +
-                        "}", "Programa.java", "",/*entradas do caso de teste*/new String[]{"1 2 3 4", "5 3 2", "2 5"},/*saida do caso de teste */new String[]{"10", "10", "5"});
+                        "}", "Programa.java", "",/*entradas do caso de teste*/new String[]{"1 2 3 4", "5 3 2", "2 5"},/*saida do caso de teste */new String[]{"10", "10", "5"}, new String[]{"teste 1", "teste 2", "teste 3"});
+
         System.out.println(tr4);
         /*OUTPUT É SAIDA ESPERADA*/
 

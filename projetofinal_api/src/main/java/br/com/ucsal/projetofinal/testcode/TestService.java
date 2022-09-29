@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestService {
 
-    public TestResult executetest(String codigo, String filename, String folder, Object[] inputs, Object[] outputs) {
+    public TestResult executetest(String codigo, String filename, String folder, Object[] inputs, Object[] outputs, Object[] nomesTestes) {
 
         CodeExecutor codeExecutor = CodeExecutor.builder().codigo(codigo).
                 compileCommand("javac").
@@ -16,6 +16,7 @@ public class TestService {
                 folder(folder)
                 .inputs(inputs)
                 .output(outputs)
+                .nomesTestes(nomesTestes)
                 .build();
 
         return codeExecutor.runTests();

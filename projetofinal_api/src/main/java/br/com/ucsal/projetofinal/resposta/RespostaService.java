@@ -69,16 +69,18 @@ public class RespostaService {
     }
 
     public Resultado gerarResultado(Resposta resposta) {
+        List<String> nomesTestes = new ArrayList<>();
         List<String> input = new ArrayList<>();
         List<String> output = new ArrayList<>();
 
 
         for (CasoTeste teste : resposta.getTarefa().getTestes()) {
+            nomesTestes.add(teste.getNomeTeste());
             input.add(teste.getEntrada());
             output.add(teste.getSaida());
         }
 
-        TestResult testResult = new TestService().executetest(resposta.getCodigo(), "Main.java", "", input.toArray(), output.toArray());
+        TestResult testResult = new TestService().executetest(resposta.getCodigo(), "Main.java", "", input.toArray(), output.toArray(), nomesTestes.toArray());
 
         List<Teste> testes = new ArrayList<>();
         Double percentagem = 0.0;
