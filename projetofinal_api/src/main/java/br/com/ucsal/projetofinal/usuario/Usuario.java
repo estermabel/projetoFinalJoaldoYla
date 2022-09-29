@@ -60,7 +60,6 @@ public class Usuario implements UserDetails, Serializable {
     @Valid
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "resposta_id")
     @JsonIgnore
     private List<Resposta> respostas = new ArrayList<>();
 
