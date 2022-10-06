@@ -1,6 +1,8 @@
 package br.com.ucsal.projetofinal.prova;
 
+import br.com.ucsal.projetofinal.itemProva.ItemProva;
 import br.com.ucsal.projetofinal.tarefa.Tarefa;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,18 +27,20 @@ public class Prova {
     @NotBlank
     private String nome;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(joinColumns = @JoinColumn(name = "prova_id"),
-            inverseJoinColumns = @JoinColumn(name = "tarefa_id")
-    )
-    private List<Tarefa> tarefas = new ArrayList<>();
+    @OneToMany(mappedBy = "prova", cascade = CascadeType.ALL)
+    private List<ItemProva> itens = new ArrayList<>();
 
     @JsonFormat(pattern = "dd-MM-yyyy@HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataEntrega;
 
-    public Prova(String nome, List<Tarefa> tarefas, LocalDateTime dataEntrega) {
+    public Prova(String nome, List<ItemProva> itens, LocalDateTime dataEntrega) {
         this.nome = nome;
-        this.tarefas = tarefas;
+        this.itens = itens;
         this.dataEntrega = dataEntrega;
+    }
+
+    public void adicionarItem(ItemProva item){
+        item.setProva(this);
+        this.itens.add(item);
     }
 }

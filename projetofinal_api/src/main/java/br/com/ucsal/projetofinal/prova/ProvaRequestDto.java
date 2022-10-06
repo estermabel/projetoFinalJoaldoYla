@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.prova;
 
+import br.com.ucsal.projetofinal.itemProva.ItemProva;
 import br.com.ucsal.projetofinal.tarefa.Tarefa;
 import br.com.ucsal.projetofinal.tarefa.TarefaRepository;
 
@@ -22,12 +23,19 @@ public class ProvaRequestDto {
     }
 
     public Prova toModel(TarefaRepository tarefaRepository) {
-        List<Tarefa> tarefasEncontradas = new ArrayList<>();
+        //List<Tarefa> tarefasEncontradas = new ArrayList<>();
+        Prova prova = new Prova();
+        prova.setNome(nome);
+        prova.setDataEntrega(dataEntrega);
+
+        int count = 1;
         for (Long idTarefa : tarefas) {
             Tarefa tarefa = tarefaRepository.buscarTarefa(idTarefa).orElseThrow(() -> new RuntimeException("Id de tarefa não encontrado"));
-            tarefasEncontradas.add(tarefa);
+            //tarefasEncontradas.add(tarefa);
+            prova.adicionarItem(new ItemProva(count++, prova, tarefa));
         }
-        return new Prova(nome, tarefasEncontradas, dataEntrega);
+
+        return prova;
     }
 
     public String getNome() {
