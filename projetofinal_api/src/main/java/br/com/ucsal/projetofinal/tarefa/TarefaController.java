@@ -25,6 +25,24 @@ public class TarefaController {
         return ResponseEntity.ok().body(tarefas);
     }
 
+    @GetMapping("/publicas/")
+    public ResponseEntity<List<Tarefa>> listarPublicas() {
+        List<Tarefa> tarefas = tarefaService.listarPublicas();
+        return ResponseEntity.ok().body(tarefas);
+    }
+
+    @GetMapping("/privadas/{idUsuario}")
+    public ResponseEntity<List<Tarefa>> listarPrivadas(@PathVariable Long idUsuario) {
+        List<Tarefa> tarefas = tarefaService.listarPrivadas(idUsuario);
+        return ResponseEntity.ok().body(tarefas);
+    }
+
+    @GetMapping("/protegidas/")
+    public ResponseEntity<List<Tarefa>> listarProtegidas() {
+        List<Tarefa> tarefas = tarefaService.listarProtegidas();
+        return ResponseEntity.ok().body(tarefas);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable Long id) {
         Optional<Tarefa> tarefa = tarefaService.listarPorId(id);

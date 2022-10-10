@@ -29,6 +29,18 @@ public class TarefaService {
         return tarefaRepository.findAll();
     }
 
+    public List<Tarefa> listarPublicas() {
+        return tarefaRepository.findAllByVisibilidadeEquals(0);
+    }
+
+    public List<Tarefa> listarPrivadas(Long idUsuario) {
+        return tarefaRepository.findPrivadas(idUsuario);
+    }
+
+    public List<Tarefa> listarProtegidas() {
+        return tarefaRepository.findAllByVisibilidadeEquals(1);
+    }
+
     public Optional<Tarefa> listarPorId(Long id) {
         Optional<Tarefa> tarefa = tarefaRepository.buscarTarefa(id);
         return tarefa;
@@ -57,4 +69,6 @@ public class TarefaService {
                 }
         ).orElse(null);
     }
+
+
 }

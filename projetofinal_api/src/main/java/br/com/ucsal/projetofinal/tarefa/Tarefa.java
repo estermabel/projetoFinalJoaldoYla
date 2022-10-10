@@ -37,6 +37,8 @@ public class Tarefa implements Serializable {
 
     private Integer status;
 
+    private Integer visibilidade;
+
     @Valid
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)
@@ -54,10 +56,11 @@ public class Tarefa implements Serializable {
     @NotNull
     private Usuario usuario;
 
-    public Tarefa(String titulo, String descricao, Integer status, List<CasoTeste> testes, Usuario usuario) {
+    public Tarefa(String titulo, String descricao, Integer status,Integer visibilidade, List<CasoTeste> testes, Usuario usuario) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.status = status;
+        this.visibilidade = visibilidade;
         this.testes = testes;
         this.usuario = usuario;
     }

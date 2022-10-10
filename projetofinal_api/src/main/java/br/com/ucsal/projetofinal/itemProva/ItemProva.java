@@ -29,9 +29,20 @@ public class ItemProva {
     @ManyToOne
     private Tarefa tarefa;
 
+    @OneToOne(mappedBy = "itemProva")
+    @JsonBackReference
+    private Resposta resposta;
+
     public ItemProva(Integer ordem, Prova prova, Tarefa tarefa) {
         this.ordem = ordem;
         this.prova = prova;
         this.tarefa = tarefa;
+    }
+
+    public ItemProva(Integer ordem, Prova prova, Tarefa tarefa, Resposta resposta) {
+        this.ordem = ordem;
+        this.prova = prova;
+        this.tarefa = tarefa;
+        this.resposta = resposta;
     }
 }
