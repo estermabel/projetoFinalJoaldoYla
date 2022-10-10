@@ -33,3 +33,5 @@ values ('2022-11-11 23:59:59', 'Prova final');
 
 INSERT INTO ITEM_PROVA(ORDEM, PROVA_ID, TAREFA_ID)
 values (1, 1, 1);
+
+

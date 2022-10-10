@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.resposta;
 
+import br.com.ucsal.projetofinal.itemProva.ItemProva;
 import br.com.ucsal.projetofinal.resultado.Resultado;
 import br.com.ucsal.projetofinal.tarefa.Tarefa;
 import br.com.ucsal.projetofinal.usuario.Usuario;
@@ -51,11 +52,24 @@ public class Resposta implements Serializable {
     @JsonBackReference
     private Resultado resultado;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_prova_id")
+    private ItemProva itemProva;
+
     public Resposta(String codigo, LocalDateTime dataEnvio, Usuario usuario, Tarefa tarefa) {
         this.codigo = codigo;
         this.dataEnvio = dataEnvio;
         this.dataEnvio = LocalDateTime.now();
         this.usuario = usuario;
         this.tarefa = tarefa;
+    }
+
+    public Resposta(String codigo, LocalDateTime dataEnvio, Usuario usuario, Tarefa tarefa, ItemProva itemProva) {
+        this.codigo = codigo;
+        this.dataEnvio = dataEnvio;
+        this.dataEnvio = LocalDateTime.now();
+        this.usuario = usuario;
+        this.tarefa = tarefa;
+        this.itemProva = itemProva;
     }
 }

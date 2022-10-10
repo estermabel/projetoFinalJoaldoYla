@@ -9,6 +9,7 @@ public class RespostaResponseDto {
     private LocalDateTime dataEnvio;
     private Long usuarioId;
     private Long tarefaId;
+    private Long itemProvaId;
 
     public RespostaResponseDto(Resposta resposta) {
         this.id = resposta.getId();
@@ -16,6 +17,8 @@ public class RespostaResponseDto {
         this.dataEnvio = resposta.getDataEnvio();
         this.usuarioId = resposta.getUsuario().getId();
         this.tarefaId = resposta.getTarefa().getId();
+        if(resposta.getItemProva() !=  null)
+            this.itemProvaId = resposta.getItemProva().getId();
     }
 
     public Long getId() {
@@ -36,5 +39,9 @@ public class RespostaResponseDto {
 
     public Long getTarefa() {
         return tarefaId;
+    }
+
+    public Long getItemProva() {
+        return itemProvaId;
     }
 }
