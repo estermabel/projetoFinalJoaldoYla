@@ -8,17 +8,22 @@ values('Admin'),
 ('Aluno'),
 ('Professor');
 
-INSERT INTO tarefa(descricao, status, titulo, usuario_id)
-values ('Digite numeros separados por espaço que a soma seja 10', 1, 'Até 10', 3),
-       ('Mostre a divisão entre dois numeros', 1, 'Divisão', 3);
+INSERT INTO tarefa(descricao, status, visibilidade, titulo, usuario_id)
+values ('Digite numeros separados por espaço que a soma seja 10', 0, 0, 'Até 10', 3),
+       ('Mostre a divisão entre dois numeros', 0, 1, 'Divisão', 3),
+       ('Mostre o inverso da palavra', 0, 2, 'Inverso', 3);
 
 INSERT INTO caso_teste(comparacao, entrada, flag_exibir, nome_teste, saida, tarefa_id)
 values (1, '1 2 3 4', true, 'Até 10', '10', 1),
        (2, '5 5', false, 'Até 10', '10', 1),
        (2, '7 1 1 1', true, 'Até 10', '10', 1),
-       (1, '4 2', true, 'teste 1', '2', 2),
-       (1, '10 0', true, 'divisão por 0', 'undefined', 2),
-       (1, '8 2', true, 'teste 2', '4', 2) ;
+       (1, '4 2', true, 'Teste 1', '2', 2),
+       (1, '10 0', true, 'Divisão por 0', 'undefined', 2),
+       (1, '8 2', true, 'Teste 2', '4', 2),
+       (1, 'oi', true, 'Teste 1', 'io', 3),
+       (1, 'casa', true, 'Teste 2', 'asac', 3),
+       (1, 'papel', false, 'Teste 3', 'lepap', 3),
+       (1, 'tomada', false, 'Teste 4', 'adamot', 3);
 
 INSERT INTO USUARIO_PERFIL(USUARIO_ID, PERFIL_ID)
 values (1, 1),(2, 2),(3, 3);

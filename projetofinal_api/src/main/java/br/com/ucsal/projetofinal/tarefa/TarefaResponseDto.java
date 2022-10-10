@@ -12,6 +12,7 @@ public class TarefaResponseDto {
     private String titulo;
     private String descricao;
     private Integer status;
+    private Integer visibilidade;
     private List<CasoTeste> testes;
     private Long usuarioId;
 
@@ -20,6 +21,7 @@ public class TarefaResponseDto {
         this.titulo = tarefa.getTitulo();
         this.descricao = tarefa.getDescricao();
         this.status = tarefa.getStatus();
+        this.visibilidade = tarefa.getVisibilidade();
         this.testes = tarefa.getTestes();
         this.usuarioId = tarefa.getUsuario().getId();
     }
@@ -37,6 +39,10 @@ public class TarefaResponseDto {
 
     public Integer getStatus() {
         return status;
+    }
+
+    public Integer getVisibilidade() {
+        return visibilidade;
     }
 
     public List<CasoTeste> getTestes() {

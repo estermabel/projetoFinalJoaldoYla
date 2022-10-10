@@ -9,12 +9,12 @@ import java.util.List;
 public class ProvaResponseDto {
 
     private String nome;
-    private List<ItemProva> itens;
+    private List<ItemProva> tarefas;
     private LocalDateTime dataEntrega;
 
     public ProvaResponseDto(Prova prova) {
         this.nome = prova.getNome();
-        this.itens = prova.getItens();
+        this.tarefas = prova.getItens();
         this.dataEntrega = prova.getDataEntrega();
     }
 
@@ -23,7 +23,7 @@ public class ProvaResponseDto {
     }
 
     public List<ItemProva> getItens() {
-        return itens;
+        return tarefas;
     }
 
     public LocalDateTime getDataEntrega() {
