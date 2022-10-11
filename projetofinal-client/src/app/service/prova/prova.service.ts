@@ -16,5 +16,9 @@ export class ProvaService extends GenericService {
 
   override save(prova: ProvaDTO): Observable<ProvaDTO> {
     return this.postMethod(prova, this.relativePath)
-}
+  }
+
+  override findAll(): Observable<Array<ProvaDTO>>{
+    return this.getMethod(this.relativePath);
+  }
 }
