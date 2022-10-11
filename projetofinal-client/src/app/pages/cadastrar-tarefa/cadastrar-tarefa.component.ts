@@ -42,6 +42,12 @@ export class CadastrarTarefaComponent implements OnInit {
     'acoes'
   ];
 
+  visibilidades = [
+    {value: 0, viewValue: "Pública"},
+    {value: 1, viewValue: "Privada"},
+    {value: 2, viewValue: "Protegida"},
+  ]
+
   comparacoes = [
     {value: 0, viewValue: "Igual"},
     {value: 1, viewValue: "Igual ignorando case sensitive"},
@@ -68,6 +74,7 @@ export class CadastrarTarefaComponent implements OnInit {
     let id  = this.accountService.getSubject()
     this.formularioTarefa= this.formBuilder.group({
       titulo: ['',Validators.required],
+      visibilidade: ['', Validators.required],
       descricao: ['', Validators.required]
     })
 

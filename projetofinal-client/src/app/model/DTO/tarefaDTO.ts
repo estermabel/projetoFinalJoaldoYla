@@ -6,6 +6,7 @@ export class TarefaDTO{
   titulo: string;
   descricao: string;
   status: number;
+  visibilidade: number;
   select: boolean;
 
   usuario: Usuario;
@@ -17,6 +18,7 @@ export class TarefaDTO{
     this.titulo = '',
     this.descricao = '',
     this.status = 0,
+    this.visibilidade = 0;
     this.select = false,
 
     this.usuario = new UsuarioDTO(),
