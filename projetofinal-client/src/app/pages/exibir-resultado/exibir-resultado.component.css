@@ -1,5 +1,5 @@
 .porcentagem{
-  font-size: 35px;
+  font-size: 25px;
   margin: auto;
 }
 
@@ -10,9 +10,37 @@
 .warn{
   color: #dbf549;
 }
-
 mat-card{
-  margin: 25px;
+  margin: 25px 0;
+}
+label{
+  /* margin: 10px 2px; */
+  cursor: pointer;
+}
+
+.card-resultado{
+  display: flex;
+  /* flex-direction: row;
+  flex-wrap: wrap; */
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.div-resultado{
+  border: 1px solid currentColor;
+  border-color: rgba(0,0,0,.12);
+  border-radius: 4px;
+  cursor: pointer;
+  width: 47%;
+  height: 45px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.label-result{
+  margin: 0px 5px;
 }
 
 .app-ace-editor {
@@ -27,6 +55,10 @@ mat-card{
 
 .iconResultado{
   font-size: 35px;
+}
+
+.iconResultado2{
+  margin: 0px 5px;
 }
 
 .iconResumo{
