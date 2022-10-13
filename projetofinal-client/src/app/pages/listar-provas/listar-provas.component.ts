@@ -1,7 +1,10 @@
+import { ProvaDTO } from './../../model/DTO/provaDTO';
 import { ProvaService } from './../../service/prova/prova.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Prova } from 'src/app/model/prova';
+import { Router } from '@angular/router';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 @Component({
   selector: 'app-listar-provas',
@@ -10,10 +13,12 @@ import { Prova } from 'src/app/model/prova';
 })
 export class ListarProvasComponent implements OnInit {
 
-  constructor(private provaService: ProvaService) { }
+  constructor(private provaService: ProvaService,
+    private router: Router,
+    @Inject(SESSION_STORAGE) private storage: StorageService ) { }
 
   provas = new MatTableDataSource<Prova>();
-  displayedColumns = ['nome'];
+  displayedColumns = ['nome', 'acoes'];
 
   ngOnInit(): void {
     this.provaService.findAll().subscribe((data: any[]) => {
@@ -22,4 +27,8 @@ export class ListarProvasComponent implements OnInit {
     });
   }
 
+  respoderProva(prova: Prova){
+    this.storage.set('prova', prova);
+    this.router.navigate(['prova'])
+  }
 }

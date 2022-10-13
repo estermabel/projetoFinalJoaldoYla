@@ -33,7 +33,12 @@ export class ListarTarefasComponent implements OnInit, AfterViewInit {
     @Inject(SESSION_STORAGE) private storage: StorageService ) { }
 
   ngOnInit(): void {
-    this.buscarTarefa();
+    if(this.accountService.isAluno()){
+      this.buscarTarefaAluno();
+    }else{
+      this.buscarTarefa();
+    }
+
   }
 
   ngAfterViewInit() {
@@ -47,6 +52,12 @@ export class ListarTarefasComponent implements OnInit, AfterViewInit {
 
   isProfessor():boolean{
     return this.accountService.isProfessor();
+  }
+
+  buscarTarefaAluno(){
+    this.tarefaService.listarPublicas().subscribe((data: any[]) => {
+      this.tarefas.data = data;
+    });
   }
 
   buscarTarefa(){

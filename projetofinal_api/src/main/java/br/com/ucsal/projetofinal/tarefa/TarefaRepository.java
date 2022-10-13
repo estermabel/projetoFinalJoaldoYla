@@ -14,4 +14,7 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
 
     @Query("SELECT t FROM Tarefa t WHERE t.visibilidade = 2 AND t.usuario.id= :idUsuario")
     List<Tarefa> findPrivadas(Long idUsuario);
+
+    @Query("SELECT t FROM Tarefa t WHERE t.visibilidade = 0 or t.visibilidade = 1 or t.visibilidade = 2 and t.usuario.id = :idUsuario")
+    List<Tarefa> findPublicasProtegidasPrivadas(Long idUsuario);
 }

@@ -39,6 +39,10 @@ public class TarefaService {
         return tarefaRepository.findAllByVisibilidadeEquals(1);
     }
 
+    public List<Tarefa> listaPublicasProtegidasPrivadas(Long idUsuario) {
+        return tarefaRepository.findPublicasProtegidasPrivadas(idUsuario);
+    }
+
     public Optional<Tarefa> listarPorId(Long id) {
         Optional<Tarefa> tarefa = tarefaRepository.buscarTarefa(id);
         return tarefa;

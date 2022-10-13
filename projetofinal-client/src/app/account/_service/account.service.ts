@@ -160,6 +160,14 @@ export class AccountService  {
       return false
   }
 
+  isAluno(): boolean{
+    const perfil = this.identityStorage.getIdentity().perfil;
+    if(perfil == 2)
+      return true
+    else
+      return false
+  }
+
   isTokenExpired(token?: string): boolean {
     if (!token) {
       return true;

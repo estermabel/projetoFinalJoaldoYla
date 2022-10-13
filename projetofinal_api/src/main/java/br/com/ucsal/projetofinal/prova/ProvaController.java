@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -25,8 +26,8 @@ public class ProvaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<Prova>> listarPorIdProva(@PathVariable Long id) {
-        List<Prova> provas = provaService.listarPorIdProva(id);
+    public ResponseEntity<Optional<Prova>> listarPorIdProva(@PathVariable Long id) {
+        Optional<Prova> provas = provaService.listarPorId(id);
         if (provas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

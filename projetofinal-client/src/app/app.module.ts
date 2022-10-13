@@ -33,6 +33,7 @@ import { CadastrarProvaComponent } from './pages/cadastrar-prova/cadastrar-prova
 import { ListarSubmissoesAlunosComponent } from './pages/listar-submissoes-alunos/listar-submissoes-alunos.component';
 import { DialogDetalharTesteComponent } from './pages/dialog-detalhar-teste/dialog-detalhar-teste.component';
 import { ListarProvasComponent } from './pages/listar-provas/listar-provas.component';
+import { DetalharProvaComponent } from './pages/detalhar-prova/detalhar-prova.component';
 
 
 registerLocaleData(localePt, 'pt');
@@ -58,7 +59,8 @@ registerLocaleData(localePt, 'pt');
     BarraProgressoComponent,
     ListarSubmissoesAlunosComponent,
     DialogDetalharTesteComponent,
-    ListarProvasComponent
+    ListarProvasComponent,
+    DetalharProvaComponent
   ],
   imports: [
     HttpClientModule,
