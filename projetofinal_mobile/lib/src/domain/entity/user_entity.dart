@@ -4,6 +4,7 @@ import 'package:projetofinal_mobile/src/service/model/usuario_model.dart';
 class UserEntity {
   int? id;
   String? name;
+
   String? user;
   bool? isActive;
   String? createdAt;

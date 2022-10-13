@@ -27,7 +27,9 @@ class TasksModule extends Module {
     Bind.lazySingleton((i) => GetUserIdUseCase()),
     Bind.lazySingleton((i) => GetAnswerResultUseCase()),
     Bind.lazySingleton(
-      (i) => TasksBloc(getTasksUseCase: i.get<GetTasksUseCase>()),
+      (i) => TasksBloc(
+        getTasksUseCase: i.get<GetTasksUseCase>(),
+      ),
     ),
     Bind.lazySingleton(
       (i) => TaskBloc(

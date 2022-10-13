@@ -10,7 +10,9 @@ import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
 import 'package:projetofinal_mobile/src/core/constants/string_constants.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 import 'package:projetofinal_mobile/src/domain/entity/answer_entity.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
+// ignore: depend_on_referenced_packages
 import 'package:highlight/languages/java.dart';
 import 'package:projetofinal_mobile/src/domain/entity/result_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/test_entity.dart';
@@ -38,6 +40,13 @@ class _AnswerPageState extends ModularState<AnswerPage, AnswerBloc> {
       language: java,
       theme: monokaiSublimeTheme,
     );
+  }
+
+  @override
+  void dispose() {
+    _codeController?.dispose();
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -73,11 +82,7 @@ class _AnswerPageState extends ModularState<AnswerPage, AnswerBloc> {
                     snapshot: snapshot,
                     context: context,
                     onDone: () {},
-                    onCompleted: Column(
-                      children: [
-                        ResultWidget(result: result),
-                      ],
-                    ),
+                    onCompleted: ResultWidget(result: result),
                   ).build;
                 },
               ),
@@ -208,7 +213,9 @@ class TestWidget extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Text(
-            '${S.current.textTest} ${index + 1}',
+            test?.name != null
+                ? '${index + 1}: ${test?.name}'
+                : '${S.current.textTest} ${index + 1}',
             style: TextStyles.subtitle1().copyWith(
               color: color,
               fontWeight: FontWeight.bold,

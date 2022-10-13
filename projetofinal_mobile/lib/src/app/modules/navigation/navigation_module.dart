@@ -1,4 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projetofinal_mobile/src/app/modules/profile/presenter/pages/profile_page.dart';
+import 'package:projetofinal_mobile/src/app/modules/profile/profile_module.dart';
+import 'package:projetofinal_mobile/src/app/modules/quizzes/presenter/pages/quizzes_page.dart';
+import 'package:projetofinal_mobile/src/app/modules/quizzes/quizzes_module.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/tasks_module.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_page.dart';
 import 'package:projetofinal_mobile/src/app/modules/navigation/bloc/navigation_bloc.dart';
@@ -22,8 +26,8 @@ class NavigationModule extends Module {
       child: (context, args) => const NavigationPage(),
       children: [
         ModuleRoute(TasksPage.route, module: TasksModule()),
-        // ModuleRoute(Quizzes.route, module: QuizzesModule()),
-        // ModuleRoute(ProfilePage.route, module: ProfileModule()),
+        ModuleRoute(QuizzesPage.route, module: QuizzesModule()),
+        ModuleRoute(ProfilePage.route, module: ProfileModule()),
       ],
     ),
   ];
