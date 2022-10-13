@@ -14,6 +14,7 @@ class ResponseGetUserById extends Usuario {
   }) : super(
           id: id,
           name: name,
+          user: user,
           isActive: isActive,
           createdAt: createdAt,
           updatedAt: updatedAt,
@@ -29,8 +30,9 @@ class ResponseGetUserById extends Usuario {
       isActive: json['flagAtivo'],
       createdAt: json['dataCriacao'],
       updatedAt: json['dataUltimoAcesso'],
-      profiles:
-          (json['perfil'] as List).map((i) => Perfil.fromJson(i)).toList(),
+      profiles: (json['perfil'] as List)
+          .map((i) => ResponseGetUserByIdPerfil.fromJson(i))
+          .toList(),
     );
   }
 }

@@ -24,20 +24,4 @@ class Teste {
     this.expectedOutput,
     this.obtainedOutput,
   });
-
-  factory Teste.fromJson(dynamic json) {
-    return Teste(
-      id: json['id'],
-      name: json['nomeTeste'],
-      input: json['entrada'],
-      output: json['saida'],
-      comparation: json['comparacao'],
-      isShow: json['flagExibir'],
-      executed: json['execute'],
-      isCorrect: json['resultadoFinal'],
-      exception: json['exception'],
-      expectedOutput: json['saidaEsperada'],
-      obtainedOutput: json['saidaObtida'],
-    );
-  }
 }

@@ -7,6 +7,7 @@ import 'package:projetofinal_mobile/src/components/config/safe_event.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_layout.dart';
 import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
 import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
+import 'package:projetofinal_mobile/src/components/widgets/safe_app_bar.dart';
 import 'package:projetofinal_mobile/src/core/constants/string_constants.dart';
 
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
@@ -30,56 +31,41 @@ class _TasksPageState extends ModularState<TasksPage, TasksBloc> {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      appBar: SafeAppBar(
+        title: S.of(context).textTasks,
+        onRefresh: () => controller.getTasks(),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 20,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    S.current.textTasks,
-                    style: TextStyles.headline1(
-                      color: SafeColors.generalColors.secondary,
-                    ),
+          child: StreamBuilder<SafeEvent<List<TaskEntity>>>(
+            stream: controller.getTasksController.stream,
+            builder: (context, snapshot) {
+              final tasks = snapshot.data?.data;
+              return SafeLayout(
+                snapshot: snapshot,
+                context: context,
+                onDone: () {},
+                onCompleted: Column(
+                  children: List.generate(
+                    tasks?.length ?? 0,
+                    (index) => TaskWidget(task: tasks?[index]),
                   ),
-                  GestureDetector(
-                    onTap: () => controller.getTasks(),
-                    child: Icon(
-                      Icons.refresh,
-                      color: SafeColors.generalColors.secondary,
-                      size: 30,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              StreamBuilder<SafeEvent<List<TaskEntity>>>(
-                stream: controller.getTasksController.stream,
-                builder: (context, snapshot) {
-                  final tasks = snapshot.data?.data;
-                  return SafeLayout(
-                    snapshot: snapshot,
-                    context: context,
-                    onDone: () {},
-                    onCompleted: Column(
-                      children: List.generate(
-                        tasks?.length ?? 0,
-                        (index) => TaskWidget(task: tasks?[index]),
-                      ),
-                    ),
-                  ).build;
-                },
-              ),
-            ],
+                ),
+              ).build;
+            },
           ),
         ),
       ),

@@ -104,7 +104,10 @@ class ResponseGetAnswerByUserIdTarefa extends Task {
       title: json['titulo'],
       description: json['descricao'],
       status: json['status'],
-      tests: json['testes'].map<Teste>((e) => Teste.fromJson(e)).toList(),
+      tests: json['testes']
+          .map<ResponseGetAnswerByUserIdTestes>(
+              (e) => ResponseGetAnswerByUserIdTestes.fromJson(e))
+          .toList(),
       user: ResponseGetAnswerByUserIdUsuario.fromJson(json['usuario']),
     );
   }
@@ -118,6 +121,11 @@ class ResponseGetAnswerByUserIdTestes extends Teste {
     String? output,
     int? comparation,
     bool? isShow,
+    bool? executed,
+    bool? isCorrect,
+    dynamic exception,
+    String? expectedOutput,
+    String? obtainedOutput,
   }) : super(
           id: id,
           name: name,
@@ -125,6 +133,11 @@ class ResponseGetAnswerByUserIdTestes extends Teste {
           output: output,
           comparation: comparation,
           isShow: isShow,
+          executed: executed,
+          isCorrect: isCorrect,
+          exception: exception,
+          expectedOutput: expectedOutput,
+          obtainedOutput: obtainedOutput,
         );
 
   factory ResponseGetAnswerByUserIdTestes.fromJson(dynamic json) {
@@ -135,6 +148,11 @@ class ResponseGetAnswerByUserIdTestes extends Teste {
       output: json['saida'],
       comparation: json['comparacao'],
       isShow: json['flagExibir'],
+      executed: json['execute'],
+      isCorrect: json['resultadoFinal'],
+      exception: json['exception'],
+      expectedOutput: json['saidaEsperada'],
+      obtainedOutput: json['saidaObtida'],
     );
   }
 }

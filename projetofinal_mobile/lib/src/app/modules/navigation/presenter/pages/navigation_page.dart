@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projetofinal_mobile/src/app/modules/profile/presenter/pages/profile_page.dart';
+import 'package:projetofinal_mobile/src/app/modules/quizzes/presenter/pages/quizzes_page.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_page.dart';
 import 'package:projetofinal_mobile/src/app/modules/navigation/bloc/navigation_bloc.dart';
 import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
@@ -50,16 +52,15 @@ class _NavigationPageState
   }
 
   void navigateToPage(int index) {
-    //TODO Encontrar maneira de dar dispose ao sair da tela
     if (index != _selectedPage) {
       if (index == 0) {
-        Modular.to.pushNamed(NavigationPage.route + TasksPage.route);
+        Modular.to.navigate(NavigationPage.route + TasksPage.route);
       }
       if (index == 1) {
-        Modular.to.pushNamed(NavigationPage.route + TasksPage.route);
+        Modular.to.navigate(NavigationPage.route + QuizzesPage.route);
       }
       if (index == 2) {
-        Modular.to.pushNamed(NavigationPage.route + TasksPage.route);
+        Modular.to.navigate(NavigationPage.route + ProfilePage.route);
       }
       _selectedPage = index;
       setState(() {});

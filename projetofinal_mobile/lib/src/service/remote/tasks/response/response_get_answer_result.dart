@@ -40,6 +40,7 @@ class ResponseGetAnswerResultTest extends Teste {
     String? input,
     String? expectedOutput,
     String? obtainedOutput,
+    String? name,
   }) : super(
           id: id,
           executed: executed,
@@ -48,11 +49,13 @@ class ResponseGetAnswerResultTest extends Teste {
           input: input,
           expectedOutput: expectedOutput,
           obtainedOutput: obtainedOutput,
+          name: name,
         );
 
   factory ResponseGetAnswerResultTest.fromJson(dynamic json) {
     return ResponseGetAnswerResultTest(
       id: json['id'],
+      name: json['nomeTeste'],
       executed: json['execute'],
       isCorrect: json['resultadoFinal'],
       exception: json['exception'],

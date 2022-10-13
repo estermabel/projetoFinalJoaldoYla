@@ -20,7 +20,6 @@ class TasksBloc extends SafeBloC {
   @override
   Future<void> init() async {
     getTasksController = StreamController.broadcast();
-
     getTasks();
   }
 
