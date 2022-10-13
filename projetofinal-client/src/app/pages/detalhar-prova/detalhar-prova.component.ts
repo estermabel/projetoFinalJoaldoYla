@@ -21,12 +21,14 @@ export class DetalharProvaComponent implements OnInit {
     private router: Router,
     @Inject(SESSION_STORAGE) private storage: StorageService) { }
 
+    dt= new Date()
   ngOnInit(): void {
-    this.tarefaService.findAll().subscribe(data =>{
+
+
+    this.prova = this.storage.get('prova')
+    this.tarefaService.listarPorIdProva(this.prova.id).subscribe(data =>{
       this.tarefas = data;
     });
-    this.prova = this.storage.get('prova')
-    console.log(this.prova);
   }
 
 }

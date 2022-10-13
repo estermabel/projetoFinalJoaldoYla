@@ -44,6 +44,10 @@ export class TarefaService extends GenericService {
   }
 
   listaPublicasProtegidasPrivadas(idUsuario: number):Observable<Array<Tarefa>>{
-    return this.getMethod(this.relativePath + "prova/"+idUsuario);
+    return this.getMethod(this.relativePath + "professor/"+idUsuario);
+  }
+
+  listarPorIdProva(idProva: number):Observable<Array<Tarefa>>{
+    return this.getMethod(this.relativePath + "prova/"+idProva);
   }
 }

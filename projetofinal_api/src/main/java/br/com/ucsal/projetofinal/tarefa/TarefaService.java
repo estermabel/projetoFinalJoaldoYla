@@ -43,6 +43,10 @@ public class TarefaService {
         return tarefaRepository.findPublicasProtegidasPrivadas(idUsuario);
     }
 
+    public List<Tarefa> listaPorIdProva(Long idProva) {
+        return tarefaRepository.findByProva(idProva);
+    }
+
     public Optional<Tarefa> listarPorId(Long id) {
         Optional<Tarefa> tarefa = tarefaRepository.buscarTarefa(id);
         return tarefa;
@@ -71,6 +75,7 @@ public class TarefaService {
                 }
         ).orElse(null);
     }
+
 
 
 }

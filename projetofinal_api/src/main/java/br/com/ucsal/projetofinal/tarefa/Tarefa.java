@@ -47,9 +47,9 @@ public class Tarefa implements Serializable {
     @JsonIgnore
     private List<CasoTeste> testes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "prova", cascade = CascadeType.ALL)
+    /*@OneToMany(mappedBy = "tarefa", cascade = CascadeType.ALL)
     @JsonBackReference
-    private List<ItemProva> itens = new ArrayList<>();
+    private List<ItemProva> itens = new ArrayList<>();*/
 
    /* @ManyToMany(mappedBy = "tarefas", fetch = FetchType.LAZY)
     @JsonBackReference
