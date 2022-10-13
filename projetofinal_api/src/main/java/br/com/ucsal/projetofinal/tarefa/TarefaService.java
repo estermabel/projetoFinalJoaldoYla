@@ -2,6 +2,8 @@ package br.com.ucsal.projetofinal.tarefa;
 
 import br.com.ucsal.projetofinal.casoteste.CasoTeste;
 import br.com.ucsal.projetofinal.casoteste.CasoTesteRepository;
+import br.com.ucsal.projetofinal.itemProva.ItemProva;
+import br.com.ucsal.projetofinal.itemProva.ItemProvaRespository;
 import br.com.ucsal.projetofinal.usuario.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +19,15 @@ public class TarefaService {
 
     private final UsuarioRepository usuarioRepository;
 
-    public TarefaService(TarefaRepository tarefaRepository, CasoTesteRepository casoTesteRepository, UsuarioRepository usuarioRepository) {
+    private final ItemProvaRespository itemProvaRespository;
+
+    public TarefaService(TarefaRepository tarefaRepository, CasoTesteRepository casoTesteRepository, UsuarioRepository usuarioRepository, ItemProvaRespository itemProvaRespository) {
         this.tarefaRepository = tarefaRepository;
         this.casoTesteRepository = casoTesteRepository;
         this.usuarioRepository = usuarioRepository;
+        this.itemProvaRespository = itemProvaRespository;
     }
+
 
     public List<Tarefa> listar() {
         return tarefaRepository.findAll();
@@ -43,8 +49,8 @@ public class TarefaService {
         return tarefaRepository.findPublicasProtegidasPrivadas(idUsuario);
     }
 
-    public List<Tarefa> listaPorIdProva(Long idProva) {
-        return tarefaRepository.findByProva(idProva);
+    public List<ItemProva> listaPorIdProva(Long idProva) {
+        return itemProvaRespository.findByProva(idProva);
     }
 
     public Optional<Tarefa> listarPorId(Long id) {

@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.tarefa;
 
+import br.com.ucsal.projetofinal.itemProva.ItemProva;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,8 +51,8 @@ public class TarefaController {
     }
 
     @GetMapping("/prova/{idProva}")
-    public ResponseEntity<List<Tarefa>> listaPorIdProva(@PathVariable Long idProva) {
-        List<Tarefa> tarefas = tarefaService.listaPorIdProva(idProva);
+    public ResponseEntity<List<ItemProva>> listaPorIdProva(@PathVariable Long idProva) {
+        List<ItemProva> tarefas = tarefaService.listaPorIdProva(idProva);
         return ResponseEntity.ok().body(tarefas);
     }
 
