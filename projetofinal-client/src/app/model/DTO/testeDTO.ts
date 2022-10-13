@@ -1,6 +1,7 @@
 export class TesteDTO{
+  nome: String;
   execute: boolean;
-  resultado: boolean;
+  resultadoFinal: boolean;
   exception: String;
   entrada: String;
   saidaEsperada: string;
@@ -9,8 +10,9 @@ export class TesteDTO{
   isMore: boolean;
 
   constructor(){
+    this.nome = "";
     this.execute = false;
-    this.resultado = false;
+    this.resultadoFinal = false;
     this.exception = "";
     this.entrada = "";
     this.saidaEsperada = "";

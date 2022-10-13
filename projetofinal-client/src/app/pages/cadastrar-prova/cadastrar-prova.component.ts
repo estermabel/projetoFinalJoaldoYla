@@ -8,6 +8,8 @@ import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { CasoTeste } from 'src/app/model/casoTeste';
+import { AccountService } from 'src/app/account/_service/account.service';
+import { Router } from '@angular/router';
 
 
 class TarefaProva{
@@ -28,6 +30,8 @@ export class CadastrarProvaComponent implements OnInit {
 
 
   constructor(private tarefaService: TarefaService,
+    private accountService: AccountService,
+    private router: Router,
     private provaService: ProvaService) { }
 
   @ViewChild(MatPaginator)
@@ -47,12 +51,11 @@ export class CadastrarProvaComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.tarefaService.findAll().subscribe((data: any[]) => {
+    let id = this.accountService.getSubject()
+    this.tarefaService.listaPublicasProtegidasPrivadas(id).subscribe((data: any[]) => {
       this.tarefas.data = data;
-      console.log(this.tarefas.data)
+      console.log(data)
     });
-
-
   }
 
   // ngAfterViewInit() {
@@ -77,7 +80,9 @@ export class CadastrarProvaComponent implements OnInit {
     //console.log(this.prova)
     this.provaService.save(this.prova).subscribe(data=>{
       console.log("Cadastrado com sucesso", data)
-    })
+    }
+    )
+    this.router.navigate(['provas']);
   }
 
 }

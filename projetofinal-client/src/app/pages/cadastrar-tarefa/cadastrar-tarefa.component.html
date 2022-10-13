@@ -10,6 +10,16 @@
             <input matInput class="input-form" [(ngModel)]="tarefa.titulo" id="titulo" type="text"  name="titulo" formControlName="titulo" />
           </mat-form-field>
       </p>
+
+      <p>
+        <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label>Visibilidade</mat-label>
+          <mat-select  [(ngModel)]="tarefa.visibilidade" formControlName="visibilidade">
+            <mat-option *ngFor="let v of visibilidades" [value]="v.value">{{v.viewValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+
       <p>
           <mat-form-field class="example-full-width" appearance="outline" >
             <mat-label>Descrição</mat-label>
@@ -72,7 +82,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <span class="text-danger center" *ngIf="casoTesteInvalido">
+    <span class="msg-erro center" *ngIf="casoTesteInvalido">
       Insira pelo menos um caso de teste visível para o aluno.
     </span>
     <div class="botao-wrapper center">

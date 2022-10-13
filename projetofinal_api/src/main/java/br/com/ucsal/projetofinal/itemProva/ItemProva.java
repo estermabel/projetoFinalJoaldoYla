@@ -23,7 +23,6 @@ public class ItemProva {
     private Integer ordem;
 
     @ManyToOne
-    @JsonBackReference
     private Prova prova;
 
     @ManyToOne

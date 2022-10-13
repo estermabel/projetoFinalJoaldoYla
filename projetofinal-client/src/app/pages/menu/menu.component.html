@@ -10,13 +10,17 @@
       </mat-menu>
     </div>
 
+    <button mat-button [matMenuTriggerFor]="provaMenu">Provas</button>
+    <mat-menu #provaMenu="matMenu" yPosition="below">
+      <button mat-menu-item (click)="listarProva()">Listar</button>
+      <button mat-menu-item (click)="cadastrarProva()">Cadastrar</button>
+    </mat-menu>
+
     <button mat-button [matMenuTriggerFor]="tarefaMenu" >Tarefas</button>
     <mat-menu #tarefaMenu="matMenu" yPosition="below">
       <button (click)="listarTarefas()" mat-menu-item>Listar</button>
       <button (click)="cadastrarTarefas()" mat-menu-item>Cadastrar</button>
     </mat-menu>
-
-    <button mat-button (click)="cadastrarProva()">Provas</button>
 
     <button mat-button (click)="listarSubmissoes()">Submissões</button>
 
@@ -34,6 +38,8 @@
 <!-- menu do aluno -->
 <ng-template #aluno>
   <mat-toolbar color="primary" >
+    <button mat-button (click)="listarProva()">Provas</button>
+
     <button mat-button (click)="listarTarefas()">Tarefas</button>
 
     <button mat-button (click)="listarSubmissoes()">Submissões</button>

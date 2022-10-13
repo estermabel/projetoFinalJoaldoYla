@@ -1,3 +1,5 @@
+import { DialogDetalharTesteComponent } from './../dialog-detalhar-teste/dialog-detalhar-teste.component';
+import { Teste } from './../../model/teste';
 import * as ace from "ace-builds";
 import { CasoTesteDTO } from './../../model/DTO/CasoTesteDTO';
 import { CasoTeste } from './../../model/casoTeste';
@@ -11,6 +13,7 @@ import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -37,6 +40,7 @@ export class ExibirResultadoComponent implements OnInit, AfterViewInit {
     private resultadoService: ResultadoService,
     private casoTesteService: CasoTesteService,
     private respostaService: RespostaService,
+    public dialog: MatDialog,
     private activatedRoute: ActivatedRoute
   ) {
     this.casoTeste = new CasoTesteDTO();
@@ -51,6 +55,7 @@ export class ExibirResultadoComponent implements OnInit, AfterViewInit {
 
     this.resultadoService.listarPorResposta(this.idResposta).subscribe((busca: Resultado) => {
       this.resultado = busca;
+      this.porcentagem = busca.porcentagem
       console.log(this.resultado);
     });
 
@@ -70,6 +75,12 @@ export class ExibirResultadoComponent implements OnInit, AfterViewInit {
     aceEditor.setReadOnly(true);
   }
 
-
+  detalhar(teste: Teste){
+    this.storage.set("resultado-detalhar", teste)
+    const dialogRef = this.dialog.open(DialogDetalharTesteComponent, {
+      width: '600px',
+      data: {teste2: teste}
+    });
+  }
 
 }

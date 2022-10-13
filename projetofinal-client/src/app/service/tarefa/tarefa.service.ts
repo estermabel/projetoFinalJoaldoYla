@@ -30,4 +30,24 @@ export class TarefaService extends GenericService {
   buscarCasosTestes(id: number): Observable<Tarefa>{
     return this.getMethod(this.relativePath + id);
   }
+
+  listarPublicas():Observable<Array<Tarefa>>{
+    return this.getMethod(this.relativePath + "publicas/");
+  }
+
+  listarPrivadas(idUsuario: number):Observable<Array<Tarefa>>{
+    return this.getMethod(this.relativePath + "privadas/"+idUsuario);
+  }
+
+  listarProtegidas():Observable<Array<Tarefa>>{
+    return this.getMethod(this.relativePath + "protegidas/");
+  }
+
+  listaPublicasProtegidasPrivadas(idUsuario: number):Observable<Array<Tarefa>>{
+    return this.getMethod(this.relativePath + "professor/"+idUsuario);
+  }
+
+  listarPorIdProva(idProva: number):Observable<Array<Tarefa>>{
+    return this.getMethod(this.relativePath + "prova/"+idProva);
+  }
 }

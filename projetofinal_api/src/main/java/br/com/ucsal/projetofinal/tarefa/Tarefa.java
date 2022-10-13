@@ -1,6 +1,7 @@
 package br.com.ucsal.projetofinal.tarefa;
 
 import br.com.ucsal.projetofinal.casoteste.CasoTeste;
+import br.com.ucsal.projetofinal.itemProva.ItemProva;
 import br.com.ucsal.projetofinal.prova.Prova;
 import br.com.ucsal.projetofinal.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -45,6 +46,10 @@ public class Tarefa implements Serializable {
     @JoinColumn(name = "tarefa_id")
     @JsonIgnore
     private List<CasoTeste> testes = new ArrayList<>();
+
+    /*@OneToMany(mappedBy = "tarefa", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<ItemProva> itens = new ArrayList<>();*/
 
    /* @ManyToMany(mappedBy = "tarefas", fetch = FetchType.LAZY)
     @JsonBackReference

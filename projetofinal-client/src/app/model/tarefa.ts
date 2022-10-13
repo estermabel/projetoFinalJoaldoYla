@@ -5,6 +5,7 @@ export interface Tarefa{
   titulo: string,
   descricao: string,
   status: number,
+  visibilidade: number;
   select: boolean,
   usuario: Usuario,
   usuarioId: number,

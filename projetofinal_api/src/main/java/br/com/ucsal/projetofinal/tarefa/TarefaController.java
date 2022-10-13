@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.tarefa;
 
+import br.com.ucsal.projetofinal.itemProva.ItemProva;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,18 @@ public class TarefaController {
     @GetMapping("/protegidas/")
     public ResponseEntity<List<Tarefa>> listarProtegidas() {
         List<Tarefa> tarefas = tarefaService.listarProtegidas();
+        return ResponseEntity.ok().body(tarefas);
+    }
+
+    @GetMapping("/professor/{idUsuario}")
+    public ResponseEntity<List<Tarefa>> listaPublicasProtegidasPrivadas(@PathVariable Long idUsuario) {
+        List<Tarefa> tarefas = tarefaService.listaPublicasProtegidasPrivadas(idUsuario);
+        return ResponseEntity.ok().body(tarefas);
+    }
+
+    @GetMapping("/prova/{idProva}")
+    public ResponseEntity<List<ItemProva>> listaPorIdProva(@PathVariable Long idProva) {
+        List<ItemProva> tarefas = tarefaService.listaPorIdProva(idProva);
         return ResponseEntity.ok().body(tarefas);
     }
 

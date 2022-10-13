@@ -5,31 +5,33 @@
     <mat-card >
       <mat-card-content >
         <div class="center">
-          <h1 class="porcentagem">{{resultado.porcentagem}}%</h1>
+          <h1 class="porcentagem">Você acertou {{resultado.porcentagem}}% dos casos de teste</h1>
         </div>
-        <div class="center">
-          <div class="resumo" *ngFor="let result of resultado.testes">
+        <app-barra-progresso [certo]="porcentagem" [errado]="100-porcentagem"></app-barra-progresso>
+
+        <!-- <div class="center">
+          <div class="resumo" *ngFor="let result of resultado.testes" (click)="detalhar(result)">
             <mat-icon *ngIf="result.resultadoFinal"   class="iconResumo accepted">check_circle_outline</mat-icon>
             <mat-icon *ngIf="!result.resultadoFinal" class="iconResumo"  color = "warn" >error_outline</mat-icon>
           </div>
-        </div>
+        </div> -->
+
       </mat-card-content>
     </mat-card>
   </div>
 
   <div class="codigo">
-    <mat-card >
-      <mat-card-content >
+    <!-- <mat-card >
+      <mat-card-content > -->
       <div class="app-ace-editor" #editor></div>
-      </mat-card-content>
-    </mat-card>
+      <!-- </mat-card-content>
+    </mat-card> -->
   </div>
 
-  <div *ngIf="resultado.compile">
-    <div *ngFor="let result of resultado.testes" >
+  <div *ngIf="resultado.compile" class="card-resultado">
+    <!-- <div *ngFor="let result of resultado.testes" >
       <mat-card >
         <mat-card-content>
-
           <div class="row lista-resultado" *ngIf="result.exception == null">
             <div class="col-md-1 d-flex  align-items-center">
               <div >
@@ -62,6 +64,12 @@
 
       </mat-card-content>
       </mat-card>
+    </div> -->
+    <!-- align-items-center -->
+    <div *ngFor="let result of resultado.testes" class="div-resultado" (click)="detalhar(result)">
+        <mat-icon *ngIf="result.resultadoFinal"  class="accepted iconResultado2">check_circle_outline</mat-icon>
+        <mat-icon  *ngIf="!result.resultadoFinal" class="iconResultado2" color = "warn">error_outline</mat-icon>
+        <label class="label-result">{{result.nome}}</label>
     </div>
   </div>
 

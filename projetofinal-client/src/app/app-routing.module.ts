@@ -1,3 +1,5 @@
+import { DetalharProvaComponent } from './pages/detalhar-prova/detalhar-prova.component';
+import { ListarProvasComponent } from './pages/listar-provas/listar-provas.component';
 import { ListarSubmissoesAlunosComponent } from './pages/listar-submissoes-alunos/listar-submissoes-alunos.component';
 import { CadastrarProvaComponent } from './pages/cadastrar-prova/cadastrar-prova.component';
 import { CadastrarAlunoComponent } from './pages/cadastrar-aluno/cadastrar-aluno.component';
@@ -32,6 +34,8 @@ const routes: Routes = [
     children:[
       { path: 'usuarios', component: ListarUsuariosComponent, canActivate: [AuthAdminGuard] },
       { path: 'tarefas', component: ListarTarefasComponent, canActivate: [AuthGuard] },
+      { path: 'provas', component: ListarProvasComponent, canActivate: [AuthGuard] },
+      { path: 'prova', component: DetalharProvaComponent, canActivate: [AuthGuard] },
       { path: 'resultado', component: ExibirResultadoComponent, canActivate: [AuthGuard] },
       { path: 'submissoes', component: ListarSubmissoesComponent, canActivate: [AuthGuard] },
       { path: 'submissoesAlunos', component: ListarSubmissoesAlunosComponent, canActivate: [AuthProfessorGuard] },

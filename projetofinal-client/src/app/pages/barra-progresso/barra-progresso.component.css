@@ -1,0 +1,26 @@
+.progress-bar{
+  height: 50px;
+  padding: 5px;
+  background-color: #ccc;
+
+}
+
+.conteudo{
+  display: flex;
+}
+
+.progresso{
+
+  height: 50px;
+  display: inline-block;
+}
+
+.progress-bar-certo{
+  transition: all .5s;
+  background-color: #36b80f;
+}
+
+.progress-bar-errado{
+  transition: all .5s;
+  background-color: #f44336;
+}

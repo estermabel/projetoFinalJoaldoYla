@@ -1,3 +1,4 @@
+import { BarraProgressoComponent } from './pages/barra-progresso/barra-progresso.component';
 import { httpInterceptorProviders } from './account/';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,6 +31,9 @@ import { ListarSubmissoesComponent } from './pages/listar-submissoes/listar-subm
 import { CadastrarAlunoComponent } from './pages/cadastrar-aluno/cadastrar-aluno.component';
 import { CadastrarProvaComponent } from './pages/cadastrar-prova/cadastrar-prova.component';
 import { ListarSubmissoesAlunosComponent } from './pages/listar-submissoes-alunos/listar-submissoes-alunos.component';
+import { DialogDetalharTesteComponent } from './pages/dialog-detalhar-teste/dialog-detalhar-teste.component';
+import { ListarProvasComponent } from './pages/listar-provas/listar-provas.component';
+import { DetalharProvaComponent } from './pages/detalhar-prova/detalhar-prova.component';
 
 
 registerLocaleData(localePt, 'pt');
@@ -52,7 +56,11 @@ registerLocaleData(localePt, 'pt');
     ListarSubmissoesComponent,
     CadastrarAlunoComponent,
     CadastrarProvaComponent,
-    ListarSubmissoesAlunosComponent
+    BarraProgressoComponent,
+    ListarSubmissoesAlunosComponent,
+    DialogDetalharTesteComponent,
+    ListarProvasComponent,
+    DetalharProvaComponent
   ],
   imports: [
     HttpClientModule,

@@ -27,7 +27,8 @@ public class Prova {
     @NotBlank
     private String nome;
 
-    @OneToMany(mappedBy = "prova", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "prova", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<ItemProva> itens = new ArrayList<>();
 
     @JsonFormat(pattern = "dd-MM-yyyy@HH:mm:ss", shape = JsonFormat.Shape.STRING)
