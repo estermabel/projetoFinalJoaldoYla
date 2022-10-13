@@ -104,10 +104,12 @@ class ResponseGetAnswerByUserIdTarefa extends Task {
       title: json['titulo'],
       description: json['descricao'],
       status: json['status'],
-      tests: json['testes']
-          .map<ResponseGetAnswerByUserIdTestes>(
-              (e) => ResponseGetAnswerByUserIdTestes.fromJson(e))
-          .toList(),
+      tests: json['testes'] != null
+          ? json['testes']
+              .map<ResponseGetAnswerByUserIdTestes>(
+                  (e) => ResponseGetAnswerByUserIdTestes.fromJson(e))
+              .toList()
+          : [],
       user: ResponseGetAnswerByUserIdUsuario.fromJson(json['usuario']),
     );
   }

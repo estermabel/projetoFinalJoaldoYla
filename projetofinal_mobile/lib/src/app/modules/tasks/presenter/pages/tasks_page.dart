@@ -90,6 +90,7 @@ class TaskWidget extends StatelessWidget {
       ),
       child: Container(
         height: MediaQuery.of(context).size.height * 0.2,
+        width: MediaQuery.of(context).size.width,
         margin: const EdgeInsets.only(bottom: 20),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(

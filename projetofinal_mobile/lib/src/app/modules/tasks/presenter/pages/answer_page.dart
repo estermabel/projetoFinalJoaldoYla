@@ -213,7 +213,9 @@ class TestWidget extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Text(
-            test?.name ?? '${S.current.textTest} ${index + 1}',
+            test?.name != null
+                ? '${index + 1}: ${test?.name}'
+                : '${S.current.textTest} ${index + 1}',
             style: TextStyles.subtitle1().copyWith(
               color: color,
               fontWeight: FontWeight.bold,

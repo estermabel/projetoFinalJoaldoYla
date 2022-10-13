@@ -55,7 +55,7 @@ class ResponseGetAnswerResultTest extends Teste {
   factory ResponseGetAnswerResultTest.fromJson(dynamic json) {
     return ResponseGetAnswerResultTest(
       id: json['id'],
-      name: json['nomeTeste'],
+      name: json['nome'],
       executed: json['execute'],
       isCorrect: json['resultadoFinal'],
       exception: json['exception'],
