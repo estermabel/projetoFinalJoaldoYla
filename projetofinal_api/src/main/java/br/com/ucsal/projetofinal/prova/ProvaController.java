@@ -1,5 +1,6 @@
 package br.com.ucsal.projetofinal.prova;
 
+import br.com.ucsal.projetofinal.itemProva.ItemProva;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,12 @@ public class ProvaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.ok().body(provas);
+    }
+
+    @GetMapping("/itemprova/{idProva}")
+    public ResponseEntity<?> listaPorIdProva(@PathVariable Long idProva) {
+        List<ItemProva> tarefas = provaService.listaPorIdProva(idProva);
+        return ResponseEntity.ok().body(tarefas);
     }
 
     @PostMapping("/")

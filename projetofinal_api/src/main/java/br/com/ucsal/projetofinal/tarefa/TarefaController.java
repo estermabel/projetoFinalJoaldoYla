@@ -50,12 +50,6 @@ public class TarefaController {
         return ResponseEntity.ok().body(tarefas);
     }
 
-    @GetMapping("/prova/{idProva}")
-    public ResponseEntity<List<ItemProva>> listaPorIdProva(@PathVariable Long idProva) {
-        List<ItemProva> tarefas = tarefaService.listaPorIdProva(idProva);
-        return ResponseEntity.ok().body(tarefas);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable Long id) {
         Optional<Tarefa> tarefa = tarefaService.listarPorId(id);

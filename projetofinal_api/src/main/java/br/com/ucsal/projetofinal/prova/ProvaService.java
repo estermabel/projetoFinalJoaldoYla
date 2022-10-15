@@ -1,6 +1,9 @@
 package br.com.ucsal.projetofinal.prova;
 
+import br.com.ucsal.projetofinal.itemProva.ItemProva;
+import br.com.ucsal.projetofinal.itemProva.ItemProvaRespository;
 import br.com.ucsal.projetofinal.tarefa.TarefaRepository;
+import br.com.ucsal.projetofinal.usuario.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +16,16 @@ public class ProvaService {
 
     private final TarefaRepository tarefaRepository;
 
-    public ProvaService(ProvaRepository provaRepository, TarefaRepository tarefaRepository) {
+    private final UsuarioRepository usuarioRepository;
+
+    private final ItemProvaRespository itemProvaRespository;
+
+    public ProvaService(ProvaRepository provaRepository, TarefaRepository tarefaRepository, UsuarioRepository usuarioRepository, ItemProvaRespository itemProvaRespository) {
         this.provaRepository = provaRepository;
         this.tarefaRepository = tarefaRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.itemProvaRespository = itemProvaRespository;
     }
-
 
     public List<Prova> listar() {
         return provaRepository.findAll();
@@ -31,8 +39,13 @@ public class ProvaService {
         return provaRepository.listarPorIdProva(id);
     }
 
+
+    public List<ItemProva> listaPorIdProva(Long idProva) {
+        return itemProvaRespository.findByProvaId(idProva);
+    }
+
     public Prova inserir(ProvaRequestDto provaRequestDto) {
-        Prova prova = provaRequestDto.toModel(tarefaRepository);
+        Prova prova = provaRequestDto.toModel(tarefaRepository, usuarioRepository);
         return provaRepository.save(prova);
     }
 }

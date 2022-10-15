@@ -2,8 +2,6 @@ package br.com.ucsal.projetofinal.tarefa;
 
 import br.com.ucsal.projetofinal.casoteste.CasoTeste;
 import br.com.ucsal.projetofinal.casoteste.CasoTesteRepository;
-import br.com.ucsal.projetofinal.itemProva.ItemProva;
-import br.com.ucsal.projetofinal.itemProva.ItemProvaRespository;
 import br.com.ucsal.projetofinal.usuario.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +19,10 @@ public class TarefaService {
 
     private final UsuarioRepository usuarioRepository;
 
-    private final ItemProvaRespository itemProvaRespository;
-
-    public TarefaService(TarefaRepository tarefaRepository, CasoTesteRepository casoTesteRepository, UsuarioRepository usuarioRepository, ItemProvaRespository itemProvaRespository) {
+    public TarefaService(TarefaRepository tarefaRepository, CasoTesteRepository casoTesteRepository, UsuarioRepository usuarioRepository) {
         this.tarefaRepository = tarefaRepository;
         this.casoTesteRepository = casoTesteRepository;
         this.usuarioRepository = usuarioRepository;
-        this.itemProvaRespository = itemProvaRespository;
     }
 
 
@@ -51,28 +46,24 @@ public class TarefaService {
         return tarefaRepository.findPublicasProtegidasPrivadas(idUsuario);
     }
 
-    public List<ItemProva> listaPorIdProva(Long idProva) {
-        return itemProvaRespository.findByProva(idProva);
-    }
-
     public Optional<Tarefa> listarPorId(Long id) {
         Optional<Tarefa> tarefa = tarefaRepository.buscarTarefa(id);
         return tarefa;
     }
 
-    public Tarefa inserir(TarefaRequestDto tarefaRequestDto) throws Exception{
+    public Tarefa inserir(TarefaRequestDto tarefaRequestDto) throws Exception {
         Tarefa tarefa = tarefaRequestDto.toModel(usuarioRepository);
-        for (CasoTeste teste: tarefa.getTestes()) { // zerar o id dos teste q vem como 0 do front
+        for (CasoTeste teste : tarefa.getTestes()) { // zerar o id dos teste q vem como 0 do front
             teste.setId(null);
         }
         if (tarefa.getTestes().isEmpty()) {
-            throw  new Exception("Nenhum caso de teste cadastrado");
+            throw new Exception("Nenhum caso de teste cadastrado");
         }
 
         return tarefaRepository.save(tarefa);
     }
 
-    public Tarefa atualizar(Long id, Tarefa tarefa){
+    public Tarefa atualizar(Long id, Tarefa tarefa) {
         return tarefaRepository.buscarTarefa(id).map(
                 task -> {
                     task.setTitulo(tarefa.getTitulo());
@@ -83,7 +74,4 @@ public class TarefaService {
                 }
         ).orElse(null);
     }
-
-
-
 }

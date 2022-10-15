@@ -10,12 +10,14 @@ public class ProvaResponseDto {
 
     private String nome;
     private List<ItemProva> tarefas;
-    private LocalDateTime dataEntrega;
+    private LocalDateTime dataInicial;
+    private LocalDateTime dataFinal;
 
     public ProvaResponseDto(Prova prova) {
         this.nome = prova.getNome();
         this.tarefas = prova.getItens();
-        this.dataEntrega = prova.getDataEntrega();
+        this.dataInicial = prova.getDataInicial();
+        this.dataFinal = prova.getDataFinal();
     }
 
     public String getNome() {
@@ -26,7 +28,15 @@ public class ProvaResponseDto {
         return tarefas;
     }
 
-    public LocalDateTime getDataEntrega() {
-        return dataEntrega;
+    public List<ItemProva> getTarefas() {
+        return tarefas;
+    }
+
+    public LocalDateTime getDataInicial() {
+        return dataInicial;
+    }
+
+    public LocalDateTime getDataFinal() {
+        return dataFinal;
     }
 }
