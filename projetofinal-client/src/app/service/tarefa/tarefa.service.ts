@@ -48,7 +48,5 @@ export class TarefaService extends GenericService {
     return this.getMethod(this.relativePath + "professor/"+idUsuario);
   }
 
-  listarPorIdProva(idProva: number):Observable<Array<ItemProva>>{
-    return this.getMethod(this.relativePath + "prova/"+idProva);
-  }
+
 }

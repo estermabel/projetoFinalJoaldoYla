@@ -28,7 +28,7 @@ export class DetalharProvaComponent implements OnInit {
 
 
     this.prova = this.storage.get('prova')
-    this.tarefaService.listarPorIdProva(this.prova.id).subscribe(data =>{
+    this.provaService.listarPorIdProva(this.prova.id).subscribe(data =>{
       this.itens = data;
     });
   }

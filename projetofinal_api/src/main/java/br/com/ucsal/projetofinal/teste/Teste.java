@@ -37,6 +37,10 @@ public class Teste {
     @Column(length = 110000)
     private String saidaObtida;
 
+    private boolean runtimeException;
+
+    private String exceptionSimplificada;
+
     @Valid
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "resultado_id")

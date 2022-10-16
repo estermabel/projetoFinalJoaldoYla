@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 @Getter
 @Builder
@@ -104,6 +101,18 @@ public class CodeExecutor {
             test.setExecute(false);
             return test;
         }
+        if(!test.getResultadoFinal()){
+            boolean isExcept = isException(test.getSaidaObtida());
+            test.setRuntimeException(isExcept);
+            if(isExcept){
+                Optional<ExceptionEnum> exceptionEnum = ExceptionEnum.getSaidaSimplificadaBySaida(test.getSaidaObtida());
+
+                if(exceptionEnum.isPresent()){
+                    //System.out.println(exceptionEnum.get().getSaidaSimplificada());
+                    test.setExceptionSimplificada(exceptionEnum.get().getSaidaSimplificada());
+                }
+            }
+        }
         return test;
     }
 
@@ -197,5 +206,12 @@ public class CodeExecutor {
         }
 
         return respostaDOCODIGO.toString().equals(output);
+    }
+
+    public static boolean isException(String value){
+        if(value.startsWith("Exception in thread \"main\"")){
+            return true;
+        }
+        return false;
     }
 }
