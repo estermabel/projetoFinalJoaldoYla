@@ -7,9 +7,6 @@ import 'package:projetofinal_mobile/src/service/config/error/error_exceptions.da
 
 ///A classe [ApiInterceptors] é responsável por gerenciar as intercepções da API
 class ApiInterceptors extends QueuedInterceptorsWrapper {
-  final Dio _dio;
-  ApiInterceptors(this._dio);
-
   @override
   Future onRequest(
     RequestOptions options,
@@ -55,7 +52,7 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
     return super.onError(err, handler);
   }
 
-  static Future<void> checkExpiration(Exception e) async {
+  static Future<void> checkExpiration(Object e) async {
     if (e is UnauthorizedException) await _doLogout();
   }
 

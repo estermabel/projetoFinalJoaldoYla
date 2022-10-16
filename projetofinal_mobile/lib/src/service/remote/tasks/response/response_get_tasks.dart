@@ -26,9 +26,11 @@ class ResponseGetTasks extends Task {
       title: json["titulo"],
       description: json["descricao"],
       status: json["status"],
-      tests: (json["testes"] as List)
-          .map((i) => ResponseGetTasksTestes.fromJson(i))
-          .toList(),
+      tests: json["testes"] != null
+          ? (json["testes"] as List)
+              .map((i) => ResponseGetTasksTestes.fromJson(i))
+              .toList()
+          : [],
       user: ResponseGetTasksUsuario.fromJson(json["usuario"]),
     );
   }

@@ -12,7 +12,6 @@ class GetTasksUseCase implements SafeUseCase {
 
   Future<List<TaskEntity>> call() async {
     final response = await _service.getTasks();
-
     return response.map((e) => TaskEntity.toEntity(e)).toList();
   }
 }

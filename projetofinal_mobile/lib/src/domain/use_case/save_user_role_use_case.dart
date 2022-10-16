@@ -16,13 +16,13 @@ class SaveUserRoleUseCase extends SafeUseCase {
     String role = StringConstants.empty;
     switch (value) {
       case 'Admin':
-        role = ProfileEnum.admin.value;
+        role = RoleEnum.admin.value;
         break;
       case 'Aluno':
-        role = ProfileEnum.student.value;
+        role = RoleEnum.student.value;
         break;
       case 'Professor':
-        role = ProfileEnum.teacher.value;
+        role = RoleEnum.teacher.value;
         break;
       default:
         role = 'None';

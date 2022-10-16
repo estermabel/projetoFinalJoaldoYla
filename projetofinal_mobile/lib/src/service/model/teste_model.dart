@@ -5,6 +5,11 @@ class Teste {
   String? output;
   int? comparation;
   bool? isShow;
+  bool? executed;
+  bool? isCorrect;
+  dynamic exception;
+  String? expectedOutput;
+  String? obtainedOutput;
 
   Teste({
     this.id,
@@ -13,16 +18,10 @@ class Teste {
     this.output,
     this.comparation,
     this.isShow,
+    this.executed,
+    this.isCorrect,
+    this.exception,
+    this.expectedOutput,
+    this.obtainedOutput,
   });
-
-  factory Teste.fromJson(dynamic json) {
-    return Teste(
-      id: json['id'],
-      name: json['nomeTeste'],
-      input: json['entrada'],
-      output: json['saida'],
-      comparation: json['comparacao'],
-      isShow: json['flagExibir'],
-    );
-  }
 }

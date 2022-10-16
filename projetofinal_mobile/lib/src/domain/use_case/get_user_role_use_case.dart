@@ -12,20 +12,20 @@ class GetUserRoleUseCase implements SafeUseCase {
     _sharedPreferences = Modular.get<SharedPreferencesService>();
   }
 
-  Future<ProfileEnum> call() async {
+  Future<RoleEnum> call() async {
     try {
       final response = await _sharedPreferences.readUserRole();
       switch (response) {
         case 'Admin':
-          return ProfileEnum.admin;
+          return RoleEnum.admin;
         case 'Aluno':
-          return ProfileEnum.student;
+          return RoleEnum.student;
         case 'Professor':
-          return ProfileEnum.teacher;
+          return RoleEnum.teacher;
       }
     } catch (e) {
       SafeLogUtil.instance.logError(e);
     }
-    return ProfileEnum.none;
+    return RoleEnum.none;
   }
 }

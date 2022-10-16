@@ -5,18 +5,18 @@ import 'package:projetofinal_mobile/src/service/remote/auth/auth_service.dart';
 import 'package:projetofinal_mobile/src/service/remote/auth/auth_service_interface.dart';
 import 'package:projetofinal_mobile/src/service/remote/auth/request/request_register.dart';
 
-enum ProfileEnum { admin, student, teacher, none }
+enum RoleEnum { admin, student, teacher, none }
 
-extension ProfileEnumExtension on ProfileEnum {
+extension RoleEnumExtension on RoleEnum {
   String get value {
     switch (this) {
-      case ProfileEnum.admin:
+      case RoleEnum.admin:
         return 'Admin';
-      case ProfileEnum.student:
+      case RoleEnum.student:
         return 'Aluno';
-      case ProfileEnum.teacher:
+      case RoleEnum.teacher:
         return 'Professor';
-      case ProfileEnum.none:
+      case RoleEnum.none:
         return 'none';
     }
   }
@@ -34,7 +34,7 @@ class DoRegisterAdminUseCase extends SafeUseCase {
     required String username,
     required String password,
     bool isActive = true,
-    ProfileEnum profile = ProfileEnum.student,
+    RoleEnum profile = RoleEnum.student,
   }) async {
     final request = RequestRegisterAdmin(
       name: name.trim(),

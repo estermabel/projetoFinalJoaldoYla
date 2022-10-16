@@ -11,8 +11,11 @@ class GetAnswersUseCase implements SafeUseCase {
   }
 
   Future<List<AnswerEntity>> call({required int? taskId}) async {
-    final response = await _service.getAnswersByTaskId(taskId!);
+    if (taskId != null) {
+      final response = await _service.getAnswersByTaskId(taskId);
 
-    return response.map((e) => AnswerEntity.toEntity(e)).toList();
+      return response.map((e) => AnswerEntity.toEntity(e)).toList();
+    }
+    return [];
   }
 }

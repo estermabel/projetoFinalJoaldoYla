@@ -18,17 +18,4 @@ class Usuario {
     this.updatedAt,
     this.profiles,
   });
-
-  factory Usuario.fromJson(dynamic json) {
-    return Usuario(
-      id: json['id'],
-      name: json['nome'],
-      user: json['login'],
-      isActive: json['flagAtivo'],
-      createdAt: json['dataCriacao'],
-      updatedAt: json['dataUltimoAcesso'],
-      profiles:
-          (json['perfil'] as List).map((i) => Perfil.fromJson(i)).toList(),
-    );
-  }
 }

@@ -9,4 +9,5 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
 
     @Query(value = "SELECT * FROM PROVA JOIN PROVA_TAREFAS WHERE PROVA_ID = :id", nativeQuery = true)
     List<Prova> listarPorIdProva(Long id);
+
 }
