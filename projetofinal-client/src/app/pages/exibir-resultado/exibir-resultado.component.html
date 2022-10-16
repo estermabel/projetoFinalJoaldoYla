@@ -68,7 +68,8 @@
     <!-- align-items-center -->
     <div *ngFor="let result of resultado.testes" class="div-resultado" (click)="detalhar(result)">
         <mat-icon *ngIf="result.resultadoFinal"  class="accepted iconResultado2">check_circle_outline</mat-icon>
-        <mat-icon  *ngIf="!result.resultadoFinal" class="iconResultado2" color = "warn">error_outline</mat-icon>
+        <mat-icon  *ngIf="!result.resultadoFinal && !result.runtimeException" class="iconResultado2" color = "warn">error_outline</mat-icon>
+        <mat-icon  *ngIf="result.runtimeException" class="iconResultado2 exception">error_outline</mat-icon>
         <label class="label-result">{{result.nome}}</label>
     </div>
   </div>

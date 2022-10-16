@@ -7,6 +7,8 @@ export interface Teste{
   entrada: String;
   saidaEsperada: string;
   saidaObtida: string;
+  runtimeException: boolean;
+  exceptionSimplificada: String;
 
   isMore: boolean;
 }

@@ -7,8 +7,8 @@
   color: #36b80f;
 }
 
-.warn{
-  color: #dbf549;
+.exception{
+  color: rgb(255, 205, 21);
 }
 mat-card{
   margin: 25px 0;
