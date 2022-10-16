@@ -1,3 +1,4 @@
+import { ItemProva } from './../../model/itemProva';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -47,7 +48,7 @@ export class TarefaService extends GenericService {
     return this.getMethod(this.relativePath + "professor/"+idUsuario);
   }
 
-  listarPorIdProva(idProva: number):Observable<Array<Tarefa>>{
+  listarPorIdProva(idProva: number):Observable<Array<ItemProva>>{
     return this.getMethod(this.relativePath + "prova/"+idProva);
   }
 }

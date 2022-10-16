@@ -51,19 +51,20 @@ export class LoginComponent implements OnInit {
       }, (error)=>{
         console.error("Erro ao fazer login", error);
         this.mensagemErro = "Login ou Senha Inválidos";
-      },()=>{
-        this.blockUI.stop();
-        this.router.navigate(['tarefas']);
       }
+      // ,()=>{
+      //   this.blockUI.stop();
+      //   this.router.navigate(['tarefas']);
+      // }
       )
     }else{
       this.mensagemErro = "Preencha todos os campos";
     }
 
-    // setTimeout(() =>{
-    //   this.blockUI.stop();
-    //   this.router.navigate(['tarefas']);
-    // },1500);
+    setTimeout(() =>{
+      this.blockUI.stop();
+      this.router.navigate(['tarefas']);
+    },1500);
 
   }
 
