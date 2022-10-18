@@ -1,6 +1,10 @@
+.porcentagemResultado{
+  margin: 25px 0px;
+}
+
 .porcentagem{
   font-size: 25px;
-  margin: auto;
+  margin: 10px auto;
 }
 
 .accepted{

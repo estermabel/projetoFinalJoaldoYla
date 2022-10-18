@@ -1,7 +1,7 @@
 
 <div [class]="divResult">
   <mat-icon    class="iconResumo accepted" *ngIf="result.resultadoFinal">check_circle_outline</mat-icon>
-  <mat-icon   class="iconResumo wrong" *ngIf="!result.resultadoFinal && !result.runtimeException">error_outline</mat-icon>
+  <mat-icon   class="iconResumo wrong" *ngIf="!result.resultadoFinal && !result.runtimeException">highlight_off</mat-icon>
   <mat-icon   class="iconResumo exception" *ngIf="result.runtimeException">error_outline</mat-icon>
   <h2 mat-dialog-title [class]="h2Result">{{result.nome}}</h2>
 
