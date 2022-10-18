@@ -102,18 +102,28 @@ public class CodeExecutor {
             return test;
         }
         if(!test.getResultadoFinal()){
-            boolean isExcept = isException(test.getSaidaObtida());
-            test.setRuntimeException(isExcept);
-            if(isExcept){
-                Optional<ExceptionEnum> exceptionEnum = ExceptionEnum.getSaidaSimplificadaBySaida(test.getSaidaObtida());
-
-                if(exceptionEnum.isPresent()){
-                    //System.out.println(exceptionEnum.get().getSaidaSimplificada());
-                    test.setExceptionSimplificada(exceptionEnum.get().getSaidaSimplificada());
-                }
-            }
+            test.setExceptionSimplificada(gerarMensagem(test));
         }
         return test;
+    }
+
+    private String gerarMensagem(Teste test){
+        String msg = "";
+        String saidaObtida = test.getSaidaObtida();
+        boolean isExcept = isException(saidaObtida);
+        test.setRuntimeException(isExcept);
+        if(isExcept){
+            Optional<ExceptionEnum> exceptionEnum = ExceptionEnum.getSaidaSimplificadaBySaida(saidaObtida);
+
+            if(exceptionEnum.isPresent()){
+                msg += exceptionEnum.get().getSaidaSimplificada();
+                int inicio = saidaObtida.lastIndexOf("Main.java:");
+                int fim = saidaObtida.lastIndexOf(")");
+                String linha = saidaObtida.substring(inicio+10, fim);
+                msg += "\n\nVerificar linha: " + linha;
+            }
+        }
+        return msg;
     }
 
     private File create() throws IOException {
@@ -209,7 +219,7 @@ public class CodeExecutor {
     }
 
     public static boolean isException(String value){
-        if(value.startsWith("Exception in thread \"main\"")){
+        if(value.contains("Exception in thread \"main\"")){
             return true;
         }
         return false;

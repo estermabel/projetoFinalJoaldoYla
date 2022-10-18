@@ -2,8 +2,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-System.out.println("io");
-
+    int[] a = new int[3];
+    System.out.println(a[3]);
     }
 
   }
