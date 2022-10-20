@@ -1,3 +1,6 @@
+import { Resposta2 } from './../../model/Resposta';
+import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
+import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 
 import { AccountService } from 'src/app/account/_service/account.service';
 import { RespostaService } from './../../service/resposta/resposta.service';
@@ -8,6 +11,7 @@ import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-listar-submissoes',
@@ -27,8 +31,8 @@ export class ListarSubmissoesComponent implements OnInit, AfterViewInit {
     @Inject(SESSION_STORAGE) private storage: StorageService,
   ) { }
 
-  respostas=  new MatTableDataSource<RespostaDTO>();
-  teste: Array<RespostaDTO>  = []
+  respostas=  new MatTableDataSource<Resposta2>();
+  teste: Array<Resposta2>  = []
 
   displayedColumns = [
     'atividade',
@@ -41,9 +45,9 @@ export class ListarSubmissoesComponent implements OnInit, AfterViewInit {
     let user = this.accountService.getSubject()
     this.respostaService.listarPorUsuario(user).subscribe((data) => {
       this.respostas.data=data
-      this.teste = data
       //console.log(this.respostas.data)
-  })
+    })
+
   }
 
   ngAfterViewInit() {
