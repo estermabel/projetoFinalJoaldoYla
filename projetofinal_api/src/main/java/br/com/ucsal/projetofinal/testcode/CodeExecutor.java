@@ -3,7 +3,8 @@ package br.com.ucsal.projetofinal.testcode;
 import br.com.ucsal.projetofinal.teste.Teste;
 import lombok.Builder;
 import lombok.Getter;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.*;
 import java.util.*;
 
@@ -85,13 +86,9 @@ public class CodeExecutor {
         Teste test = new Teste();
 
         try {
-            Boolean isOK = execute(file, input, output);
+            boolean isOK = execute(file, input, output);
             test.setExecute(true);
-            if (isOK) {
-                test.setResultadoFinal(true);
-            } else {
-                test.setResultadoFinal(false);
-            }
+            test.setResultadoFinal(isOK);
             test.setNome(nomeTeste);
             test.setEntrada(input);
             test.setSaidaEsperada(output);
@@ -108,6 +105,7 @@ public class CodeExecutor {
     }
 
     private String gerarMensagem(Teste test){
+        //    \(Main\.java:([^(\)]*?)\)
         String msg = "";
         String saidaObtida = test.getSaidaObtida();
         boolean isExcept = isException(saidaObtida);
@@ -117,10 +115,19 @@ public class CodeExecutor {
 
             if(exceptionEnum.isPresent()){
                 msg += exceptionEnum.get().getSaidaSimplificada();
-                int inicio = saidaObtida.lastIndexOf("Main.java:");
-                int fim = saidaObtida.lastIndexOf(")");
-                String linha = saidaObtida.substring(inicio+10, fim);
-                msg += "\n\nVerificar linha: " + linha;
+//                int inicio = saidaObtida.lastIndexOf("Main.java:");
+//                int fim = saidaObtida.lastIndexOf(")");
+//                String linha = saidaObtida.substring(inicio+10, fim);
+
+                String rgx = "\\(Main\\.java:([^()]*?)\\)";
+                Pattern p = Pattern.compile(rgx);
+                Matcher m = p.matcher(saidaObtida);
+                List<String> allMatches = new ArrayList<>();
+
+                while (m.find()) {
+                    allMatches.add(m.group(1));
+                }
+                msg += "\n\nVerificar linha(s): "+ allMatches.toString().replaceAll("[\\[\\]]", "");
             }
         }
         return msg;
@@ -219,9 +226,6 @@ public class CodeExecutor {
     }
 
     public static boolean isException(String value){
-        if(value.contains("Exception in thread \"main\"")){
-            return true;
-        }
-        return false;
+        return value.contains("Exception in thread \"main\"");
     }
 }
