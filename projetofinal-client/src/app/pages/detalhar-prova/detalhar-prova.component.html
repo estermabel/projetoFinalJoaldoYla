@@ -6,8 +6,8 @@
 <div class="container">
   <mat-nav-list>
     <mat-divider></mat-divider>
-    <div *ngFor="let tarefa of tarefas">
-    <a mat-list-item> {{ tarefa.titulo }} </a>
+    <div *ngFor="let item of itens">
+      <a mat-list-item (click)="responder(item)"> {{ item.tarefa.titulo }} </a>
     <mat-divider></mat-divider>
     </div>
   </mat-nav-list>

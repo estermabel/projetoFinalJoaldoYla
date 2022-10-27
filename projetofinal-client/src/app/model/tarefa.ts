@@ -1,3 +1,4 @@
+import { ItemProva } from './itemProva';
 import { CasoTeste } from './casoTeste';
 import { Usuario } from './usuario';
 export interface Tarefa{

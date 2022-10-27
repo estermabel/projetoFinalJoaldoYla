@@ -1,7 +1,8 @@
 
 <div [class]="divResult">
   <mat-icon    class="iconResumo accepted" *ngIf="result.resultadoFinal">check_circle_outline</mat-icon>
-  <mat-icon   class="iconResumo wrong" *ngIf="!result.resultadoFinal">error_outline</mat-icon>
+  <mat-icon   class="iconResumo wrong" *ngIf="!result.resultadoFinal && !result.runtimeException">highlight_off</mat-icon>
+  <mat-icon   class="iconResumo exception" *ngIf="result.runtimeException">error_outline</mat-icon>
   <h2 mat-dialog-title [class]="h2Result">{{result.nome}}</h2>
 
   <!-- <h2 mat-dialog-title class="errado" *ngIf="!result.resultadoFinal" >
@@ -25,8 +26,14 @@
       </div>
 
       <div>
-        <label>Porém, seu programa imprimiu:</label>
+        <label *ngIf="!result.runtimeException">Porém, seu programa imprimiu:</label>
+        <label *ngIf="result.runtimeException">Porém, seu programa gerou uma exceção:</label>
         <div class="div-resultado">{{result.saidaObtida}}</div>
+      </div>
+
+      <div *ngIf="result.runtimeException && result.exceptionSimplificada!= null">
+        <label>Isso pode significar:</label>
+        <div class="div-resultado">{{result.exceptionSimplificada}}</div>
       </div>
     </div>
 

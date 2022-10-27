@@ -35,8 +35,8 @@ public class RespostaController {
     }
 
     @GetMapping("/usuario/{id}")
-    public ResponseEntity<List<Resposta>> listarPorIdUsuario(@PathVariable Long id) {
-        List<Resposta> respostas = respostaService.listarPorIdUsuario(id);
+    public ResponseEntity<List<RespostaPorcentagemResponseDTO>> listarPorIdUsuario(@PathVariable Long id) {
+        List<RespostaPorcentagemResponseDTO> respostas = respostaService.listarPorIdUsuario(id);
         if (respostas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

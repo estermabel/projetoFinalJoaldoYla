@@ -4,6 +4,7 @@ import br.com.ucsal.projetofinal.casoteste.CasoTeste;
 import br.com.ucsal.projetofinal.itemProva.ItemProvaRespository;
 import br.com.ucsal.projetofinal.resultado.Resultado;
 import br.com.ucsal.projetofinal.resultado.ResultadoRepository;
+import br.com.ucsal.projetofinal.tarefa.Tarefa;
 import br.com.ucsal.projetofinal.tarefa.TarefaRepository;
 import br.com.ucsal.projetofinal.testcode.TestResult;
 import br.com.ucsal.projetofinal.testcode.TestService;
@@ -41,18 +42,25 @@ public class RespostaService {
         return resposta;
     }
 
-    public List<Resposta> listarPorIdUsuario(Long id) {
-        return respostaRepository.findByUsuarioId(id);
+    public List<RespostaPorcentagemResponseDTO> listarPorIdUsuario(Long id) {
+        List<RespostaPorcentagemResponseDTO> respostas = respostaRepository.findByUsuarioId(id);
+        /*for (RespostaPorcentagemResponseDTO r: respostas) {
+            Optional<Tarefa> tarefa = tarefaRepository.findById(r.getTarefaId());
+            r.setTarefa(tarefa.get());
+            //respostas.add(r);
+        }*/
+
+        return respostas;
     }
 
     public List<RespostaPorcentagemResponseDTO> listarPorIdTarefa(Long id) {
-        List<RespostaPorcentagemResponseDTO> listaRetornada = new ArrayList<>();
-        for (Resposta resposta : respostaRepository.findByTarefaId(id)) {
+        List<RespostaPorcentagemResponseDTO> listaRetornada = respostaRepository.findByTarefaId(id);
+        /*for (Resposta resposta : respostaRepository.findByTarefaId(id)) {
             RespostaPorcentagemResponseDTO response = new RespostaPorcentagemResponseDTO(resposta);
             Resultado resultado = resultadoRepository.findByRespostaId(resposta.getId());
             response.setPorcentagemAcerto(resultado.getPorcentagem());
             listaRetornada.add(response);
-        }
+        }*/
         return listaRetornada;
     }
 

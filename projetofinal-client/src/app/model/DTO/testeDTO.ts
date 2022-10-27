@@ -6,6 +6,8 @@ export class TesteDTO{
   entrada: String;
   saidaEsperada: string;
   saidaObtida: string;
+  runtimeException: boolean;
+  exceptionSimplificada: String;
 
   isMore: boolean;
 
@@ -17,6 +19,8 @@ export class TesteDTO{
     this.entrada = "";
     this.saidaEsperada = "";
     this.saidaObtida = "";
+    this.runtimeException = false;
+    this.exceptionSimplificada= "";
 
     this.isMore = false;
   }

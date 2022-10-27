@@ -1,10 +1,11 @@
+import { ItemProvaDTO } from './../../model/DTO/ItemProvaDTO';
 import { UsuarioDTO } from './../../model/DTO/usuarioDTO';
 import { UsuarioService } from './../../service/usuario/usuario.service';
 import { CasoTesteService } from './../../service/caso-teste/caso-teste.service';
 import { CasoTeste } from 'src/app/model/casoTeste';
 import { DialogRespostaComponent } from './../dialog-resposta/dialog-resposta.component';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
@@ -17,7 +18,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './cadastrar-resposta.component.html',
   styleUrls: ['./cadastrar-resposta.component.css']
 })
-export class CadastrarRespostaComponent implements OnInit {
+export class CadastrarRespostaComponent implements OnInit, OnDestroy {
 
 
 
@@ -28,6 +29,7 @@ export class CadastrarRespostaComponent implements OnInit {
 
   tarefa = new TarefaDTO();
   tarefaStorage = new TarefaDTO();
+  item = new ItemProvaDTO();
   user = new UsuarioDTO();
   casosTeste = new MatTableDataSource<CasoTeste>();
 
@@ -39,9 +41,19 @@ export class CadastrarRespostaComponent implements OnInit {
     @Inject(SESSION_STORAGE) private storage: StorageService,
   ) { }
 
+
   ngOnInit(): void {
     this.tarefaStorage = this.storage.get("tarefa");
+    this.item = this.storage.get("itemProva");
+
+    if(this.item != null){
+      this.tarefaStorage = this.item.tarefa
+    }
     this.buscarTarefa();
+  }
+
+  ngOnDestroy(): void {
+    this.storage.remove("itemProva");
   }
 
   buscarCasosTeste(){
@@ -69,4 +81,5 @@ export class CadastrarRespostaComponent implements OnInit {
       height: '800px'
     });
   }
+
 }

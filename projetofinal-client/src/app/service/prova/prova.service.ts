@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GenericService } from 'src/app/commons/generic.service';
 import { Observable } from 'rxjs';
+import { ItemProva } from 'src/app/model/itemProva';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class ProvaService extends GenericService {
 
   override findAll(): Observable<Array<ProvaDTO>>{
     return this.getMethod(this.relativePath);
+  }
+
+  listarPorIdProva(idProva: number):Observable<Array<ItemProva>>{
+    return this.getMethod(this.relativePath + "itemprova/"+idProva);
   }
 }

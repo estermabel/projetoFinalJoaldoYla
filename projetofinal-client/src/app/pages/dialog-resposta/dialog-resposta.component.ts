@@ -5,7 +5,7 @@ import { TarefaService } from 'src/app/service/tarefa/tarefa.service';
 import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
 import { RespostaService } from './../../service/resposta/resposta.service';
 import { RespostaDTO } from './../../model/DTO/RespostaDTO';
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
@@ -14,13 +14,14 @@ import { ResultadoService } from 'src/app/service/resultado/resultado.service';
 import { AccountService } from 'src/app/account/_service/account.service';
 import { ResultadoRequestDTO } from 'src/app/model/DTO/resultadoRequestDTO';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { ItemProvaDTO } from 'src/app/model/DTO/ItemProvaDTO';
 
 @Component({
   selector: 'app-dialog-resposta',
   templateUrl: './dialog-resposta.component.html',
   styleUrls: ['./dialog-resposta.component.css']
 })
-export class DialogRespostaComponent implements OnInit, AfterViewInit {
+export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy {
   @BlockUI()
   blockUI!: NgBlockUI;
 
@@ -53,6 +54,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
     private resultadoService: ResultadoService,
     elementRef: ElementRef) { }
 
+
    /* formCadastrarResposta = new FormGroup({
       codigo: new FormControl(''),
     });*/
@@ -62,12 +64,14 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
   tarefa = new TarefaDTO();
   resultado = new ResultadoDTO();
   resultadoRequestDTO= new ResultadoRequestDTO()
+  item = new ItemProvaDTO();
 
   ngOnInit(): void {
+    this.item = this.storage.get("itemProva");
     this.tarefa = this.storage.get("tarefa");
     this.tarefaService.findOne(this.tarefa.id).subscribe((data) => {
       this.tarefa = data;
-      console.log(this.tarefa);
+      console.log(this.tarefa, " ", this.item);
     });
 
     let id  = this.accountService.getSubject()
@@ -75,6 +79,10 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
       this.usuario = data;
       console.log(this.usuario);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.storage.remove("itemProva");
   }
 
   ngAfterViewInit(): void {
@@ -107,6 +115,8 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit {
     this.resposta.usuarioId = this.usuario.id;
     this.resposta.tarefa = this.tarefa;
     this.resposta.tarefaId = this.tarefa.id;
+    if(this.item!= null)
+      this.resposta.itemProvaId = this.item.id;
     //this.resposta.dataEnvio = new Date();
 
     this.respostaService.save(this.resposta).subscribe( data =>{

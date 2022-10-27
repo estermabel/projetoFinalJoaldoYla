@@ -8,7 +8,7 @@
   border: 1px solid currentColor;
   border-color: rgba(0,0,0,.12);
   border-radius: 4px;
-
+  white-space: pre-wrap;
   word-wrap: break-word;
 }
 
@@ -41,6 +41,18 @@
   border-radius: 6px;
 }
 
+.div-titulo-exception{
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+
+  background-color: rgba(255, 205, 21, 0.12);
+  justify-content: flex-start;
+  border: 2px solid currentColor;
+  border-color: rgb(255, 205, 21);
+  border-radius: 6px;
+}
+
 .certo{
   margin: 5px 5px;
   color:#34be2f ;
@@ -50,8 +62,13 @@
 .errado{
   margin: 5px 5px;
   color:#f44336 ;
-
 }
+
+.excecao{
+  margin: 5px 5px;
+  color:rgb(255, 205, 21) ;
+}
+
 .accepted{
   margin: 0px 5px;
   color: #36b80f;
@@ -60,4 +77,9 @@
 .wrong{
   margin: 0px 5px;
   color:#f44336;
+}
+
+.exception{
+  margin: 0px 5px;
+  color: rgb(255, 205, 21) ;
 }

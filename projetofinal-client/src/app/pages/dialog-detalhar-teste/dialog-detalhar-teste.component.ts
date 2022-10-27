@@ -25,9 +25,12 @@ export class DialogDetalharTesteComponent implements OnInit {
     if(this.result.resultadoFinal){
       this.divResult = "div-titulo-certo";
       this.h2Result = "certo";
-    }else{
+    }else if(!this.result.resultadoFinal && !this.result.runtimeException){
       this.divResult = "div-titulo-errado";
       this.h2Result = "errado";
+    }else if(this.result.runtimeException){
+      this.divResult = "div-titulo-exception";
+      this.h2Result = "excecao";
     }
     console.log(this.result)
   }

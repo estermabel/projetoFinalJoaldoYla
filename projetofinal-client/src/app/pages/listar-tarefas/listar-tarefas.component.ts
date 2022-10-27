@@ -33,10 +33,10 @@ export class ListarTarefasComponent implements OnInit, AfterViewInit {
     @Inject(SESSION_STORAGE) private storage: StorageService ) { }
 
   ngOnInit(): void {
-    if(this.accountService.isAluno()){
-      this.buscarTarefaAluno();
-    }else{
+    if(this.isAdmin() || this.isProfessor()){
       this.buscarTarefa();
+    }else{
+      this.buscarTarefaAluno();
     }
 
   }

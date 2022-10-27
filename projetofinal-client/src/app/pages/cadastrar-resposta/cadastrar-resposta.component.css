@@ -4,6 +4,10 @@
   margin: 0 0 8px;
 }
 
+h2{
+  margin: 0;
+}
+
 .teste{
   padding-top: 10px;
   padding-bottom: 10px;
