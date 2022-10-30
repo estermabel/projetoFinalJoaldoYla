@@ -1,7 +1,7 @@
-INSERT INTO usuario(data_criacao, data_ultimo_acesso, flag_ativo, login, nome, senha)
-values ('2021-12-20 18:47:52', '2021-12-21 18:47:52', true, 'neivacaju', 'Neiva', '$2a$10$Le.iEd4ISlBGn65MJuSeMuLfwlcES6zMfHKBnm07xWKfTAv1S/sw6'),
-       ('2021-12-20 18:47:52', '2021-12-21 18:47:52', true, 'yla', 'Yla Buri', '$2a$10$76rLhrHoVlJNxT9lvmV3LuqBwVYrAtJ3akT1ahV3viS7cSo42Tpq.'),
-       ('2021-12-20 18:47:52', '2021-12-21 18:47:52', true, 'joaldo', 'Joaldo Tavares', '$2a$10$76rLhrHoVlJNxT9lvmV3LuqBwVYrAtJ3akT1ahV3viS7cSo42Tpq.');
+INSERT INTO usuario(data_criacao, data_ultimo_acesso, flag_ativo, login, email, nome, senha)
+values ('2021-12-20 18:47:52', '2021-12-21 18:47:52', true, 'neivacaju','neiva@ucsal.edu.br', 'Neiva', '$2a$10$Le.iEd4ISlBGn65MJuSeMuLfwlcES6zMfHKBnm07xWKfTAv1S/sw6'),
+       ('2021-12-20 18:47:52', '2021-12-21 18:47:52', true, 'yla','yla@ucsal.edu.br', 'Yla Buri', '$2a$10$76rLhrHoVlJNxT9lvmV3LuqBwVYrAtJ3akT1ahV3viS7cSo42Tpq.'),
+       ('2021-12-20 18:47:52', '2021-12-21 18:47:52', true, 'joaldo','joaldo@ucsal.edu.br', 'Joaldo Tavares', '$2a$10$76rLhrHoVlJNxT9lvmV3LuqBwVYrAtJ3akT1ahV3viS7cSo42Tpq.');
 
 INSERT INTO perfil(nome)
 values('Admin'),
