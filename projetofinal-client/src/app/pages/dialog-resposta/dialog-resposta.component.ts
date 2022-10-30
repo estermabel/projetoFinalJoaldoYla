@@ -69,6 +69,10 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy
   ngOnInit(): void {
     this.item = this.storage.get("itemProva");
     this.tarefa = this.storage.get("tarefa");
+    if(this.item!= null){
+      this.tarefa = this.item.tarefa;
+    }
+
     this.tarefaService.findOne(this.tarefa.id).subscribe((data) => {
       this.tarefa = data;
       console.log(this.tarefa, " ", this.item);

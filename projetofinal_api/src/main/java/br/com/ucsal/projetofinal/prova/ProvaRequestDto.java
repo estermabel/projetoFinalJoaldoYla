@@ -33,6 +33,7 @@ public class ProvaRequestDto {
         Prova prova = new Prova();
         prova.setNome(nome);
         prova.setDataFinal(dataFinal);
+        prova.setDataInicial(dataInicial);
         prova.setUsuario(usuario);
 
         int count = 1;

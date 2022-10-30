@@ -23,7 +23,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <div class="botao-wrapper">
+    <div class="botao-wrapper center">
+      <button mat-stroked-button *ngIf="item == null" (click)="voltar()">Voltar</button>
+      <button mat-stroked-button *ngIf="item != null" (click)="voltarProva(item.prova)">Voltar Prova</button>
       <button mat-button class="botao" id="btn" type="button" (click)="openDialogResposta()" color="primary">Submeter Resposta</button>
     </div>
 

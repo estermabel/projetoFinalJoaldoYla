@@ -31,10 +31,11 @@
         <div class="div-resultado">{{result.saidaObtida}}</div>
       </div>
 
-      <div *ngIf="result.runtimeException && result.exceptionSimplificada!= null">
+      <div *ngIf="result.exceptionSimplificada ">
         <label>Isso pode significar:</label>
-        <div class="div-resultado">{{result.exceptionSimplificada}}</div>
+        <div *ngIf="result.exceptionSimplificada "class="div-resultado">{{result.exceptionSimplificada}}</div>
       </div>
+
     </div>
 
     <ng-template #correct>

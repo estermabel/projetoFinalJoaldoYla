@@ -12,10 +12,18 @@
 
     <p>
       <mat-form-field class="example-full-width" appearance="outline" >
-          <mat-label>Data de entrega</mat-label>
-          <input matInput class="input-form"  mask="99/99/9999" id="dataEntrega" type="datetime-local" [(ngModel)]="prova.dataEntrega" name="dataEntrega"/>
+          <mat-label>Data Inicial</mat-label>
+          <input matInput class="input-form"  mask="99/99/9999" id="dataInicial" type="datetime-local" [(ngModel)]="prova.dataInicial" name="dataInicial"/>
         </mat-form-field>
     </p>
+
+    <p>
+      <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label>Data Final</mat-label>
+          <input matInput class="input-form"  mask="99/99/9999" id="dataFinal" type="datetime-local" [(ngModel)]="prova.dataFinal" name="dataFinal"/>
+        </mat-form-field>
+    </p>
+
 
     <table mat-table [dataSource]="tarefas" class="mat-elevation-z8">
 

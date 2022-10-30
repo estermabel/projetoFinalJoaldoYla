@@ -1,3 +1,6 @@
+import { UsuarioDTO } from 'src/app/model/DTO/usuarioDTO';
+import { Usuario } from './../../model/usuario';
+import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 import { ProvaService } from './../../service/prova/prova.service';
 import { ProvaDTO } from './../../model/DTO/provaDTO';
 import { TarefaDTO } from 'src/app/model/DTO/tarefaDTO';
@@ -32,6 +35,7 @@ export class CadastrarProvaComponent implements OnInit {
   constructor(private tarefaService: TarefaService,
     private accountService: AccountService,
     private router: Router,
+    private usuarioService: UsuarioService,
     private provaService: ProvaService) { }
 
   @ViewChild(MatPaginator)
@@ -39,10 +43,10 @@ export class CadastrarProvaComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  prova = new ProvaDTO()
+  prova = new ProvaDTO();
   tarefas = new MatTableDataSource<TarefaProva>();
-  tarefasIds: Array<number> = []
-
+  tarefasIds: Array<number> = [];
+  usuario = new UsuarioDTO();
 
 
   displayedColumns = [
@@ -55,6 +59,11 @@ export class CadastrarProvaComponent implements OnInit {
     this.tarefaService.listaPublicasProtegidasPrivadas(id).subscribe((data: any[]) => {
       this.tarefas.data = data;
       console.log(data)
+    });
+
+    this.usuarioService.findOne(id).subscribe((data) => {
+      this.usuario = data;
+      console.log(this.usuario);
     });
   }
 
@@ -77,12 +86,16 @@ export class CadastrarProvaComponent implements OnInit {
 
   cadastrarProva(){
     this.prova.tarefas = this.tarefasIds;
+    this.prova.usuarioId = this.usuario.id;
     //console.log(this.prova)
     this.provaService.save(this.prova).subscribe(data=>{
       console.log("Cadastrado com sucesso", data)
-    }
-    )
-    this.router.navigate(['provas']);
-  }
+    }, (error)=>{
+      console.error("Erro ao fazer login", error);
 
+    },()=>{
+      this.router.navigate(['provas']);
+    })
+
+  }
 }
