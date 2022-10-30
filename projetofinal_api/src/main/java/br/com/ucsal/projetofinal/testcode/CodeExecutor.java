@@ -113,22 +113,20 @@ public class CodeExecutor {
         if(isExcept){
             Optional<ExceptionEnum> exceptionEnum = ExceptionEnum.getSaidaSimplificadaBySaida(saidaObtida);
 
-            if(exceptionEnum.isPresent()){
+            if(exceptionEnum.isPresent())
                 msg += exceptionEnum.get().getSaidaSimplificada();
-//                int inicio = saidaObtida.lastIndexOf("Main.java:");
-//                int fim = saidaObtida.lastIndexOf(")");
-//                String linha = saidaObtida.substring(inicio+10, fim);
+            else
+                msg += "Esta exception ainda não foi mapeada pelo sistema.";
 
-                String rgx = "\\(Main\\.java:([^()]*?)\\)";
-                Pattern p = Pattern.compile(rgx);
-                Matcher m = p.matcher(saidaObtida);
-                List<String> allMatches = new ArrayList<>();
+            String rgx = "\\(Main\\.java:([^()]*?)\\)";
+            Pattern p = Pattern.compile(rgx);
+            Matcher m = p.matcher(saidaObtida);
+            List<String> allMatches = new ArrayList<>();
 
-                while (m.find()) {
-                    allMatches.add(m.group(1));
-                }
-                msg += "\n\nVerificar linha(s): "+ allMatches.toString().replaceAll("[\\[\\]]", "");
+            while (m.find()) {
+                allMatches.add(m.group(1));
             }
+            msg += "\n\nTente verificar a(s) linha(s): "+ allMatches.toString().replaceAll("[\\[\\]]", "");
         }
         return msg;
     }
