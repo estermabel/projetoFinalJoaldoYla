@@ -23,8 +23,16 @@
     "textTitle":"Título",
     "textDescription":"Descrição",
     "textAnswers":"Respostas",
+    "textAnswer":"Resposta",
     "textMyAnswers":"Minhas Respostas",
     "textNoAnswersFound":"Nenhuma resposta encontrada",
     "textResult":"Resultado",
-    "textTest":"Teste"
+    "textTest":"Teste",
+    "textPossibleTests":"Casos de Teste",
+    "textInput":"Entrada",
+    "textOutput":"Saída",
+    "textOutputObtained":"Saída Obtida",
+    "textOutputExpected":"Saída Esperada",
+    "textShowMore":"Mostrar mais",
+    "textShowLess":"Mostrar menos"
 }

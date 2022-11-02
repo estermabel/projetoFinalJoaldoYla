@@ -6,9 +6,12 @@ import 'package:projetofinal_mobile/src/core/interfaces/safe_bloc.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 import 'package:projetofinal_mobile/src/domain/entity/answer_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/task_entity.dart';
+import 'package:projetofinal_mobile/src/domain/entity/test_entity.dart';
+import 'package:projetofinal_mobile/src/domain/entity/user_entity.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/do_register_admin_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_answers_use_Case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_my_answers_use_Case.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/get_tests_by_task_id.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_user_by_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_user_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_user_role_use_case.dart';
@@ -21,9 +24,13 @@ class TaskBloc extends SafeBloC {
   final GetUserByIdUseCase getUserByIdUseCase;
   final GetMyAnswersUseCase getMyAnswersUseCase;
   final GetUserIdUseCase getUserIdUseCase;
+  final GetTestsByTaskIdUseCase getTestsByTaskIdUseCase;
 
   late StreamController<SafeEvent<List<AnswerEntity>>> getAnswersController;
   late StreamController<SafeEvent<List<AnswerEntity>>> getMyAnswersController;
+  late StreamController<SafeEvent<List<TestEntity>>> testsController;
+  late StreamController<UserEntity> userController;
+  UserEntity user = UserEntity();
   bool isShowErrorDialog = true;
   RoleEnum userRole = RoleEnum.none;
 
@@ -33,6 +40,7 @@ class TaskBloc extends SafeBloC {
     required this.getUserByIdUseCase,
     required this.getMyAnswersUseCase,
     required this.getUserIdUseCase,
+    required this.getTestsByTaskIdUseCase,
   }) {
     init();
   }
@@ -41,6 +49,8 @@ class TaskBloc extends SafeBloC {
   Future<void> init() async {
     getAnswersController = StreamController.broadcast();
     getMyAnswersController = StreamController.broadcast();
+    userController = StreamController.broadcast();
+    testsController = StreamController.broadcast();
     await getUserId();
     await getUserRole();
   }
@@ -55,7 +65,8 @@ class TaskBloc extends SafeBloC {
 
   Future<int?> getUserId() async {
     try {
-      return await getUserIdUseCase.call();
+      user.id = await getUserIdUseCase.call();
+      return user.id;
     } catch (e) {
       SafeLogUtil.instance.logError(e);
     }
@@ -64,11 +75,28 @@ class TaskBloc extends SafeBloC {
 
   Future<void> getUserById(AnswerEntity answer) async {
     try {
-      final user = await getUserByIdUseCase.call(id: answer.userId);
-      answer.user = user;
+      final finalUser = await getUserByIdUseCase.call(id: answer.userId);
+      if (answer.userId == user.id) {
+        userController.add(finalUser);
+      }
+      answer.user = finalUser;
     } catch (e) {
       await ApiInterceptors.checkExpiration(e);
       SafeLogUtil.instance.logError(e);
+    }
+  }
+
+  Future<void> getTests(int? taskId) async {
+    try {
+      final tests = await getTestsByTaskIdUseCase(taskId: taskId);
+      testsController.add(SafeEvent.done(tests));
+    } on NotFoundException catch (e) {
+      await ApiInterceptors.checkExpiration(e);
+      SafeLogUtil.instance.logError(e);
+      testsController.addError(e.toString());
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+      testsController.addError(e.toString());
     }
   }
 

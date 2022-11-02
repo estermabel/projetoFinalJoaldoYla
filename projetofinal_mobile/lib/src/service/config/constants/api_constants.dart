@@ -24,8 +24,9 @@ class ApiConstants {
   static const String getUserById = '${kUrl}usuarios/';
 
   //Tasks
-  static const String getTasks = '${kUrl}tarefa/';
+  static const String getTasks = '${kUrl}tarefa/publicas/';
   static const String getAnswerByTaskId = '${kUrl}respostas/tarefa/';
   static const String getAnswerByUserId = '${kUrl}respostas/usuario/';
   static const String getResultByAnswerId = '${kUrl}resultados/resposta/';
+  static const String getTestsByTaskId = '${kUrl}casoteste/tarefa/';
 }

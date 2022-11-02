@@ -20,8 +20,8 @@ class ResponseGetAnswerByTaskId extends Answer {
       id: json["id"],
       code: json["codigo"],
       sendDate: json["dataEnvio"],
-      userId: json["usuario"],
-      taskId: json["tarefa"],
+      userId: json["usuarioId"] ?? json["usuario"]["id"],
+      taskId: json["tarefaId"] ?? json["tarefa"]["id"],
     );
   }
 }

@@ -10,6 +10,7 @@ import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_g
 import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_answer_by_user_id.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_answer_result.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_tasks.dart';
+import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_tests_by_task_id.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/tasks_service_interface.dart';
 
 class TasksService implements ITasksService {
@@ -79,5 +80,21 @@ class TasksService implements ITasksService {
     final response = await _service.doRequest(requestConfig);
 
     return ResponseGetAnswerResult.fromJson(jsonDecode(response.data));
+  }
+
+  @override
+  Future<List<ResponseGetTestByTaskId>> getTestsByTaskId(int taskId) async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.getTestsByTaskId + taskId.toString(),
+      method: HttpMethod.get,
+      options: Options(headers: {ApiConstants.kAuthorization: token}),
+    );
+
+    final response = await _service.doRequest(requestConfig);
+    return (json.decode(response.data) as List)
+        .map((e) => ResponseGetTestByTaskId.fromJson(e))
+        .toList();
   }
 }

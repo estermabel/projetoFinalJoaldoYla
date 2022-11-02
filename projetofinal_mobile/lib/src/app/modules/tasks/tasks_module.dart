@@ -9,6 +9,7 @@ import 'package:projetofinal_mobile/src/domain/use_case/get_answer_result_use_ca
 import 'package:projetofinal_mobile/src/domain/use_case/get_answers_use_Case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_my_answers_use_Case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_tasks_use_case.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/get_tests_by_task_id.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_user_by_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_user_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_user_role_use_case.dart';
@@ -24,6 +25,7 @@ class TasksModule extends Module {
     Bind.lazySingleton((i) => GetAnswersUseCase()),
     Bind.lazySingleton((i) => GetUserByIdUseCase()),
     Bind.lazySingleton((i) => GetMyAnswersUseCase()),
+    Bind.lazySingleton((i) => GetTestsByTaskIdUseCase()),
     Bind.lazySingleton((i) => GetUserIdUseCase()),
     Bind.lazySingleton((i) => GetAnswerResultUseCase()),
     Bind.lazySingleton(
@@ -38,6 +40,7 @@ class TasksModule extends Module {
         getUserByIdUseCase: i.get<GetUserByIdUseCase>(),
         getMyAnswersUseCase: i.get<GetMyAnswersUseCase>(),
         getUserIdUseCase: i.get<GetUserIdUseCase>(),
+        getTestsByTaskIdUseCase: i.get<GetTestsByTaskIdUseCase>(),
       ),
     ),
     Bind.lazySingleton(

@@ -9,22 +9,27 @@ class TestEntity {
   bool? isShow;
   bool? executed;
   bool? isCorrect;
-  dynamic exception;
+  bool? exception;
   String? expectedOutput;
   String? obtainedOutput;
+  bool? runtimeException;
+  String? exceptionSimplificada;
 
-  TestEntity(
-      {this.id,
-      this.name,
-      this.input,
-      this.output,
-      this.comparation,
-      this.isShow,
-      this.executed,
-      this.isCorrect,
-      this.exception,
-      this.expectedOutput,
-      this.obtainedOutput});
+  TestEntity({
+    this.id,
+    this.name,
+    this.input,
+    this.output,
+    this.comparation,
+    this.isShow,
+    this.executed,
+    this.isCorrect,
+    this.exception,
+    this.expectedOutput,
+    this.obtainedOutput,
+    this.runtimeException,
+    this.exceptionSimplificada,
+  });
 
   factory TestEntity.toEntity(Teste? response) {
     return TestEntity(
@@ -39,6 +44,8 @@ class TestEntity {
       exception: response?.exception,
       expectedOutput: response?.expectedOutput,
       obtainedOutput: response?.obtainedOutput,
+      runtimeException: response?.runtimeException,
+      exceptionSimplificada: response?.exceptionSimplificada,
     );
   }
 }

@@ -5,6 +5,8 @@ import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/answer
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_page.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/answer_widget.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/sextion_title_widget.dart';
+import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/task_description_widget.dart';
+import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/tests_case_widget.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/text_body_section_widget.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_event.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_layout.dart';
@@ -13,6 +15,8 @@ import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 import 'package:projetofinal_mobile/src/domain/entity/answer_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/task_entity.dart';
+import 'package:projetofinal_mobile/src/domain/entity/test_entity.dart';
+import 'package:projetofinal_mobile/src/domain/entity/user_entity.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/do_register_admin_use_case.dart';
 
 class TaskPage extends StatefulWidget {
@@ -47,6 +51,7 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
   Future<void> getAllAnswers() async {
     await controller.getMyAnswers(widget.task.id);
     await controller.getAnswers(task: widget.task);
+    await controller.getTests(widget.task.id);
   }
 
   @override
@@ -70,12 +75,39 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SectionTitleWidget(title: S.current.textTitle),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               TextBodySectionWidget(text: widget.task.title),
               const SizedBox(height: 20),
               SectionTitleWidget(title: S.current.textDescription),
-              const SizedBox(height: 10),
-              TextBodySectionWidget(text: widget.task.description),
+              const SizedBox(height: 5),
+              TaskDescriptionWidget(text: widget.task.description),
+              const SizedBox(height: 20),
+              StreamBuilder<SafeEvent<List<TestEntity>>>(
+                  stream: controller.testsController.stream,
+                  builder: (context, snapshot) {
+                    final tests = snapshot.data?.data;
+                    return Visibility(
+                      visible: tests?.isNotEmpty ?? false,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SectionTitleWidget(
+                            title: S.current.textPossibleTests,
+                          ),
+                          SafeLayout(
+                            snapshot: snapshot,
+                            context: context,
+                            onDone: () {},
+                            showErrorDialog: controller.isShowErrorDialog,
+                            onError: TextBodySectionWidget(
+                              text: snapshot.error.toString(),
+                            ),
+                            onCompleted: TestCaseWidget(tests: tests),
+                          ).build
+                        ],
+                      ),
+                    );
+                  }),
               const SizedBox(height: 20),
               StreamBuilder<SafeEvent<List<AnswerEntity>>>(
                   stream: controller.getAnswersController.stream,
@@ -100,7 +132,8 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
                               children: List.generate(
                                 answers?.length ?? 0,
                                 (index) => AnswerWidget(
-                                  answer: answers?[index],
+                                  name: answers?[index].user?.name,
+                                  date: answers?[index].sendDate,
                                   onTap: () async => Modular.to.pushNamed(
                                     TasksPage.route + AnswerPage.route,
                                     arguments: answers?[index],
@@ -135,14 +168,19 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
                             onCompleted: Column(
                               children: List.generate(
                                 answers?.length ?? 0,
-                                (index) => AnswerWidget(
-                                  answer: answers?[index],
-                                  isAt: true,
-                                  onTap: () async => Modular.to.pushNamed(
-                                    TasksPage.route + AnswerPage.route,
-                                    arguments: answers?[index],
-                                  ),
-                                ),
+                                (index) => StreamBuilder<UserEntity>(
+                                    stream: controller.userController.stream,
+                                    builder: (context, snapshot) {
+                                      final user = snapshot.data;
+                                      return AnswerWidget(
+                                        date: answers?[index].sendDate,
+                                        name: user?.name,
+                                        onTap: () async => Modular.to.pushNamed(
+                                          TasksPage.route + AnswerPage.route,
+                                          arguments: answers?[index],
+                                        ),
+                                      );
+                                    }),
                               ),
                             ),
                           ).build

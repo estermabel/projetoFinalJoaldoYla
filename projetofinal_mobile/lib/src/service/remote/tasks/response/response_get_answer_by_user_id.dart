@@ -24,39 +24,7 @@ class ResponseGetAnswerByUserId extends Answer {
       id: json["id"],
       code: json["codigo"],
       sendDate: json["dataEnvio"],
-      user: ResponseGetAnswerByUserIdUsuario.fromJson(json["usuario"]),
       task: ResponseGetAnswerByUserIdTarefa.fromJson(json["tarefa"]),
-    );
-  }
-}
-
-class ResponseGetAnswerByUserIdUsuario extends Usuario {
-  ResponseGetAnswerByUserIdUsuario({
-    int? id,
-    String? name,
-    bool? isActive,
-    String? createdAt,
-    String? updatedAt,
-    List<ResponseGetAnswerByUserIdPerfil>? profiles,
-  }) : super(
-          id: id,
-          name: name,
-          isActive: isActive,
-          createdAt: createdAt,
-          updatedAt: updatedAt,
-          profiles: profiles,
-        );
-
-  factory ResponseGetAnswerByUserIdUsuario.fromJson(dynamic json) {
-    return ResponseGetAnswerByUserIdUsuario(
-      id: json['id'],
-      name: json['nome'],
-      isActive: json['flagAtivo'],
-      createdAt: json['dataCriacao'],
-      updatedAt: json['dataUltimoAcesso'],
-      profiles: (json['perfil'] as List)
-          .map((i) => ResponseGetAnswerByUserIdPerfil.fromJson(i))
-          .toList(),
     );
   }
 }
@@ -88,14 +56,12 @@ class ResponseGetAnswerByUserIdTarefa extends Task {
     String? description,
     int? status,
     List<Teste>? tests,
-    ResponseGetAnswerByUserIdUsuario? user,
   }) : super(
           id: id,
           title: title,
           description: description,
           status: status,
           tests: tests,
-          user: user,
         );
 
   factory ResponseGetAnswerByUserIdTarefa.fromJson(dynamic json) {
@@ -110,7 +76,6 @@ class ResponseGetAnswerByUserIdTarefa extends Task {
                   (e) => ResponseGetAnswerByUserIdTestes.fromJson(e))
               .toList()
           : [],
-      user: ResponseGetAnswerByUserIdUsuario.fromJson(json['usuario']),
     );
   }
 }
