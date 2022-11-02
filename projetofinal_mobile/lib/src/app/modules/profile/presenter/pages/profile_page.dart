@@ -10,9 +10,11 @@ import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/sext
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/text_body_section_widget.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_event.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_layout.dart';
+import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
 import 'package:projetofinal_mobile/src/components/widgets/safe_app_bar.dart';
 import 'package:projetofinal_mobile/src/domain/entity/answer_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/user_entity.dart';
+import 'package:projetofinal_mobile/src/service/config/interceptors/api_interceptors.dart';
 
 class ProfilePage extends StatefulWidget {
   static const route = '/profile';
@@ -32,6 +34,19 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
       appBar: SafeAppBar(
         title: S.of(context).textProfile,
         onRefresh: () => controller.getUserById(),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20, top: 20),
+            child: GestureDetector(
+              child: Icon(
+                Icons.logout_rounded,
+                color: SafeColors.generalColors.secondary,
+                size: 30,
+              ),
+              onTap: () => ApiInterceptors.doLogout(),
+            ),
+          )
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(

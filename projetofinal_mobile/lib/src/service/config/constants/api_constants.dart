@@ -14,6 +14,7 @@ class ApiConstants {
 
   ///Url default para requisições da API
   static const String kUrl = 'http://localhost:8081/api/';
+  //static const String kUrl = 'http://projetofinal-api.herokuapp.com/api/';
 
   /*--------------------------------------------------------------------*/
 
@@ -29,4 +30,8 @@ class ApiConstants {
   static const String getAnswerByUserId = '${kUrl}respostas/usuario/';
   static const String getResultByAnswerId = '${kUrl}resultados/resposta/';
   static const String getTestsByTaskId = '${kUrl}casoteste/tarefa/';
+
+  //Quizzes
+  static const String getQuizzes = '${kUrl}provas/';
+  static const String getTasksByQuizId = '${kUrl}provas/itemprova/';
 }

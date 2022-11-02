@@ -53,10 +53,10 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
   }
 
   static Future<void> checkExpiration(Object e) async {
-    if (e is UnauthorizedException) await _doLogout();
+    if (e is UnauthorizedException) await doLogout();
   }
 
-  static Future<void> _doLogout() async {
+  static Future<void> doLogout() async {
     await SaveUserLoginUseCase().call(false).then(
           (_) => Modular.to.pushNamedAndRemoveUntil(
             LoginPage.route,

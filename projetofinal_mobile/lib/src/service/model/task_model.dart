@@ -8,6 +8,7 @@ class Task {
   int? status;
   List<Teste>? tests;
   Usuario? user;
+  int? visibility;
 
   Task({
     this.id,
@@ -16,5 +17,6 @@ class Task {
     this.status,
     this.tests,
     this.user,
+    this.visibility,
   });
 }

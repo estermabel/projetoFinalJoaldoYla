@@ -28,9 +28,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tente novamente em alguns instantes."),
         "textAnswer": MessageLookupByLibrary.simpleMessage("Resposta"),
         "textAnswers": MessageLookupByLibrary.simpleMessage("Respostas"),
+        "textAt": MessageLookupByLibrary.simpleMessage("às"),
+        "textDeadline": MessageLookupByLibrary.simpleMessage("Prazo"),
         "textDescription": MessageLookupByLibrary.simpleMessage("Descrição"),
         "textDoYouHaveAccount":
             MessageLookupByLibrary.simpleMessage("Não tem uma conta?"),
+        "textFinalDate":
+            MessageLookupByLibrary.simpleMessage("Data de Entrega"),
         "textGoToLogin":
             MessageLookupByLibrary.simpleMessage("Ir para o login"),
         "textHome": MessageLookupByLibrary.simpleMessage("Home"),
@@ -59,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textResult": MessageLookupByLibrary.simpleMessage("Resultado"),
         "textShowLess": MessageLookupByLibrary.simpleMessage("Mostrar menos"),
         "textShowMore": MessageLookupByLibrary.simpleMessage("Mostrar mais"),
+        "textStartDate": MessageLookupByLibrary.simpleMessage("Data de Inicio"),
         "textSubimission": MessageLookupByLibrary.simpleMessage("Submissões"),
         "textTasks": MessageLookupByLibrary.simpleMessage("Tarefas"),
         "textTest": MessageLookupByLibrary.simpleMessage("Teste"),
