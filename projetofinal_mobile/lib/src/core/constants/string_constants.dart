@@ -22,4 +22,5 @@ class StringConstants {
   static const String cnpjMask = '##.###.###/####-##';
   static const String cepMask = '#####-###';
   static const String more = '...';
+  static const String t = 'T';
 }

@@ -10,6 +10,8 @@ class Teste {
   dynamic exception;
   String? expectedOutput;
   String? obtainedOutput;
+  bool? runtimeException;
+  String? exceptionSimplificada;
 
   Teste({
     this.id,
@@ -23,5 +25,7 @@ class Teste {
     this.exception,
     this.expectedOutput,
     this.obtainedOutput,
+    this.runtimeException,
+    this.exceptionSimplificada,
   });
 }

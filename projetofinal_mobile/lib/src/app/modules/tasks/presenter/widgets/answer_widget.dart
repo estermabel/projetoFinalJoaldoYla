@@ -3,16 +3,15 @@ import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart
 import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
 import 'package:projetofinal_mobile/src/core/constants/string_constants.dart';
 import 'package:projetofinal_mobile/src/core/util/formatter_util.dart';
-import 'package:projetofinal_mobile/src/domain/entity/answer_entity.dart';
 
 class AnswerWidget extends StatelessWidget {
-  final AnswerEntity? answer;
-  final bool isAt;
+  final String? name;
+  final String? date;
   final void Function()? onTap;
   const AnswerWidget({
     super.key,
-    required this.answer,
-    this.isAt = false,
+    this.name = StringConstants.empty,
+    this.date = StringConstants.empty,
     this.onTap,
   });
 
@@ -32,7 +31,7 @@ class AnswerWidget extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              (answer?.user?.name ?? StringConstants.empty),
+              name ?? StringConstants.empty,
               style: TextStyles.subtitle1().copyWith(
                 color: SafeColors.generalColors.secondary,
                 fontWeight: FontWeight.bold,
@@ -41,13 +40,7 @@ class AnswerWidget extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Text(
-              isAt
-                  ? '(${FormatterUtil.dateFromAPIv2(
-                      answer?.sendDate ?? StringConstants.empty,
-                    )})'
-                  : '(${FormatterUtil.dateFromAPI(
-                      answer?.sendDate ?? StringConstants.empty,
-                    )})',
+              '(${FormatterUtil.dateFromAPI(date ?? StringConstants.empty)})',
               style: TextStyles.bodyText2().copyWith(
                 color: SafeColors.generalColors.secondary,
                 fontWeight: FontWeight.w500,

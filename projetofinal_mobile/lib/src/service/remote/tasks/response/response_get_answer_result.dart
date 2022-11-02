@@ -6,6 +6,7 @@ class ResponseGetAnswerResult {
   bool? create;
   bool? compiled;
   double? percentage;
+  bool? exception;
   List<ResponseGetAnswerResultTest>? tests;
 
   ResponseGetAnswerResult({
@@ -15,6 +16,7 @@ class ResponseGetAnswerResult {
     this.compiled,
     this.percentage,
     this.tests,
+    this.exception,
   });
 
   factory ResponseGetAnswerResult.fromJson(dynamic json) {
@@ -41,6 +43,8 @@ class ResponseGetAnswerResultTest extends Teste {
     String? expectedOutput,
     String? obtainedOutput,
     String? name,
+    bool? runtimeException,
+    String? exceptionSimplificada,
   }) : super(
           id: id,
           executed: executed,
@@ -50,6 +54,8 @@ class ResponseGetAnswerResultTest extends Teste {
           expectedOutput: expectedOutput,
           obtainedOutput: obtainedOutput,
           name: name,
+          exceptionSimplificada: exceptionSimplificada,
+          runtimeException: runtimeException,
         );
 
   factory ResponseGetAnswerResultTest.fromJson(dynamic json) {
@@ -62,6 +68,8 @@ class ResponseGetAnswerResultTest extends Teste {
       input: json['entrada'],
       expectedOutput: json['saidaEsperada'],
       obtainedOutput: json['saidaObtida'],
+      runtimeException: json['runtimeException'],
+      exceptionSimplificada: json['exceptionSimplificada'],
     );
   }
 }

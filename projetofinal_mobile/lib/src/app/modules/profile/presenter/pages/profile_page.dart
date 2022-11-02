@@ -4,6 +4,8 @@ import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/app/modules/profile/presenter/bloc/profile_bloc.dart';
 import 'package:projetofinal_mobile/src/app/modules/profile/presenter/widgets/profile_answer_widget.dart';
 import 'package:projetofinal_mobile/src/app/modules/profile/presenter/widgets/profile_widget.dart';
+import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/answer_page.dart';
+import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_page.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/sextion_title_widget.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/text_body_section_widget.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_event.dart';
@@ -75,7 +77,10 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                               answers?.length ?? 0,
                               (index) => ProfileAnswerWidget(
                                 answer: answers?[index],
-                                isAt: true,
+                                onTap: () async => Modular.to.pushNamed(
+                                  TasksPage.route + AnswerPage.route,
+                                  arguments: answers?[index],
+                                ),
                               ),
                             ),
                           ),

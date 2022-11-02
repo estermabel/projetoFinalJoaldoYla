@@ -7,12 +7,10 @@ import 'package:projetofinal_mobile/src/domain/entity/answer_entity.dart';
 
 class ProfileAnswerWidget extends StatelessWidget {
   final AnswerEntity? answer;
-  final bool isAt;
   final Future<void> Function()? onTap;
   const ProfileAnswerWidget({
     super.key,
     required this.answer,
-    this.isAt = false,
     this.onTap,
   });
 
@@ -41,13 +39,9 @@ class ProfileAnswerWidget extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              isAt
-                  ? '(${FormatterUtil.dateFromAPIv2(
-                      answer?.sendDate ?? StringConstants.empty,
-                    )})'
-                  : '(${FormatterUtil.dateFromAPI(
-                      answer?.sendDate ?? StringConstants.empty,
-                    )})',
+              '(${FormatterUtil.dateFromAPI(
+                answer?.sendDate ?? StringConstants.empty,
+              )})',
               style: TextStyles.bodyText2().copyWith(
                 color: SafeColors.generalColors.secondary,
                 fontWeight: FontWeight.w500,

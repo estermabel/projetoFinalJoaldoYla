@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
         "errorTryAgain": MessageLookupByLibrary.simpleMessage(
             "Tente novamente em alguns instantes."),
+        "textAnswer": MessageLookupByLibrary.simpleMessage("Resposta"),
         "textAnswers": MessageLookupByLibrary.simpleMessage("Respostas"),
         "textDescription": MessageLookupByLibrary.simpleMessage("Descrição"),
         "textDoYouHaveAccount":
@@ -33,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textGoToLogin":
             MessageLookupByLibrary.simpleMessage("Ir para o login"),
         "textHome": MessageLookupByLibrary.simpleMessage("Home"),
+        "textInput": MessageLookupByLibrary.simpleMessage("Entrada"),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
         "textMyAnswers":
@@ -41,13 +43,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "textNoAnswersFound":
             MessageLookupByLibrary.simpleMessage("Nenhuma resposta encontrada"),
         "textOk": MessageLookupByLibrary.simpleMessage("Ok"),
+        "textOutput": MessageLookupByLibrary.simpleMessage("Saída"),
+        "textOutputExpected":
+            MessageLookupByLibrary.simpleMessage("Saída Esperada"),
+        "textOutputObtained":
+            MessageLookupByLibrary.simpleMessage("Saída Obtida"),
         "textPassword": MessageLookupByLibrary.simpleMessage("Password"),
+        "textPossibleTests":
+            MessageLookupByLibrary.simpleMessage("Casos de Teste"),
         "textProfile": MessageLookupByLibrary.simpleMessage("Perfil"),
         "textProjectName":
             MessageLookupByLibrary.simpleMessage("Projeto Final"),
         "textRanking": MessageLookupByLibrary.simpleMessage("Ranking"),
         "textRegister": MessageLookupByLibrary.simpleMessage("Registrar"),
         "textResult": MessageLookupByLibrary.simpleMessage("Resultado"),
+        "textShowLess": MessageLookupByLibrary.simpleMessage("Mostrar menos"),
+        "textShowMore": MessageLookupByLibrary.simpleMessage("Mostrar mais"),
         "textSubimission": MessageLookupByLibrary.simpleMessage("Submissões"),
         "textTasks": MessageLookupByLibrary.simpleMessage("Tarefas"),
         "textTest": MessageLookupByLibrary.simpleMessage("Teste"),

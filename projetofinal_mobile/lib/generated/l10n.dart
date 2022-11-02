@@ -270,6 +270,16 @@ class S {
     );
   }
 
+  /// `Resposta`
+  String get textAnswer {
+    return Intl.message(
+      'Resposta',
+      name: 'textAnswer',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Minhas Respostas`
   String get textMyAnswers {
     return Intl.message(
@@ -305,6 +315,76 @@ class S {
     return Intl.message(
       'Teste',
       name: 'textTest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Casos de Teste`
+  String get textPossibleTests {
+    return Intl.message(
+      'Casos de Teste',
+      name: 'textPossibleTests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entrada`
+  String get textInput {
+    return Intl.message(
+      'Entrada',
+      name: 'textInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saída`
+  String get textOutput {
+    return Intl.message(
+      'Saída',
+      name: 'textOutput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saída Obtida`
+  String get textOutputObtained {
+    return Intl.message(
+      'Saída Obtida',
+      name: 'textOutputObtained',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saída Esperada`
+  String get textOutputExpected {
+    return Intl.message(
+      'Saída Esperada',
+      name: 'textOutputExpected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mostrar mais`
+  String get textShowMore {
+    return Intl.message(
+      'Mostrar mais',
+      name: 'textShowMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mostrar menos`
+  String get textShowLess {
+    return Intl.message(
+      'Mostrar menos',
+      name: 'textShowLess',
       desc: '',
       args: [],
     );
