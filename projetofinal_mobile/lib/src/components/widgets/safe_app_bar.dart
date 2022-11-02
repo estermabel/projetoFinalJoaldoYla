@@ -4,11 +4,13 @@ import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
 
 class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
   final void Function() onRefresh;
+  final List<Widget>? actions;
   final String title;
   const SafeAppBar({
     Key? key,
     required this.onRefresh,
     required this.title,
+    this.actions,
   }) : super(key: key);
 
   @override
@@ -41,6 +43,7 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
             ),
           ),
         ),
+        ...actions ?? [],
       ],
     );
   }

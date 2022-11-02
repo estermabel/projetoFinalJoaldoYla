@@ -34,5 +34,9 @@
     "textOutputObtained":"Saída Obtida",
     "textOutputExpected":"Saída Esperada",
     "textShowMore":"Mostrar mais",
-    "textShowLess":"Mostrar menos"
+    "textShowLess":"Mostrar menos",
+    "textStartDate":"Data de Inicio",
+    "textFinalDate":"Data de Entrega",
+    "textDeadline":"Prazo",
+    "textAt":"às"
 }

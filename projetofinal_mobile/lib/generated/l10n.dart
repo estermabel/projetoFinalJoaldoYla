@@ -389,6 +389,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Data de Inicio`
+  String get textStartDate {
+    return Intl.message(
+      'Data de Inicio',
+      name: 'textStartDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data de Entrega`
+  String get textFinalDate {
+    return Intl.message(
+      'Data de Entrega',
+      name: 'textFinalDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prazo`
+  String get textDeadline {
+    return Intl.message(
+      'Prazo',
+      name: 'textDeadline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `às`
+  String get textAt {
+    return Intl.message(
+      'às',
+      name: 'textAt',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
