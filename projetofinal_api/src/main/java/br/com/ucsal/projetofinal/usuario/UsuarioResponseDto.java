@@ -14,9 +14,7 @@ public class UsuarioResponseDto {
     private String senha;
     private String email;
     private Boolean flagAtivo;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant dataCriacao;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant dataUltimoAcesso;
     private List<Perfil> perfil;
 

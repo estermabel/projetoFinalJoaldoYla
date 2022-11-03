@@ -38,7 +38,6 @@ public class Usuario implements UserDetails, Serializable {
     private String nome;
 
     @NotBlank
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(unique = true)
     private String login;
 
@@ -53,11 +52,9 @@ public class Usuario implements UserDetails, Serializable {
     private String email;
 
     @NotNull
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "UTC-2")
     private Instant dataCriacao;
 
     @NotNull
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "UTC-2")
     private Instant dataUltimoAcesso;
 
     @Valid
@@ -79,7 +76,7 @@ public class Usuario implements UserDetails, Serializable {
         this.flagAtivo = flagAtivo;
         this.email = email;
         ZoneId brazilZone = ZoneId.of("America/Sao_Paulo");
-        this.dataCriacao = LocalDateTime.now(brazilZone).toInstant(ZoneOffset.UTC);
+        this.dataCriacao = Instant.now();
         this.dataUltimoAcesso = Instant.now();
         this.perfil.add(perfil);
     }
