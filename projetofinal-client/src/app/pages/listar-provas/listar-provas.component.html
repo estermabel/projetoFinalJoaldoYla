@@ -8,8 +8,8 @@
   </ng-container>
 
   <ng-container matColumnDef="data">
-    <th mat-header-cell *matHeaderCellDef> Data </th>
-    <td mat-cell *matCellDef="let prova"> {{prova.dataFinal}} </td>
+    <th mat-header-cell *matHeaderCellDef> Data Entrega</th>
+    <td mat-cell *matCellDef="let prova"> {{prova.dataFinal | date: 'dd/MM/yy HH:mm'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="acoes">

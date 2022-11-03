@@ -124,7 +124,6 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy
     //this.resposta.dataEnvio = new Date();
 
     this.respostaService.save(this.resposta).subscribe( data =>{
-      //this.executarCodigo(data.id)
       this.storage.set("respostaEnviada", data);
       console.log("cadastrado com sucesso", data);
     }, (error) =>{
@@ -138,6 +137,10 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy
     )
 
 
+  }
+
+  fechar(){
+    this.dialogRef.close();
   }
 
   executarCodigo(id: number){

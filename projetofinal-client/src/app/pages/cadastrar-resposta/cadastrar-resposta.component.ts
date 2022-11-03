@@ -78,8 +78,9 @@ export class CadastrarRespostaComponent implements OnInit, OnDestroy {
 
   openDialogResposta(){
     const dialogRef = this.dialog.open(DialogRespostaComponent, {
+      disableClose: true,
       width: '1200px',
-      height: '800px'
+      height: "auto"
     });
   }
 
