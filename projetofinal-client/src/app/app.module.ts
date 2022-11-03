@@ -34,6 +34,7 @@ import { ListarSubmissoesAlunosComponent } from './pages/listar-submissoes-aluno
 import { DialogDetalharTesteComponent } from './pages/dialog-detalhar-teste/dialog-detalhar-teste.component';
 import { ListarProvasComponent } from './pages/listar-provas/listar-provas.component';
 import { DetalharProvaComponent } from './pages/detalhar-prova/detalhar-prova.component';
+// import { ToasterModule } from 'angular2-toaster';
 
 
 registerLocaleData(localePt, 'pt');
@@ -65,13 +66,13 @@ registerLocaleData(localePt, 'pt');
   imports: [
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     MaterialExampleModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     AceEditorModule,
-    BrowserAnimationsModule,
     BlockUIModule.forRoot(),
     CommonsModule
   ],

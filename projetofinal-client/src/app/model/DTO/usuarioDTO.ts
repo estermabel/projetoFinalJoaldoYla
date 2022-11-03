@@ -3,6 +3,7 @@ import { Perfil } from "../perfil";
 export class UsuarioDTO {
   id: number;
   nome: string;
+  email: string;
   login: string;
   senha: string;
   perfil: Array<Perfil>;
@@ -14,6 +15,7 @@ export class UsuarioDTO {
   constructor() {
     this.id = 0,
     this.nome = '',
+    this.email = '',
     this.login = '',
     this.senha = '',
     this.perfil = new Array<Perfil>(),
