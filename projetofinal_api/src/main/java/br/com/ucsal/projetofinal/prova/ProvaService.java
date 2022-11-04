@@ -6,6 +6,8 @@ import br.com.ucsal.projetofinal.tarefa.TarefaRepository;
 import br.com.ucsal.projetofinal.usuario.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +41,10 @@ public class ProvaService {
         return provaRepository.listarPorIdProva(id);
     }
 
+    public List<Prova> listarPorData() {
+        LocalDateTime dataAtual = LocalDateTime.now();
+        return provaRepository.findByData(dataAtual);
+    }
 
     public List<ItemProva> listaPorIdProva(Long idProva) {
         return itemProvaRespository.findByProvaId(idProva);
@@ -48,4 +54,6 @@ public class ProvaService {
         Prova prova = provaRequestDto.toModel(tarefaRepository, usuarioRepository);
         return provaRepository.save(prova);
     }
+
+
 }

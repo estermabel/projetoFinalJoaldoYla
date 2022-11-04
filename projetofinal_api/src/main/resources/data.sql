@@ -29,10 +29,13 @@ INSERT INTO USUARIO_PERFIL(USUARIO_ID, PERFIL_ID)
 values (1, 1),(2, 2),(3, 3);
 
 INSERT INTO PROVA(DATA_INICIAL, DATA_FINAL, NOME, USUARIO_ID)
-values ('2022-11-10 07:00:00', '2022-11-11 23:59:59', 'Prova final', 3);
+values ('2022-11-10 07:00:00', '2022-11-11 23:59:59', 'Prova final', 3),
+       ('2022-11-01 07:00:00', '2022-11-11 23:59:59', 'Prova final 2', 3);
 
 INSERT INTO ITEM_PROVA(ORDEM, PROVA_ID, TAREFA_ID)
 values (1, 1, 1),
-        (1, 1, 2);
+        (2, 1, 2),
+       (1, 2, 2),
+       (2, 2, 3);
 
 
