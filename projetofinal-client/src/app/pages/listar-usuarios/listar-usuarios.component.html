@@ -59,12 +59,12 @@
 
   <ng-container matColumnDef="data ultimo acesso">
     <th mat-header-cell *matHeaderCellDef> data ultimo acesso </th>
-    <td mat-cell *matCellDef="let usuario"> {{usuario.dataUltimoAcesso }} </td>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.dataUltimoAcesso | date: 'dd/MM/yy HH:mm' }} </td>
   </ng-container>
 
   <ng-container matColumnDef="data cadastro">
     <th mat-header-cell *matHeaderCellDef> data cadastro </th>
-    <td mat-cell *matCellDef="let usuario"> {{usuario.dataCriacao }} </td>
+    <td mat-cell *matCellDef="let usuario"> {{usuario.dataCriacao | date: 'dd/MM/yy HH:mm' }} </td>
   </ng-container>
 
   <ng-container matColumnDef="perfil">

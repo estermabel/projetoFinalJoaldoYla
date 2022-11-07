@@ -2,10 +2,6 @@
   width: 100%;
 }
 
-.msg-erro{
-  color: red;
-}
-
 .formulario {
   width: 100%;
 }
@@ -19,6 +15,16 @@ table{
   margin-top: 15px;
   margin-bottom: 15px;
   white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+td{
+  max-width: 300px;
+
+}
+.mat-column-saida, .mat-column-entrada{
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 button{

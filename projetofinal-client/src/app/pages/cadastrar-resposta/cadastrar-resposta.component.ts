@@ -1,3 +1,4 @@
+import { Prova } from 'src/app/model/prova';
 import { ItemProvaDTO } from './../../model/DTO/ItemProvaDTO';
 import { UsuarioDTO } from './../../model/DTO/usuarioDTO';
 import { UsuarioService } from './../../service/usuario/usuario.service';
@@ -77,9 +78,19 @@ export class CadastrarRespostaComponent implements OnInit, OnDestroy {
 
   openDialogResposta(){
     const dialogRef = this.dialog.open(DialogRespostaComponent, {
+      disableClose: true,
       width: '1200px',
-      height: '800px'
+      height: "auto"
     });
+  }
+
+  voltar(){
+    this.router.navigate(['tarefas'])
+  }
+
+  voltarProva(prova: Prova){
+    this.storage.set('prova', prova);
+    this.router.navigate(['prova'])
   }
 
 }

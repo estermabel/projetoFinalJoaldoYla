@@ -6,13 +6,11 @@
   #editor>
 </div>
 
-
-
-
-  <div class="botao-wrapper">
-    <button mat-button id="btn" type="submit" color="primary">Enviar</button>
-  </div>
-
 </form>
+
+<div class="botao-wrapper center">
+  <button mat-stroked-button (click)="fechar()">Fechar</button>
+  <button mat-button class="botao" id="btn" color="primary" (click)="EnviarResposta()">Enviar</button>
+</div>
 
 

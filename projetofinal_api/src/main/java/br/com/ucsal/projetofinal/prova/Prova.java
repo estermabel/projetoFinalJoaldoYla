@@ -34,10 +34,8 @@ public class Prova {
     @JsonBackReference
     private List<ItemProva> itens = new ArrayList<>();
 
-    @JsonFormat(pattern = "dd-MM-yyyy@HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataInicial;
 
-    @JsonFormat(pattern = "dd-MM-yyyy@HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataFinal;
 
     @Valid

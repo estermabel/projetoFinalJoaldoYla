@@ -71,6 +71,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 1200px;
 }
 
+.msg-erro{
+  color: red;
+}
+
 .center {
   display: flex;
   justify-content: center;

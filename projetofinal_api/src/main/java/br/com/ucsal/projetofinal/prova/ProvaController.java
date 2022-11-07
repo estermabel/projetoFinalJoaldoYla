@@ -35,6 +35,15 @@ public class ProvaController {
         return ResponseEntity.ok().body(provas);
     }
 
+    @GetMapping("/data/")
+    public ResponseEntity<List<Prova>> listarPorData() {
+        List<Prova> provas = provaService.listarPorData();
+        if (provas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok().body(provas);
+    }
+
     @GetMapping("/itemprova/{idProva}")
     public ResponseEntity<?> listaPorIdProva(@PathVariable Long idProva) {
         List<ItemProva> tarefas = provaService.listaPorIdProva(idProva);

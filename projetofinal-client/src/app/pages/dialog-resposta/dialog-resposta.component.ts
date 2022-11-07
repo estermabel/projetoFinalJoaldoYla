@@ -69,6 +69,10 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy
   ngOnInit(): void {
     this.item = this.storage.get("itemProva");
     this.tarefa = this.storage.get("tarefa");
+    if(this.item!= null){
+      this.tarefa = this.item.tarefa;
+    }
+
     this.tarefaService.findOne(this.tarefa.id).subscribe((data) => {
       this.tarefa = data;
       console.log(this.tarefa, " ", this.item);
@@ -120,7 +124,6 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy
     //this.resposta.dataEnvio = new Date();
 
     this.respostaService.save(this.resposta).subscribe( data =>{
-      //this.executarCodigo(data.id)
       this.storage.set("respostaEnviada", data);
       console.log("cadastrado com sucesso", data);
     }, (error) =>{
@@ -134,6 +137,10 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy
     )
 
 
+  }
+
+  fechar(){
+    this.dialogRef.close();
   }
 
   executarCodigo(id: number){

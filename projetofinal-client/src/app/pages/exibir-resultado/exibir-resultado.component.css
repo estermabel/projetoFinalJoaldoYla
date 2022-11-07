@@ -45,6 +45,7 @@ label{
 
 .label-result{
   margin: 0px 5px;
+  text-transform: capitalize;
 }
 
 .app-ace-editor {

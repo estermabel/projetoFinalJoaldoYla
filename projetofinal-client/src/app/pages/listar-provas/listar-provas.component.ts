@@ -18,13 +18,24 @@ export class ListarProvasComponent implements OnInit {
     @Inject(SESSION_STORAGE) private storage: StorageService ) { }
 
   provas = new MatTableDataSource<Prova>();
-  displayedColumns = ['nome', 'acoes'];
+  displayedColumns = ['nome','data', 'acoes'];
 
   ngOnInit(): void {
+    var timeDiff;
     this.provaService.findAll().subscribe((data: any[]) => {
       this.provas.data = data;
-      //console.log(this.usuarios);
+      console.log(this.provas.data);
+    },(error)=>{
+      console.log(error);
+    },
+    ()=>{
+      // this.provas.data.forEach(p =>{
+      //   var timeDiff = p.dataFinal.getDate - p.dataInicial.getDate;
+      //   console.log("dif ", timeDiff)
+      // })
     });
+
+
   }
 
   respoderProva(prova: Prova){

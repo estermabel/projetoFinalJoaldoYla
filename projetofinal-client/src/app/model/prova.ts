@@ -4,5 +4,7 @@ export interface Prova{
   id: number,
   nome: string,
   tarefas: Array<number>,
-  dataEntrega: Date,
+  dataInicial: Date,
+  dataFinal: Date,
+  usuarioId: number
 }
