@@ -40,7 +40,7 @@ button{
 
 td{
   max-width: 300px;
-
+  vertical-align: top;
 }
 .mat-column-saida, .mat-column-entrada{
   padding-left: 5px;

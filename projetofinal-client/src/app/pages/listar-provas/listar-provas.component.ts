@@ -22,7 +22,7 @@ export class ListarProvasComponent implements OnInit {
 
   ngOnInit(): void {
     var timeDiff;
-    this.provaService.findAll().subscribe((data: any[]) => {
+    this.provaService.listarPorData().subscribe((data: any[]) => {
       this.provas.data = data;
       console.log(this.provas.data);
     },(error)=>{

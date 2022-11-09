@@ -20,11 +20,11 @@ table{
 
 td{
   max-width: 300px;
+  vertical-align: top;
 
 }
-.mat-column-saida, .mat-column-entrada{
-  padding-left: 5px;
-  padding-right: 5px;
+.mat-column-saida, .mat-column-entrada, .mat-column-comparacao{
+  padding: 5px;
 }
 
 button{

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { GenericService } from 'src/app/commons/generic.service';
 import { Observable } from 'rxjs';
 import { ItemProva } from 'src/app/model/itemProva';
+import { Prova } from 'src/app/model/prova';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class ProvaService extends GenericService {
 
   listarPorIdProva(idProva: number):Observable<Array<ItemProva>>{
     return this.getMethod(this.relativePath + "itemprova/"+idProva);
+  }
+
+  listarPorData():Observable<Array<Prova>>{
+    return this.getMethod(this.relativePath + "data/");
   }
 }

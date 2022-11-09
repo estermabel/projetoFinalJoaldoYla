@@ -54,7 +54,7 @@ export class CadastrarRespostaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.storage.remove("itemProva");
+    //this.storage.remove("itemProva");
   }
 
   buscarCasosTeste(){

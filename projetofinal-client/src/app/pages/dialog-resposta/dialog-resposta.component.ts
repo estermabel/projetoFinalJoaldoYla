@@ -75,7 +75,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy
 
     this.tarefaService.findOne(this.tarefa.id).subscribe((data) => {
       this.tarefa = data;
-      console.log(this.tarefa, " ", this.item);
+      //console.log(this.tarefa, " ", this.item);
     });
 
     let id  = this.accountService.getSubject()
@@ -115,6 +115,10 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy
 
   EnviarResposta(){
     this.blockUI.start();
+    this.storage.set('tarefaVoltar', this.tarefa);
+
+    if(this.item != null)
+      this.storage.set('provaVoltar', this.item.prova)
     this.resposta.codigo = this.codigo;
     this.resposta.usuarioId = this.usuario.id;
     this.resposta.tarefa = this.tarefa;
@@ -122,7 +126,7 @@ export class DialogRespostaComponent implements OnInit, AfterViewInit, OnDestroy
     if(this.item!= null)
       this.resposta.itemProvaId = this.item.id;
     //this.resposta.dataEnvio = new Date();
-
+    this.storage.set("respostaEnviada", this.resposta);
     this.respostaService.save(this.resposta).subscribe( data =>{
       this.storage.set("respostaEnviada", data);
       console.log("cadastrado com sucesso", data);

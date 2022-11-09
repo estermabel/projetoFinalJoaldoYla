@@ -18,13 +18,13 @@
   <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Login</mat-label>
-      <input matInput class="input-form" id="login" type="text" [(ngModel)]="usuario.login" name="login" formControlName="login"  />
-      <!-- <mat-error *ngIf="formCadastrarUsuario.controls['login'].hasError('required')">
+      <input matInput class="input-form" id="login" type="text" [(ngModel)]="usuario.login" name="login" formControlName="login"  (onblur)="verificarLoginInvalido2(usuario.login)"/>
+      <mat-error *ngIf="formCadastrarUsuario.controls['login'].hasError('required')">
         Campo Obrigatório.
-        </mat-error> -->
-      <mat-error  *ngIf="formCadastrarUsuario.controls['login'].hasError('lInvalido').qualquer">
+        </mat-error>
+      <!-- <mat-error  *ngIf="formCadastrarUsuario.controls['login'].hasError('lInvalido').qualquer">
         Login já existe
-      </mat-error>
+      </mat-error> -->
     </mat-form-field>
   </p>
 
@@ -46,8 +46,9 @@
   <p>
     <mat-form-field class="example-full-width" appearance="outline" >
       <mat-label>Senha</mat-label>
-      <input matInput class="input-form" id="senha" type="password" [(ngModel)]="usuario.senha" name="senha" formControlName="senha" />
-      <mat-error >
+      <input matInput class="input-form" id="senha" [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.senha" name="senha" formControlName="senha" />
+      <mat-icon  matSuffix class="iconSenha" (click)="exibirSenha()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error>
         Informe uma senha com pelo menos 6 caracteres.
       </mat-error>
     </mat-form-field>
@@ -60,6 +61,9 @@
         <mat-select  [(ngModel)]="usuario.perfil[0].id" formControlName="perfil">
           <mat-option *ngFor="let p of perfis" [value]="p.value">{{p.viewValue}}</mat-option>
         </mat-select>
+        <mat-error>
+          Campo Obrigatório.
+          </mat-error>
     </mat-form-field>
   </div>
 
@@ -69,6 +73,9 @@
       <mat-select  [(ngModel)]="usuario.perfilId" formControlName="perfil">
         <mat-option *ngFor="let p of perfis" [value]="p.value">{{p.viewValue}}</mat-option>
       </mat-select>
+      <mat-error>
+        Campo Obrigatório.
+        </mat-error>
     </mat-form-field>
   </ng-template>
 
@@ -80,7 +87,7 @@
   </div>
 
 
-
+<label class="msg-erro center" *ngIf="loginInvalido">Este login já está em uso. Tente Outro.</label>
 <div class="botao-wrapper center">
   <button mat-button class="botao" id="btn" type="submit" *ngIf="nomeTela == 'Novo'">Cadastrar</button>
   <button mat-button class="botao" id="btn" type="submit" *ngIf="nomeTela == 'Alterar'">Salvar</button>

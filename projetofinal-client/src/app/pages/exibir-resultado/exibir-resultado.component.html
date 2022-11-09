@@ -78,4 +78,9 @@
     </mat-card>
   </div>
 
+  <div class="botao-wrapper center">
+    <button mat-button (click)="voltarTarefa()" class="botao" id="btn">Voltar Para a Tarefa</button>
+    <button mat-button (click)="voltarProva()" class="botao" id="btn" *ngIf="provaVoltar!= null">Voltar Para a Prova</button>
+  </div>
+
 </div>
