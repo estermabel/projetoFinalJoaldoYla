@@ -1,1 +1,0 @@
-import java.util.Scanner;public class Eco { public static void main(String[] args){   Scanner scanner = new Scanner(System.in);   System.out.println(p);   String s = scanner.nextLine();   System.out.println(s);   String t = scanner.nextLine();   System.out.println(t);   scanner.close();   }}

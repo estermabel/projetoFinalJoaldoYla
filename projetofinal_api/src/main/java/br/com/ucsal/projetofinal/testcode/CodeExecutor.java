@@ -136,9 +136,9 @@ public class CodeExecutor {
         if (filename == null || filename.isBlank()) {
             filename = "Main.java";
         }
-        File directory = new File(folder);
+        File directory = new File("usuarios/"+folder);
         if (!directory.exists()) {
-            directory.mkdir();
+            directory.mkdirs();
         }
         File file = new File(directory.getAbsolutePath() + "/" + filename);
         //Adiciona o codigo ao arquivo
