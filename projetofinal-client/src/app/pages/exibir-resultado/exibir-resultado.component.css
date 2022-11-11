@@ -77,6 +77,9 @@ label{
   word-wrap: break-word;
 }
 
+button{
+  margin: 20px 10px;
+}
 /* p{
   white-space: pre-wrap;
   width: 20em;

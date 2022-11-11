@@ -1,3 +1,6 @@
+import { TarefaService } from './../../service/tarefa/tarefa.service';
+import { TarefaDTO } from './../../model/DTO/tarefaDTO';
+import { ProvaDTO } from './../../model/DTO/provaDTO';
 import { DialogDetalharTesteComponent } from './../dialog-detalhar-teste/dialog-detalhar-teste.component';
 import { Teste } from './../../model/teste';
 import * as ace from "ace-builds";
@@ -9,10 +12,10 @@ import { ResultadoDTO } from './../../model/DTO/resultadoDTO';
 import { RespostaDTO } from 'src/app/model/DTO/RespostaDTO';
 import { Resultado } from './../../model/resultado';
 import { ResultadoService } from './../../service/resultado/resultado.service';
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 
@@ -21,13 +24,14 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './exibir-resultado.component.html',
   styleUrls: ['./exibir-resultado.component.css']
 })
-export class ExibirResultadoComponent implements OnInit, AfterViewInit {
+export class ExibirResultadoComponent implements OnInit, AfterViewInit, OnDestroy {
 
   codigo: String = "";
   casoTeste: CasoTeste;
 
   resposta = new RespostaDTO();
   resultado = new ResultadoDTO();
+  provaVoltar = null;
   idResposta = 0
 
   @BlockUI() blockUI: NgBlockUI | undefined;
@@ -38,6 +42,8 @@ export class ExibirResultadoComponent implements OnInit, AfterViewInit {
   constructor(
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private resultadoService: ResultadoService,
+    private router: Router,
+    private tarefaService: TarefaService,
     private casoTesteService: CasoTesteService,
     private respostaService: RespostaService,
     public dialog: MatDialog,
@@ -46,8 +52,13 @@ export class ExibirResultadoComponent implements OnInit, AfterViewInit {
     this.casoTeste = new CasoTesteDTO();
   }
 
+  ngOnDestroy(): void {
+    this.storage.remove('provaVoltar')
+  }
+
   ngOnInit(): void {
-    this.resposta = this.storage.get("respostaEnviada")
+    this.resposta = this.storage.get("respostaEnviada");
+    this.provaVoltar = this.storage.get('provaVoltar');
 
     //const par = this.activatedRoute.snapshot.paramMap.get('parametro');
     this.idResposta = this.resposta.id;
@@ -83,4 +94,18 @@ export class ExibirResultadoComponent implements OnInit, AfterViewInit {
     });
   }
 
+  tarefaId: number =0;
+  voltarTarefa(){
+    let tarefaVoltar = new TarefaDTO();
+    tarefaVoltar= this.storage.get('tarefaVoltar')
+
+    //this.tarefaService.findOne(tarefaId).subscribe()
+    this.storage.set('tarefa', tarefaVoltar)
+    this.router.navigate(['cadastrarResposta'])
+  }
+
+  voltarProva(){
+    this.storage.set('prova', this.provaVoltar)
+    this.router.navigate(['prova'])
+  }
 }

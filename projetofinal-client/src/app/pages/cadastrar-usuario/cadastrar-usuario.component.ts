@@ -46,6 +46,9 @@ export class CadastrarUsuarioComponent implements OnInit, AfterViewInit {
   usuariosCadastrados: Usuario[] = [];
   nomeTela : string = 'Novo';
   loginInvalido: boolean = false;
+  hide: boolean = true;
+
+
   perfis = [
     {value: 1, viewValue: "Administrador"},
     {value: 2, viewValue: "Aluno"},
@@ -90,10 +93,8 @@ export class CadastrarUsuarioComponent implements OnInit, AfterViewInit {
         this.salvarAlteracao();
       }
     }else{
-      // this.toasterService.pop('warning', 'Login já cadastrado');
-      // this.toastr.success('Hello world!', 'Toastr fun!');
+      console.log(this.loginInvalido)
     }
-    console.log(this.loginInvalido)
   }
 
 
@@ -113,7 +114,7 @@ export class CadastrarUsuarioComponent implements OnInit, AfterViewInit {
   }
 
    verificarLoginInvalido2(login: string): boolean{
-    // const login = user.login
+    this.loginInvalido = false;
     this.usuariosCadastrados.forEach(u =>{
       if(u.login == login){
         this.loginInvalido = true;
@@ -151,6 +152,10 @@ export class CadastrarUsuarioComponent implements OnInit, AfterViewInit {
       )
       this.router.navigate(["usuarios"])
 
+  }
+
+  exibirSenha(){
+    this.hide = !this.hide;
   }
 
 
