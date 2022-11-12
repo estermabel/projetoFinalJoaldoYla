@@ -30,6 +30,7 @@ class ApiConstants {
   static const String getAnswerByUserId = '${kUrl}respostas/usuario/';
   static const String getResultByAnswerId = '${kUrl}resultados/resposta/';
   static const String getTestsByTaskId = '${kUrl}casoteste/tarefa/';
+  static const String sendTasks = '${kUrl}respostas/';
 
   //Quizzes
   static const String getQuizzes = '${kUrl}provas/';

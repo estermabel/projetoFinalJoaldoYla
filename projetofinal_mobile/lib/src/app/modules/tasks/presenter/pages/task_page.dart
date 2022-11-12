@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/bloc/task_bloc.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/answer_page.dart';
+import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/send_answer_page.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/pages/tasks_page.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/answer_widget.dart';
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/sextion_title_widget.dart';
@@ -10,6 +11,7 @@ import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/test
 import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/text_body_section_widget.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_event.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_layout.dart';
+import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
 import 'package:projetofinal_mobile/src/core/constants/string_constants.dart';
 import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
@@ -18,6 +20,7 @@ import 'package:projetofinal_mobile/src/domain/entity/task_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/test_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/user_entity.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/do_register_admin_use_case.dart';
+import 'package:projetofinal_mobile/src/service/remote/tasks/requests/request_send_task.dart';
 
 class TaskPage extends StatefulWidget {
   static const route = '/task';
@@ -64,6 +67,19 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
           overflow: TextOverflow.ellipsis,
         ),
         centerTitle: false,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await Modular.to.pushNamed(
+            TasksPage.route + SendAnswerPage.route,
+            arguments: RequestSendTask(
+              taskId: widget.task.id,
+              userId: controller.user.id,
+            ),
+          );
+        },
+        backgroundColor: SafeColors.buttonColors.primary,
+        child: const Icon(Icons.add),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

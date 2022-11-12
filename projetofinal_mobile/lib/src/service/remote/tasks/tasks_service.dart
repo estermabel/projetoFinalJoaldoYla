@@ -6,11 +6,13 @@ import 'package:projetofinal_mobile/src/service/config/interceptors/api_service.
 import 'package:projetofinal_mobile/src/service/config/interceptors/http_method.dart';
 import 'package:projetofinal_mobile/src/service/config/interceptors/request_config.dart';
 import 'package:projetofinal_mobile/src/service/remote/auth/auth_service.dart';
+import 'package:projetofinal_mobile/src/service/remote/tasks/requests/request_send_task.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_answer_by_task_id.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_answer_by_user_id.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_answer_result.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_tasks.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_get_tests_by_task_id.dart';
+import 'package:projetofinal_mobile/src/service/remote/tasks/response/response_send_task.dart';
 import 'package:projetofinal_mobile/src/service/remote/tasks/tasks_service_interface.dart';
 
 class TasksService implements ITasksService {
@@ -96,5 +98,21 @@ class TasksService implements ITasksService {
     return (json.decode(response.data) as List)
         .map((e) => ResponseGetTestByTaskId.fromJson(e))
         .toList();
+  }
+
+  @override
+  Future<ResponseSendTask> sendTask(RequestSendTask request) async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.sendTasks,
+      method: HttpMethod.post,
+      body: request.toJson(),
+      options: Options(headers: {ApiConstants.kAuthorization: token}),
+    );
+
+    final response = await _service.doRequest(requestConfig);
+
+    return ResponseSendTask.fromJson(jsonDecode(response.data));
   }
 }

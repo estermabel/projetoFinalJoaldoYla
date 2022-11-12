@@ -66,13 +66,15 @@ class _QuizPageState extends ModularState<QuizPage, QuizBloc> {
               const SizedBox(height: 5),
               TextBodySectionWidget(
                   text:
-                      '${S.current.textStartDate}: ${FormatterUtil.dateFromAPIv2(
+                      '${S.current.textStartDate}: ${FormatterUtil.dateFromAPI(
                 widget.quiz.startDate ?? StringConstants.empty,
+                isFullDate: true,
               )}'),
               TextBodySectionWidget(
                   text:
-                      '${S.current.textFinalDate}: ${FormatterUtil.dateFromAPIv2(
+                      '${S.current.textFinalDate}: ${FormatterUtil.dateFromAPI(
                 widget.quiz.endDate ?? StringConstants.empty,
+                isFullDate: true,
               )}'),
               const SizedBox(height: 20),
               StreamBuilder<SafeEvent<List<TaskEntity>>>(

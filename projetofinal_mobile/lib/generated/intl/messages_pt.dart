@@ -65,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textShowMore": MessageLookupByLibrary.simpleMessage("Mostrar mais"),
         "textStartDate": MessageLookupByLibrary.simpleMessage("Data de Inicio"),
         "textSubimission": MessageLookupByLibrary.simpleMessage("Submissões"),
+        "textSubmit": MessageLookupByLibrary.simpleMessage("Enviar"),
         "textTasks": MessageLookupByLibrary.simpleMessage("Tarefas"),
         "textTest": MessageLookupByLibrary.simpleMessage("Teste"),
         "textTests": MessageLookupByLibrary.simpleMessage("Provas"),

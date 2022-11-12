@@ -7,6 +7,7 @@ class Answer {
   String? sendDate;
   int? userId;
   int? taskId;
+  int? quizId;
   Usuario? user;
   Task? task;
 
@@ -18,5 +19,6 @@ class Answer {
     this.taskId,
     this.task,
     this.user,
+    this.quizId,
   });
 }

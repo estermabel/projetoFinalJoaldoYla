@@ -429,6 +429,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Enviar`
+  String get textSubmit {
+    return Intl.message(
+      'Enviar',
+      name: 'textSubmit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

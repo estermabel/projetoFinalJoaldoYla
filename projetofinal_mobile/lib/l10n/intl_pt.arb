@@ -38,5 +38,6 @@
     "textStartDate":"Data de Inicio",
     "textFinalDate":"Data de Entrega",
     "textDeadline":"Prazo",
-    "textAt":"às"
+    "textAt":"às",
+    "textSubmit":"Enviar"
 }

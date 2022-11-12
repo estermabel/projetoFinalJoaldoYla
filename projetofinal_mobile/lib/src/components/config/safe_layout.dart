@@ -51,6 +51,7 @@ class SafeLayout {
 
   Widget _onDone() {
     if (snapshot.hasError) {
+      onDone();
       if (showErrorDialog) {
         Future.delayed(Duration.zero, () async {
           showDialog(
