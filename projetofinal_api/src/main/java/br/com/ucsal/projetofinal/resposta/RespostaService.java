@@ -91,7 +91,7 @@ public class RespostaService {
             output.add(teste.getSaida());
         }
 
-        TestResult testResult = new TestService().executetest(resposta.getCodigo(), "Main.java", "", input.toArray(), output.toArray(), nomesTestes.toArray());
+        TestResult testResult = new TestService().executetest(resposta.getCodigo(), resposta.getUsuario().getLogin(), "Main.java", "", input.toArray(), output.toArray(), nomesTestes.toArray());
 
         List<Teste> testes = new ArrayList<>();
         Double percentagem = 0.0;
