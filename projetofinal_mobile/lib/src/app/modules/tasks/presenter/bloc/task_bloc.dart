@@ -32,7 +32,7 @@ class TaskBloc extends SafeBloC {
   late StreamController<UserEntity> userController;
   UserEntity user = UserEntity();
   bool isShowErrorDialog = true;
-  RoleEnum userRole = RoleEnum.none;
+  RoleEnum userRole = RoleEnum.student;
 
   TaskBloc({
     required this.getAnswersUseCase,

@@ -10,10 +10,12 @@ class RegisterModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton((i) => AuthService()),
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton((i) => DoRegisterAdminUseCase()),
-    Bind.lazySingleton((i) => RegisterBloc(
-        //doRegisterUseCase: i.get<DoRegisterAdminUseCase>(),
-        )),
+    Bind.lazySingleton((i) => DoRegisterUseCase()),
+    Bind.lazySingleton(
+      (i) => RegisterBloc(
+        doRegisterUseCase: i.get<DoRegisterUseCase>(),
+      ),
+    ),
   ];
 
   @override

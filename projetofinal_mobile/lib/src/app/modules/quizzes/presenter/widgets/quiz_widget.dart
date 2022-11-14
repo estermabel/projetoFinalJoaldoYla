@@ -48,8 +48,9 @@ class QuizWidget extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              '${S.current.textFinalDate}: ${FormatterUtil.dateFromAPIv2(
+              '${S.current.textFinalDate}: ${FormatterUtil.dateFromAPI(
                 quiz?.endDate ?? StringConstants.empty,
+                isFullDate: true,
               )}',
               style: TextStyles.bodyText1(
                 color: SafeColors.generalColors.secondary,

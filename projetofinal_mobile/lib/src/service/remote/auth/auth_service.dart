@@ -18,10 +18,10 @@ class AuthService implements IAuthService {
   @override
   Future<ResponseLogin> doLogin(RequestLogin request) async {
     //TODO Request mockada
-    request = RequestLogin(
-      user: 'neivacaju',
-      password: 'caju',
-    );
+    // request = RequestLogin(
+    //   user: 'neivacaju',
+    //   password: 'caju',
+    // );
     final requestConfig = RequestConfig(
       path: ApiConstants.doAuth,
       method: HttpMethod.post,
@@ -41,21 +41,18 @@ class AuthService implements IAuthService {
   }
 
   @override
-  Future<ResponseRegisterAdmin> doRegisterAdmin(
-    RequestRegisterAdmin request,
+  Future<ResponseRegister> doRegister(
+    RequestRegister request,
   ) async {
-    final token = await getAccessToken();
-
     final requestConfig = RequestConfig(
-      path: ApiConstants.doRegisterAdmin,
+      path: ApiConstants.doRegister,
       method: HttpMethod.post,
-      options: Options(headers: {ApiConstants.kAuthorization: token}),
       body: request.toJson(request),
     );
 
     final response = await _service.doRequest(requestConfig);
 
-    return ResponseRegisterAdmin.fromJson(jsonDecode(response.data));
+    return ResponseRegister.fromJson(jsonDecode(response.data));
   }
 
   @override

@@ -54,10 +54,11 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
               stream: controller.doRegisterController.stream,
               initialData: SafeEvent.initial(),
               builder: (context, snapshot) {
+                final result = snapshot.data?.data;
                 return SafeLayout(
                   snapshot: snapshot,
                   context: context,
-                  onDone: () {},
+                  onDone: () => Modular.to.pop(result),
                   onInitial: RegisterPageBodyWidget(
                     formKey: _formKey,
                     buttonRegisterStream:
@@ -65,6 +66,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                     nameController: controller.nameController,
                     userController: controller.userController,
                     passwordController: controller.passwordController,
+                    emailController: controller.emailController,
                     toogleRegisterButton: () =>
                         controller.toogleRegisterButton(),
                     doRegister: () async => controller.doRegister(),
@@ -75,12 +77,12 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                         controller.registerButtonController.stream,
                     nameController: controller.nameController,
                     userController: controller.userController,
+                    emailController: controller.emailController,
                     passwordController: controller.passwordController,
                     toogleRegisterButton: () =>
                         controller.toogleRegisterButton(),
                     doRegister: () async => controller.doRegister(),
                   ),
-                  onCompleted: const RegisterSuccessWidget(),
                 ).build;
               }),
         ),
@@ -130,6 +132,7 @@ class RegisterPageBodyWidget extends StatelessWidget {
   final TextEditingController nameController;
   final TextEditingController userController;
   final TextEditingController passwordController;
+  final TextEditingController emailController;
   final Stream<bool> buttonRegisterStream;
   final Future<void> Function() doRegister;
   final void Function() toogleRegisterButton;
@@ -142,6 +145,7 @@ class RegisterPageBodyWidget extends StatelessWidget {
     required this.userController,
     required this.passwordController,
     required this.toogleRegisterButton,
+    required this.emailController,
   }) : super(key: key);
 
   @override
@@ -173,6 +177,16 @@ class RegisterPageBodyWidget extends StatelessWidget {
               onChanged: (value) => toogleRegisterButton(),
               prefixIcon: Icon(
                 Icons.person,
+                color: SafeColors.componentsColors.iconColors.primary,
+              ),
+            ),
+            const SizedBox(height: 20),
+            SafeTextFormField(
+              controller: emailController,
+              hintText: S.current.textEmail,
+              onChanged: (value) => toogleRegisterButton(),
+              prefixIcon: Icon(
+                Icons.mail,
                 color: SafeColors.componentsColors.iconColors.primary,
               ),
             ),

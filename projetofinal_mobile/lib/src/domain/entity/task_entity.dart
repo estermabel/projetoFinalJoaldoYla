@@ -9,6 +9,7 @@ class TaskEntity {
   int? status;
   List<TestEntity>? tests;
   UserEntity? user;
+  int? quizId;
 
   TaskEntity({
     this.id,
@@ -17,6 +18,7 @@ class TaskEntity {
     this.status,
     this.tests,
     this.user,
+    this.quizId,
   });
 
   factory TaskEntity.toEntity(Task? response) {

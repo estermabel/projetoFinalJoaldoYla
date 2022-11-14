@@ -38,5 +38,10 @@
     "textStartDate":"Data de Inicio",
     "textFinalDate":"Data de Entrega",
     "textDeadline":"Prazo",
-    "textAt":"às"
+    "textAt":"às",
+    "textSubmit":"Enviar",
+    "textSubmited":"Resposta Enviada",
+    "textSubmitedWithSuccess":"Resposta enviada com sucesso!",
+    "textEmail":"Email",
+    "textSuccess":"Sucesso"
 }

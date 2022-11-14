@@ -10,6 +10,7 @@ import 'package:projetofinal_mobile/src/components/config/safe_layout.dart';
 import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
 import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
 import 'package:projetofinal_mobile/src/components/widgets/safe_button.dart';
+import 'package:projetofinal_mobile/src/components/widgets/safe_dialogs.dart';
 import 'package:projetofinal_mobile/src/components/widgets/safe_text_form_field.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 import 'package:projetofinal_mobile/src/domain/entity/login_entity.dart';
@@ -228,7 +229,17 @@ class RegisterButtonWidget extends StatelessWidget {
             style: TextStyles.button(),
           ),
           TextButton(
-            onPressed: () => Modular.to.pushNamed(RegisterPage.route),
+            onPressed: () {
+              Modular.to.pushNamed(RegisterPage.route).then((value) async {
+                if (value != null) {
+                  return SafeDialog(
+                    title: S.current.textSuccess,
+                    message: S.current.textUserRegiteredSuccess,
+                    onTap: () => Modular.to.pop(),
+                  ).show();
+                }
+              });
+            },
             child: Text(
               S.current.textRegister,
               style: TextStyles.button(

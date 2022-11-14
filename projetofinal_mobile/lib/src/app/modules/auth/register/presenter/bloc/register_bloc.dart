@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_event.dart';
 import 'package:projetofinal_mobile/src/core/interfaces/safe_bloc.dart';
+import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
 import 'package:projetofinal_mobile/src/domain/entity/register_entity.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/do_register_admin_use_case.dart';
 
 class RegisterBloc extends SafeBloC {
-  // final DoRegisterUseCase doRegisterUseCase;
+  final DoRegisterUseCase doRegisterUseCase;
 
   late StreamController<bool> registerButtonController;
   late StreamController<SafeEvent<RegisterEntity>> doRegisterController;
@@ -14,8 +16,9 @@ class RegisterBloc extends SafeBloC {
   late TextEditingController nameController;
   late TextEditingController userController;
   late TextEditingController passwordController;
+  late TextEditingController emailController;
 
-  RegisterBloc() {
+  RegisterBloc({required this.doRegisterUseCase}) {
     init();
   }
 
@@ -26,22 +29,24 @@ class RegisterBloc extends SafeBloC {
     nameController = TextEditingController();
     userController = TextEditingController();
     passwordController = TextEditingController();
+    emailController = TextEditingController();
   }
 
   Future<void> doRegister() async {
-    // try {
-    //   doRegisterController.sink.add(SafeEvent.load());
-    //   RegisterEntity registerEntity = await doRegisterUseCase(
-    //     username: userController.text,
-    //     name: nameController.text,
-    //     password: passwordController.text,
-    //   );
+    try {
+      doRegisterController.sink.add(SafeEvent.load());
+      RegisterEntity registerEntity = await doRegisterUseCase(
+        username: userController.text,
+        name: nameController.text,
+        password: passwordController.text,
+        email: emailController.text,
+      );
 
-    //   doRegisterController.sink.add(SafeEvent.done(registerEntity));
-    // } catch (e) {
-    //   doRegisterController.addError(e.toString());
-    //   SafeLogUtil.instance.logError(e);
-    // }
+      doRegisterController.sink.add(SafeEvent.done(registerEntity));
+    } catch (e) {
+      doRegisterController.addError(e.toString());
+      SafeLogUtil.instance.logError(e);
+    }
   }
 
   void toogleRegisterButton() {

@@ -8,6 +8,7 @@ class AnswerEntity {
   String? sendDate;
   int? userId;
   int? taskId;
+  int? quizId;
   UserEntity? user;
   TaskEntity? task;
 
@@ -19,6 +20,7 @@ class AnswerEntity {
     this.task,
     this.taskId,
     this.userId,
+    this.quizId,
   });
 
   factory AnswerEntity.toEntity(Answer? response) {
@@ -28,6 +30,7 @@ class AnswerEntity {
       sendDate: response?.sendDate,
       taskId: response?.taskId,
       userId: response?.userId,
+      quizId: response?.quizId,
       user: UserEntity.toEntity(response?.user),
       task: TaskEntity.toEntity(response?.task),
     );
