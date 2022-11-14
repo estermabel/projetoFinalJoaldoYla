@@ -97,9 +97,11 @@ class _QuizPageState extends ModularState<QuizPage, QuizBloc> {
                           onCompleted: Column(
                             children: List.generate(
                               tasks?.length ?? 0,
-                              (index) => TaskWidget(
-                                task: tasks?[index],
-                              ),
+                              (index) {
+                                final task = tasks?[index];
+                                task?.quizId = widget.quiz.id;
+                                return TaskWidget(task: task);
+                              },
                             ),
                           ),
                         ).build

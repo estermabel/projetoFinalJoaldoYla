@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDescription": MessageLookupByLibrary.simpleMessage("Descrição"),
         "textDoYouHaveAccount":
             MessageLookupByLibrary.simpleMessage("Não tem uma conta?"),
+        "textEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "textFinalDate":
             MessageLookupByLibrary.simpleMessage("Data de Entrega"),
         "textGoToLogin":
@@ -66,6 +67,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "textStartDate": MessageLookupByLibrary.simpleMessage("Data de Inicio"),
         "textSubimission": MessageLookupByLibrary.simpleMessage("Submissões"),
         "textSubmit": MessageLookupByLibrary.simpleMessage("Enviar"),
+        "textSubmited":
+            MessageLookupByLibrary.simpleMessage("Resposta Enviada"),
+        "textSubmitedWithSuccess": MessageLookupByLibrary.simpleMessage(
+            "Resposta enviada com sucesso!"),
+        "textSuccess": MessageLookupByLibrary.simpleMessage("Sucesso"),
         "textTasks": MessageLookupByLibrary.simpleMessage("Tarefas"),
         "textTest": MessageLookupByLibrary.simpleMessage("Teste"),
         "textTests": MessageLookupByLibrary.simpleMessage("Provas"),

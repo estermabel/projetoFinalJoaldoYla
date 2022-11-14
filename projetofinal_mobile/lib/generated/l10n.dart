@@ -439,6 +439,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Resposta Enviada`
+  String get textSubmited {
+    return Intl.message(
+      'Resposta Enviada',
+      name: 'textSubmited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resposta enviada com sucesso!`
+  String get textSubmitedWithSuccess {
+    return Intl.message(
+      'Resposta enviada com sucesso!',
+      name: 'textSubmitedWithSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get textEmail {
+    return Intl.message(
+      'Email',
+      name: 'textEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sucesso`
+  String get textSuccess {
+    return Intl.message(
+      'Sucesso',
+      name: 'textSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

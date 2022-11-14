@@ -22,10 +22,10 @@ extension RoleEnumExtension on RoleEnum {
   }
 }
 
-class DoRegisterAdminUseCase extends SafeUseCase {
+class DoRegisterUseCase extends SafeUseCase {
   late final IAuthService _service;
 
-  DoRegisterAdminUseCase() {
+  DoRegisterUseCase() {
     _service = Modular.get<AuthService>();
   }
 
@@ -33,18 +33,20 @@ class DoRegisterAdminUseCase extends SafeUseCase {
     required String name,
     required String username,
     required String password,
+    required String email,
     bool isActive = true,
     RoleEnum profile = RoleEnum.student,
   }) async {
-    final request = RequestRegisterAdmin(
+    final request = RequestRegister(
       name: name.trim(),
       password: password.trim(),
       user: username,
       isActive: isActive,
+      email: email,
       profileId: profile.index + 1,
     );
 
-    final response = await _service.doRegisterAdmin(request);
+    final response = await _service.doRegister(request);
 
     return RegisterEntity.toEntity(response);
   }

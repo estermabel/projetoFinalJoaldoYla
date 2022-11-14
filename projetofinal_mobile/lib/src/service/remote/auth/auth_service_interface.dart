@@ -6,7 +6,7 @@ import 'package:projetofinal_mobile/src/service/remote/auth/response/response_re
 
 abstract class IAuthService {
   Future<ResponseLogin> doLogin(RequestLogin request);
-  Future<ResponseRegisterAdmin> doRegisterAdmin(RequestRegisterAdmin request);
+  Future<ResponseRegister> doRegister(RequestRegister request);
   Future<ResponseGetUserById> getUserById(int id);
   Future<String> getAccessToken();
 }

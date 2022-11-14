@@ -18,7 +18,7 @@ class RegisterEntity {
     this.roles,
   });
 
-  factory RegisterEntity.toEntity(ResponseRegisterAdmin? response) {
+  factory RegisterEntity.toEntity(ResponseRegister? response) {
     return RegisterEntity(
       id: response?.id,
       name: response?.name,

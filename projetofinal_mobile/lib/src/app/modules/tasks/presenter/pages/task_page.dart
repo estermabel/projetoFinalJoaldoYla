@@ -12,6 +12,7 @@ import 'package:projetofinal_mobile/src/app/modules/tasks/presenter/widgets/text
 import 'package:projetofinal_mobile/src/components/config/safe_event.dart';
 import 'package:projetofinal_mobile/src/components/config/safe_layout.dart';
 import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart';
+import 'package:projetofinal_mobile/src/components/widgets/safe_dialogs.dart';
 import 'package:projetofinal_mobile/src/core/constants/string_constants.dart';
 import 'package:projetofinal_mobile/generated/l10n.dart';
 import 'package:projetofinal_mobile/src/core/util/safe_log_util.dart';
@@ -67,16 +68,36 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
           overflow: TextOverflow.ellipsis,
         ),
         centerTitle: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () async {
+              await getAllAnswers();
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await Modular.to.pushNamed(
+          await Modular.to
+              .pushNamed(
             TasksPage.route + SendAnswerPage.route,
             arguments: RequestSendTask(
               taskId: widget.task.id,
               userId: controller.user.id,
+              quizId: widget.task.quizId,
             ),
-          );
+          )
+              .then((value) async {
+            if (value != null) {
+              await getAllAnswers();
+              return SafeDialog(
+                title: S.current.textSubmited,
+                message: S.current.textSubmitedWithSuccess,
+                onTap: () => Modular.to.pop(),
+              ).show();
+            }
+          });
         },
         backgroundColor: SafeColors.buttonColors.primary,
         child: const Icon(Icons.add),
@@ -190,7 +211,8 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
                                       final user = snapshot.data;
                                       return AnswerWidget(
                                         date: answers?[index].sendDate,
-                                        name: user?.name,
+                                        name:
+                                            user?.name ?? controller.user.name,
                                         onTap: () async => Modular.to.pushNamed(
                                           TasksPage.route + AnswerPage.route,
                                           arguments: answers?[index],

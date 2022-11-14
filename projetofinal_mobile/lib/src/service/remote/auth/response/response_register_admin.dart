@@ -1,6 +1,6 @@
 import 'package:projetofinal_mobile/src/service/model/perfil_model.dart';
 
-class ResponseRegisterAdmin {
+class ResponseRegister {
   int? id;
   String? name;
   String? user;
@@ -10,7 +10,7 @@ class ResponseRegisterAdmin {
   String? updatedAt;
   List<ResponseRegisterAdminPerfil>? profiles;
 
-  ResponseRegisterAdmin({
+  ResponseRegister({
     this.id,
     this.name,
     this.user,
@@ -21,8 +21,8 @@ class ResponseRegisterAdmin {
     this.profiles,
   });
 
-  factory ResponseRegisterAdmin.fromJson(dynamic json) {
-    return ResponseRegisterAdmin(
+  factory ResponseRegister.fromJson(dynamic json) {
+    return ResponseRegister(
       id: json["id"],
       name: json["nome"],
       user: json["login"],
