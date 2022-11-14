@@ -2,9 +2,9 @@ package br.com.ucsal.projetofinal.resposta;
 
 import br.com.ucsal.projetofinal.casoteste.CasoTeste;
 import br.com.ucsal.projetofinal.itemProva.ItemProvaRespository;
+import br.com.ucsal.projetofinal.prova.ProvaRepository;
 import br.com.ucsal.projetofinal.resultado.Resultado;
 import br.com.ucsal.projetofinal.resultado.ResultadoRepository;
-import br.com.ucsal.projetofinal.tarefa.Tarefa;
 import br.com.ucsal.projetofinal.tarefa.TarefaRepository;
 import br.com.ucsal.projetofinal.testcode.TestResult;
 import br.com.ucsal.projetofinal.testcode.TestService;
@@ -24,13 +24,15 @@ public class RespostaService {
     private final TarefaRepository tarefaRepository;
     private final ResultadoRepository resultadoRepository;
     private final ItemProvaRespository itemProvaRespository;
+    private final ProvaRepository provaRepository;
 
-    public RespostaService(RespostaRepository respostaRepository, UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository, ResultadoRepository resultadoRepository, ItemProvaRespository itemProvaRespository) {
+    public RespostaService(RespostaRepository respostaRepository, UsuarioRepository usuarioRepository, TarefaRepository tarefaRepository, ResultadoRepository resultadoRepository, ItemProvaRespository itemProvaRespository, ProvaRepository provaRepository) {
         this.respostaRepository = respostaRepository;
         this.usuarioRepository = usuarioRepository;
         this.tarefaRepository = tarefaRepository;
         this.resultadoRepository = resultadoRepository;
         this.itemProvaRespository = itemProvaRespository;
+        this.provaRepository = provaRepository;
     }
 
     public List<Resposta> listar() {
@@ -61,6 +63,11 @@ public class RespostaService {
             response.setPorcentagemAcerto(resultado.getPorcentagem());
             listaRetornada.add(response);
         }*/
+        return listaRetornada;
+    }
+
+    public List<RespostaPorcentagemResponseDTO> listarPorIdProva(long idProva){
+        List<RespostaPorcentagemResponseDTO> listaRetornada = respostaRepository.findAllByIdProva(idProva);
         return listaRetornada;
     }
 
