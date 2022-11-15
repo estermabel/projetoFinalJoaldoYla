@@ -9,6 +9,7 @@ import 'package:projetofinal_mobile/src/domain/entity/task_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/test_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/user_entity.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/do_register_admin_use_case.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/get_answer_by_quiz_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_answers_use_Case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_my_answers_use_Case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_tests_by_task_id.dart';
@@ -20,6 +21,7 @@ import 'package:projetofinal_mobile/src/service/config/interceptors/api_intercep
 
 class TaskBloc extends SafeBloC {
   final GetAnswersUseCase getAnswersUseCase;
+  final GetAnswersByQuizIdUseCase getAnswersByQuizIdUseCase;
   final GetUserRoleUseCase getUserRoleUseCase;
   final GetUserByIdUseCase getUserByIdUseCase;
   final GetMyAnswersUseCase getMyAnswersUseCase;
@@ -41,6 +43,7 @@ class TaskBloc extends SafeBloC {
     required this.getMyAnswersUseCase,
     required this.getUserIdUseCase,
     required this.getTestsByTaskIdUseCase,
+    required this.getAnswersByQuizIdUseCase,
   }) {
     init();
   }
@@ -101,11 +104,26 @@ class TaskBloc extends SafeBloC {
   }
 
   Future<void> getAnswers({required TaskEntity? task}) async {
-    if (userRole == RoleEnum.student) return;
+    await getUserRole();
+    if (userRole == RoleEnum.student) {
+      if (task?.quizId != null) {
+        List<AnswerEntity> answers = await getAnswersByQuizIdUseCase(
+          quizId: task?.quizId,
+        );
+        getMyAnswersInQuiz(answers);
+      }
+      return;
+    }
 
     try {
       getAnswersController.sink.add(SafeEvent.load());
-      List<AnswerEntity> answers = await getAnswersUseCase(taskId: task?.id);
+      List<AnswerEntity> answers = [];
+      if (task?.quizId != null) {
+        answers = await getAnswersByQuizIdUseCase(quizId: task?.quizId);
+        getMyAnswersInQuiz(answers);
+      } else {
+        answers = await getAnswersUseCase(taskId: task?.id);
+      }
       for (final answer in answers) {
         await getUserById(answer);
       }
@@ -120,6 +138,16 @@ class TaskBloc extends SafeBloC {
         isShowErrorDialog = true;
         getAnswersController.sink.addError(e.toString());
       }
+    }
+  }
+
+  void getMyAnswersInQuiz(List<AnswerEntity> answers) {
+    try {
+      final myAnswers = answers.where((e) => e.userId == user.id);
+      getMyAnswersController.sink.add(SafeEvent.done(myAnswers.toList()));
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+      getMyAnswersController.sink.addError(e.toString());
     }
   }
 

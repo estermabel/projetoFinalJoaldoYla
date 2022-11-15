@@ -10,6 +10,7 @@ abstract class ITasksService {
   Future<List<ResponseGetTasks>> getTasks();
   Future<List<ResponseGetAnswerByTaskId>> getAnswersByTaskId(int taskId);
   Future<List<ResponseGetAnswerByUserId>> getAnswersByUserId(int userId);
+  Future<List<ResponseGetAnswerByTaskId>> getAnswerByQuizId(int quizId);
   Future<ResponseGetAnswerResult> getAnswerResult(int id);
   Future<List<ResponseGetTestByTaskId>> getTestsByTaskId(int taskId);
   Future<ResponseSendTask> sendTask(RequestSendTask request);

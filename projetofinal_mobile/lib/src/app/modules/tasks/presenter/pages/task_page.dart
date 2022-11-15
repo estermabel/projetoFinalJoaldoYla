@@ -53,7 +53,9 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
   }
 
   Future<void> getAllAnswers() async {
-    await controller.getMyAnswers(widget.task.id);
+    if (widget.task.quizId == null) {
+      await controller.getMyAnswers(widget.task.id);
+    }
     await controller.getAnswers(task: widget.task);
     await controller.getTests(widget.task.id);
   }
