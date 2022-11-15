@@ -115,4 +115,20 @@ class TasksService implements ITasksService {
 
     return ResponseSendTask.fromJson(jsonDecode(response.data));
   }
+
+  @override
+  Future<List<ResponseGetAnswerByTaskId>> getAnswerByQuizId(int quizId) async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.getAnswerByQuizId + quizId.toString(),
+      method: HttpMethod.get,
+      options: Options(headers: {ApiConstants.kAuthorization: token}),
+    );
+
+    final response = await _service.doRequest(requestConfig);
+    return (json.decode(response.data) as List)
+        .map((e) => ResponseGetAnswerByTaskId.fromJson(e))
+        .toList();
+  }
 }
