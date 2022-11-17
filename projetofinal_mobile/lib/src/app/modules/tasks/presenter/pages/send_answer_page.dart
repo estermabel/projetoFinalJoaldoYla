@@ -39,6 +39,11 @@ class _SendAnswerPageState
     super.initState();
     SafeLogUtil.instance.route(Modular.to.path);
     _codeController = CodeController(
+      text: '''public class Main {
+        public static void main(String[] args) {
+
+        }
+    }''',
       language: java,
       theme: monokaiSublimeTheme,
       onChange: (value) => setState(() {
