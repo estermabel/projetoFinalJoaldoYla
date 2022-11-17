@@ -8,5 +8,6 @@ abstract class IAuthService {
   Future<ResponseLogin> doLogin(RequestLogin request);
   Future<ResponseRegister> doRegister(RequestRegister request);
   Future<ResponseGetUserById> getUserById(int id);
+  Future<List<ResponseGetUserById>> getAllUsers();
   Future<String> getAccessToken();
 }

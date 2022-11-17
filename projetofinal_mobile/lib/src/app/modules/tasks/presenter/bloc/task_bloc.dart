@@ -8,7 +8,7 @@ import 'package:projetofinal_mobile/src/domain/entity/answer_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/task_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/test_entity.dart';
 import 'package:projetofinal_mobile/src/domain/entity/user_entity.dart';
-import 'package:projetofinal_mobile/src/domain/use_case/do_register_admin_use_case.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/do_register_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_answer_by_quiz_id_use_case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_answers_use_Case.dart';
 import 'package:projetofinal_mobile/src/domain/use_case/get_my_answers_use_Case.dart';
