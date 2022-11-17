@@ -69,4 +69,21 @@ class AuthService implements IAuthService {
 
     return ResponseGetUserById.fromJson(jsonDecode(response.data));
   }
+
+  @override
+  Future<List<ResponseGetUserById>> getAllUsers() async {
+    final token = await getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.getUserById,
+      method: HttpMethod.get,
+      options: Options(headers: {ApiConstants.kAuthorization: token}),
+    );
+
+    final response = await _service.doRequest(requestConfig);
+
+    return (json.decode(response.data) as List)
+        .map((e) => ResponseGetUserById.fromJson(e))
+        .toList();
+  }
 }

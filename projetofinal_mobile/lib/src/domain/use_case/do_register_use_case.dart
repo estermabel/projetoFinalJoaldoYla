@@ -46,8 +46,21 @@ class DoRegisterUseCase extends SafeUseCase {
       profileId: profile.index + 1,
     );
 
-    final response = await _service.doRegister(request);
+    final responseGetUsers = await _service.getAllUsers();
 
-    return RegisterEntity.toEntity(response);
+    bool userExists = false;
+
+    responseGetUsers.map((e) {
+      if (e.user == username) {
+        userExists = true;
+      }
+    });
+
+    if (userExists) {
+      throw Exception('Usuário já está cadastrado.');
+    } else {
+      final response = await _service.doRegister(request);
+      return RegisterEntity.toEntity(response);
+    }
   }
 }

@@ -3,7 +3,7 @@ import 'package:projetofinal_mobile/src/components/style/colors/safe_colors.dart
 import 'package:projetofinal_mobile/src/components/style/text/text_styles.dart';
 import 'package:projetofinal_mobile/src/core/constants/string_constants.dart';
 import 'package:projetofinal_mobile/src/domain/entity/user_entity.dart';
-import 'package:projetofinal_mobile/src/domain/use_case/do_register_admin_use_case.dart';
+import 'package:projetofinal_mobile/src/domain/use_case/do_register_use_case.dart';
 
 class ProfileWidget extends StatelessWidget {
   final UserEntity? user;
