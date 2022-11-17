@@ -14,7 +14,14 @@ class GetAnswerResultUseCase implements SafeUseCase {
     if (answerId != null) {
       final response = await _service.getAnswerResult(answerId);
 
-      return ResultEntity.toEntity(response);
+      final result = ResultEntity.toEntity(response);
+
+      if (result.compiled == false) {
+        throw Exception(
+          'Não foi possível compilar o código:  ${result.obtainedOutput}',
+        );
+      }
+      return result;
     }
     return ResultEntity();
   }
